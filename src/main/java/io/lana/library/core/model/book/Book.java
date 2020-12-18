@@ -1,6 +1,6 @@
-package io.lana.library.model.book;
+package io.lana.library.core.model.book;
 
-import io.lana.library.model.Reader;
+import io.lana.library.core.model.Reader;
 import lombok.Getter;
 import lombok.Setter;
 

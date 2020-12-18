@@ -1,4 +1,4 @@
-package io.lana.library.model.book;
+package io.lana.library.core.model.book;
 
 import lombok.Getter;
 import lombok.Setter;
