@@ -13,10 +13,10 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "category")
-public class Category extends BaseEntity implements Named {
+@Table(name = "series")
+public class Series extends BaseEntity implements Named {
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "series")
     private Set<BookMeta> books;
 }

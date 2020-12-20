@@ -1,24 +1,22 @@
 package io.lana.library.core.model.book;
 
+import io.lana.library.core.model.base.BaseEntity;
+import io.lana.library.core.model.base.Named;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
 @Setter
 @Getter
-public class Storage {
-    @Id
-    @GeneratedValue
-    private Integer id;
-
+@Table(name = "storage")
+public class Storage extends BaseEntity implements Named {
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "storage")
     private Set<Book> books;
 }

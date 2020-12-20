@@ -1,31 +1,33 @@
 package io.lana.library.core.model;
 
-import io.lana.library.core.model.book.Book;
+import io.lana.library.core.model.base.BaseEntity;
+import io.lana.library.core.model.book.BookBorrowing;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
 @Setter
 @Getter
-public class Reader {
-    @Id
-    @GeneratedValue
-    private Integer id;
-
-    @OneToMany
-    private Set<Book> borrowedBooks;
-
+@Table(name = "reader")
+public class Reader extends BaseEntity {
+    @Column(unique = true)
     private String email;
 
+    @Column(unique = true, name = "phone_number")
     private String phoneNumber;
 
     private String name;
 
+    private String address;
+
     private Integer limit;
+
+    private LocalDate birth;
+
+    @OneToMany(mappedBy = "borrower")
+    private Set<BookBorrowing> borrowedBooks;
 }
