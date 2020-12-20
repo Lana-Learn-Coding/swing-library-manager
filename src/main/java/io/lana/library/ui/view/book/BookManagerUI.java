@@ -1,8 +1,8 @@
 /*
- * Created by JFormDesigner on Mon Dec 14 09:24:29 ICT 2020
+ * Created by JFormDesigner on Sun Dec 20 20:30:51 ICT 2020
  */
 
-package io.lana.library.ui;
+package io.lana.library.ui.view.book;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -10,14 +10,15 @@ import javax.swing.GroupLayout;
 /**
  * @author unknown
  */
-public class LoginUI extends JFrame {
-    public LoginUI() {
+public class BookManagerUI extends JFrame {
+    public BookManagerUI() {
         initComponents();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
+        scrollPane1 = new JScrollPane();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -26,11 +27,17 @@ public class LoginUI extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGap(0, 400, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+                    .addContainerGap())
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGap(0, 300, Short.MAX_VALUE)
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap(290, Short.MAX_VALUE)
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -39,5 +46,6 @@ public class LoginUI extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - unknown
+    private JScrollPane scrollPane1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
