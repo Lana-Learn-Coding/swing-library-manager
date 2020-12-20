@@ -3,19 +3,39 @@ JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp button1:::p::p, space ::514:x}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp button1:::p::p, space ::307:x}}"
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:153:p, comp btnLogin:::p:85:p, space ::167:x}, seq t {space :p:25:p, par l {comp lblUsername::::61:x, comp lblPassword::::61:x}, space :::p, par l:::p {comp textField1::::291:x, comp textField2::::291:x, comp label2::l:p:228:p}, space :p:22:p}}"
+			"$verticalGroup": "par l {seq l {space :p:20:p, comp label2:::p:31:p, space s:::p, par b {comp lblUsername::b:p:20:p, comp textField1::b:p::p}, space s:::p, par b {comp lblPassword::b:p:23:p, comp textField2::b:p::p}, space s:::p, comp btnLogin:::p:31:p, space ::16:x}}"
 		} ) {
 			name: "this"
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblUsername"
+				"text": "Username"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblPassword"
+				"text": "Password"
+			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
-				"text": "text"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
+				name: "btnLogin"
+				"text": "Login"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "login", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Login to Library"
+				"font": new com.jformdesigner.model.SwingDerivedFont( "Roboto Light", 0, 10, false )
+				"horizontalAlignment": 0
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 50, 45 )
-			"size": new java.awt.Dimension( 600, 375 )
+			"location": new java.awt.Point( 195, 125 )
+			"size": new java.awt.Dimension( 405, 195 )
 		} )
 	}
 }

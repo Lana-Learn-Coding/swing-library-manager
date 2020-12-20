@@ -1,0 +1,18 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {space :0:748:x}"
+			"$verticalGroup": "par l {space :0:393:x}"
+		} ) {
+			name: "this"
+			"title": "Library Manager App"
+			"resizable": false
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 750, 425 )
+		} )
+	}
+}
