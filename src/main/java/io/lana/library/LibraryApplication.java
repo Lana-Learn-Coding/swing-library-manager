@@ -2,15 +2,23 @@ package io.lana.library;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import io.lana.library.ui.MainFrame;
-import io.lana.library.ui.view.LoginUI;
+import org.springframework.beans.BeansException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import javax.swing.*;
 
 @SpringBootApplication
-public class LibraryApplication implements CommandLineRunner {
+public class LibraryApplication implements CommandLineRunner, ApplicationContextAware {
+    private ApplicationContext context;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.context = applicationContext;
+    }
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(LibraryApplication.class)
@@ -21,10 +29,7 @@ public class LibraryApplication implements CommandLineRunner {
     @Override
     public void run(String... args) {
         FlatLightLaf.install();
-        JFrame mainFrame = new MainFrame();
-        JPanel loginPanel = new LoginUI(mainFrame);
-        mainFrame.setContentPane(loginPanel);
+        JFrame mainFrame = context.getBean(MainFrame.class);
         mainFrame.setVisible(true);
-        mainFrame.pack();
     }
 }

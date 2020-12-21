@@ -1,45 +1,38 @@
 /*
- * Created by JFormDesigner on Mon Dec 21 01:06:14 ICT 2020
+ * Created by JFormDesigner on Mon Dec 21 14:55:20 ICT 2020
  */
 
 package io.lana.library.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import javax.swing.*;
-import javax.swing.GroupLayout;
+import java.awt.*;
 
 /**
  * @author unknown
  */
+@Component
 public class MainFrame extends JFrame {
+    @Autowired
+    @Qualifier("startupPanel")
+    public void setStartupPanel(JPanel startupPanel) {
+        setContentPane(startupPanel);
+        pack();
+    }
+
     public MainFrame() {
         initComponents();
     }
 
     private void initComponents() {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - unknown
-
-        //======== this ========
         setTitle("Library Manager App");
         setResizable(false);
-        var contentPane = getContentPane();
-
-        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-        contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGap(0, 748, Short.MAX_VALUE)
-        );
-        contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGap(0, 393, Short.MAX_VALUE)
-        );
+        Container contentPane = getContentPane();
+        contentPane.setLayout(null);
         pack();
         setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
-
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - unknown
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
