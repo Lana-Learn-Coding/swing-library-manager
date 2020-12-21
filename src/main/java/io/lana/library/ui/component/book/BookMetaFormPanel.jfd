@@ -1,0 +1,94 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:10:p, par l:::p {seq l {par l {comp lblCategory::l:p::p, par l:t {comp lblAuthor:::p::p, comp lblPublisher:::p::p}}, space s:::p, par l:::p {seq {par l {comp selectSeries::::295:x, comp selectCategory::::295:x}, space u:::p, par l:::p {comp btnNewSeries::::83:x, comp btnNewCategory::::83:x}}, comp txtPublisher::l::388:x, comp textField4::t::388:x}}, comp lblSeries:::p::p, seq {par l {comp lblTitle:::p::p, comp lblID:::p:61:p}, space :p:2:p, par l {seq {comp txtID:::p:107:p, space :p:70:p, comp lblYear:::p::p, space s:::p, comp txtYear::::171:x}, comp txtTitle::::388:x}}}, space s:::p, par l {comp btnPickImage:::p:135:p, comp imageViewPanel:::::x}, space :0:1:x}}"
+			"$verticalGroup": "par l {seq {par l {seq {space :p:14:p, par b {comp lblID::b:p::p, comp lblYear::b:p::p, comp txtID::b:::x, comp txtYear::b:::x}, space u:::p, par b {comp lblTitle::b:p::p, comp txtTitle::b:p::p}, space u:::p, par b {comp lblSeries::b:p::p, comp btnNewSeries::b:p::p, comp selectSeries::b:p::p}, space u:::p, par b {comp lblCategory::b:p::p, comp btnNewCategory::b:p::p, comp selectCategory::b:p::p}, space u:::p, par b {comp txtPublisher::b:p::p, comp lblPublisher::b:p::p}, space :p:9:p}, seq {space :::p, comp imageViewPanel:::::x, space :::p}}, par b {comp textField4::b:p:19:p, comp lblAuthor::b:p::p, comp btnPickImage::b:p:24:p}, space :p:98:p}}"
+		} ) {
+			name: "this"
+			"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblID"
+				"text": "ID"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblTitle"
+				"text": "Title"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblSeries"
+				"text": "Series"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblCategory"
+				"text": "Category"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtID"
+				"editable": false
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtTitle"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "selectSeries"
+				auxiliary() {
+					"JavaCodeGenerator.typeParameters": "Series"
+				}
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField4"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblPublisher"
+				"text": "Publisher"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtPublisher"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAuthor"
+				"text": "Author"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtYear"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "selectCategory"
+				auxiliary() {
+					"JavaCodeGenerator.typeParameters": "Category"
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblYear"
+				"text": "Year"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {space :0:0:x}"
+				"$verticalGroup": "par l {space :0:0:x}"
+			} ) {
+				name: "imageViewPanel"
+				"border": new javax.swing.border.TitledBorder( "Image" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnPickImage"
+				"text": "Select Image"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnNewSeries"
+				"text": "New"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnNewSeriesActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnNewCategory"
+				"text": "New"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnNewCategoryActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 90, 65 )
+			"size": new java.awt.Dimension( 615, 215 )
+		} )
+	}
+}

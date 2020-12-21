@@ -1,4 +1,4 @@
-package io.lana.library.ui.component;
+package io.lana.library.ui.component.app;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import javax.swing.*;
 public class AppPanel extends JPanel implements ApplicationContextAware {
     protected JFrame frame;
 
-    private ApplicationContext applicationContext;
+    protected ApplicationContext applicationContext;
 
     @Autowired
     public void setFrame(JFrame frame) {
