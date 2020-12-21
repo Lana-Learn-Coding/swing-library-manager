@@ -19,4 +19,9 @@ public class Series extends BaseEntity implements Named {
 
     @OneToMany(mappedBy = "series")
     private Set<BookMeta> books;
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

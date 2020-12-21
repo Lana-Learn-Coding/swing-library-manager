@@ -19,4 +19,9 @@ public class Category extends BaseEntity implements Named {
 
     @OneToMany(mappedBy = "category")
     private Set<BookMeta> books;
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

@@ -19,4 +19,9 @@ public class Storage extends BaseEntity implements Named {
 
     @OneToMany(mappedBy = "storage")
     private Set<Book> books;
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
