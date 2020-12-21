@@ -36,4 +36,5 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    jvmArgs '-Djava.awt.headless=false'
 }
