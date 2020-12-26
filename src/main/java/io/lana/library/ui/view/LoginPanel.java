@@ -5,7 +5,7 @@
 package io.lana.library.ui.view;
 
 import io.lana.library.ui.component.app.AppPanel;
-import io.lana.library.ui.view.book.BookManagerPanel;
+import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -21,18 +21,28 @@ public class LoginPanel extends AppPanel {
     }
 
     private void btnLoginActionPerformed(ActionEvent e) {
+        if (checkUserIsValid()) {
+            gotoPanel(BookMetaManagerPanel.class);
+        }
+    }
+
+    private boolean checkUserIsValid() {
         String password = txtPassword.getText();
         String username = txtUsername.getText();
         if (StringUtils.isAllBlank(password, username)) {
             JOptionPane.showMessageDialog(this, "Please enter username and password");
-            return;
+            return false;
         }
         final String ADMIN = "admin";
         if (!password.equals(ADMIN) || !username.equals(ADMIN)) {
             JOptionPane.showMessageDialog(this, "Wrong username or password");
-            return;
+            return false;
         }
-        gotoPanel(BookManagerPanel.class);
+        return true;
+    }
+
+    private void btnHackActionPerformed(ActionEvent e) {
+        gotoPanel(BookMetaManagerPanel.class);
     }
 
     private void initComponents() {
@@ -43,6 +53,7 @@ public class LoginPanel extends AppPanel {
         txtPassword = new JPasswordField();
         lblHeader = new JLabel();
         btnLogin = new JButton();
+        btnHack = new JButton();
 
         //======== this ========
 
@@ -61,28 +72,29 @@ public class LoginPanel extends AppPanel {
         btnLogin.setText("Login");
         btnLogin.addActionListener(e -> btnLoginActionPerformed(e));
 
+        //---- btnHack ----
+        btnHack.setText("Hack");
+        btnHack.addActionListener(e -> btnHackActionPerformed(e));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(26, Short.MAX_VALUE)
+                    .addGap(17, 17, 17)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblPassword)
+                        .addComponent(lblUsername))
+                    .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(lblUsername)
-                                .addComponent(lblPassword))
+                        .addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE))
-                            .addGap(26, 26, 26))
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
-                            .addGap(69, 69, 69))
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-                            .addGap(128, 128, 128))))
+                            .addComponent(btnHack, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -91,15 +103,17 @@ public class LoginPanel extends AppPanel {
                     .addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblUsername))
+                        .addComponent(lblUsername)
+                        .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblPassword))
-                    .addGap(27, 27, 27)
-                    .addComponent(btnLogin)
-                    .addContainerGap(33, Short.MAX_VALUE))
+                        .addComponent(lblPassword)
+                        .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnHack)
+                        .addComponent(btnLogin))
+                    .addContainerGap(27, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -111,5 +125,6 @@ public class LoginPanel extends AppPanel {
     private JPasswordField txtPassword;
     private JLabel lblHeader;
     private JButton btnLogin;
+    private JButton btnHack;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

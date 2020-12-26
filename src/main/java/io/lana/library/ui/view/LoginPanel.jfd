@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "io.lana.library.ui.component.app.AppPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space ::26:x, par l {seq t {par l {comp lblUsername:::p::p, comp lblPassword:::p::p}, space s:::p, par l {comp txtUsername:::p:247:p, comp txtPassword:::p:247:p}, space :p:26:p}, seq t {comp lblHeader:::p:220:p, space :p:69:p}, seq t {comp btnLogin:::p:103:p, space :p:128:p}}}}"
-			"$verticalGroup": "par l {seq l {space :p:11:p, comp lblHeader:::p:35:p, space s:::p, par b {comp txtUsername::b:p::p, comp lblUsername::b:p::p}, space s:::p, par b {comp txtPassword::b:p::p, comp lblPassword::b:p::p}, space :p:27:p, comp btnLogin:::p::p, space ::33:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:17:p, par t {comp lblPassword:::p::p, comp lblUsername:::p::p}, space s:::p, par l {comp lblHeader:::p:220:p, seq {comp btnLogin:::p:82:p, space s:::p, comp btnHack:::p:88:p}, comp txtUsername:::p:247:p, comp txtPassword:::p:247:p}, space ::50:x}}"
+			"$verticalGroup": "par l {seq l {space :p:11:p, comp lblHeader:::p:35:p, space s:::p, par b {comp lblUsername::b:p::p, comp txtUsername::b:p::p}, space s:::p, par b {comp lblPassword::b:p::p, comp txtPassword::b:p::p}, space s:::p, par b {comp btnHack::b:p::p, comp btnLogin::b:p::p}, space ::27:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -33,9 +33,14 @@ new FormModel {
 				"text": "Login"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLoginActionPerformed", true ) )
 			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnHack"
+				"text": "Hack"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnHackActionPerformed", true ) )
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 10, 0 )
-			"size": new java.awt.Dimension( 365, 205 )
+			"size": new java.awt.Dimension( 380, 190 )
 		} )
 	}
 }
