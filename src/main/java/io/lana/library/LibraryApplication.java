@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import javax.swing.*;
+import java.awt.*;
 
 @SpringBootApplication
 public class LibraryApplication implements CommandLineRunner, ApplicationContextAware {
@@ -28,8 +29,10 @@ public class LibraryApplication implements CommandLineRunner, ApplicationContext
 
     @Override
     public void run(String... args) {
-        FlatLightLaf.install();
-        JFrame mainFrame = context.getBean(MainFrame.class);
-        mainFrame.setVisible(true);
+        EventQueue.invokeLater(() -> {
+            FlatLightLaf.install();
+            JFrame mainFrame = context.getBean(MainFrame.class);
+            mainFrame.setVisible(true);
+        });
     }
 }
