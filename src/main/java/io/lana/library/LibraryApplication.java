@@ -2,6 +2,7 @@ package io.lana.library;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import io.lana.library.ui.MainFrame;
+import io.lana.library.ui.UIException;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,6 +34,16 @@ public class LibraryApplication implements CommandLineRunner, ApplicationContext
             FlatLightLaf.install();
             JFrame mainFrame = context.getBean(MainFrame.class);
             mainFrame.setVisible(true);
+            Thread.setDefaultUncaughtExceptionHandler((thread, error) -> {
+                Class<?> errorClass = error.getClass();
+                if (UIException.class.isAssignableFrom(errorClass)) {
+                    UIException e = (UIException) error;
+                    JOptionPane.showMessageDialog(e.getComponent(), "Error: " + e.getMessage());
+                    return;
+                }
+                JOptionPane.showMessageDialog(null, "Unknown Error!");
+                error.printStackTrace();
+            });
         });
     }
 }
