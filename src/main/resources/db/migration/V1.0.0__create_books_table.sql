@@ -67,6 +67,7 @@ CREATE TABLE book
     condition         INT       NOT NULL DEFAULT 10,
     image             VARCHAR(128),
     note              TEXT,
+    position          VARCHAR(256),
     meta_id           INT       REFERENCES book_meta (id) ON DELETE SET NULL,
     storage_id        INT       NOT NULL REFERENCES storage (id) ON DELETE RESTRICT,
     book_borrowing_id INT       REFERENCES book_borrowing (id) ON DELETE SET NULL,
