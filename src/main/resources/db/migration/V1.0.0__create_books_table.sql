@@ -5,6 +5,7 @@ CREATE TABLE reader
     phone_number VARCHAR(32)  NOT NULL UNIQUE,
     name         VARCHAR(128) NOT NULL,
     address      VARCHAR(256),
+    gender       BOOLEAN      NOT NULL DEFAULT TRUE,
     "limit"      INT          NOT NULL DEFAULT 5,
     birth        DATE         NOT NULL,
     created_at   TIMESTAMP    NOT NULL DEFAULT now(),
@@ -55,7 +56,7 @@ CREATE TABLE book_borrowing
     borrowed_date DATE      NOT NULL DEFAULT now(),
     due_date      DATE      NOT NULL,
     borrower_id   INT       NOT NULL REFERENCES reader (id) ON DELETE RESTRICT,
-    note          VARCHAR(256),
+    note          TEXT,
     created_at    TIMESTAMP NOT NULL DEFAULT now(),
     updated_at    TIMESTAMP NOT NULL DEFAULT now()
 );
@@ -65,7 +66,7 @@ CREATE TABLE book
     id                SERIAL PRIMARY KEY,
     condition         INT       NOT NULL DEFAULT 10,
     image             VARCHAR(128),
-    note              VARCHAR(256),
+    note              TEXT,
     meta_id           INT       REFERENCES book_meta (id) ON DELETE SET NULL,
     storage_id        INT       NOT NULL REFERENCES storage (id) ON DELETE RESTRICT,
     book_borrowing_id INT       REFERENCES book_borrowing (id) ON DELETE SET NULL,
