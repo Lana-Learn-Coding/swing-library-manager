@@ -4,19 +4,86 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {comp mainTabbedPane:::::x, comp bookTablePane:::::x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp mainTabbedPane:::p:234:p, space u:::p, comp bookTablePane::::245:x, space :::p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp bookTablePane::::668:x, comp mainTabbedPane::::668:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp mainTabbedPane::::310:x, space u:::p, comp bookTablePane:::p:228:p, space :::p}}"
 		} ) {
 			name: "this"
+			"title": "Book List Detail"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "mainTabbedPane"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {space :0:738:x}"
-					"$verticalGroup": "par l {space :0:207:x}"
+					"$horizontalGroup": "par l {seq l {space :::p, comp panel1:::p::p, space ::129:x}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp panel1:::::x, space :::p}}"
 				} ) {
 					name: "formTab"
+					"border": new javax.swing.border.EtchedBorder( 1, null, null )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {space :::p, par l:::p {comp label1:::p::p, seq l {comp label6:::p::p, space s:::p, comp comboBox1:::p:222:p, space u:::p, comp btnNewStorage:::p::p}, seq l {par l {seq {comp label4:::p::p, space :p:12:p}, comp label5::t:p::p}, space :p:30:p, par l:::p {seq {comp textField3:::p:87:p, space :::x, comp label7:::p::p, space s:::p, comp textField4:::p:94:p}, comp textField1:::p:283:p}}, seq l {par l {comp label3::l:p::p, comp label2::l:p::p}, space s:::p, par l {comp textField6:::::x, comp scrollPane1:::::x}}}, space ::169:x}}"
+						"$verticalGroup": "par l {seq l {par b {comp label4::b:p::p, comp textField3::b:p::p, comp textField4::b:p::p, comp label7::b:p::p}, space :::p, comp label1:::p::p, space u:::p, par b {comp label5::b:p::p, comp textField1::b:p::p}, space s:::p, par b {comp label6::b:p::p, comp comboBox1::b:p::p, comp btnNewStorage::b:p:21:p}, space s:::p, par b {comp label3::b:p::p, comp textField6::b:p::p}, space s:::p, par l {comp label2:::p::p, comp scrollPane1:::p:56:p}, space ::38:x}}"
+					} ) {
+						name: "panel1"
+						"border": new javax.swing.border.TitledBorder( "Book Form" )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label1"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label4"
+							"text": "ID"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label5"
+							"text": "Meta"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label6"
+							"text": "Storage"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textField3"
+							"editable": false
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label7"
+							"text": "Condition"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textField4"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textField1"
+							"editable": false
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label3"
+							"text": "Position"
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textField6"
+						} )
+						add( new FormComponent( "javax.swing.JComboBox" ) {
+							name: "comboBox1"
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btnNewStorage"
+							"text": "New"
+						} )
+						add( new FormComponent( "javax.swing.JComboBox" ) {
+							name: "comboBox2"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label2"
+							"text": "Note"
+						} )
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane1"
+							add( new FormComponent( "javax.swing.JTextArea" ) {
+								name: "textArea1"
+							} )
+						} )
+					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "text"
+					"title": "Book List"
 				} )
 			} )
 			add( new FormContainer( "io.lana.library.ui.component.book.BookTablePane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -24,7 +91,8 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 765, 535 )
+			"size": new java.awt.Dimension( 690, 600 )
 		} )
 	}
 }
+
