@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,5 +30,5 @@ public class Reader extends BaseEntity {
     private LocalDate birth;
 
     @OneToMany(mappedBy = "borrower")
-    private Set<BookBorrowing> borrowedBooks;
+    private Set<BookBorrowing> borrowedBooks = new HashSet<>();
 }

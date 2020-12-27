@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,12 +19,12 @@ public class BookBorrowing extends BaseEntity {
     private LocalDate dueDate;
 
     @Column(name = "borrowed_date")
-    private LocalDate borrowedDate;
+    private LocalDate borrowedDate = LocalDate.now();
 
     private String note;
 
     @OneToMany(mappedBy = "borrowing")
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "borrower_id")

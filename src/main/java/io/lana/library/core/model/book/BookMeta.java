@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,16 +16,16 @@ import java.util.Set;
 public class BookMeta extends BaseEntity {
     private String title;
 
-    private String author;
+    private String author = "Unknown";
 
-    private String publisher;
+    private String publisher = "Unknown";
 
     private String image;
 
     private Integer year;
 
     @OneToMany(mappedBy = "meta", fetch = FetchType.EAGER)
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "category_id")
