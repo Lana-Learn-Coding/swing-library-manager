@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Vector;
 
+import static io.lana.library.utils.DateFormatUtils.COMMON_DATE_FORMAT;
+
 @Component
 public class BookMetaTablePane extends AbstractTablePane<BookMeta> {
     @Override
@@ -24,7 +26,7 @@ public class BookMetaTablePane extends AbstractTablePane<BookMeta> {
         data.add(bookMeta.getCategoryName());
         data.add(bookMeta.getBooks().size());
         data.add(bookMeta.getYear());
-        data.add(bookMeta.getUpdatedAt().toLocalDate().toString());
+        data.add(bookMeta.getUpdatedAt().toLocalDate().format(COMMON_DATE_FORMAT));
         return data;
     }
 }
