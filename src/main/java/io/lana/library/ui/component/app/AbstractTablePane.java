@@ -2,7 +2,10 @@ package io.lana.library.ui.component.app;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Vector;
 
 public abstract class AbstractTablePane<T> extends JScrollPane {
     protected final List<T> data = new ArrayList<>();
@@ -23,7 +26,7 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
         return table;
     }
 
-    public void setTableData(List<T> data) {
+    public void setTableData(Collection<T> data) {
         this.data.clear();
         this.data.addAll(data);
         tableModel.setRowCount(0);

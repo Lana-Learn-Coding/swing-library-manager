@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -16,14 +16,14 @@ new FormModel {
 				name: "mainTabbedPane"
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:10:p, comp formPanel:::p::p, space s:::p, comp panel1:::p::p, space :::x}}"
-					"$verticalGroup": "par l {seq l {space :::p, par l {comp formPanel:::p::p, comp panel1:::p::p}, space ::14:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:14:p, comp formPanel:::p::p, space u:::p, comp panel1:::p::p, space ::21:x}}"
+					"$verticalGroup": "par l {seq {space :::p, par l {comp panel1:::p::p, comp formPanel:::p::p}, space ::32:x}}"
 				} ) {
 					name: "bookMetaManagerTab"
 					"border": new javax.swing.border.EtchedBorder( 1, null, null )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {par l {comp lblPublisher::l:p::p, comp lblAuthor::l:p::p, comp lblCategory::l:p::p}, space :p:23:p, par l:::p {comp txtPublisher:::p:388:p, seq {comp selectCategory:::p:307:p, space :::x, comp btnNewCategory:::p:71:p}, comp txtAuthor:::p:388:p}}, seq l {par l {comp lblTitle:::p::p, comp lblID:::p::p}, space :p:48:p, par l:::p {par l:l {comp txtTitle::t:p:390:p, seq {comp txtID:::p:109:p, space :p:59:p, comp lblYear:::p::p, space :p:29:p, comp txtYear:::p:171:p}}, seq l {comp selectSeries:::p:307:p, space :::x, comp btnNewSeries:::p:71:p, space :p:2:p}}}, comp lblSeries::l:p::p}, space s:::p, par l:::p {comp panelImage:::::x, comp btnImage::::126:x}, space ::41:x}}"
-						"$verticalGroup": "par l {seq l {space :::p, par l {seq {comp panelImage:::p::p, space u:::p, comp btnImage:::p::p}, seq {par b {comp txtYear::b:p::p, comp lblYear::b:p::p, comp txtID::b:p::p, comp lblID::b:p::p}, space s:::p, par b {comp txtTitle::b:p::p, comp lblTitle::b:p::p}, space s:::p, par b {comp selectSeries::b:p::p, comp lblSeries::b:p::p, comp btnNewSeries::b:p::p}, space s:::p, par b {comp lblCategory::b:p::p, comp selectCategory::b:p::p, comp btnNewCategory::b:p::p}, space :p:19:p, par b {comp lblPublisher::b:p::p, comp txtPublisher::b:p::p}, space s:::p, par b {comp lblAuthor::b:p:17:p, comp txtAuthor::b:p:19:p}}}, space ::30:x}}"
+						"$horizontalGroup": "par l {seq t {space :::p, par t {seq l {par l {comp lblSeries:::p::p, seq l {par l {comp lblTitle:::p::p, comp lblID:::p::p}, space :p:48:p, par l:::p {comp txtTitle::t:p:390:p, seq {comp txtID:::p:109:p, space :p:59:p, comp lblYear:::p::p, space :p:29:p, comp txtYear:::::x}, seq t {par l {comp selectSeries::l:p:307:p, comp selectCategory::l:p:307:p}, space :::x, par t {comp btnNewCategory::l:p:71:p, comp btnNewSeries:::p:71:p}, space :p:2:p}}}}, space ::158:x}, seq t {par l {comp lblPublisher::l:p::p, comp lblAuthor::l:p::p, comp lblCategory::l:p::p}, space :p:28:p, par l:::p {comp txtPublisher::::388:x, comp txtAuthor:::::x}, space :::x, par l:::p {comp btnImage::::138:x, comp panelImage:::::x}}}, space :p:20:p}}"
+						"$verticalGroup": "par l {seq l {space :::p, par l:::p {seq {par b {comp lblYear::b:p::p, comp txtID::b:p::p, comp lblID::b:p::p, comp txtYear::b:p::p}, space s:::p, par b {comp txtTitle::b:p::p, comp lblTitle::b:p::p}, space s:::p, par b {comp selectSeries::b:p::p, comp lblSeries::b:p::p, comp btnNewSeries::b:p::p}, space s:::p, par b {comp lblCategory::b:p::p, comp selectCategory::b:p::p, comp btnNewCategory::b:p::p}, space :p:19:p, par b {comp lblPublisher::b:p::p, comp txtPublisher::b:p::p}}, comp panelImage:::::x}, space s:::p, par b {comp lblAuthor::b:p:17:p, comp txtAuthor::b:p:19:p, comp btnImage::b:p::p}, space ::26:x}}"
 					} ) {
 						name: "formPanel"
 						"border": new javax.swing.border.TitledBorder( "Book Info" )
@@ -99,7 +99,7 @@ new FormModel {
 						} )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 							"$horizontalGroup": "par l {space :0:0:x}"
-							"$verticalGroup": "par l {space :0:122:x}"
+							"$verticalGroup": "par l {space :0:0:x}"
 						} ) {
 							name: "panelImage"
 							"border": new javax.swing.border.TitledBorder( "Image" )
@@ -118,6 +118,8 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnViewBooks"
 							"text": "View Books"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnViewBooksActionPerformed", true ) )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnViewBooksActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "button4"

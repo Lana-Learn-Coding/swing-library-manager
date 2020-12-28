@@ -1,6 +1,6 @@
 package io.lana.library.ui.view;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface CrudPanel<T> {
 
@@ -14,7 +14,7 @@ public interface CrudPanel<T> {
 
     T getModelFromForm();
 
-    void renderTable(List<T> data);
+    void renderTable(Collection<T> data);
 
     void renderTable();
 }

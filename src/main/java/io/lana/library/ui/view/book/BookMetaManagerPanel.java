@@ -4,11 +4,6 @@
 
 package io.lana.library.ui.view.book;
 
-import java.awt.event.*;
-import java.util.List;
-import javax.swing.*;
-import javax.swing.border.*;
-
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Category;
 import io.lana.library.core.model.book.Series;
@@ -16,28 +11,32 @@ import io.lana.library.core.repo.BookMetaRepo;
 import io.lana.library.core.repo.CategoryRepo;
 import io.lana.library.core.repo.SeriesRepo;
 import io.lana.library.ui.UIException;
-import io.lana.library.ui.component.app.*;
 import io.lana.library.ui.component.app.AppPanel;
+import io.lana.library.ui.component.app.IdCombobox;
 import io.lana.library.ui.component.book.BookMetaTablePane;
 import io.lana.library.ui.view.CrudPanel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.swing.GroupLayout;
+import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.event.ActionEvent;
+import java.util.Collection;
 
-/**
- * @author unknown
- */
 @Component
 public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta> {
 
+    private BookManagerDialog bookManagerDialog;
     private SeriesRepo seriesRepo;
     private CategoryRepo categoryRepo;
     private BookMetaRepo bookMetaRepo;
 
     @Autowired
-    public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaRepo bookMetaRepo) {
+    public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaRepo bookMetaRepo,
+                      BookManagerDialog bookManagerDialog) {
+        this.bookManagerDialog = bookManagerDialog;
         this.seriesRepo = seriesRepo;
         this.bookMetaRepo = bookMetaRepo;
         this.categoryRepo = categoryRepo;
@@ -48,6 +47,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         renderTable();
     }
 
+    @Autowired
     public BookMetaManagerPanel() {
         initComponents();
         ListSelectionModel selectionModel = bookMetaTablePane.getSelectionModel();
@@ -64,11 +64,15 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
     @Override
     public void delete() {
+        BookMeta bookMeta = bookMetaTablePane.getSelectedRow();
+        if (bookMeta == null) {
+            JOptionPane.showMessageDialog(this, "Please select some thing");
+            return;
+        }
         int confirm = JOptionPane.showConfirmDialog(this, "Are you sure delete this?");
         if (confirm != JOptionPane.OK_OPTION) {
             return;
         }
-        BookMeta bookMeta = bookMetaTablePane.getSelectedRow();
         bookMetaRepo.deleteById(bookMeta.getId());
         bookMetaTablePane.removeSelectedRow();
         bookMetaTablePane.clearSelection();
@@ -141,7 +145,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
     }
 
     @Override
-    public void renderTable(List<BookMeta> books) {
+    public void renderTable(Collection<BookMeta> books) {
         bookMetaTablePane.setTableData(books);
     }
 
@@ -194,6 +198,15 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
     private void btnClearActionPerformed(ActionEvent e) {
         clearForm();
+    }
+
+    private void btnViewBooksActionPerformed(ActionEvent e) {
+        BookMeta bookMeta = bookMetaTablePane.getSelectedRow();
+        if (bookMeta == null) {
+            JOptionPane.showMessageDialog(this, "Please select some thing");
+        }
+        bookManagerDialog.setModel(bookMeta);
+        bookManagerDialog.setVisible(true);
     }
 
     private void initComponents() {
@@ -289,7 +302,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                         );
                         panelImageLayout.setVerticalGroup(
                             panelImageLayout.createParallelGroup()
-                                .addGap(0, 122, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                         );
                     }
 
@@ -297,63 +310,61 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                     formPanel.setLayout(formPanelLayout);
                     formPanelLayout.setHorizontalGroup(
                         formPanelLayout.createParallelGroup()
-                            .addGroup(formPanelLayout.createSequentialGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(formPanelLayout.createParallelGroup()
+                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addGroup(GroupLayout.Alignment.LEADING, formPanelLayout.createSequentialGroup()
+                                        .addGroup(formPanelLayout.createParallelGroup()
+                                            .addComponent(lblSeries)
+                                            .addGroup(formPanelLayout.createSequentialGroup()
+                                                .addGroup(formPanelLayout.createParallelGroup()
+                                                    .addComponent(lblTitle)
+                                                    .addComponent(lblID))
+                                                .addGap(48, 48, 48)
+                                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtTitle, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                                        .addComponent(txtID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(59, 59, 59)
+                                                        .addComponent(lblYear)
+                                                        .addGap(29, 29, 29)
+                                                        .addComponent(txtYear))
+                                                    .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
+                                                        .addGroup(formPanelLayout.createParallelGroup()
+                                                            .addComponent(selectSeries, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(selectCategory, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE))
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(btnNewCategory, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(btnNewSeries, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+                                                        .addGap(2, 2, 2)))))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE))
                                     .addGroup(formPanelLayout.createSequentialGroup()
                                         .addGroup(formPanelLayout.createParallelGroup()
                                             .addComponent(lblPublisher)
                                             .addComponent(lblAuthor)
                                             .addComponent(lblCategory))
-                                        .addGap(23, 23, 23)
+                                        .addGap(28, 28, 28)
                                         .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtPublisher, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(formPanelLayout.createSequentialGroup()
-                                                .addComponent(selectCategory, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnNewCategory, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtAuthor, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(formPanelLayout.createSequentialGroup()
-                                        .addGroup(formPanelLayout.createParallelGroup()
-                                            .addComponent(lblTitle)
-                                            .addComponent(lblID))
-                                        .addGap(48, 48, 48)
+                                            .addComponent(txtPublisher, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                                            .addComponent(txtAuthor))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(formPanelLayout.createParallelGroup()
-                                                .addComponent(txtTitle, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(formPanelLayout.createSequentialGroup()
-                                                    .addComponent(txtID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(59, 59, 59)
-                                                    .addComponent(lblYear)
-                                                    .addGap(29, 29, 29)
-                                                    .addComponent(txtYear, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(formPanelLayout.createSequentialGroup()
-                                                .addComponent(selectSeries, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btnNewSeries, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(2, 2, 2))))
-                                    .addComponent(lblSeries))
-                                .addGap(18, 18, 18)
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnImage, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                                .addContainerGap(41, Short.MAX_VALUE))
+                                            .addComponent(btnImage, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                            .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(20, 20, 20))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
                             .addGroup(formPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(formPanelLayout.createParallelGroup()
-                                    .addGroup(formPanelLayout.createSequentialGroup()
-                                        .addComponent(panelImage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnImage))
+                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addGroup(formPanelLayout.createSequentialGroup()
                                         .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblYear)
                                             .addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblID))
+                                            .addComponent(lblID)
+                                            .addComponent(txtYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -371,12 +382,14 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                         .addGap(19, 19, 19)
                                         .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                             .addComponent(lblPublisher)
-                                            .addComponent(txtPublisher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtAuthor, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(30, Short.MAX_VALUE))
+                                            .addComponent(txtPublisher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAuthor, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnImage))
+                                .addContainerGap(26, Short.MAX_VALUE))
                     );
                 }
 
@@ -389,6 +402,10 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
                     //---- btnViewBooks ----
                     btnViewBooks.setText("View Books");
+                    btnViewBooks.addActionListener(e -> {
+                        btnViewBooksActionPerformed(e);
+                        btnViewBooksActionPerformed(e);
+                    });
 
                     //---- button4 ----
                     button4.setText("text");
@@ -432,20 +449,20 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                 bookMetaManagerTabLayout.setHorizontalGroup(
                     bookMetaManagerTabLayout.createParallelGroup()
                         .addGroup(bookMetaManagerTabLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
+                            .addGap(14, 14, 14)
                             .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addContainerGap(21, Short.MAX_VALUE))
                 );
                 bookMetaManagerTabLayout.setVerticalGroup(
                     bookMetaManagerTabLayout.createParallelGroup()
                         .addGroup(bookMetaManagerTabLayout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(bookMetaManagerTabLayout.createParallelGroup()
-                                .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(14, Short.MAX_VALUE))
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap(32, Short.MAX_VALUE))
                 );
             }
             mainTabbedPane.addTab("Book Manager", bookMetaManagerTab);

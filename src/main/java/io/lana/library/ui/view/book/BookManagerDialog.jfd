@@ -1,0 +1,30 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp mainTabbedPane:::::x, comp bookTablePane:::::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp mainTabbedPane:::p:234:p, space u:::p, comp bookTablePane::::245:x, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "mainTabbedPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {space :0:738:x}"
+					"$verticalGroup": "par l {space :0:207:x}"
+				} ) {
+					name: "formTab"
+				}, new FormLayoutConstraints( null ) {
+					"title": "text"
+				} )
+			} )
+			add( new FormContainer( "io.lana.library.ui.component.book.BookTablePane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "bookTablePane"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 765, 535 )
+		} )
+	}
+}
