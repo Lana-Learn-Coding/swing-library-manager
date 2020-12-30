@@ -73,6 +73,13 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         if (confirm != JOptionPane.OK_OPTION) {
             return;
         }
+        if (!bookMeta.getBooks().isEmpty()) {
+            int confirmDeleteBooks = JOptionPane.showConfirmDialog(this,
+                "There are " + bookMeta.getBooks().size() + " books, Are you sure?");
+            if (confirmDeleteBooks != JOptionPane.OK_OPTION) {
+                return;
+            }
+        }
         bookMetaRepo.deleteById(bookMeta.getId());
         bookMetaTablePane.removeSelectedRow();
         bookMetaTablePane.clearSelection();
