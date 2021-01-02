@@ -6,7 +6,7 @@ import java.awt.*;
 
 @Getter
 public class UIException extends RuntimeException {
-    private Component component;
+    private final Component component;
 
     public UIException(Component component, String message) {
         super(message);

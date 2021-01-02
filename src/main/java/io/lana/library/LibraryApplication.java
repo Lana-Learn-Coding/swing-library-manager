@@ -38,7 +38,7 @@ public class LibraryApplication implements CommandLineRunner, ApplicationContext
                 Class<?> errorClass = error.getClass();
                 if (UIException.class.isAssignableFrom(errorClass)) {
                     UIException e = (UIException) error;
-                    JOptionPane.showMessageDialog(e.getComponent(), "Error: " + e.getMessage());
+                    JOptionPane.showMessageDialog(e.getComponent(), e.getMessage());
                     return;
                 }
                 JOptionPane.showMessageDialog(null, "Unknown Error!");
