@@ -2,6 +2,7 @@ package io.lana.library.config;
 
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.ui.FileException;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.vfs2.*;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -50,6 +51,10 @@ public class FileStorageAutoConfiguration {
 
         @Override
         public void validateIsFile(String path) {
+            if (StringUtils.isBlank(path)){
+                throw new FileException("path must not blank");
+            }
+
             File file = new File(path);
             if (!file.exists()) {
                 throw new FileException("file not found: " + path);
@@ -62,6 +67,10 @@ public class FileStorageAutoConfiguration {
 
         @Override
         public InputStream readFileFromStorage(String filename) {
+            if (StringUtils.isBlank(filename)){
+                throw new FileException("filename must not blank");
+            }
+
             FileObject fileObject = null;
             try {
                 fileObject = fileManager.resolveFile(baseStorage, filename);
@@ -78,6 +87,10 @@ public class FileStorageAutoConfiguration {
 
         @Override
         public boolean deleteFileFromStorage(String filename) {
+            if (StringUtils.isBlank(filename)) {
+                return false;
+            }
+
             try (FileObject storage = fileManager.resolveFile(baseStorage, filename)) {
                 return storage.delete();
             } catch (Exception e) {
