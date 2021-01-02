@@ -11,11 +11,13 @@ import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Storage;
 import io.lana.library.core.spi.BookRepo;
+import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.StorageRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.app.*;
 import io.lana.library.ui.component.book.BookTablePane;
 import io.lana.library.ui.view.CrudPanel;
+import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,13 +27,17 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Component
 public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
-    private StorageRepo storageRepo;
+    private final ImagePicker imagePicker = new ImagePicker();
 
+    private FileStorage fileStorage;
+    private StorageRepo storageRepo;
     private BookRepo bookRepo;
     private BookMeta bookMetaModel;
 
@@ -51,10 +57,11 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     }
 
     @Autowired
-    public void setup(BookRepo bookRepo, StorageRepo storageRepo) {
+    public void setup(BookRepo bookRepo, StorageRepo storageRepo, FileStorage fileStorage) {
         this.bookRepo = bookRepo;
         this.storageRepo = storageRepo;
         this.storageRepo.findAll().forEach(selectStorage::addItem);
+        this.fileStorage = fileStorage;
         selectStorage.setSelectedItem(null);
     }
 
@@ -79,6 +86,10 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         Book book = getModelFromForm();
         if (!bookTablePane.isAnyRowSelected()) {
             book.setMeta(bookMetaModel);
+            if (StringUtils.isNotBlank(book.getImage())) {
+                String savedImage = fileStorage.loadFileToStorage(book.getImage());
+                book.setImage(savedImage);
+            }
             bookRepo.save(book);
             JOptionPane.showMessageDialog(this, "Create success!");
             bookTablePane.addRow(0, book);
@@ -91,6 +102,10 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         updated.setNote(book.getNote());
         updated.setCondition(book.getCondition());
         updated.setPosition(book.getPosition());
+        if (StringUtils.isNotBlank(book.getImage())) {
+            String savedImage = fileStorage.loadFileToStorage(book.getImage());
+            updated.setImage(savedImage);
+        }
         bookRepo.save(book);
         JOptionPane.showMessageDialog(this, "Update success!");
         loadModelToForm(book);
@@ -101,24 +116,33 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtID.setText("");
         txtPosition.setText("");
         txtNote.setText("");
-        txtMeta.setText("");
         txtCondition.setText("");
-        txtBorrow.setText("");
         selectStorage.setSelectedItem(null);
     }
 
     @Override
     public void loadModelToForm(Book model) {
+        imageViewer.clearImage();
         txtID.setText(model.getIdString());
         txtPosition.setText(model.getPosition());
-        txtMeta.setText(bookMetaModel.getId() + " - " + bookMetaModel.getTitle());
         txtCondition.setText(model.getCondition().toString());
         selectStorage.setSelectedItem(model.getStorage());
         if (model.getBorrowing() != null) {
             Reader borrower = model.getBorrowing().getBorrower();
             txtBorrow.setText(borrower.getEmail());
+        } else {
+            txtBorrow.setText("");
         }
         txtNote.setText(model.getNote());
+        if (StringUtils.isNotBlank(model.getImage())) {
+            WorkerUtils.runAsync(() -> {
+                try (InputStream image = fileStorage.readFileFromStorage(model.getImage())) {
+                    imageViewer.loadImage(image);
+                } catch (IOException e) {
+                    // ignore
+                }
+            });
+        }
     }
 
     @Override
@@ -127,6 +151,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         book.setNote(txtNote.getText());
         book.setPosition(txtPosition.getText());
         book.setStorage(selectStorage.getSelectedItem());
+        book.setImage(imageViewer.getImagePath());
         if (book.getStorage() == null) {
             throw new InputException(this, "Please select storage of the book");
         }
@@ -156,9 +181,12 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     }
 
     public void setModel(BookMeta bookMeta) {
-        bookMetaModel = bookMeta;
-        renderTable();
-        bookTablePane.clearSelection();
+        if (bookMeta != null){
+            bookMetaModel = bookMeta;
+            renderTable();
+            bookTablePane.clearSelection();
+            txtMeta.setText(bookMetaModel.getId() + " - " + bookMetaModel.getTitle());
+        }
     }
 
     private void btnNewStorageActionPerformed(ActionEvent e) {
@@ -180,6 +208,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
 
     private void btnCloneActionPerformed(ActionEvent e) {
         Book book = getModelFromForm();
+        book.setImage(null);
         bookTablePane.clearSelection();
         JOptionPane.showMessageDialog(this, "Cloned book. edit then press save to save new book");
         loadModelToForm(book);
@@ -195,6 +224,13 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
 
     private void btnDeleteActionPerformed(ActionEvent e) {
         delete();
+    }
+
+    private void btnSelectImageActionPerformed(ActionEvent e) {
+        imagePicker.showSelectImageDialog().ifPresent(selectedFile -> {
+            String path = selectedFile.getAbsolutePath();
+            imageViewer.loadImage(path);
+        });
     }
 
     private void initComponents() {
@@ -218,6 +254,9 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtNote = new JTextArea();
         lblBorrow = new JLabel();
         txtBorrow = new JTextField();
+        panelImage = new JPanel();
+        imageViewer = new ImageViewer();
+        btnSelectImage = new JButton();
         panel1 = new JPanel();
         btnDelete = new JButton();
         btnClear = new JButton();
@@ -281,6 +320,26 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                     //---- txtBorrow ----
                     txtBorrow.setEditable(false);
 
+                    //======== panelImage ========
+                    {
+                        panelImage.setBorder(new TitledBorder("Image"));
+
+                        GroupLayout panelImageLayout = new GroupLayout(panelImage);
+                        panelImage.setLayout(panelImageLayout);
+                        panelImageLayout.setHorizontalGroup(
+                            panelImageLayout.createParallelGroup()
+                                .addComponent(imageViewer, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        );
+                        panelImageLayout.setVerticalGroup(
+                            panelImageLayout.createParallelGroup()
+                                .addComponent(imageViewer, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                        );
+                    }
+
+                    //---- btnSelectImage ----
+                    btnSelectImage.setText("Select Image");
+                    btnSelectImage.addActionListener(e -> btnSelectImageActionPerformed(e));
+
                     GroupLayout formPanelLayout = new GroupLayout(formPanel);
                     formPanel.setLayout(formPanelLayout);
                     formPanelLayout.setHorizontalGroup(
@@ -288,6 +347,20 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                             .addGroup(formPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(formPanelLayout.createParallelGroup()
+                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                        .addComponent(labelStorage)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(selectStorage, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnNewStorage, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                        .addGroup(formPanelLayout.createParallelGroup()
+                                            .addComponent(lblPosition)
+                                            .addComponent(lblNote))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(formPanelLayout.createParallelGroup()
+                                            .addComponent(noteScroll, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPosition, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(formPanelLayout.createSequentialGroup()
                                         .addGroup(formPanelLayout.createParallelGroup()
                                             .addGroup(formPanelLayout.createParallelGroup()
@@ -306,53 +379,54 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                                 .addComponent(lblCondition)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(txtCondition, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(formPanelLayout.createSequentialGroup()
-                                        .addComponent(labelStorage)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(selectStorage, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnNewStorage, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(formPanelLayout.createSequentialGroup()
-                                        .addGroup(formPanelLayout.createParallelGroup()
-                                            .addComponent(lblPosition)
-                                            .addComponent(lblNote))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(formPanelLayout.createParallelGroup()
-                                            .addComponent(noteScroll, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPosition, GroupLayout.PREFERRED_SIZE, 294, GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(160, Short.MAX_VALUE))
+                                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(18, 18, 18)
+                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSelectImage, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+                                .addContainerGap(25, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
                             .addGroup(formPanelLayout.createSequentialGroup()
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(labelId)
-                                    .addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCondition)
-                                    .addComponent(txtCondition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(17, 17, 17)
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(labelMeta)
-                                    .addComponent(txtMeta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14)
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblBorrow)
-                                    .addComponent(txtBorrow, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnNewStorage)
-                                    .addComponent(labelStorage)
-                                    .addComponent(selectStorage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblPosition)
-                                    .addComponent(txtPosition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
                                 .addGroup(formPanelLayout.createParallelGroup()
-                                    .addComponent(lblNote)
-                                    .addComponent(noteScroll, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(18, Short.MAX_VALUE))
+                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(labelId)
+                                            .addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblCondition)
+                                            .addComponent(txtCondition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(17, 17, 17)
+                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(labelMeta)
+                                            .addComponent(txtMeta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(14, 14, 14)
+                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblBorrow)
+                                            .addComponent(txtBorrow, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(26, 26, 26)
+                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(btnNewStorage)
+                                            .addComponent(labelStorage)
+                                            .addComponent(selectStorage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblPosition)
+                                            .addComponent(txtPosition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 22, Short.MAX_VALUE))
+                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(formPanelLayout.createParallelGroup()
+                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(formPanelLayout.createParallelGroup()
+                                            .addComponent(lblNote)
+                                            .addComponent(noteScroll, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(formPanelLayout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addComponent(btnSelectImage)))
+                                .addContainerGap(30, Short.MAX_VALUE))
                     );
                 }
 
@@ -404,19 +478,19 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                     formTabLayout.createParallelGroup()
                         .addGroup(formTabLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
                             .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(16, 16, 16))
+                            .addContainerGap(20, Short.MAX_VALUE))
                 );
                 formTabLayout.setVerticalGroup(
                     formTabLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, formTabLayout.createSequentialGroup()
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(formTabLayout.createSequentialGroup()
+                            .addGap(8, 8, 8)
                             .addGroup(formTabLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(58, 58, 58))
+                                .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(11, 20, Short.MAX_VALUE))
                 );
             }
             mainTabbedPane.addTab("Book List", formTab);
@@ -429,19 +503,17 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(bookTablePane, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 669, GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                    .addContainerGap(9, Short.MAX_VALUE))
+                        .addComponent(mainTabbedPane, GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+                        .addComponent(bookTablePane, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap())
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 344, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(bookTablePane, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 373, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(bookTablePane, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addContainerGap())
         );
         pack();
@@ -469,6 +541,9 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     private JTextArea txtNote;
     private JLabel lblBorrow;
     private JTextField txtBorrow;
+    private JPanel panelImage;
+    private ImageViewer imageViewer;
+    private JButton btnSelectImage;
     private JPanel panel1;
     private JButton btnDelete;
     private JButton btnClear;
