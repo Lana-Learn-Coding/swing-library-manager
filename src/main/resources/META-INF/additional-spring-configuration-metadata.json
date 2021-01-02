@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "file-storage.storage-path",
+      "type": "java.lang.String",
+      "description": "Path to save file, support Apache Common VFS 2 syntax"
+    }
+  ]
+}
