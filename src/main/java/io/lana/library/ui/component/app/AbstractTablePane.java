@@ -49,7 +49,10 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
     }
 
     public T getSelectedRow() {
-        return getRow(table.getSelectedRow());
+        if (isAnyRowSelected()) {
+            return getRow(table.getSelectedRow());
+        }
+        return null;
     }
 
     public int getSelectedRowIndex() {
@@ -74,6 +77,10 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
 
     public void clearSelection() {
         table.clearSelection();
+    }
+
+    public boolean isAnyRowSelected() {
+        return table.getSelectedRow() >= 0;
     }
 
     public ListSelectionModel getSelectionModel() {
