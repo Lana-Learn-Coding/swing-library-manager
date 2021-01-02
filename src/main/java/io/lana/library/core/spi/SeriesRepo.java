@@ -1,4 +1,4 @@
-package io.lana.library.core.repo;
+package io.lana.library.core.spi;
 
 import io.lana.library.core.model.book.Series;
 import org.springframework.data.repository.PagingAndSortingRepository;
