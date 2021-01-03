@@ -196,8 +196,11 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         }
         try {
             bookMeta.setYear(Integer.parseInt(txtYear.getText()));
+            if (bookMeta.getYear() <= 0) {
+                throw new RuntimeException("Year must > 0");
+            }
         } catch (Exception e) {
-            throw new InputException(this, "Invalid year");
+            throw new InputException(this, "Year must a number");
         }
         return bookMeta;
     }
