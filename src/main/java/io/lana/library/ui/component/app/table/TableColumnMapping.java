@@ -1,6 +1,5 @@
 package io.lana.library.ui.component.app.table;
 
-import io.lana.library.core.model.base.Identified;
 import lombok.Getter;
 
 import java.util.LinkedHashMap;
@@ -10,7 +9,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class TableColumnMapping<T extends Identified<?>> {
+public class TableColumnMapping<T> {
     private final Map<String, ColumnMeta> columnMetaMap = new LinkedHashMap<>();
 
     private Class<?> defaultType = Object.class;
@@ -25,10 +24,6 @@ public class TableColumnMapping<T extends Identified<?>> {
             this.mapper = mapper;
             this.type = type;
         }
-    }
-
-    public TableColumnMapping(String idColumn, Class<?> idType) {
-        columnMetaMap.put(idColumn, new ColumnMeta(Identified::getId, idType));
     }
 
     public void put(String column, Function<T, ?> mapper) {

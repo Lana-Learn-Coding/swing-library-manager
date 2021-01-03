@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.*;
 import java.util.List;
 
-public abstract class AbstractTablePane<T extends Identified<?>> extends JScrollPane {
+public abstract class AbstractTablePane<T> extends JScrollPane {
     protected final TableColumnMapping<T> tableColumnMapping;
 
     protected final List<T> data = new ArrayList<>();
@@ -52,10 +52,7 @@ public abstract class AbstractTablePane<T extends Identified<?>> extends JScroll
     }
 
     public void removeRow(int index) {
-        T model = getRow(index);
-        if (model != null) {
-            data.remove(model);
-        }
+        data.remove(index);
         tableModel.removeRow(index);
         tableModel.fireTableDataChanged();
     }
@@ -66,13 +63,8 @@ public abstract class AbstractTablePane<T extends Identified<?>> extends JScroll
     }
 
     public T getRow(int index) {
-        Object id = table.getValueAt(index, 0);
-        for (T model : data) {
-            if (model.getId().equals(id)) {
-                return model;
-            }
-        }
-        return null;
+        int row = table.convertRowIndexToModel(index);
+        return data.get(row);
     }
 
     public T getSelectedRow() {
@@ -98,7 +90,7 @@ public abstract class AbstractTablePane<T extends Identified<?>> extends JScroll
     }
 
     public void addRow(int index, T rowData) {
-        data.add(rowData);
+        data.add(index, rowData);
         tableModel.insertRow(index, toTableRow(rowData));
         tableModel.fireTableDataChanged();
     }

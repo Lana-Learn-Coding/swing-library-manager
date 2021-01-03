@@ -12,8 +12,9 @@ import java.time.LocalDateTime;
 public class BookMetaTablePane extends AbstractTablePane<BookMeta> {
     @Override
     protected TableColumnMapping<BookMeta> getTableColumnMapping() {
-        TableColumnMapping<BookMeta> mapping = new TableColumnMapping<>("ID", Integer.class);
+        TableColumnMapping<BookMeta> mapping = new TableColumnMapping<>();
         mapping.setDefaultColumnType(String.class);
+        mapping.put("ID", BookMeta::getId, Integer.class);
         mapping.put("Title", BookMeta::getTitle);
         mapping.put("Series", BookMeta::getSeriesName);
         mapping.put("Author", BookMeta::getAuthorName);

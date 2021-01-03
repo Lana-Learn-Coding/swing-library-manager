@@ -9,8 +9,9 @@ import java.time.LocalDate;
 public class BookTablePane extends AbstractTablePane<Book> {
     @Override
     protected TableColumnMapping<Book> getTableColumnMapping() {
-        TableColumnMapping<Book> mapping = new TableColumnMapping<>("ID", Integer.class);
+        TableColumnMapping<Book> mapping = new TableColumnMapping<>();
         mapping.setDefaultColumnType(String.class);
+        mapping.put("ID", Book::getId, Integer.class);
         mapping.put("Storage", Book::getStorageName);
         mapping.put("Condition", Book::getCondition);
         mapping.put("Borrowed", Book::getBorrower);
