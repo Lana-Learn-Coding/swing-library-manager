@@ -98,7 +98,8 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
             bookRepo.save(book);
             JOptionPane.showMessageDialog(this, "Create success!");
             bookTablePane.addRow(0, book);
-            bookTablePane.clearSelection();
+            bookTablePane.clearSearch();
+            bookTablePane.setSelectedRow(0);
             return;
         }
 
@@ -186,7 +187,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     }
 
     public void setModel(BookMeta bookMeta) {
-        if (bookMeta != null){
+        if (bookMeta != null) {
             bookMetaModel = bookMeta;
             renderTable();
             bookTablePane.clearSelection();

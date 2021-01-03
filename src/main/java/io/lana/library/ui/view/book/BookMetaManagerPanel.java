@@ -110,7 +110,8 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
             BookMeta created = createFromForm();
             JOptionPane.showMessageDialog(this, "Create Success");
             bookMetaTablePane.addRow(0, created);
-            bookMetaTablePane.clearSelection();
+            bookMetaTablePane.clearSearch();
+            bookMetaTablePane.setSelectedRow(0);
             return;
         }
         BookMeta updated = updateFromForm();
