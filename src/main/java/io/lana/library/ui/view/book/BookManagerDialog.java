@@ -302,6 +302,9 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                     //---- lblPosition ----
                     lblPosition.setText("Position");
 
+                    //---- selectStorage ----
+                    selectStorage.setSelectedIndex(-1);
+
                     //---- btnNewStorage ----
                     btnNewStorage.setText("New");
                     btnNewStorage.addActionListener(e -> btnNewStorageActionPerformed(e));
@@ -335,7 +338,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                             panelImageLayout.createParallelGroup()
                                 .addGroup(panelImageLayout.createSequentialGroup()
                                     .addComponent(imageViewer, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 4, Short.MAX_VALUE))
+                                    .addGap(0, 5, Short.MAX_VALUE))
                         );
                     }
 
@@ -392,7 +395,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSelectImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(25, Short.MAX_VALUE))
+                                .addContainerGap(26, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
@@ -430,7 +433,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                         .addComponent(panelImage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnSelectImage)))
-                                .addContainerGap(38, Short.MAX_VALUE))
+                                .addContainerGap(39, Short.MAX_VALUE))
                     );
                 }
 
@@ -507,7 +510,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(mainTabbedPane, GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                        .addComponent(mainTabbedPane)
                         .addComponent(bookTablePane, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
         );

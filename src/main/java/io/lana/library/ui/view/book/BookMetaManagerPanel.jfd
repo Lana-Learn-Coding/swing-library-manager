@@ -13,14 +13,14 @@ new FormModel {
 				name: "mainTabbedPane"
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:10:p, comp formPanel:::p::p, space s:::p, comp panel1:::p::p, space ::18:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:10:p, comp formPanel:::p::p, space s:::p, comp panel1:::p::p, space ::16:x}}"
 					"$verticalGroup": "par l {seq t {space :::x, par t {comp formPanel:::p::p, comp panel1:::p::p}, space :p:26:p}}"
 				} ) {
 					name: "bookMetaManagerTab"
 					"border": new javax.swing.border.EtchedBorder( 1, null, null )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq t {space :::p, par l {seq l {par l {comp lblPublisher::l:p::p, comp lblAuthor::l:p::p, comp lblCategory::l:p::p}, space :p:23:p, par l:::p {comp txtPublisher::::387:x, comp txtAuthor::::387:x}}, comp lblSeries:::p::p, seq l {par l {comp lblTitle:::p::p, comp lblID:::p::p}, space :p:48:p, par l {seq t {comp txtID:::p:109:p, space :p:59:p, comp lblYear:::p::p, space :p:29:p, comp txtYear:::p:169:p}, par t:t::p {seq t {par l {comp selectSeries::l:p:307:p, comp selectCategory::l:p:307:p}, space :::x, par t {comp btnNewCategory::l:p:71:p, comp btnNewSeries:::p:71:p}}, seq t {space :0:0:x, comp txtTitle:::p:388:p}}}}}, space s:::p, par l:::p {comp panelImage:::::x, comp btnImage:::::x}, space ::42:x}}"
-						"$verticalGroup": "par l {seq l {space :::p, par l {seq {par b {comp lblYear::b:p::p, comp txtID::b:p::p, comp lblID::b:p::p, comp txtYear::b:p::p}, space s:::p, par b {comp lblTitle::b:p::p, comp txtTitle::b:p::p}, space s:::p, par b {comp selectSeries::b:p::p, comp lblSeries::b:p::p, comp btnNewSeries::b:p::p}, space s:::p, par b {comp lblCategory::b:p::p, comp selectCategory::b:p::p, comp btnNewCategory::b:p::p}, space :p:19:p, par t {comp lblPublisher:::p::p, comp txtPublisher:::p:20:p}}, comp panelImage:::::x}, space s:::p, par b {comp lblAuthor::b:p:17:p, comp btnImage::b:p::p, comp txtAuthor::b:p:19:p}, space ::41:x}}"
+						"$horizontalGroup": "par l {seq t {space :::p, par l {seq l {par l {comp lblPublisher::l:p::p, comp lblAuthor::l:p::p, comp lblCategory::l:p::p}, space :p:23:p, par l:::p {comp txtPublisher::::387:x, comp txtAuthor::::387:x}}, comp lblSeries:::p::p, seq l {par l {comp lblTitle:::p::p, comp lblID:::p::p}, space :p:48:p, par l {seq t {comp txtID:::p:109:p, space :p:59:p, comp lblYear:::p::p, space :p:29:p, comp txtYear:::p:169:p}, par t:t::p {seq t {par l {comp selectSeries::l:p:307:p, comp selectCategory::l:p:307:p}, space :::x, par t {comp btnNewCategory::l:p:71:p, comp btnNewSeries:::p:71:p}}, seq t {space :0:0:x, comp txtTitle:::p:388:p}}}}}, space s:::p, par l:::p {comp panelImage:::::x, comp btnImage:::::x}, space ::45:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, par l {seq {par b {comp lblYear::b:p::p, comp txtID::b:p::p, comp lblID::b:p::p, comp txtYear::b:p::p}, space s:::p, par b {comp lblTitle::b:p::p, comp txtTitle::b:p::p}, space s:::p, par b {comp selectSeries::b:p::p, comp lblSeries::b:p::p, comp btnNewSeries::b:p::p}, space s:::p, par b {comp lblCategory::b:p::p, comp selectCategory::b:p::p, comp btnNewCategory::b:p::p}, space :p:19:p, par t {comp lblPublisher:::p::p, comp txtPublisher:::p:20:p}}, comp panelImage:::::x}, space s:::p, par b {comp lblAuthor::b:p:17:p, comp btnImage::b:p::p, comp txtAuthor::b:p:19:p}, space ::44:x}}"
 					} ) {
 						name: "formPanel"
 						"border": new javax.swing.border.TitledBorder( "Book Info" )
@@ -49,6 +49,7 @@ new FormModel {
 						} )
 						add( new FormComponent( "io.lana.library.ui.component.app.ComboBox" ) {
 							name: "selectSeries"
+							"selectedIndex": -1
 							auxiliary() {
 								"JavaCodeGenerator.typeParameters": "Series"
 							}
@@ -72,6 +73,7 @@ new FormModel {
 						} )
 						add( new FormComponent( "io.lana.library.ui.component.app.ComboBox" ) {
 							name: "selectCategory"
+							"selectedIndex": -1
 							auxiliary() {
 								"JavaCodeGenerator.typeParameters": "Category"
 							}
@@ -120,7 +122,6 @@ new FormModel {
 							name: "btnViewBooks"
 							"text": "View Books"
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnViewBooksActionPerformed", true ) )
-							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnViewBooksActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnSave"
@@ -142,14 +143,14 @@ new FormModel {
 					"title": "Book Manager"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:38:p, comp panel2:::p::p, space ::382:x}}"
-					"$verticalGroup": "par l {seq l {space :p:28:p, comp panel2:::p::p, space ::97:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:38:p, comp panel2:::p::p, space ::386:x}}"
+					"$verticalGroup": "par l {seq l {space :p:28:p, comp panel2:::p::p, space ::102:x}}"
 				} ) {
 					name: "panelSearch"
 					"border": new javax.swing.border.EtchedBorder( 1, null, null )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, par l {comp label4:::p::p, comp label3:::p::p, comp label2:::p::p, comp label1::l:p::p}, space ::339:x}}"
-						"$verticalGroup": "par l {seq l {space :::p, comp label2:::p::p, space s:::p, comp label1:::p::p, space s:::p, comp label3:::p::p, space s:::p, comp label4:::p::p, space ::94:x}}"
+						"$horizontalGroup": "par l {seq l {space :::p, par l {comp label4:::p::p, comp label3:::p::p, comp label2:::p::p, comp label1::l:p::p}, space ::335:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp label2:::p::p, space s:::p, comp label1:::p::p, space s:::p, comp label3:::p::p, space s:::p, comp label4:::p::p, space ::89:x}}"
 					} ) {
 						name: "panel2"
 						"border": new javax.swing.border.EtchedBorder( 1, null, null )
