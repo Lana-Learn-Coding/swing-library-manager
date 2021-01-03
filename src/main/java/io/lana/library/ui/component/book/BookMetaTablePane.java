@@ -2,26 +2,26 @@ package io.lana.library.ui.component.book;
 
 import io.lana.library.core.model.base.BaseEntity;
 import io.lana.library.core.model.book.BookMeta;
-import io.lana.library.ui.component.app.AbstractTablePane;
+import io.lana.library.ui.component.app.table.AbstractTablePane;
+import io.lana.library.ui.component.app.table.TableColumnMapping;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.function.Function;
+import java.time.LocalDateTime;
 
 @Component
 public class BookMetaTablePane extends AbstractTablePane<BookMeta> {
     @Override
-    protected Map<String, Function<BookMeta, Object>> getColumnExtractorMapping() {
-        Map<String, Function<BookMeta, Object>> mapping = new LinkedHashMap<>(8);
+    protected TableColumnMapping<BookMeta> getTableColumnMapping() {
+        TableColumnMapping<BookMeta> mapping = new TableColumnMapping<>("ID", Integer.class);
+        mapping.setDefaultColumnType(String.class);
         mapping.put("Title", BookMeta::getTitle);
         mapping.put("Series", BookMeta::getSeriesName);
         mapping.put("Author", BookMeta::getAuthorName);
         mapping.put("Publisher", BookMeta::getPublisherName);
         mapping.put("Category", BookMeta::getCategoryName);
-        mapping.put("Year", BookMeta::getYear);
-        mapping.put("Count", bookMeta -> bookMeta.getBooks().size());
-        mapping.put("Updated", BaseEntity::getUpdatedAt);
+        mapping.put("Year", BookMeta::getYear, Integer.class);
+        mapping.put("Count", bookMeta -> bookMeta.getBooks().size(), Integer.class);
+        mapping.put("Updated", BaseEntity::getUpdatedAt, LocalDateTime.class);
         return mapping;
     }
 }

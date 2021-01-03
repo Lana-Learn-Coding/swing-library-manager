@@ -1,39 +1,37 @@
-package io.lana.library.ui.component.app;
+package io.lana.library.ui.component.app.table;
 
 import io.lana.library.core.model.base.Identified;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
-import java.util.function.Function;
+import java.util.List;
 
 public abstract class AbstractTablePane<T extends Identified<?>> extends JScrollPane {
-    protected final Map<String, Function<T, Object>> columnsExtractorMapping = new LinkedHashMap<>();
+    protected final TableColumnMapping<T> tableColumnMapping;
 
     protected final List<T> data = new ArrayList<>();
     protected final JTable table;
     protected final DefaultTableModel tableModel;
+    protected final DefaultTableCellRenderer tableCellRenderer = new ExtendedTableCellRenderer();
 
     public AbstractTablePane() {
-        columnsExtractorMapping.put("ID", Identified::getId);
-        getColumnExtractorMapping().forEach(columnsExtractorMapping::putIfAbsent);
-        tableModel = new DefaultTableModel(columnsExtractorMapping.keySet().toArray(), 0);
-        table = new JTable(tableModel) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        table.setModel(tableModel);
+        tableColumnMapping = getTableColumnMapping();
+        table = new JTable();
         table.setAutoCreateRowSorter(true);
+        table.setModel(new ExtendedTableModel(tableColumnMapping));
+        table.setDefaultRenderer(Object.class, tableCellRenderer);
+
+        tableModel = (DefaultTableModel) table.getModel();
         setViewportView(table);
     }
 
-    protected abstract Map<String, Function<T, Object>> getColumnExtractorMapping();
+    protected abstract TableColumnMapping<T> getTableColumnMapping();
 
     protected Vector<Object> toTableRow(T model) {
         Vector<Object> data = new Vector<>();
-        columnsExtractorMapping.values().forEach(mapper -> data.add(mapper.apply(model)));
+        tableColumnMapping.columnMappers().forEach(mapper -> data.add(mapper.apply(model)));
         return data;
     }
 
@@ -56,7 +54,7 @@ public abstract class AbstractTablePane<T extends Identified<?>> extends JScroll
     public void removeRow(int index) {
         T model = getRow(index);
         if (model != null) {
-            data.remove(getRow(index));
+            data.remove(model);
         }
         tableModel.removeRow(index);
         tableModel.fireTableDataChanged();
