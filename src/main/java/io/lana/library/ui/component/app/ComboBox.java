@@ -1,12 +1,14 @@
 package io.lana.library.ui.component.app;
 
+import io.lana.library.core.model.base.Identified;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ComboBox<T> extends JComboBox<T> implements Iterable<T> {
+public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements Iterable<T> {
     public List<T> getItems() {
         List<T> items = new ArrayList<>();
         forEach(items::add);
@@ -41,5 +43,25 @@ public class ComboBox<T> extends JComboBox<T> implements Iterable<T> {
                 return getItemAt(index++);
             }
         };
+    }
+
+    public void removeItem(T item) {
+        if (item == null) {
+            super.removeItem(null);
+            return;
+        }
+        super.removeItem(getItemById(item.getId()));
+    }
+
+    public void setSelectedItem(T item) {
+        if (item == null) {
+            super.setSelectedItem(null);
+            return;
+        }
+        super.setSelectedItem(getItemById(item.getId()));
+    }
+
+    private T getItemById(Object id) {
+        return getItem(item -> item.getId().equals(id));
     }
 }

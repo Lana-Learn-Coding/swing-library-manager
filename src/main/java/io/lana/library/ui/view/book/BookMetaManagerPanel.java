@@ -14,7 +14,6 @@ import io.lana.library.core.spi.FileStorage;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.app.*;
 import io.lana.library.ui.component.app.AppPanel;
-import io.lana.library.ui.component.app.IdCombobox;
 import io.lana.library.ui.component.book.BookMetaTablePane;
 import io.lana.library.ui.view.CrudPanel;
 import io.lana.library.utils.WorkerUtils;
@@ -286,13 +285,13 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         lblCategory = new JLabel();
         txtTitle = new JTextField();
         txtID = new JTextField();
-        selectSeries = new IdCombobox<>();
+        selectSeries = new ComboBox<>();
         txtAuthor = new JTextField();
         lblPublisher = new JLabel();
         txtPublisher = new JTextField();
         lblAuthor = new JLabel();
         txtYear = new JTextField();
-        selectCategory = new IdCombobox<>();
+        selectCategory = new ComboBox<>();
         lblYear = new JLabel();
         btnNewSeries = new JButton();
         btnNewCategory = new JButton();
@@ -424,7 +423,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(46, Short.MAX_VALUE))
+                                .addContainerGap(48, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
@@ -461,7 +460,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                     .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnImage)
                                     .addComponent(txtAuthor, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(41, Short.MAX_VALUE))
+                                .addContainerGap(43, Short.MAX_VALUE))
                     );
                 }
 
@@ -529,12 +528,12 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                             .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(22, Short.MAX_VALUE))
+                            .addContainerGap(13, Short.MAX_VALUE))
                 );
                 bookMetaManagerTabLayout.setVerticalGroup(
                     bookMetaManagerTabLayout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, bookMetaManagerTabLayout.createSequentialGroup()
-                            .addContainerGap(14, Short.MAX_VALUE)
+                            .addContainerGap(11, Short.MAX_VALUE)
                             .addGroup(bookMetaManagerTabLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -642,13 +641,13 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
     private JLabel lblCategory;
     private JTextField txtTitle;
     private JTextField txtID;
-    private IdCombobox<Series> selectSeries;
+    private ComboBox<Series> selectSeries;
     private JTextField txtAuthor;
     private JLabel lblPublisher;
     private JTextField txtPublisher;
     private JLabel lblAuthor;
     private JTextField txtYear;
-    private IdCombobox<Category> selectCategory;
+    private ComboBox<Category> selectCategory;
     private JLabel lblYear;
     private JButton btnNewSeries;
     private JButton btnNewCategory;
