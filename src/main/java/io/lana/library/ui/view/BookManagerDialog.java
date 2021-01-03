@@ -80,7 +80,9 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         if (confirm != JOptionPane.OK_OPTION) {
             return;
         }
-        bookRepo.deleteById(bookMetaModel.getId());
+        Book book = bookTablePane.getSelectedRow();
+        bookRepo.deleteById(book.getId());
+        fileStorage.deleteFileFromStorage(book.getImage());
         bookTablePane.removeSelectedRow();
         bookTablePane.clearSelection();
         JOptionPane.showMessageDialog(this, "Delete success!");
