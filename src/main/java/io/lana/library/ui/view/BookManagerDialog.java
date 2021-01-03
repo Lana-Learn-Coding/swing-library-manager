@@ -429,7 +429,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                     .addGroup(formPanelLayout.createSequentialGroup()
                                         .addGap(16, 16, 16)
                                         .addComponent(btnSelectImage)))
-                                .addContainerGap(30, Short.MAX_VALUE))
+                                .addContainerGap(28, Short.MAX_VALUE))
                     );
                 }
 
@@ -438,6 +438,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
 
                     //---- btnDelete ----
                     btnDelete.setText("Delete");
+                    btnDelete.setEnabled(false);
                     btnDelete.addActionListener(e -> btnDeleteActionPerformed(e));
 
                     //---- btnClear ----
@@ -450,6 +451,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
 
                     //---- btnClone ----
                     btnClone.setText("Clone");
+                    btnClone.setEnabled(false);
                     btnClone.addActionListener(e -> btnCloneActionPerformed(e));
 
                     GroupLayout panel1Layout = new GroupLayout(panel1);
@@ -506,7 +508,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(mainTabbedPane)
+                        .addComponent(mainTabbedPane, GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
                         .addComponent(bookTablePane, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
         );

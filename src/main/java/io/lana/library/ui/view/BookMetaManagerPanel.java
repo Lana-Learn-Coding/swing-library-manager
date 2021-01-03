@@ -430,7 +430,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                                     .addComponent(btnImage, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                                .addContainerGap(22, Short.MAX_VALUE))
+                                .addContainerGap(25, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
@@ -467,7 +467,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                     .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAuthor, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnImage))
-                                .addContainerGap(42, Short.MAX_VALUE))
+                                .addContainerGap(45, Short.MAX_VALUE))
                     );
                 }
 
@@ -480,6 +480,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
                     //---- btnViewBooks ----
                     btnViewBooks.setText("View Books");
+                    btnViewBooks.setEnabled(false);
                     btnViewBooks.addActionListener(e -> btnViewBooksActionPerformed(e));
 
                     //---- btnSave ----
@@ -488,10 +489,12 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
                     //---- btnDelete ----
                     btnDelete.setText("Delete");
+                    btnDelete.setEnabled(false);
                     btnDelete.addActionListener(e -> btnDeleteActionPerformed(e));
 
                     //---- btnClone ----
                     btnClone.setText("Clone");
+                    btnClone.setEnabled(false);
                     btnClone.addActionListener(e -> btnCloneActionPerformed(e));
 
                     GroupLayout panel1Layout = new GroupLayout(panel1);
@@ -532,7 +535,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                             .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(18, Short.MAX_VALUE))
+                            .addContainerGap(10, Short.MAX_VALUE))
                 );
                 bookMetaManagerTabLayout.setVerticalGroup(
                     bookMetaManagerTabLayout.createParallelGroup()
