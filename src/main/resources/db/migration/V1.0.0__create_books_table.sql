@@ -7,7 +7,7 @@ CREATE TABLE reader
     address      VARCHAR(256),
     avatar       VARCHAR(128),
     gender       BOOLEAN      NOT NULL DEFAULT TRUE,
-    "limit"      INT          NOT NULL DEFAULT 5,
+    borrow_limit INT          NOT NULL DEFAULT 5,
     birth        DATE         NOT NULL,
     created_at   TIMESTAMP    NOT NULL DEFAULT NOW(),
     updated_at   TIMESTAMP    NOT NULL DEFAULT NOW()

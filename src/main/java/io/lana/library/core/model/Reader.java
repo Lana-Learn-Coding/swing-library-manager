@@ -29,6 +29,7 @@ public class Reader extends BaseEntity {
 
     private Boolean gender;
 
+    @Column(name = "borrow_limit")
     private Integer limit;
 
     private LocalDate birth;
