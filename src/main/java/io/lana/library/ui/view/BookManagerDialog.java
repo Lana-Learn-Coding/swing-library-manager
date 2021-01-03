@@ -114,9 +114,9 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
             String savedImage = fileStorage.loadFileToStorage(book.getImage());
             updated.setImage(savedImage);
         }
-        bookRepo.save(book);
+        bookRepo.save(updated);
         JOptionPane.showMessageDialog(this, "Update success!");
-        loadModelToForm(book);
+        loadModelToForm(updated);
     }
 
     @Override
