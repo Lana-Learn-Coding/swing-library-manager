@@ -118,7 +118,6 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         BookMeta updated = updateFromForm();
         JOptionPane.showMessageDialog(this, "Update Success");
         bookMetaTablePane.refreshSelectedRow();
-        loadModelToForm(updated);
     }
 
     private BookMeta createFromForm() {

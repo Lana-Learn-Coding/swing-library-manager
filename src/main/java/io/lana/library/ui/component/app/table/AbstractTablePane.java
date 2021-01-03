@@ -154,7 +154,9 @@ public abstract class AbstractTablePane<T> extends JPanel {
 
     public void refreshSelectedRow() {
         if (isAnyRowSelected()) {
+            int selectedRow = table.getSelectedRow();
             fireTableRowsUpdated(table.getSelectedRow());
+            setSelectedRow(selectedRow);
         }
     }
 

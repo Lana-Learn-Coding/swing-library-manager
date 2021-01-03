@@ -117,7 +117,6 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         bookRepo.save(updated);
         JOptionPane.showMessageDialog(this, "Update success!");
         bookTablePane.refreshSelectedRow();
-        loadModelToForm(updated);
     }
 
     @Override
