@@ -1,4 +1,4 @@
-package io.lana.library.ui.component.book;
+package io.lana.library.ui.component;
 
 import io.lana.library.core.model.book.Book;
 import io.lana.library.ui.component.app.table.AbstractTablePane;

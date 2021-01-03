@@ -1,4 +1,4 @@
-package io.lana.library.ui.view;
+package io.lana.library.ui.view.app;
 
 import java.util.Collection;
 

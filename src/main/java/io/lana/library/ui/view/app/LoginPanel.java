@@ -2,17 +2,16 @@
  * Created by JFormDesigner on Mon Dec 21 14:26:28 ICT 2020
  */
 
-package io.lana.library.ui.view;
+package io.lana.library.ui.view.app;
 
 import io.lana.library.ui.component.app.AppPanel;
-import io.lana.library.ui.view.book.BookMetaManagerPanel;
+import io.lana.library.ui.view.BookMetaManagerPanel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.GroupLayout;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 @Component("startupPanel")
 public class LoginPanel extends AppPanel {

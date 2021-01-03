@@ -1,4 +1,4 @@
-package io.lana.library.ui.component.book;
+package io.lana.library.ui.component;
 
 import io.lana.library.core.model.base.BaseEntity;
 import io.lana.library.core.model.book.BookMeta;

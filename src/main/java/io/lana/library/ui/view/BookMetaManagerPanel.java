@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Mon Dec 21 15:21:57 ICT 2020
  */
 
-package io.lana.library.ui.view.book;
+package io.lana.library.ui.view;
 
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Category;
@@ -12,12 +12,12 @@ import io.lana.library.core.spi.CategoryRepo;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.SeriesRepo;
 import io.lana.library.ui.InputException;
+import io.lana.library.ui.component.BookMetaTablePane;
 import io.lana.library.ui.component.app.AppPanel;
 import io.lana.library.ui.component.app.ComboBox;
 import io.lana.library.ui.component.app.ImagePicker;
 import io.lana.library.ui.component.app.ImageViewer;
-import io.lana.library.ui.component.book.BookMetaTablePane;
-import io.lana.library.ui.view.CrudPanel;
+import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
