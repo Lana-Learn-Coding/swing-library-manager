@@ -1,0 +1,216 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, comp tab::::780:x, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp tab::::663:x, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tab"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq t {space :::p, par t {comp readerTablePane::::751:x, seq {comp formPanel::::592:x, space s:::p, comp panel1:::p::p}}, space :p:10:p}}"
+					"$verticalGroup": "par l {seq l {space :p:11:p, par l {comp panel1:::::x, comp formPanel:::::x}, space :p:31:p, comp readerTablePane:::p:271:p, space :::p}}"
+				} ) {
+					name: "panelReaderManage"
+					"border": new javax.swing.border.EtchedBorder( 1, null, null )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+						"$columnSpecs": "0, 0:1.0, 0, 0, 0:1.0, 10, 0:1.0"
+						"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0"
+						"$alignTop": true
+						"$alignLeft": true
+						"$vGap": 20
+						"$hGap": 15
+					} ) {
+						name: "formPanel"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblID"
+							"text": "ID"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtID"
+							"editable": false
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblLimit"
+							"text": "Limit"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 3
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtLimit"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 4
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+							name: "panelImage"
+							"border": new javax.swing.border.TitledBorder( "Avatar" )
+							add( new FormComponent( "io.lana.library.ui.component.app.ImageViewer" ) {
+								name: "imageViewer"
+							} )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 6
+							"gridheight": 6
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblName"
+							"text": "Name"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 1
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtName"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 1
+							"gridwidth": 4
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblEmail"
+							"text": "Email"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 2
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtEmail"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 2
+							"gridwidth": 4
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblPhone"
+							"text": "Phone"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 3
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtPhone"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 3
+							"gridwidth": 4
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblGender"
+							"text": "Gender"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 4
+						} )
+						add( new FormComponent( "javax.swing.JRadioButton" ) {
+							name: "radioMale"
+							"text": "Male"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 4
+						} )
+						add( new FormComponent( "javax.swing.JRadioButton" ) {
+							name: "radioFemale"
+							"text": "Female"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 2
+							"gridy": 4
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblBirth"
+							"text": "Birthdate"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 5
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtDate"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 5
+							"gridwidth": 4
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lblAddress"
+							"text": "Address"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 6
+						} )
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane1"
+							add( new FormComponent( "javax.swing.JTextArea" ) {
+								name: "txtAddress"
+							} )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 6
+							"gridwidth": 4
+							"gridheight": 2
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btnSelectAvatar"
+							"text": "Select Avatar"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSelectAvatarActionPerformed", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 6
+							"gridy": 6
+						} )
+					} )
+					add( new FormComponent( "io.lana.library.ui.component.ReaderTablePane" ) {
+						name: "readerTablePane"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq t {space ::18:x, comp panel2:::p::p, space :::p}}"
+						"$verticalGroup": "par l {seq t {space :::p, comp panel2:::::x}}"
+					} ) {
+						name: "panel1"
+						"border": new javax.swing.border.MatteBorder( 0, 1, 0, 0, sfield java.awt.Color lightGray )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {comp btnDelete::::112:x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnClone::l:::x, comp btnViewBorrowed::l::112:x, comp btnBorrow::l::112:x}"
+							"$verticalGroup": "par l {seq t {comp btnViewBorrowed:::p::p, space s:::p, comp btnBorrow:::p::p, space ::86:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+						} ) {
+							name: "panel2"
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnDelete"
+								"text": "Delete"
+								"enabled": false
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteActionPerformed", true ) )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnClear"
+								"text": "Clear"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnClearActionPerformed", true ) )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnSave"
+								"text": "Save"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSaveActionPerformed", true ) )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnClone"
+								"text": "Clone"
+								"enabled": false
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCloneActionPerformed", true ) )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnViewBorrowed"
+								"text": "View Borrowed"
+								"enabled": false
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnBorrow"
+								"text": "Borrow Book"
+								"enabled": false
+							} )
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Reader Manage"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 10 )
+			"size": new java.awt.Dimension( 800, 685 )
+		} )
+	}
+}
