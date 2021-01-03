@@ -3,28 +3,14 @@ package io.lana.library.ui.component.app;
 import io.lana.library.core.model.base.Identified;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.function.Predicate;
+import java.util.Map;
 
 public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements Iterable<T> {
-    public List<T> getItemModels() {
-        List<T> items = new ArrayList<>();
-        forEach(items::add);
-        return items;
-    }
+    private final Map<Object, T> itemModelsMap = new HashMap<>();
 
-    public T getItem(Predicate<T> predicate) {
-        for (T item : this) {
-            if (predicate.test(item)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public T getSelectedItemModel() {
+    public T getSelectedItem() {
         return (T) super.getSelectedItem();
     }
 
@@ -45,15 +31,51 @@ public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements I
         };
     }
 
-    public void removeItemModel(T item) {
-        if (item == null) {
-            super.removeItem(null);
-            return;
-        }
-        super.removeItem(getItemModelById(item.getId()));
+    @Override
+    public void addItem(T item) {
+        super.addItem(item);
+        itemModelsMap.put(item.getId(), item);
     }
 
-    public void setSelectedItemModel(T item) {
+    @Override
+    public void insertItemAt(T item, int index) {
+        super.insertItemAt(item, index);
+        itemModelsMap.put(item.getId(), item);
+    }
+
+    @Override
+    public void removeItem(Object anObject) {
+        if (!Identified.class.isAssignableFrom(anObject.getClass())) {
+            super.removeItem(anObject);
+            return;
+        }
+
+        Object key = ((Identified<?>) anObject).getId();
+        if (key != null && itemModelsMap.containsKey(key)) {
+            for (T item : this) {
+                if (item.getId().equals(key)) {
+                    super.removeItem(item);
+                    break;
+                }
+            }
+            itemModelsMap.remove(key);
+        }
+    }
+
+    @Override
+    public void removeItemAt(int anIndex) {
+        super.removeItemAt(anIndex);
+        T item = getItemAt(anIndex);
+        itemModelsMap.remove(item.getId());
+    }
+
+    @Override
+    public void removeAllItems() {
+        super.removeAllItems();
+        itemModelsMap.clear();
+    }
+
+    public void setSelectedItem(T item) {
         if (item == null) {
             super.setSelectedItem(null);
             return;
@@ -62,6 +84,17 @@ public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements I
     }
 
     private T getItemModelById(Object id) {
-        return getItem(item -> item.getId().equals(id));
+        if (id == null) {
+            return null;
+        }
+        return itemModelsMap.get(id);
+    }
+
+    public void refreshModel() {
+        itemModelsMap.clear();
+        for (int i = 0; i < getModel().getSize(); i++) {
+            T item = getModel().getElementAt(i);
+            itemModelsMap.put(item.getId(), item);
+        }
     }
 }

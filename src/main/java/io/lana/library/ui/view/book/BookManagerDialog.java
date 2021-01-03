@@ -67,7 +67,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         this.storageRepo = storageRepo;
         this.storageRepo.findAll().forEach(selectStorage::addItem);
         this.fileStorage = fileStorage;
-        selectStorage.setSelectedItemModel(null);
+        selectStorage.setSelectedItem(null);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtPosition.setText("");
         txtNote.setText("");
         txtCondition.setText("");
-        selectStorage.setSelectedItemModel(null);
+        selectStorage.setSelectedItem(null);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtID.setText(model.getIdString());
         txtPosition.setText(model.getPosition());
         txtCondition.setText(model.getCondition().toString());
-        selectStorage.setSelectedItemModel(model.getStorage());
+        selectStorage.setSelectedItem(model.getStorage());
         if (model.getBorrowing() != null) {
             Reader borrower = model.getBorrowing().getBorrower();
             txtBorrow.setText(borrower.getEmail());
@@ -159,7 +159,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         Book book = new Book();
         book.setNote(txtNote.getText());
         book.setPosition(txtPosition.getText());
-        book.setStorage(selectStorage.getSelectedItemModel());
+        book.setStorage(selectStorage.getSelectedItem());
         book.setImage(imageViewer.getImagePath());
         if (book.getStorage() == null) {
             throw new InputException(this, "Please select storage of the book");
