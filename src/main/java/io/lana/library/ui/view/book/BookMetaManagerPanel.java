@@ -9,11 +9,13 @@ import io.lana.library.core.model.book.Category;
 import io.lana.library.core.model.book.Series;
 import io.lana.library.core.spi.BookMetaRepo;
 import io.lana.library.core.spi.CategoryRepo;
-import io.lana.library.core.spi.SeriesRepo;
 import io.lana.library.core.spi.FileStorage;
+import io.lana.library.core.spi.SeriesRepo;
 import io.lana.library.ui.InputException;
-import io.lana.library.ui.component.app.*;
 import io.lana.library.ui.component.app.AppPanel;
+import io.lana.library.ui.component.app.ComboBox;
+import io.lana.library.ui.component.app.ImagePicker;
+import io.lana.library.ui.component.app.ImageViewer;
 import io.lana.library.ui.component.book.BookMetaTablePane;
 import io.lana.library.ui.view.CrudPanel;
 import io.lana.library.utils.WorkerUtils;
@@ -50,8 +52,8 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         WorkerUtils.runAsync(() -> {
             this.categoryRepo.findAll().forEach(selectCategory::addItem);
             this.seriesRepo.findAll().forEach(selectSeries::addItem);
-            selectSeries.setSelectedItem(null);
-            selectCategory.setSelectedItem(null);
+            selectSeries.setSelectedItemModel(null);
+            selectCategory.setSelectedItemModel(null);
             renderTable();
         });
     }
@@ -145,8 +147,8 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         txtTitle.setText("");
         txtID.setText("");
         txtYear.setText("");
-        selectCategory.setSelectedItem(null);
-        selectSeries.setSelectedItem(null);
+        selectCategory.setSelectedItemModel(null);
+        selectSeries.setSelectedItemModel(null);
         bookMetaTablePane.clearSelection();
         imageViewer.clearImage();
     }
@@ -159,8 +161,8 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         txtPublisher.setText(model.getPublisherName());
         txtTitle.setText(model.getTitle());
         txtYear.setText(model.getYear().toString());
-        selectSeries.setSelectedItem(model.getSeries());
-        selectCategory.setSelectedItem(model.getCategory());
+        selectSeries.setSelectedItemModel(model.getSeries());
+        selectCategory.setSelectedItemModel(model.getCategory());
         if (StringUtils.isNotBlank(model.getImage())) {
             WorkerUtils.runAsync(() -> {
                 try (InputStream image = fileStorage.readFileFromStorage(model.getImage())) {
@@ -178,8 +180,8 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         bookMeta.setAuthor(txtAuthor.getText());
         bookMeta.setPublisher(txtPublisher.getText());
         bookMeta.setTitle(txtTitle.getText());
-        bookMeta.setCategory(selectCategory.getSelectedItem());
-        bookMeta.setSeries(selectSeries.getSelectedItem());
+        bookMeta.setCategory(selectCategory.getSelectedItemModel());
+        bookMeta.setSeries(selectSeries.getSelectedItemModel());
         bookMeta.setImage(imageViewer.getImagePath());
         if (StringUtils.isAnyBlank(bookMeta.getAuthor(), bookMeta.getTitle(), bookMeta.getPublisher())) {
             throw new InputException(this, "Please enter all information: author, title, publisher");
@@ -275,7 +277,6 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        bookMetaTablePane = new BookMetaTablePane();
         mainTabbedPane = new JTabbedPane();
         bookMetaManagerTab = new JPanel();
         formPanel = new JPanel();
@@ -310,6 +311,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         label2 = new JLabel();
         label3 = new JLabel();
         label4 = new JLabel();
+        bookMetaTablePane = new BookMetaTablePane();
 
         //======== this ========
         setBorder(null);
@@ -423,7 +425,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(48, Short.MAX_VALUE))
+                                .addContainerGap(42, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
@@ -460,7 +462,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                     .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnImage)
                                     .addComponent(txtAuthor, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(43, Short.MAX_VALUE))
+                                .addContainerGap(41, Short.MAX_VALUE))
                     );
                 }
 
@@ -528,12 +530,12 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                             .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(13, Short.MAX_VALUE))
+                            .addContainerGap(18, Short.MAX_VALUE))
                 );
                 bookMetaManagerTabLayout.setVerticalGroup(
                     bookMetaManagerTabLayout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, bookMetaManagerTabLayout.createSequentialGroup()
-                            .addContainerGap(11, Short.MAX_VALUE)
+                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(bookMetaManagerTabLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -570,7 +572,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                     .addComponent(label3)
                                     .addComponent(label2)
                                     .addComponent(label1))
-                                .addContainerGap(343, Short.MAX_VALUE))
+                                .addContainerGap(339, Short.MAX_VALUE))
                     );
                     panel2Layout.setVerticalGroup(
                         panel2Layout.createParallelGroup()
@@ -583,7 +585,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                 .addComponent(label3)
                                 .addGap(18, 18, 18)
                                 .addComponent(label4)
-                                .addContainerGap(99, Short.MAX_VALUE))
+                                .addContainerGap(94, Short.MAX_VALUE))
                     );
                 }
 
@@ -594,14 +596,14 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                         .addGroup(panelSearchLayout.createSequentialGroup()
                             .addGap(38, 38, 38)
                             .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(378, Short.MAX_VALUE))
+                            .addContainerGap(382, Short.MAX_VALUE))
                 );
                 panelSearchLayout.setVerticalGroup(
                     panelSearchLayout.createParallelGroup()
                         .addGroup(panelSearchLayout.createSequentialGroup()
                             .addGap(28, 28, 28)
                             .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(92, Short.MAX_VALUE))
+                            .addContainerGap(97, Short.MAX_VALUE))
                 );
             }
             mainTabbedPane.addTab("Filter & Search", panelSearch);
@@ -623,15 +625,14 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(10, 10, 10)
                     .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 362, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                    .addGap(9, 9, 9))
+                    .addGap(18, 18, 18)
+                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addContainerGap())
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    private BookMetaTablePane bookMetaTablePane;
     private JTabbedPane mainTabbedPane;
     private JPanel bookMetaManagerTab;
     private JPanel formPanel;
@@ -666,5 +667,6 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
     private JLabel label2;
     private JLabel label3;
     private JLabel label4;
+    private BookMetaTablePane bookMetaTablePane;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

@@ -4,8 +4,6 @@
 
 package io.lana.library.ui.view.book;
 
-import java.awt.event.*;
-
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
@@ -14,7 +12,9 @@ import io.lana.library.core.spi.BookRepo;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.StorageRepo;
 import io.lana.library.ui.InputException;
-import io.lana.library.ui.component.app.*;
+import io.lana.library.ui.component.app.ComboBox;
+import io.lana.library.ui.component.app.ImagePicker;
+import io.lana.library.ui.component.app.ImageViewer;
 import io.lana.library.ui.component.book.BookTablePane;
 import io.lana.library.ui.view.CrudPanel;
 import io.lana.library.utils.WorkerUtils;
@@ -27,6 +27,7 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         this.storageRepo = storageRepo;
         this.storageRepo.findAll().forEach(selectStorage::addItem);
         this.fileStorage = fileStorage;
-        selectStorage.setSelectedItem(null);
+        selectStorage.setSelectedItemModel(null);
     }
 
     @Override
@@ -117,7 +118,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtPosition.setText("");
         txtNote.setText("");
         txtCondition.setText("");
-        selectStorage.setSelectedItem(null);
+        selectStorage.setSelectedItemModel(null);
     }
 
     @Override
@@ -126,7 +127,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtID.setText(model.getIdString());
         txtPosition.setText(model.getPosition());
         txtCondition.setText(model.getCondition().toString());
-        selectStorage.setSelectedItem(model.getStorage());
+        selectStorage.setSelectedItemModel(model.getStorage());
         if (model.getBorrowing() != null) {
             Reader borrower = model.getBorrowing().getBorrower();
             txtBorrow.setText(borrower.getEmail());
@@ -150,7 +151,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         Book book = new Book();
         book.setNote(txtNote.getText());
         book.setPosition(txtPosition.getText());
-        book.setStorage(selectStorage.getSelectedItem());
+        book.setStorage(selectStorage.getSelectedItemModel());
         book.setImage(imageViewer.getImagePath());
         if (book.getStorage() == null) {
             throw new InputException(this, "Please select storage of the book");
@@ -334,7 +335,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                             panelImageLayout.createParallelGroup()
                                 .addGroup(panelImageLayout.createSequentialGroup()
                                     .addComponent(imageViewer, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 1, Short.MAX_VALUE))
+                                    .addGap(0, 4, Short.MAX_VALUE))
                         );
                     }
 
@@ -391,7 +392,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSelectImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(26, Short.MAX_VALUE))
+                                .addContainerGap(25, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
@@ -429,7 +430,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                         .addComponent(panelImage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnSelectImage)))
-                                .addContainerGap(44, Short.MAX_VALUE))
+                                .addContainerGap(38, Short.MAX_VALUE))
                     );
                 }
 
@@ -516,8 +517,8 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                     .addContainerGap()
                     .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 398, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(bookTablePane, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(bookTablePane, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addContainerGap())
         );
         pack();
         setLocationRelativeTo(getOwner());

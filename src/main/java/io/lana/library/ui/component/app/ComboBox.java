@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements Iterable<T> {
-    public List<T> getItems() {
+    public List<T> getItemModels() {
         List<T> items = new ArrayList<>();
         forEach(items::add);
         return items;
@@ -24,7 +24,7 @@ public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements I
         return null;
     }
 
-    public T getSelectedItem() {
+    public T getSelectedItemModel() {
         return (T) super.getSelectedItem();
     }
 
@@ -45,23 +45,23 @@ public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements I
         };
     }
 
-    public void removeItem(T item) {
+    public void removeItemModel(T item) {
         if (item == null) {
             super.removeItem(null);
             return;
         }
-        super.removeItem(getItemById(item.getId()));
+        super.removeItem(getItemModelById(item.getId()));
     }
 
-    public void setSelectedItem(T item) {
+    public void setSelectedItemModel(T item) {
         if (item == null) {
             super.setSelectedItem(null);
             return;
         }
-        super.setSelectedItem(getItemById(item.getId()));
+        super.setSelectedItem(getItemModelById(item.getId()));
     }
 
-    private T getItemById(Object id) {
+    private T getItemModelById(Object id) {
         return getItem(item -> item.getId().equals(id));
     }
 }

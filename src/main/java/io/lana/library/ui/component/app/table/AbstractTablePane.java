@@ -1,30 +1,71 @@
 package io.lana.library.ui.component.app.table;
 
-import io.lana.library.core.model.base.Identified;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.util.*;
+import javax.swing.table.TableRowSorter;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Vector;
 
-public abstract class AbstractTablePane<T> extends JScrollPane {
-    protected final TableColumnMapping<T> tableColumnMapping;
-
+public abstract class AbstractTablePane<T> extends JPanel {
     protected final List<T> data = new ArrayList<>();
+
+    protected final JTextField search = new JTextField();
+    protected final JScrollPane scrollPane = new JScrollPane();
     protected final JTable table;
+
+    protected final TableColumnMapping<T> tableColumnMapping;
     protected final DefaultTableModel tableModel;
+    protected final TableRowSorter<DefaultTableModel> tableRowSorter;
     protected final DefaultTableCellRenderer tableCellRenderer = new ExtendedTableCellRenderer();
+
 
     public AbstractTablePane() {
         tableColumnMapping = getTableColumnMapping();
-        table = new JTable();
-        table.setAutoCreateRowSorter(true);
-        table.setModel(new ExtendedTableModel(tableColumnMapping));
-        table.setDefaultRenderer(Object.class, tableCellRenderer);
+        tableModel = new ExtendedTableModel(tableColumnMapping);
+        tableRowSorter = new TableRowSorter<>(tableModel);
 
-        tableModel = (DefaultTableModel) table.getModel();
-        setViewportView(table);
+        table = new JTable();
+        table.setModel(tableModel);
+        table.setDefaultRenderer(Object.class, tableCellRenderer);
+        table.setRowSorter(tableRowSorter);
+        scrollPane.setViewportView(table);
+        initComponents();
+    }
+
+    public void initComponents() {
+        JButton btnSearch = new JButton();
+        btnSearch.setText("Search");
+
+        search.addActionListener(e -> onSearch());
+        btnSearch.addActionListener(e -> onSearch());
+
+        setLayout(new GridBagLayout());
+        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).columnWeights = new double[]{0.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).rowWeights = new double[]{0.0, 1.0, 1.0E-4};
+
+        setLayout(new GridBagLayout());
+        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 0.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).rowWeights = new double[]{0.0, 1.0, 1.0E-4};
+
+        add(search, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 8, 5), 0, 0));
+        add(btnSearch, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 8, 0), 0, 0));
+        add(scrollPane, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 0, 0), 0, 0));
     }
 
     protected abstract TableColumnMapping<T> getTableColumnMapping();
@@ -109,5 +150,19 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
 
     public void setSelectedRow(int index) {
         table.setRowSelectionInterval(index, index);
+    }
+
+    protected void onSearch() {
+        String text = search.getText();
+        if (StringUtils.isBlank(text)) {
+            clearSearch();
+            return;
+        }
+        tableRowSorter.setRowFilter(RowFilter.regexFilter(text));
+    }
+
+    public void clearSearch() {
+        search.setText("");
+        tableRowSorter.setRowFilter(null);
     }
 }
