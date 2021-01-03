@@ -61,7 +61,8 @@ public abstract class AbstractTablePane<T extends Identified<?>> extends JScroll
     }
 
     public void removeSelectedRow() {
-        removeRow(table.getSelectedRow());
+        int row = table.convertRowIndexToModel(table.getSelectedRow());
+        removeRow(row);
     }
 
     public T getRow(int index) {
@@ -76,7 +77,8 @@ public abstract class AbstractTablePane<T extends Identified<?>> extends JScroll
 
     public T getSelectedRow() {
         if (isAnyRowSelected()) {
-            return getRow(table.getSelectedRow());
+            int row = table.convertRowIndexToModel(table.getSelectedRow());
+            return getRow(row);
         }
         return null;
     }
