@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {comp mainTabbedPane::::703:x, comp bookTablePane:::::x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp mainTabbedPane:::p:373:p, space s:::p, comp bookTablePane::::150:x, space :::p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp mainTabbedPane::::713:x, comp bookTablePane:::::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp mainTabbedPane:::p:398:p, space u:::p, comp bookTablePane:::p:143:p, space ::15:x}}"
 		} ) {
 			name: "this"
 			"title": "Book List Detail"
@@ -13,14 +13,14 @@ new FormModel {
 				name: "mainTabbedPane"
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp formPanel:::p::p, space s:::p, comp panel1:::p::p, space ::20:x}}"
-					"$verticalGroup": "par l {seq l {space :p:8:p, par t {comp formPanel:::p::p, comp panel1:::p::p}, space :11:20:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:10:p, comp formPanel:::::x, space s:::p, comp panel1:::p::p, space :p:21:p}}"
+					"$verticalGroup": "par l {seq l {space :p:9:p, par t {comp panel1:::p::p, comp formPanel:::p::p}, space :p:65:p}}"
 				} ) {
 					name: "formTab"
 					"border": new javax.swing.border.EtchedBorder( 1, null, null )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp labelStorage:::p::p, space s:::p, comp selectStorage:::p:230:p, space :::p, comp btnNewStorage:::p:57:p}, seq l {par l {comp lblPosition::l:p::p, comp lblNote::l:p::p}, space s:::p, par l {comp noteScroll:::p:294:p, comp txtPosition:::p:294:p}}, seq l {par l {par l:l {seq {comp labelId:::p::p, space :p:12:p}, comp labelMeta::t:p::p}, comp lblBorrow::l:p::p}, space :p:20:p, par l:::p {comp txtMeta::l:::x, comp txtBorrow::l:::x, seq l {comp txtID:::p:87:p, space :p:39:p, comp lblCondition:::p::p, space s:::p, comp txtCondition:::p:106:p, space :0:0:x}}}}, space s:::p, par l:::p {comp panelImage:::::x, comp btnSelectImage::::139:x}, space ::25:x}}"
-						"$verticalGroup": "par l {seq l {par l {seq {par b {comp labelId::b:p::p, comp txtID::b:p::p, comp lblCondition::b:p::p, comp txtCondition::b:p::p}, space :p:17:p, par b {comp labelMeta::b:p::p, comp txtMeta::b:p::p}, space :p:14:p, par b {comp lblBorrow::b:p::p, comp txtBorrow::b:p::p}, space :p:26:p, par b {comp btnNewStorage::b:p::p, comp labelStorage::b:p::p, comp selectStorage::b:p::p}, space s:::p, par b {comp lblPosition::b:p::p, comp txtPosition::b:p::p}, space :0:22:x}, seq {space :::p, comp panelImage:::::x}}, par l {seq {space :::p, par l {comp lblNote:::p::p, comp noteScroll:::p:56:p}}, seq l {space :p:16:p, comp btnSelectImage:::p::p}}, space ::30:x}}"
+						"$horizontalGroup": "par l {seq l {par l {seq l {space :::p, par l:::p {seq {comp labelStorage:::p::p, space s:::p, comp selectStorage:::p:230:p, space :::x, comp btnNewStorage:::p:57:p}, seq l {par l {comp lblPosition:::p::p, comp lblNote:::p::p}, space s:::p, par t {comp txtPosition:::p:294:p, comp noteScroll:::p:294:p}}}}, seq l {par l {seq {space :p:11:p, par l {seq {comp labelId:::p::p, space :p:12:p}, comp labelMeta::t:p::p}}, seq l {space :::p, comp lblBorrow:::p::p}}, space :p:25:p, par l:::p {seq l {comp txtID:::p:87:p, space :p:39:p, comp lblCondition:::p::p, space s:::p, comp txtCondition::::101:x}, comp txtMeta::l:::x, comp txtBorrow::t:::x}}}, space s:::p, par l:::p {comp panelImage:::::x, comp btnSelectImage:::::x}, space ::28:x}}"
+						"$verticalGroup": "par l {seq {space :::p, par t {seq l {par b {comp labelId::b:p::p, comp txtID::b:p::p, comp lblCondition::b:p::p, comp txtCondition:::p::p}, space s:::p, par l {comp labelMeta:::p::p, comp txtMeta:::p::p}, space s:::p, par l {comp lblBorrow:::p::p, comp txtBorrow:::p::p}, space s:::p, par b {comp selectStorage::b:p::p, comp btnNewStorage::b:p::p, comp labelStorage::b:p::p}, space s:::p, par b {comp lblPosition::b:p::p, comp txtPosition::b:p::p}, space :p:20:p, par l {comp lblNote:::p::p, comp noteScroll:::p:56:p}}, seq l {comp panelImage:::p:196:p, space u:::p, comp btnSelectImage:::p::p}}, space ::43:x}}"
 					} ) {
 						name: "formPanel"
 						"border": new javax.swing.border.TitledBorder( "Book Form" )
@@ -92,8 +92,8 @@ new FormModel {
 							"editable": false
 						} )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {comp imageViewer::t:::x}"
-							"$verticalGroup": "par l {comp imageViewer::l::167:x}"
+							"$horizontalGroup": "par l {comp imageViewer::l::135:x}"
+							"$verticalGroup": "par l {seq l {comp imageViewer:::p:174:p, space :0:0:x}}"
 						} ) {
 							name: "panelImage"
 							"border": new javax.swing.border.TitledBorder( "Image" )
@@ -142,7 +142,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 725, 595 )
+			"size": new java.awt.Dimension( 735, 610 )
 		} )
 	}
 }

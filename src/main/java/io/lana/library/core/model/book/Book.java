@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -37,5 +35,39 @@ public class Book extends BaseEntity {
 
     public String getPosition() {
         return StringUtils.isBlank(position) ? "Not specified" : position;
+    }
+
+    @Transient
+    public boolean isBorrowed() {
+        return borrowing != null;
+    }
+
+    @Transient
+    public String getBorrower() {
+        if (isBorrowed()) {
+            return getBorrowing().getBorrower().getEmail();
+        }
+        return "None";
+    }
+
+    @Transient
+    public LocalDate getBorrowedDate() {
+        if (isBorrowed()) {
+            return getBorrowing().getBorrowedDate();
+        }
+        return null;
+    }
+
+    @Transient
+    public LocalDate getDueDate() {
+        if (isBorrowed()) {
+            return getBorrowing().getDueDate();
+        }
+        return null;
+    }
+
+    @Transient
+    public String getStorageName() {
+        return getStorage().getName();
     }
 }

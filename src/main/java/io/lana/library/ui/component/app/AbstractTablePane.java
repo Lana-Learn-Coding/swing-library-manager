@@ -2,25 +2,40 @@ package io.lana.library.ui.component.app;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
+import java.util.function.Function;
 
 public abstract class AbstractTablePane<T> extends JScrollPane {
+    protected final Map<String, Function<T, Object>> columnsExtractorMapping;
+
     protected final List<T> data = new ArrayList<>();
-    protected final JTable table = new JTable();
-    private final DefaultTableModel tableModel;
+    protected final JTable table;
+    protected final DefaultTableModel tableModel;
 
     public AbstractTablePane() {
-        tableModel = new DefaultTableModel(getTableColumns(), 0);
+        columnsExtractorMapping = getColumnExtractorMapping();
+        if (columnsExtractorMapping == null) {
+            throw new RuntimeException("Column mapping is null");
+        }
+
+        tableModel = new DefaultTableModel(columnsExtractorMapping.keySet().toArray(), 0);
+        table = new JTable(tableModel) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         table.setModel(tableModel);
         setViewportView(table);
     }
 
-    protected abstract String[] getTableColumns();
+    protected abstract Map<String, Function<T, Object>> getColumnExtractorMapping();
 
-    protected abstract Vector<Object> toTableRow(T model);
+    protected Vector<Object> toTableRow(T model) {
+        Vector<Object> data = new Vector<>();
+        columnsExtractorMapping.values().forEach(mapper -> data.add(mapper.apply(model)));
+        return data;
+    }
 
     public JTable getTable() {
         return table;
@@ -29,6 +44,10 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
     public void setTableData(Collection<T> data) {
         this.data.clear();
         this.data.addAll(data);
+        refresh();
+    }
+
+    public void refresh() {
         tableModel.setRowCount(0);
         data.forEach(model -> tableModel.addRow(toTableRow(model)));
         tableModel.fireTableDataChanged();
