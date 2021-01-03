@@ -1,23 +1,22 @@
 package io.lana.library.ui.component.app;
 
+import io.lana.library.core.model.base.Identified;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 import java.util.function.Function;
 
-public abstract class AbstractTablePane<T> extends JScrollPane {
-    protected final Map<String, Function<T, Object>> columnsExtractorMapping;
+public abstract class AbstractTablePane<T extends Identified<?>> extends JScrollPane {
+    protected final Map<String, Function<T, Object>> columnsExtractorMapping = new LinkedHashMap<>();
 
     protected final List<T> data = new ArrayList<>();
     protected final JTable table;
     protected final DefaultTableModel tableModel;
 
     public AbstractTablePane() {
-        columnsExtractorMapping = getColumnExtractorMapping();
-        if (columnsExtractorMapping == null) {
-            throw new RuntimeException("Column mapping is null");
-        }
-
+        columnsExtractorMapping.put("ID", Identified::getId);
+        getColumnExtractorMapping().forEach(columnsExtractorMapping::putIfAbsent);
         tableModel = new DefaultTableModel(columnsExtractorMapping.keySet().toArray(), 0);
         table = new JTable(tableModel) {
             @Override
@@ -26,6 +25,7 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
             }
         };
         table.setModel(tableModel);
+        table.setAutoCreateRowSorter(true);
         setViewportView(table);
     }
 
@@ -54,7 +54,10 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
     }
 
     public void removeRow(int index) {
-        data.remove(index);
+        T model = getRow(index);
+        if (model != null) {
+            data.remove(getRow(index));
+        }
         tableModel.removeRow(index);
         tableModel.fireTableDataChanged();
     }
@@ -64,7 +67,13 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
     }
 
     public T getRow(int index) {
-        return data.get(index);
+        Object id = table.getValueAt(index, 0);
+        for (T model : data) {
+            if (model.getId().equals(id)) {
+                return model;
+            }
+        }
+        return null;
     }
 
     public T getSelectedRow() {
@@ -89,7 +98,7 @@ public abstract class AbstractTablePane<T> extends JScrollPane {
     }
 
     public void addRow(int index, T rowData) {
-        data.add(index, rowData);
+        data.add(rowData);
         tableModel.insertRow(index, toTableRow(rowData));
         tableModel.fireTableDataChanged();
     }
