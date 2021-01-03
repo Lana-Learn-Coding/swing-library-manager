@@ -50,10 +50,14 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
             int pos = bookTablePane.getSelectedRowIndex();
             if (pos < 0) {
                 clearForm();
+                btnDelete.setEnabled(false);
+                btnClone.setEnabled(false);
                 return;
             }
             Book book = bookTablePane.getRow(pos);
             loadModelToForm(book);
+            btnDelete.setEnabled(true);
+            btnClone.setEnabled(true);
         });
     }
 

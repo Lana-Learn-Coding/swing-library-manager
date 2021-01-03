@@ -66,10 +66,16 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
             int pos = bookMetaTablePane.getSelectedRowIndex();
             if (pos < 0) {
                 clearForm();
+                btnDelete.setEnabled(false);
+                btnClone.setEnabled(false);
+                btnViewBooks.setEnabled(false);
                 return;
             }
             BookMeta bookMeta = bookMetaTablePane.getRow(pos);
             loadModelToForm(bookMeta);
+            btnDelete.setEnabled(true);
+            btnClone.setEnabled(true);
+            btnViewBooks.setEnabled(true);
         });
     }
 
@@ -107,8 +113,8 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
             bookMetaTablePane.clearSelection();
             return;
         }
-        JOptionPane.showMessageDialog(this, "Update Success");
         BookMeta updated = updateFromForm();
+        JOptionPane.showMessageDialog(this, "Update Success");
         loadModelToForm(updated);
     }
 
