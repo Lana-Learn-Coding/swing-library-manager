@@ -93,14 +93,14 @@ public abstract class AbstractTablePane<T> extends JPanel {
     }
 
     public void removeRow(int index) {
-        data.remove(index);
-        tableModel.removeRow(index);
+        int row = table.convertRowIndexToModel(index);
+        data.remove(row);
+        tableModel.removeRow(row);
         tableModel.fireTableDataChanged();
     }
 
     public void removeSelectedRow() {
-        int row = table.convertRowIndexToModel(table.getSelectedRow());
-        removeRow(row);
+        removeRow(table.getSelectedRow());
     }
 
     public T getRow(int index) {
@@ -110,8 +110,7 @@ public abstract class AbstractTablePane<T> extends JPanel {
 
     public T getSelectedRow() {
         if (isAnyRowSelected()) {
-            int row = table.convertRowIndexToModel(table.getSelectedRow());
-            return getRow(row);
+            return getRow(table.getSelectedRow());
         }
         return null;
     }
@@ -131,7 +130,8 @@ public abstract class AbstractTablePane<T> extends JPanel {
     }
 
     public void addRow(int index, T rowData) {
-        data.add(index, rowData);
+        int row = table.convertRowIndexToModel(index);
+        data.add(row, rowData);
         tableModel.insertRow(index, toTableRow(rowData));
         tableModel.fireTableDataChanged();
     }
@@ -159,10 +159,12 @@ public abstract class AbstractTablePane<T> extends JPanel {
             return;
         }
         tableRowSorter.setRowFilter(RowFilter.regexFilter(text));
+        clearSelection();
     }
 
     public void clearSearch() {
         search.setText("");
         tableRowSorter.setRowFilter(null);
+        clearSelection();
     }
 }
