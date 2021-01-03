@@ -152,6 +152,12 @@ public abstract class AbstractTablePane<T> extends JPanel {
         table.setRowSelectionInterval(index, index);
     }
 
+    public void refreshSelectedRow() {
+        if (isAnyRowSelected()) {
+            fireTableRowsUpdated(table.getSelectedRow());
+        }
+    }
+
     protected void onSearch() {
         String text = search.getText();
         if (StringUtils.isBlank(text)) {
@@ -166,5 +172,12 @@ public abstract class AbstractTablePane<T> extends JPanel {
         search.setText("");
         tableRowSorter.setRowFilter(null);
         clearSelection();
+    }
+
+    public void fireTableRowsUpdated(int index) {
+        int row = table.convertRowIndexToModel(index);
+        tableModel.removeRow(row);
+        tableModel.insertRow(row, toTableRow(data.get(row)));
+        tableModel.fireTableRowsUpdated(row, row);
     }
 }

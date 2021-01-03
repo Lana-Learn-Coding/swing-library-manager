@@ -135,6 +135,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         }
         readerRepo.save(updated);
         JOptionPane.showMessageDialog(this, "Update success!");
+        readerTablePane.refreshSelectedRow();
         loadModelToForm(updated);
     }
 
