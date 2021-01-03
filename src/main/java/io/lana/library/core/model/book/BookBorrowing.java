@@ -23,7 +23,7 @@ public class BookBorrowing extends BaseEntity {
 
     private String note;
 
-    @OneToMany(mappedBy = "borrowing")
+    @OneToMany(mappedBy = "borrowing", fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<>();
 
     @ManyToOne

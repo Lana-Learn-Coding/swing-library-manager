@@ -33,12 +33,12 @@ public class Reader extends BaseEntity {
 
     private LocalDate birth;
 
-    @OneToMany(mappedBy = "borrower")
+    @OneToMany(mappedBy = "borrower", fetch = FetchType.EAGER)
     private Set<BookBorrowing> borrowedBooks = new HashSet<>();
 
     @Transient
     public String getGenderString() {
-        return getGender() ? "M" : "F";
+        return getGender() ? "Male" : "Female";
     }
 
     @Transient
