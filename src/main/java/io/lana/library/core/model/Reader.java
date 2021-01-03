@@ -25,10 +25,26 @@ public class Reader extends BaseEntity {
 
     private String address;
 
+    private String avatar;
+
+    private Boolean gender;
+
     private Integer limit;
 
     private LocalDate birth;
 
     @OneToMany(mappedBy = "borrower")
     private Set<BookBorrowing> borrowedBooks = new HashSet<>();
+
+    @Transient
+    public String getGenderString() {
+        return getGender() ? "M" : "F";
+    }
+
+    @Transient
+    public Integer getBorrowedBookCount() {
+        return (int) borrowedBooks.stream()
+            .mapToLong(bookBorrowing -> bookBorrowing.getBooks().size())
+            .sum();
+    }
 }
