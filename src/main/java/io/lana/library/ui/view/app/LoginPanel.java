@@ -5,7 +5,7 @@
 package io.lana.library.ui.view.app;
 
 import io.lana.library.ui.component.app.AppPanel;
-import io.lana.library.ui.view.BookMetaManagerPanel;
+import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 

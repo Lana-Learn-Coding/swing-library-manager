@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Mon Dec 21 15:21:57 ICT 2020
  */
 
-package io.lana.library.ui.view;
+package io.lana.library.ui.view.book;
 
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Category;

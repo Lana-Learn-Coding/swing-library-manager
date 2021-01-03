@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Mon Dec 28 08:23:41 ICT 2020
  */
 
-package io.lana.library.ui.view;
+package io.lana.library.ui.view.book;
 
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
