@@ -37,6 +37,12 @@ public class ComboBox<T extends Identified<?>> extends JComboBox<T> implements I
         itemModelsMap.put(item.getId(), item);
     }
 
+    public void addAllItem(Iterable<T> items) {
+        for (T item : items) {
+            addItem(item);
+        }
+    }
+
     @Override
     public void insertItemAt(T item, int index) {
         super.insertItemAt(item, index);
