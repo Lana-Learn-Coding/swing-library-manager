@@ -2,17 +2,11 @@ package io.lana.library.ui.view.app;
 
 import java.util.Collection;
 
-public interface CrudPanel<T> {
+public interface CrudPanel<T> extends Form<T> {
 
     void delete();
 
     void save();
-
-    void clearForm();
-
-    void loadModelToForm(T model);
-
-    T getModelFromForm();
 
     void renderTable(Collection<T> data);
 

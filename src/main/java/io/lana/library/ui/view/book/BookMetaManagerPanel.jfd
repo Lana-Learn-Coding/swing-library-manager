@@ -13,14 +13,14 @@ new FormModel {
 				name: "mainTabbedPane"
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:10:p, comp formPanel:::p::p, space s:::p, comp actionPanel:::p::p, space ::30:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:10:p, comp formPanel:::p::p, space s:::p, comp actionPanel:::p::p, space ::21:x}}"
 					"$verticalGroup": "par l {seq t {space :::x, par l:::p {comp formPanel:::::x, comp actionPanel:::::x}, space :p:36:p}}"
 				} ) {
 					name: "bookMetaManagerTab"
 					"border": new javax.swing.border.EtchedBorder( 1, null, null )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq t {space :::p, par l {seq l {par l {comp lblPublisher::l:p::p, comp lblAuthor::l:p::p, comp lblCategory::l:p::p}, space :p:23:p, par l:::p {comp txtPublisher::::387:x, comp txtAuthor::::387:x}}, comp lblSeries:::p::p, seq l {par l {comp lblTitle:::p::p, comp lblID:::p::p}, space :p:48:p, par l {seq t {comp txtID:::p:109:p, space :p:59:p, comp lblYear:::p::p, space :p:29:p, comp txtYear:::p:169:p}, par t:t::p {seq t {par l {comp selectSeries::l:p:307:p, comp selectCategory::l:p:307:p}, space :::x, par t {comp btnNewCategory::l:p:71:p, comp btnNewSeries:::p:71:p}}, seq t {space :0:0:x, comp txtTitle:::p:388:p}}}}}, space s:::p, par l:::p {comp panelImage::::123:x, comp btnImage::::123:x}, space ::11:x}}"
-						"$verticalGroup": "par l {seq l {space :::p, par l {seq {par b {comp lblYear::b:p::p, comp txtID::b:p::p, comp lblID::b:p::p, comp txtYear::b:p::p}, space s:::p, par b {comp lblTitle::b:p::p, comp txtTitle::b:p::p}, space s:::p, par b {comp selectSeries::b:p::p, comp lblSeries::b:p::p, comp btnNewSeries::b:p::p}, space s:::p, par b {comp lblCategory::b:p::p, comp selectCategory::b:p::p, comp btnNewCategory::b:p::p}, space :p:19:p, par t {comp lblPublisher:::p::p, comp txtPublisher:::p:20:p}}, comp panelImage::::180:x}, space s:::p, par b {comp lblAuthor::b:p:17:p, comp txtAuthor::b:p:19:p, comp btnImage::b:p::p}, space ::54:x}}"
+						"$horizontalGroup": "par l {seq t {space :::p, par l {seq l {par l {comp lblPublisher::l:p::p, comp lblAuthor::l:p::p, comp lblCategory::l:p::p}, space :p:23:p, par l:::p {comp txtPublisher::::387:x, comp txtAuthor::::387:x}}, comp lblSeries:::p::p, seq l {par l {comp lblTitle:::p::p, comp lblID:::p::p}, space :p:48:p, par l {seq t {comp txtID:::p:109:p, space :p:59:p, comp lblYear:::p::p, space :p:29:p, comp txtYear:::p:169:p}, par t:t::p {seq t {par l {comp selectSeries::l:p:307:p, comp selectCategory::l:p:307:p}, space :::x, par t {comp btnNewCategory::l:p:71:p, comp btnNewSeries:::p:71:p}}, seq t {space :0:0:x, comp txtTitle:::p:388:p}}}}}, space s:::p, par l:::p {comp panelImage::::123:x, comp btnImage::::123:x}, space ::15:x}}"
+						"$verticalGroup": "par l {seq l {space :::p, par l {seq {par b {comp lblYear::b:p::p, comp txtID::b:p::p, comp lblID::b:p::p, comp txtYear::b:p::p}, space s:::p, par b {comp lblTitle::b:p::p, comp txtTitle::b:p::p}, space s:::p, par b {comp selectSeries::b:p::p, comp lblSeries::b:p::p, comp btnNewSeries::b:p::p}, space s:::p, par b {comp lblCategory::b:p::p, comp selectCategory::b:p::p, comp btnNewCategory::b:p::p}, space :p:19:p, par t {comp lblPublisher:::p::p, comp txtPublisher:::p:20:p}}, comp panelImage::::180:x}, space s:::p, par b {comp lblAuthor::b:p:17:p, comp txtAuthor::b:p:19:p, comp btnImage::b:p::p}, space ::58:x}}"
 					} ) {
 						name: "formPanel"
 						"border": new javax.swing.border.TitledBorder( "Book Info" )
@@ -107,12 +107,13 @@ new FormModel {
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {comp btnClone::l:::x, seq {par l {comp btnDelete::l:p:98:p, comp btnClear::l:p:98:p, comp btnSave::l:p:98:p, comp btnViewBooks::l:p:98:p}, space :0:0:x}, comp btnFilter::l:::x}"
-						"$verticalGroup": "par l {seq l {space :::p, comp btnFilter:::p::p, space ::95:x, comp btnClone:::p::p, space s:::p, comp btnViewBooks:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp btnFilter:::p::p, space ::99:x, comp btnClone:::p::p, space s:::p, comp btnViewBooks:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 					} ) {
 						name: "actionPanel"
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnClear"
 							"text": "Clear"
+							"enabled": false
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnClearActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -124,6 +125,7 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnSave"
 							"text": "Save"
+							"enabled": false
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSaveActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -141,6 +143,8 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnFilter"
 							"text": "Filter Book"
+							"enabled": false
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnFilterActionPerformed", true ) )
 						} )
 					} )
 				}, new FormLayoutConstraints( null ) {

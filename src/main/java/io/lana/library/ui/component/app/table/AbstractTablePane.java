@@ -14,6 +14,7 @@ import java.util.Vector;
 
 public abstract class AbstractTablePane<T> extends JPanel {
     protected final List<T> data = new ArrayList<>();
+    protected RowFilter<Object, Object> filter;
 
     protected final JTextField search = new JTextField();
     protected final JScrollPane scrollPane = new JScrollPane();
@@ -161,19 +162,22 @@ public abstract class AbstractTablePane<T> extends JPanel {
     }
 
     protected void onSearch() {
-        String text = search.getText();
-        if (StringUtils.isBlank(text)) {
-            clearSearch();
-            return;
-        }
-        tableRowSorter.setRowFilter(RowFilter.regexFilter(text));
-        clearSelection();
+        applyFilter();
     }
 
     public void clearSearch() {
         search.setText("");
-        tableRowSorter.setRowFilter(null);
-        clearSelection();
+        applyFilter();
+    }
+
+    public void setFilter(RowFilter<Object, Object> filter) {
+        this.filter = filter;
+        search.setText("");
+        applyFilter();
+    }
+
+    public void clearFilter() {
+        setFilter(null);
     }
 
     public void fireTableRowsUpdated(int index) {
@@ -181,5 +185,22 @@ public abstract class AbstractTablePane<T> extends JPanel {
         tableModel.removeRow(row);
         tableModel.insertRow(row, toTableRow(data.get(row)));
         tableModel.fireTableRowsUpdated(row, row);
+    }
+
+    private void applyFilter() {
+        List<RowFilter<Object, Object>> rowFilters = new ArrayList<>();
+        if (filter != null) {
+            rowFilters.add(filter);
+        }
+
+        if (StringUtils.isNotBlank(search.getText())) {
+            rowFilters.add(RowFilter.regexFilter(search.getText()));
+        }
+
+        if (rowFilters.isEmpty()) {
+            return;
+        }
+        tableRowSorter.setRowFilter(RowFilter.andFilter(rowFilters));
+        clearSelection();
     }
 }
