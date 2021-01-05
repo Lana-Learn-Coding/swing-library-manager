@@ -266,7 +266,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
     private void btnCloneActionPerformed(ActionEvent e) {
         Reader reader = getModelFromForm();
-        reader.setAddress(null);
+        reader.setAvatar(null);
         readerTablePane.clearSelection();
         JOptionPane.showMessageDialog(this, "Cloned reader. edit then press save to save");
         loadModelToForm(reader);
