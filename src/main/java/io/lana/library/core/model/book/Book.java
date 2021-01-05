@@ -45,7 +45,15 @@ public class Book extends BaseEntity {
     @Transient
     public String getBorrower() {
         if (isBorrowed()) {
-            return getBorrowing().getBorrower().getEmail();
+            return getBorrowing().getBorrower().getName();
+        }
+        return "None";
+    }
+
+    @Transient
+    public String getBorrowerPhone() {
+        if (isBorrowed()) {
+            return getBorrowing().getBorrower().getPhoneNumber();
         }
         return "None";
     }
