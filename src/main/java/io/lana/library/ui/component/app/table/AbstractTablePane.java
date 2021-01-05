@@ -198,6 +198,7 @@ public abstract class AbstractTablePane<T> extends JPanel {
         }
 
         if (rowFilters.isEmpty()) {
+            tableRowSorter.setRowFilter(null);
             return;
         }
         tableRowSorter.setRowFilter(RowFilter.andFilter(rowFilters));
