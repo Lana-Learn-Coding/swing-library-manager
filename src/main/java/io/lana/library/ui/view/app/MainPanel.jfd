@@ -15,7 +15,7 @@ new FormModel {
 			"border": new javax.swing.border.EmptyBorder( 5, 0, 20, 0 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 				"$columnSpecs": "90"
-				"$rowSpecs": "30, 30, 30, 100:1.0, 0"
+				"$rowSpecs": "30, 30, 30, 100:1.0, 0, 0"
 				"$hGap": 5
 				"$vGap": 15
 				"$alignTop": true
@@ -26,11 +26,15 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnBookManage"
 					"text": "Book Manage"
+					"focusPainted": false
+					"focusable": false
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBookManageActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnReaderManage"
 					"text": "Reader Manage"
+					"focusPainted": false
+					"focusable": false
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnReaderManageActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 1
@@ -38,15 +42,27 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnUserManage"
 					"text": "User Manage"
+					"focusPainted": false
+					"focusable": false
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 2
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnExit"
-					"text": "Exit"
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExitActionPerformed", true ) )
+					name: "btnAccount"
+					"text": "Account"
+					"focusPainted": false
+					"focusable": false
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 4
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnExit"
+					"text": "Exit"
+					"focusPainted": false
+					"focusable": false
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExitActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 5
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
