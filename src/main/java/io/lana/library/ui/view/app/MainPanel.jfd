@@ -44,6 +44,7 @@ new FormModel {
 					"text": "User Manage"
 					"focusPainted": false
 					"focusable": false
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnUserManageActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 2
 				} )

@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Table(name = "backend_user")
 @Entity
@@ -32,4 +34,9 @@ public class User extends BaseEntity {
         inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
     private Set<Permission> permissions = new HashSet<>();
+
+    @Transient
+    private List<String> getPermissionNames() {
+        return permissions.stream().map(Permission::toString).collect(Collectors.toList());
+    }
 }

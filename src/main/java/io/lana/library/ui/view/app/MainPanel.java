@@ -4,6 +4,7 @@ import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
+import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,14 +20,17 @@ public class MainPanel extends JPanel implements MainFrameContainer {
     private enum Views {
         BOOK_MANAGE,
         READER_MANAGE,
+        USER_MANAGE,
     }
 
     @Autowired
-    public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel, UserContext userContext) {
+    public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel,
+                     UserManagerPanel userManagerPanel, UserContext userContext) {
         initComponents();
         this.userContext = userContext;
         mainPanel.add(Views.BOOK_MANAGE.name(), bookMetaManagerPanel);
         mainPanel.add(Views.READER_MANAGE.name(), readerManagerPanel);
+        mainPanel.add(Views.USER_MANAGE.name(), userManagerPanel);
     }
 
     private void btnBookManageActionPerformed(ActionEvent e) {
@@ -47,6 +51,10 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         if (confirm == JOptionPane.OK_OPTION) {
             userContext.logout();
         }
+    }
+
+    private void btnUserManageActionPerformed(ActionEvent e) {
+        showView(Views.USER_MANAGE);
     }
 
     private void initComponents() {
@@ -98,6 +106,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             btnUserManage.setText("User Manage");
             btnUserManage.setFocusPainted(false);
             btnUserManage.setFocusable(false);
+            btnUserManage.addActionListener(e -> btnUserManageActionPerformed(e));
             menuPanel.add(btnUserManage, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));

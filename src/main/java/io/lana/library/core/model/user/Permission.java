@@ -15,4 +15,9 @@ public class Permission extends BaseEntity {
     private Integer id;
 
     private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
