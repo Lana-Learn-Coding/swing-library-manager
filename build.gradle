@@ -28,7 +28,7 @@ dependencies {
     implementation 'org.apache.commons:commons-vfs2:2.7.0'
     implementation 'org.apache.commons:commons-lang3:3.11'
     implementation 'com.formdev:flatlaf:0.45'
-
+    implementation 'at.favre.lib:bcrypt:0.9.0'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
