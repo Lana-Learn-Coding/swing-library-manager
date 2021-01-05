@@ -3,44 +3,58 @@ JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "io.lana.library.ui.view.app.AppPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:17:p, par t {comp lblPassword:::p::p, comp lblUsername:::p::p}, space s:::p, par l {comp lblHeader:::p:220:p, seq {comp btnLogin:::p:82:p, space s:::p, comp btnHack:::p:88:p}, comp txtUsername:::p:247:p, comp txtPassword:::p:247:p}, space ::50:x}}"
-			"$verticalGroup": "par l {seq l {space :p:11:p, comp lblHeader:::p:35:p, space s:::p, par b {comp lblUsername::b:p::p, comp txtUsername::b:p::p}, space s:::p, par b {comp lblPassword::b:p::p, comp txtPassword::b:p::p}, space s:::p, par b {comp btnHack::b:p::p, comp btnLogin::b:p::p}, space ::27:x}}"
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "0, 0:1.0, 0:1.0, 0"
+			"$rowSpecs": "0, 0, 0, 0"
+			"$hGap": 15
+			"$vGap": 15
 		} ) {
 			name: "this"
+			"border": new javax.swing.border.EmptyBorder( 15, 30, 20, 30 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblHeader"
+				"text": "Login to Library"
+				"font": new com.jformdesigner.model.SwingDerivedFont( "Roboto Light", 196608, 9, false )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridwidth": 2
+			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblUsername"
 				"text": "Username"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblPassword"
 				"text": "Password"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 2
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "txtUsername"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+				"gridy": 1
+				"gridwidth": 2
 			} )
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "txtPassword"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lblHeader"
-				"text": "Login to Library"
-				"horizontalAlignment": 0
-				"font": new com.jformdesigner.model.SwingDerivedFont( "Roboto Light", 196608, 9, false )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+				"gridy": 2
+				"gridwidth": 2
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnLogin"
 				"text": "Login"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLoginActionPerformed", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "btnHack"
-				"text": "Hack"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnHackActionPerformed", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 2
+				"gridy": 3
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 10, 0 )
-			"size": new java.awt.Dimension( 380, 190 )
+			"location": new java.awt.Point( 10, 10 )
+			"size": new java.awt.Dimension( 380, 200 )
 		} )
 	}
 }

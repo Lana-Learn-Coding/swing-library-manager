@@ -1,5 +1,6 @@
 package io.lana.library.ui.view.app;
 
+import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 @Component
-public class MainPanel extends AppPanel {
+public class MainPanel extends JPanel {
+    private UserContext userContext;
+
     private enum Views {
         BOOK_MANAGE,
         READER_MANAGE,
     }
 
     @Autowired
-    public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel) {
+    public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel, UserContext userContext) {
         initComponents();
+        this.userContext = userContext;
         mainPanel.add(Views.BOOK_MANAGE.name(), bookMetaManagerPanel);
         mainPanel.add(Views.READER_MANAGE.name(), readerManagerPanel);
     }
@@ -38,7 +42,10 @@ public class MainPanel extends AppPanel {
     }
 
     private void btnExitActionPerformed(ActionEvent e) {
-        gotoPanel(LoginPanel.class);
+        int confirm = JOptionPane.showConfirmDialog(this, "Log out ?");
+        if (confirm == JOptionPane.OK_OPTION) {
+            userContext.logout();
+        }
     }
 
     private void initComponents() {

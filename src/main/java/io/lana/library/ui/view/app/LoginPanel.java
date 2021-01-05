@@ -4,122 +4,134 @@
 
 package io.lana.library.ui.view.app;
 
+import io.lana.library.core.model.user.User;
+import io.lana.library.core.spi.PasswordEncoder;
+import io.lana.library.core.spi.UserRepo;
+import io.lana.library.ui.InputException;
+import io.lana.library.ui.MainFrame;
+import io.lana.library.ui.UserContext;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 @Component("startupPanel")
-public class LoginPanel extends AppPanel {
+public class LoginPanel extends JPanel {
+    private UserRepo userRepo;
+
+    private PasswordEncoder passwordEncoder;
+
+    private MainFrame mainFrame;
+
+    private UserContext userContext;
+
     public LoginPanel() {
         initComponents();
     }
 
+    @Autowired
+    public void setup(UserRepo userRepo, PasswordEncoder passwordEncoder,
+                      MainFrame mainFrame, UserContext userContext) {
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+        this.mainFrame = mainFrame;
+        this.userContext = userContext;
+    }
+
     private void btnLoginActionPerformed(ActionEvent e) {
-        if (checkUserIsValid()) {
-            gotoPanel(MainPanel.class);
+        String password = String.valueOf(txtPassword.getPassword());
+        String username = txtUsername.getText();
+        if (StringUtils.isAnyBlank(password, username)) {
+            JOptionPane.showMessageDialog(this, "Please enter username and password");
+            return;
+        }
+
+        disableForm();
+        User user = userRepo.findByUsernameEquals(username)
+            .orElseThrow(() -> new InputException(mainFrame, "User not exist"));
+
+        if (passwordEncoder.matches(password, user.getPassword())) {
+            userContext.setUser(user);
+            mainFrame.setContentPane(InitPanel.class);
+            enableForm();
+            txtPassword.setText("");
+            txtUsername.setText("");
             return;
         }
         JOptionPane.showMessageDialog(this, "Wrong username or password");
+        enableForm();
     }
 
-    private boolean checkUserIsValid() {
-        String password = txtPassword.getText();
-        String username = txtUsername.getText();
-        if (StringUtils.isAllBlank(password, username)) {
-            JOptionPane.showMessageDialog(this, "Please enter username and password");
-            return false;
-        }
-        final String ADMIN = "admin";
-        return password.equals(ADMIN) && username.equals(ADMIN);
+    private void disableForm() {
+        btnLogin.setEnabled(false);
+        txtPassword.setEnabled(false);
+        txtUsername.setEnabled(false);
     }
 
-    private void btnHackActionPerformed(ActionEvent e) {
-        gotoPanel(MainPanel.class);
+    private void enableForm() {
+        btnLogin.setEnabled(true);
+        txtPassword.setEnabled(true);
+        txtUsername.setEnabled(true);
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        lblHeader = new JLabel();
         lblUsername = new JLabel();
         lblPassword = new JLabel();
         txtUsername = new JTextField();
         txtPassword = new JPasswordField();
-        lblHeader = new JLabel();
         btnLogin = new JButton();
-        btnHack = new JButton();
 
         //======== this ========
-
-        //---- lblUsername ----
-        lblUsername.setText("Username");
-
-        //---- lblPassword ----
-        lblPassword.setText("Password");
+        setBorder(new EmptyBorder(15, 30, 20, 30));
+        setLayout(new GridBagLayout());
+        ((GridBagLayout) getLayout()).columnWeights = new double[]{0.0, 1.0, 1.0, 0.0};
 
         //---- lblHeader ----
         lblHeader.setText("Login to Library");
-        lblHeader.setHorizontalAlignment(SwingConstants.CENTER);
         lblHeader.setFont(new Font("Roboto Light", Font.PLAIN, lblHeader.getFont().getSize() + 9));
+        add(lblHeader, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 15, 15), 0, 0));
+
+        //---- lblUsername ----
+        lblUsername.setText("Username");
+        add(lblUsername, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 15, 15), 0, 0));
+
+        //---- lblPassword ----
+        lblPassword.setText("Password");
+        add(lblPassword, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 15, 15), 0, 0));
+        add(txtUsername, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 15, 15), 0, 0));
+        add(txtPassword, new GridBagConstraints(1, 2, 2, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 15, 15), 0, 0));
 
         //---- btnLogin ----
         btnLogin.setText("Login");
         btnLogin.addActionListener(e -> btnLoginActionPerformed(e));
-
-        //---- btnHack ----
-        btnHack.setText("Hack");
-        btnHack.addActionListener(e -> btnHackActionPerformed(e));
-
-        GroupLayout layout = new GroupLayout(this);
-        setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(17, 17, 17)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblPassword)
-                        .addComponent(lblUsername))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup()
-                        .addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnHack, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(50, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(11, 11, 11)
-                    .addComponent(lblHeader, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblUsername)
-                        .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPassword)
-                        .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnHack)
-                        .addComponent(btnLogin))
-                    .addContainerGap(27, Short.MAX_VALUE))
-        );
+        add(btnLogin, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 0, 15), 0, 0));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    private JLabel lblHeader;
     private JLabel lblUsername;
     private JLabel lblPassword;
     private JTextField txtUsername;
     private JPasswordField txtPassword;
-    private JLabel lblHeader;
     private JButton btnLogin;
-    private JButton btnHack;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
