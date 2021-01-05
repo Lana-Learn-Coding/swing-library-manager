@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -331,7 +333,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
         bookMetaTablePane = new BookMetaTablePane();
 
         //======== this ========
-        setBorder(null);
+        setBorder(new EmptyBorder(0, 10, 0, 10));
 
         //======== mainTabbedPane ========
         {
@@ -339,53 +341,116 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
             //======== bookMetaManagerTab ========
             {
-                bookMetaManagerTab.setBorder(new EtchedBorder());
+                bookMetaManagerTab.setBorder(new CompoundBorder(
+                    new EtchedBorder(),
+                    new EmptyBorder(15, 15, 20, 20)));
+                bookMetaManagerTab.setLayout(new GridBagLayout());
+                ((GridBagLayout) bookMetaManagerTab.getLayout()).columnWidths = new int[]{0, 100};
+                ((GridBagLayout) bookMetaManagerTab.getLayout()).columnWeights = new double[]{1.0, 0.0};
 
                 //======== formPanel ========
                 {
-                    formPanel.setBorder(new TitledBorder("Book Info"));
+                    formPanel.setBorder(new CompoundBorder(
+                        new TitledBorder("Book Info"),
+                        new EmptyBorder(15, 15, 20, 15)));
+                    formPanel.setLayout(new GridBagLayout());
+                    ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 0, 0, 0, 0, 25, 130, 0};
+                    ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+                    ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0E-4};
+                    ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                     //---- lblSeries ----
                     lblSeries.setText("Series");
+                    formPanel.add(lblSeries, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- lblID ----
                     lblID.setText("ID");
+                    formPanel.add(lblID, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- lblTitle ----
                     lblTitle.setText("Title");
+                    formPanel.add(lblTitle, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- lblCategory ----
                     lblCategory.setText("Category");
+                    formPanel.add(lblCategory, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
+                    formPanel.add(txtTitle, new GridBagConstraints(1, 1, 4, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- txtID ----
                     txtID.setEditable(false);
+                    formPanel.add(txtID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- selectSeries ----
                     selectSeries.setSelectedIndex(-1);
+                    formPanel.add(selectSeries, new GridBagConstraints(1, 2, 3, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
+                    formPanel.add(txtAuthor, new GridBagConstraints(1, 5, 4, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 15), 0, 0));
 
                     //---- lblPublisher ----
                     lblPublisher.setText("Publisher");
+                    formPanel.add(lblPublisher, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
+                    formPanel.add(txtPublisher, new GridBagConstraints(1, 4, 4, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- lblAuthor ----
                     lblAuthor.setText("Author");
+                    formPanel.add(lblAuthor, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 15), 0, 0));
+                    formPanel.add(txtYear, new GridBagConstraints(3, 0, 2, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- selectCategory ----
                     selectCategory.setSelectedIndex(-1);
+                    formPanel.add(selectCategory, new GridBagConstraints(1, 3, 3, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- lblYear ----
                     lblYear.setText("Year");
+                    formPanel.add(lblYear, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- btnNewSeries ----
                     btnNewSeries.setText("New");
                     btnNewSeries.addActionListener(e -> btnNewSeriesActionPerformed(e));
+                    formPanel.add(btnNewSeries, new GridBagConstraints(4, 2, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- btnNewCategory ----
                     btnNewCategory.setText("New");
                     btnNewCategory.addActionListener(e -> btnNewCategoryActionPerformed(e));
+                    formPanel.add(btnNewCategory, new GridBagConstraints(4, 3, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 15), 0, 0));
 
                     //---- btnImage ----
                     btnImage.setText("Select Image");
                     btnImage.addActionListener(e -> btnImageActionPerformed(e));
+                    formPanel.add(btnImage, new GridBagConstraints(6, 5, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 0), 0, 0));
 
                     //======== panelImage ========
                     {
@@ -393,92 +458,13 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                         panelImage.setLayout(new GridLayout());
                         panelImage.add(imageViewer);
                     }
-
-                    GroupLayout formPanelLayout = new GroupLayout(formPanel);
-                    formPanel.setLayout(formPanelLayout);
-                    formPanelLayout.setHorizontalGroup(
-                        formPanelLayout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(formPanelLayout.createParallelGroup()
-                                    .addGroup(formPanelLayout.createSequentialGroup()
-                                        .addGroup(formPanelLayout.createParallelGroup()
-                                            .addComponent(lblPublisher)
-                                            .addComponent(lblAuthor)
-                                            .addComponent(lblCategory))
-                                        .addGap(23, 23, 23)
-                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtPublisher, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                                            .addComponent(txtAuthor, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)))
-                                    .addComponent(lblSeries)
-                                    .addGroup(formPanelLayout.createSequentialGroup()
-                                        .addGroup(formPanelLayout.createParallelGroup()
-                                            .addComponent(lblTitle)
-                                            .addComponent(lblID))
-                                        .addGap(48, 48, 48)
-                                        .addGroup(formPanelLayout.createParallelGroup()
-                                            .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
-                                                .addComponent(txtID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(59, 59, 59)
-                                                .addComponent(lblYear)
-                                                .addGap(29, 29, 29)
-                                                .addComponent(txtYear, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(GroupLayout.Alignment.TRAILING, formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(formPanelLayout.createSequentialGroup()
-                                                    .addGroup(formPanelLayout.createParallelGroup()
-                                                        .addComponent(selectSeries, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(selectCategory, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE))
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(btnNewCategory, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnNewSeries, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)))
-                                                .addGroup(formPanelLayout.createSequentialGroup()
-                                                    .addGap(0, 0, Short.MAX_VALUE)
-                                                    .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, 388, GroupLayout.PREFERRED_SIZE))))))
-                                .addGap(18, 18, 18)
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                                    .addComponent(btnImage, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                                .addContainerGap(15, Short.MAX_VALUE))
-                    );
-                    formPanelLayout.setVerticalGroup(
-                        formPanelLayout.createParallelGroup()
-                            .addGroup(formPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(formPanelLayout.createParallelGroup()
-                                    .addGroup(formPanelLayout.createSequentialGroup()
-                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(lblYear)
-                                            .addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblID)
-                                            .addComponent(txtYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(lblTitle)
-                                            .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(selectSeries, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblSeries)
-                                            .addComponent(btnNewSeries))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(lblCategory)
-                                            .addComponent(selectCategory, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnNewCategory))
-                                        .addGap(19, 19, 19)
-                                        .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblPublisher)
-                                            .addComponent(txtPublisher, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAuthor, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnImage))
-                                .addContainerGap(58, Short.MAX_VALUE))
-                    );
+                    formPanel.add(panelImage, new GridBagConstraints(6, 0, 1, 5, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 0), 0, 0));
                 }
+                bookMetaManagerTab.add(formPanel, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 0, 20), 0, 0));
 
                 //======== actionPanel ========
                 {
@@ -518,13 +504,10 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                     actionPanelLayout.setHorizontalGroup(
                         actionPanelLayout.createParallelGroup()
                             .addComponent(btnClone, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(actionPanelLayout.createSequentialGroup()
-                                .addGroup(actionPanelLayout.createParallelGroup()
-                                    .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnViewBooks, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClear, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnFilter, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     );
                     actionPanelLayout.setVerticalGroup(
@@ -532,7 +515,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                             .addGroup(actionPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnFilter)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                                 .addComponent(btnClone)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnViewBooks)
@@ -544,51 +527,32 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                                 .addComponent(btnDelete))
                     );
                 }
-
-                GroupLayout bookMetaManagerTabLayout = new GroupLayout(bookMetaManagerTab);
-                bookMetaManagerTab.setLayout(bookMetaManagerTabLayout);
-                bookMetaManagerTabLayout.setHorizontalGroup(
-                    bookMetaManagerTabLayout.createParallelGroup()
-                        .addGroup(bookMetaManagerTabLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(actionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(21, Short.MAX_VALUE))
-                );
-                bookMetaManagerTabLayout.setVerticalGroup(
-                    bookMetaManagerTabLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, bookMetaManagerTabLayout.createSequentialGroup()
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(bookMetaManagerTabLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(actionPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(36, 36, 36))
-                );
+                bookMetaManagerTab.add(actionPanel, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 0, 0), 0, 0));
             }
             mainTabbedPane.addTab("Book Manager", bookMetaManagerTab);
         }
+
+        //---- bookMetaTablePane ----
+        bookMetaTablePane.setBorder(null);
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 788, GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 2, Short.MAX_VALUE)))
+                        .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 759, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bookMetaTablePane, GroupLayout.PREFERRED_SIZE, 759, GroupLayout.PREFERRED_SIZE))
                     .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 362, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(20, 20, 20)
+                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                     .addContainerGap())
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
