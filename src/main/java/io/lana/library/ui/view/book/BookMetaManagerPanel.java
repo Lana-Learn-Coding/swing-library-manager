@@ -13,7 +13,6 @@ import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.SeriesRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BookMetaTablePane;
-import io.lana.library.ui.component.app.AppPanel;
 import io.lana.library.ui.component.app.ComboBox;
 import io.lana.library.ui.component.app.ImagePicker;
 import io.lana.library.ui.component.app.ImageViewer;
@@ -37,7 +36,7 @@ import java.io.InputStream;
 import java.util.Collection;
 
 @Component
-public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta> {
+public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> {
     private final ImagePicker imagePicker = new ImagePicker();
     private BookMetaFilterDialog filterDialog;
 
@@ -49,7 +48,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
 
     @Autowired
     public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaRepo bookMetaRepo,
-                      BookManagerDialog bookManagerDialog, FileStorage fileStorage) {
+                      BookManagerDialog bookManagerDialog, FileStorage fileStorage, JFrame mainFrame) {
         this.bookManagerDialog = bookManagerDialog;
         this.bookManagerDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -66,7 +65,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
             this.seriesRepo.findAll().forEach(selectSeries::addItem);
             selectSeries.setSelectedItem(null);
             selectCategory.setSelectedItem(null);
-            filterDialog = new BookMetaFilterDialog(frame.getOwner(), bookMetaTablePane, selectCategory);
+            filterDialog = new BookMetaFilterDialog(mainFrame.getOwner(), bookMetaTablePane, selectCategory);
             btnFilter.setEnabled(true);
         });
         WorkerUtils.runAsync(() -> {
@@ -539,7 +538,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
             }
-            mainTabbedPane.addTab("Book Manager", bookMetaManagerTab);
+            mainTabbedPane.addTab("Book Manage", bookMetaManagerTab);
         }
 
         //---- bookMetaTablePane ----
@@ -560,8 +559,7 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(20, 20, 20)
-                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                    .addContainerGap())
+                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

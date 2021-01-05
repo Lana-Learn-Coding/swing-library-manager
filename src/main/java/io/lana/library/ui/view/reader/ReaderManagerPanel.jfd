@@ -1,22 +1,22 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp tab::l:::x}"
-			"$verticalGroup": "par l {seq l {comp tab:::p:718:p, space :0:0:x}}"
+			"$verticalGroup": "par l {comp tab::l:::x}"
 		} ) {
 			name: "this"
-			"border": new javax.swing.border.EmptyBorder( 10, 10, 15, 10 )
+			"border": new javax.swing.border.EmptyBorder( 0, 10, 0, 10 )
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tab"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {comp actionFormPanel::::731:x, comp readerTablePane::::731:x}, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp actionFormPanel:::p:352:p, space s:::p, comp readerTablePane::::287:x}}"
+					"$horizontalGroup": "par l {comp readerTablePane::t::775:x, comp actionFormPanel::t::775:x}"
+					"$verticalGroup": "par l {seq l {comp actionFormPanel:::p:373:p, space s:::p, comp readerTablePane::::316:x}}"
 				} ) {
 					name: "panelReaderManage"
-					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.EmptyBorder( 10, 10, 10, 10 ) )
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 					add( new FormComponent( "io.lana.library.ui.component.ReaderTablePane" ) {
 						name: "readerTablePane"
 						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
@@ -30,7 +30,7 @@ new FormModel {
 						"$alignTop": true
 					} ) {
 						name: "actionFormPanel"
-						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.EmptyBorder( 15, 15, 20, 15 ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 							"$columnSpecs": "0, 0:1.0, 0, 0, 0:1.0, 10, 150"
 							"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0"
@@ -172,9 +172,10 @@ new FormModel {
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 							"$horizontalGroup": "par l {comp btnDelete:::::x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnClone::l:::x, comp btnBorrow::l:::x, comp btnViewBorrowed::l:::x}"
-							"$verticalGroup": "par l {seq t {space :::p, comp btnViewBorrowed:::p::p, space :p:16:p, comp btnBorrow:::p::p, space ::151:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+							"$verticalGroup": "par l {seq t {space :::p, comp btnViewBorrowed:::p::p, space :p:16:p, comp btnBorrow:::p::p, space ::105:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 						} ) {
 							name: "actionPanel"
+							"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 							add( new FormComponent( "javax.swing.JButton" ) {
 								name: "btnDelete"
 								"text": "Delete"

@@ -103,7 +103,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                 throw new InputException(this, "Email already exited");
             }
             if (readerRepo.existsByPhoneNumber(reader.getPhoneNumber())) {
-                throw new InputException(this, "PhoneNumber already exited");
+                throw new InputException(this, "Phone number already exited");
             }
             if (StringUtils.isNotBlank(reader.getAvatar())) {
                 String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
@@ -125,7 +125,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         }
         if (!reader.getPhoneNumber().equals(updated.getPhoneNumber())
             && readerRepo.existsByPhoneNumber(reader.getPhoneNumber())) {
-            throw new InputException(this, "PhoneNumber already exited");
+            throw new InputException(this, "Phone number already exited");
         }
         updated.setBirth(reader.getBirth());
         updated.setName(reader.getName());
@@ -232,7 +232,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         Reader reader = getModelFromForm();
         reader.setAddress(null);
         readerTablePane.clearSelection();
-        JOptionPane.showMessageDialog(this, "Cloned reader. edit then press save to save new book");
+        JOptionPane.showMessageDialog(this, "Cloned reader. edit then press save to save");
         loadModelToForm(reader);
     }
 
@@ -285,23 +285,23 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         btnBorrow = new JButton();
 
         //======== this ========
-        setBorder(new EmptyBorder(10, 10, 15, 10));
+        setBorder(new EmptyBorder(0, 10, 0, 10));
 
         //======== tab ========
         {
 
             //======== panelReaderManage ========
             {
-                panelReaderManage.setBorder(new CompoundBorder(
-                    new EtchedBorder(),
-                    new EmptyBorder(10, 10, 10, 10)));
+                panelReaderManage.setBorder(null);
 
                 //---- readerTablePane ----
                 readerTablePane.setBorder(null);
 
                 //======== actionFormPanel ========
                 {
-                    actionFormPanel.setBorder(null);
+                    actionFormPanel.setBorder(new CompoundBorder(
+                        new EtchedBorder(),
+                        new EmptyBorder(15, 15, 20, 15)));
                     actionFormPanel.setLayout(new GridBagLayout());
                     ((GridBagLayout) actionFormPanel.getLayout()).columnWidths = new int[]{0, 90, 0};
                     ((GridBagLayout) actionFormPanel.getLayout()).rowHeights = new int[]{0, 0};
@@ -431,6 +431,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
                     //======== actionPanel ========
                     {
+                        actionPanel.setBorder(null);
 
                         //---- btnDelete ----
                         btnDelete.setText("Delete");
@@ -478,7 +479,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                                     .addComponent(btnViewBorrowed)
                                     .addGap(16, 16, 16)
                                     .addComponent(btnBorrow)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                                     .addComponent(btnClone)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSave)
@@ -497,20 +498,15 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                 panelReaderManage.setLayout(panelReaderManageLayout);
                 panelReaderManageLayout.setHorizontalGroup(
                     panelReaderManageLayout.createParallelGroup()
-                        .addGroup(panelReaderManageLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(panelReaderManageLayout.createParallelGroup()
-                                .addComponent(actionFormPanel, GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
-                                .addComponent(readerTablePane, GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE))
-                            .addContainerGap())
+                        .addComponent(readerTablePane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                        .addComponent(actionFormPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                 );
                 panelReaderManageLayout.setVerticalGroup(
                     panelReaderManageLayout.createParallelGroup()
                         .addGroup(panelReaderManageLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(actionFormPanel, GroupLayout.PREFERRED_SIZE, 352, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actionFormPanel, GroupLayout.PREFERRED_SIZE, 373, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(readerTablePane, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
+                            .addComponent(readerTablePane, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
                 );
             }
             tab.addTab("Reader Manage", panelReaderManage);
@@ -524,9 +520,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(tab, GroupLayout.PREFERRED_SIZE, 718, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(tab)
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq {par l {comp mainTabbedPane:::p:759:p, comp bookMetaTablePane:::p:759:p}, space :::p}}"
-			"$verticalGroup": "par l {seq {comp mainTabbedPane:::p::p, space :p:20:p, comp bookMetaTablePane::::262:x, space :::p}}"
+			"$verticalGroup": "par l {seq {comp mainTabbedPane:::p::p, space :p:20:p, comp bookMetaTablePane::::258:x}}"
 		} ) {
 			name: "this"
 			"border": new javax.swing.border.EmptyBorder( 0, 10, 0, 10 )
@@ -205,7 +205,7 @@ new FormModel {
 						"gridx": 1
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "Book Manager"
+					"title": "Book Manage"
 				} )
 			} )
 			add( new FormComponent( "io.lana.library.ui.component.BookMetaTablePane" ) {

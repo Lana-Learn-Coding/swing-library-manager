@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -272,7 +273,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         panelImage = new JPanel();
         imageViewer = new ImageViewer();
         btnSelectImage = new JButton();
-        panel1 = new JPanel();
+        actionPanel = new JPanel();
         btnDelete = new JButton();
         btnClear = new JButton();
         btnSave = new JButton();
@@ -285,7 +286,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
 
         //======== mainTabbedPane ========
         {
-            mainTabbedPane.setBorder(null);
+            mainTabbedPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
             //======== formTab ========
             {
@@ -398,7 +399,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                     .addComponent(btnSelectImage, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                                .addContainerGap(44, Short.MAX_VALUE))
+                                .addContainerGap(24, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
@@ -438,11 +439,11 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                     .addGroup(formPanelLayout.createSequentialGroup()
                                         .addGap(16, 16, 16)
                                         .addComponent(btnSelectImage)))
-                                .addContainerGap(28, Short.MAX_VALUE))
+                                .addContainerGap(34, Short.MAX_VALUE))
                     );
                 }
 
-                //======== panel1 ========
+                //======== actionPanel ========
                 {
 
                     //---- btnDelete ----
@@ -463,18 +464,18 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                     btnClone.setEnabled(false);
                     btnClone.addActionListener(e -> btnCloneActionPerformed(e));
 
-                    GroupLayout panel1Layout = new GroupLayout(panel1);
-                    panel1.setLayout(panel1Layout);
-                    panel1Layout.setHorizontalGroup(
-                        panel1Layout.createParallelGroup()
+                    GroupLayout actionPanelLayout = new GroupLayout(actionPanel);
+                    actionPanel.setLayout(actionPanelLayout);
+                    actionPanelLayout.setHorizontalGroup(
+                        actionPanelLayout.createParallelGroup()
                             .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                             .addComponent(btnClear, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                             .addComponent(btnSave, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                             .addComponent(btnClone, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                     );
-                    panel1Layout.setVerticalGroup(
-                        panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                    actionPanelLayout.setVerticalGroup(
+                        actionPanelLayout.createParallelGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
                                 .addGap(0, 76, Short.MAX_VALUE)
                                 .addComponent(btnClone)
                                 .addGap(18, 18, 18)
@@ -494,7 +495,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                             .addGap(10, 10, 10)
                             .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(18, 18, 18)
-                            .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(21, 21, 21))
                 );
                 formTabLayout.setVerticalGroup(
@@ -502,13 +503,16 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                         .addGroup(formTabLayout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(formTabLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(actionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(formPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addGap(105, 105, 105))
                 );
             }
             mainTabbedPane.addTab("Book List", formTab);
         }
+
+        //---- bookTablePane ----
+        bookTablePane.setBorder(new EmptyBorder(0, 5, 5, 5));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -558,7 +562,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     private JPanel panelImage;
     private ImageViewer imageViewer;
     private JButton btnSelectImage;
-    private JPanel panel1;
+    private JPanel actionPanel;
     private JButton btnDelete;
     private JButton btnClear;
     private JButton btnSave;
