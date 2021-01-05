@@ -43,6 +43,10 @@ public class LoginPanel extends JPanel {
     }
 
     private void btnLoginActionPerformed(ActionEvent e) {
+        doLogin();
+    }
+
+    private void doLogin() {
         String password = String.valueOf(txtPassword.getPassword());
         String username = txtUsername.getText();
         if (StringUtils.isAnyBlank(password, username)) {
@@ -76,6 +80,14 @@ public class LoginPanel extends JPanel {
         btnLogin.setEnabled(true);
         txtPassword.setEnabled(true);
         txtUsername.setEnabled(true);
+    }
+
+    private void txtPasswordActionPerformed(ActionEvent e) {
+        doLogin();
+    }
+
+    private void txtUsernameActionPerformed(ActionEvent e) {
+        txtPassword.requestFocusInWindow();
     }
 
     private void initComponents() {
@@ -113,6 +125,9 @@ public class LoginPanel extends JPanel {
             mainPanel.add(lblUsername, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 15), 0, 0));
+
+            //---- txtUsername ----
+            txtUsername.addActionListener(e -> txtUsernameActionPerformed(e));
             mainPanel.add(txtUsername, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
@@ -122,6 +137,9 @@ public class LoginPanel extends JPanel {
             mainPanel.add(lblPassword, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 15), 0, 0));
+
+            //---- txtPassword ----
+            txtPassword.addActionListener(e -> txtPasswordActionPerformed(e));
             mainPanel.add(txtPassword, new GridBagConstraints(1, 2, 2, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
@@ -138,7 +156,7 @@ public class LoginPanel extends JPanel {
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
-                .addComponent(mainPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addComponent(mainPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
