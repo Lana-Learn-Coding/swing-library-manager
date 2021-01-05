@@ -19,8 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,7 +68,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     public void setup(ReaderRepo readerRepo, FileStorage fileStorage) {
         this.readerRepo = readerRepo;
         this.fileStorage = fileStorage;
-        WorkerUtils.runAsync(this::renderTable);
+        WorkerUtils.runAsync(() -> {
+            renderTable();
+            btnSave.setEnabled(true);
+            btnClear.setEnabled(true);
+        });
     }
 
     @Override
@@ -80,7 +85,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         if (reader.getBorrowedBookCount() > 0) {
             JOptionPane.showMessageDialog(this,
                 "Reader still borrow some book. " +
-                "Please remove them before delete this reader");
+                    "Please remove them before delete this reader");
             return;
         }
         readerRepo.deleteById(reader.getId());
@@ -247,6 +252,8 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         tab = new JTabbedPane();
         panelReaderManage = new JPanel();
+        readerTablePane = new ReaderTablePane();
+        actionFormPanel = new JPanel();
         formPanel = new JPanel();
         lblID = new JLabel();
         txtID = new JTextField();
@@ -269,9 +276,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         scrollPane1 = new JScrollPane();
         txtAddress = new JTextArea();
         btnSelectAvatar = new JButton();
-        readerTablePane = new ReaderTablePane();
-        panel1 = new JPanel();
-        panel2 = new JPanel();
+        actionPanel = new JPanel();
         btnDelete = new JButton();
         btnClear = new JButton();
         btnSave = new JButton();
@@ -280,138 +285,151 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         btnBorrow = new JButton();
 
         //======== this ========
+        setBorder(new EmptyBorder(10, 10, 15, 10));
 
         //======== tab ========
         {
 
             //======== panelReaderManage ========
             {
-                panelReaderManage.setBorder(new EtchedBorder());
-
-                //======== formPanel ========
-                {
-                    formPanel.setBorder(null);
-                    formPanel.setLayout(new GridBagLayout());
-                    ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 0, 0, 0, 0, 25, 0, 0};
-                    ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-                    ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0E-4};
-                    ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
-
-                    //---- lblID ----
-                    lblID.setText("ID");
-                    formPanel.add(lblID, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- txtID ----
-                    txtID.setEditable(false);
-                    formPanel.add(txtID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- lblLimit ----
-                    lblLimit.setText("Limit");
-                    formPanel.add(lblLimit, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-                    formPanel.add(txtLimit, new GridBagConstraints(4, 0, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //======== panelImage ========
-                    {
-                        panelImage.setBorder(new TitledBorder("Avatar"));
-                        panelImage.setLayout(new GridLayout());
-                        panelImage.add(imageViewer);
-                    }
-                    formPanel.add(panelImage, new GridBagConstraints(6, 0, 1, 6, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 0), 0, 0));
-
-                    //---- lblName ----
-                    lblName.setText("Name");
-                    formPanel.add(lblName, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-                    formPanel.add(txtName, new GridBagConstraints(1, 1, 4, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- lblEmail ----
-                    lblEmail.setText("Email");
-                    formPanel.add(lblEmail, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-                    formPanel.add(txtEmail, new GridBagConstraints(1, 2, 4, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- lblPhone ----
-                    lblPhone.setText("Phone");
-                    formPanel.add(lblPhone, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-                    formPanel.add(txtPhone, new GridBagConstraints(1, 3, 4, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- lblGender ----
-                    lblGender.setText("Gender");
-                    formPanel.add(lblGender, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- radioMale ----
-                    radioMale.setText("Male");
-                    formPanel.add(radioMale, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- radioFemale ----
-                    radioFemale.setText("Female");
-                    formPanel.add(radioFemale, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- lblBirth ----
-                    lblBirth.setText("Birthdate");
-                    formPanel.add(lblBirth, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-                    formPanel.add(txtDate, new GridBagConstraints(1, 5, 4, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //---- lblAddress ----
-                    lblAddress.setText("Address");
-                    formPanel.add(lblAddress, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 15), 0, 0));
-
-                    //======== scrollPane1 ========
-                    {
-                        scrollPane1.setViewportView(txtAddress);
-                    }
-                    formPanel.add(scrollPane1, new GridBagConstraints(1, 6, 4, 2, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 0, 15), 0, 0));
-
-                    //---- btnSelectAvatar ----
-                    btnSelectAvatar.setText("Select Avatar");
-                    btnSelectAvatar.addActionListener(e -> btnSelectAvatarActionPerformed(e));
-                    formPanel.add(btnSelectAvatar, new GridBagConstraints(6, 6, 1, 1, 0.0, 0.0,
-                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                        new Insets(0, 0, 20, 0), 0, 0));
-                }
+                panelReaderManage.setBorder(new CompoundBorder(
+                    new EtchedBorder(),
+                    new EmptyBorder(10, 10, 10, 10)));
 
                 //---- readerTablePane ----
                 readerTablePane.setBorder(null);
 
-                //======== panel1 ========
+                //======== actionFormPanel ========
                 {
-                    panel1.setBorder(new MatteBorder(0, 1, 0, 0, Color.lightGray));
+                    actionFormPanel.setBorder(null);
+                    actionFormPanel.setLayout(new GridBagLayout());
+                    ((GridBagLayout) actionFormPanel.getLayout()).columnWidths = new int[]{0, 90, 0};
+                    ((GridBagLayout) actionFormPanel.getLayout()).rowHeights = new int[]{0, 0};
+                    ((GridBagLayout) actionFormPanel.getLayout()).columnWeights = new double[]{1.0, 0.0, 1.0E-4};
+                    ((GridBagLayout) actionFormPanel.getLayout()).rowWeights = new double[]{1.0, 1.0E-4};
 
-                    //======== panel2 ========
+                    //======== formPanel ========
+                    {
+                        formPanel.setBorder(new CompoundBorder(
+                            new TitledBorder("Reader Info"),
+                            new EmptyBorder(15, 15, 20, 15)));
+                        formPanel.setLayout(new GridBagLayout());
+                        ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 0, 0, 0, 0, 25, 150, 0};
+                        ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+                        ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0E-4};
+                        ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+
+                        //---- lblID ----
+                        lblID.setText("ID");
+                        formPanel.add(lblID, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- txtID ----
+                        txtID.setEditable(false);
+                        formPanel.add(txtID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- lblLimit ----
+                        lblLimit.setText("Limit");
+                        formPanel.add(lblLimit, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtLimit, new GridBagConstraints(4, 0, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //======== panelImage ========
+                        {
+                            panelImage.setBorder(new TitledBorder("Avatar"));
+                            panelImage.setLayout(new GridLayout());
+                            panelImage.add(imageViewer);
+                        }
+                        formPanel.add(panelImage, new GridBagConstraints(6, 0, 1, 6, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 0), 0, 0));
+
+                        //---- lblName ----
+                        lblName.setText("Name");
+                        formPanel.add(lblName, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtName, new GridBagConstraints(1, 1, 4, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- lblEmail ----
+                        lblEmail.setText("Email");
+                        formPanel.add(lblEmail, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtEmail, new GridBagConstraints(1, 2, 4, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- lblPhone ----
+                        lblPhone.setText("Phone");
+                        formPanel.add(lblPhone, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtPhone, new GridBagConstraints(1, 3, 4, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- lblGender ----
+                        lblGender.setText("Gender");
+                        formPanel.add(lblGender, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- radioMale ----
+                        radioMale.setText("Male");
+                        formPanel.add(radioMale, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- radioFemale ----
+                        radioFemale.setText("Female");
+                        formPanel.add(radioFemale, new GridBagConstraints(4, 4, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- lblBirth ----
+                        lblBirth.setText("Birthdate");
+                        formPanel.add(lblBirth, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtDate, new GridBagConstraints(1, 5, 4, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- lblAddress ----
+                        lblAddress.setText("Address");
+                        formPanel.add(lblAddress, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //======== scrollPane1 ========
+                        {
+                            scrollPane1.setViewportView(txtAddress);
+                        }
+                        formPanel.add(scrollPane1, new GridBagConstraints(1, 6, 4, 2, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 0, 15), 0, 0));
+
+                        //---- btnSelectAvatar ----
+                        btnSelectAvatar.setText("Select Avatar");
+                        btnSelectAvatar.addActionListener(e -> btnSelectAvatarActionPerformed(e));
+                        formPanel.add(btnSelectAvatar, new GridBagConstraints(6, 6, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 0), 0, 0));
+                    }
+                    actionFormPanel.add(formPanel, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 20), 0, 0));
+
+                    //======== actionPanel ========
                     {
 
                         //---- btnDelete ----
@@ -421,10 +439,12 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
                         //---- btnClear ----
                         btnClear.setText("Clear");
+                        btnClear.setEnabled(false);
                         btnClear.addActionListener(e -> btnClearActionPerformed(e));
 
                         //---- btnSave ----
                         btnSave.setText("Save");
+                        btnSave.setEnabled(false);
                         btnSave.addActionListener(e -> btnSaveActionPerformed(e));
 
                         //---- btnClone ----
@@ -440,24 +460,25 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                         btnBorrow.setText("Borrow Book");
                         btnBorrow.setEnabled(false);
 
-                        GroupLayout panel2Layout = new GroupLayout(panel2);
-                        panel2.setLayout(panel2Layout);
-                        panel2Layout.setHorizontalGroup(
-                            panel2Layout.createParallelGroup()
-                                .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                        GroupLayout actionPanelLayout = new GroupLayout(actionPanel);
+                        actionPanel.setLayout(actionPanelLayout);
+                        actionPanelLayout.setHorizontalGroup(
+                            actionPanelLayout.createParallelGroup()
+                                .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnClear, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnClone, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnViewBorrowed, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                .addComponent(btnBorrow, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                .addComponent(btnBorrow, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnViewBorrowed, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
-                        panel2Layout.setVerticalGroup(
-                            panel2Layout.createParallelGroup()
-                                .addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                        actionPanelLayout.setVerticalGroup(
+                            actionPanelLayout.createParallelGroup()
+                                .addGroup(GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
+                                    .addContainerGap()
                                     .addComponent(btnViewBorrowed)
-                                    .addGap(18, 18, 18)
+                                    .addGap(16, 16, 16)
                                     .addComponent(btnBorrow)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                                     .addComponent(btnClone)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSave)
@@ -467,48 +488,29 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                                     .addComponent(btnDelete))
                         );
                     }
-
-                    GroupLayout panel1Layout = new GroupLayout(panel1);
-                    panel1.setLayout(panel1Layout);
-                    panel1Layout.setHorizontalGroup(
-                        panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addContainerGap(18, Short.MAX_VALUE)
-                                .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                    );
-                    panel1Layout.setVerticalGroup(
-                        panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(panel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    );
+                    actionFormPanel.add(actionPanel, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 0), 0, 0));
                 }
 
                 GroupLayout panelReaderManageLayout = new GroupLayout(panelReaderManage);
                 panelReaderManage.setLayout(panelReaderManageLayout);
                 panelReaderManageLayout.setHorizontalGroup(
                     panelReaderManageLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, panelReaderManageLayout.createSequentialGroup()
+                        .addGroup(panelReaderManageLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(panelReaderManageLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(readerTablePane, GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
-                                .addGroup(panelReaderManageLayout.createSequentialGroup()
-                                    .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                            .addGap(10, 10, 10))
+                            .addGroup(panelReaderManageLayout.createParallelGroup()
+                                .addComponent(actionFormPanel, GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+                                .addComponent(readerTablePane, GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE))
+                            .addContainerGap())
                 );
                 panelReaderManageLayout.setVerticalGroup(
                     panelReaderManageLayout.createParallelGroup()
                         .addGroup(panelReaderManageLayout.createSequentialGroup()
-                            .addGap(11, 11, 11)
-                            .addGroup(panelReaderManageLayout.createParallelGroup()
-                                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(formPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(31, 31, 31)
-                            .addComponent(readerTablePane, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
+                            .addContainerGap()
+                            .addComponent(actionFormPanel, GroupLayout.PREFERRED_SIZE, 352, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(readerTablePane, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
                 );
             }
             tab.addTab("Reader Manage", panelReaderManage);
@@ -518,17 +520,13 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(tab, GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
-                    .addContainerGap())
+                .addComponent(tab)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(tab, GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
-                    .addContainerGap())
+                    .addComponent(tab, GroupLayout.PREFERRED_SIZE, 718, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -536,6 +534,8 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JTabbedPane tab;
     private JPanel panelReaderManage;
+    private ReaderTablePane readerTablePane;
+    private JPanel actionFormPanel;
     private JPanel formPanel;
     private JLabel lblID;
     private JTextField txtID;
@@ -558,9 +558,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private JScrollPane scrollPane1;
     private JTextArea txtAddress;
     private JButton btnSelectAvatar;
-    private ReaderTablePane readerTablePane;
-    private JPanel panel1;
-    private JPanel panel2;
+    private JPanel actionPanel;
     private JButton btnDelete;
     private JButton btnClear;
     private JButton btnSave;
