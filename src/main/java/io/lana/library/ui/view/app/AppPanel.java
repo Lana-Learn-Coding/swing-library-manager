@@ -29,6 +29,7 @@ public class AppPanel extends JPanel implements ApplicationContextAware {
         frame.setContentPane(panel);
         frame.setSize(panel.getSize());
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     public void gotoPanel(Class<? extends JPanel> panelClass) {

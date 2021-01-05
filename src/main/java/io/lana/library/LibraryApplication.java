@@ -33,6 +33,7 @@ public class LibraryApplication implements CommandLineRunner, ApplicationContext
         EventQueue.invokeLater(() -> {
             FlatLightLaf.install();
             JFrame mainFrame = context.getBean(MainFrame.class);
+            mainFrame.setLocationRelativeTo(null);
             mainFrame.setVisible(true);
             Thread.setDefaultUncaughtExceptionHandler((thread, error) -> {
                 Class<?> errorClass = error.getClass();
