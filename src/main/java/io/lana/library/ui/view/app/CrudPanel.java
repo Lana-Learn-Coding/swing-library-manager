@@ -2,7 +2,7 @@ package io.lana.library.ui.view.app;
 
 import java.util.Collection;
 
-public interface CrudPanel<T> extends Form<T> {
+public interface CrudPanel<T> extends FormPanel<T> {
 
     void delete();
 

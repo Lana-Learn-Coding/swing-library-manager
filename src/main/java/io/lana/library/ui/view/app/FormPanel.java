@@ -1,6 +1,6 @@
 package io.lana.library.ui.view.app;
 
-public interface Form<T> {
+public interface FormPanel<T> {
     void clearForm();
 
     void loadModelToForm(T model);

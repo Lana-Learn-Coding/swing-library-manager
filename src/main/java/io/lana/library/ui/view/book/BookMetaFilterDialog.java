@@ -9,7 +9,7 @@ import io.lana.library.core.model.book.Category;
 import io.lana.library.ui.UIException;
 import io.lana.library.ui.component.BookMetaTablePane;
 import io.lana.library.ui.component.app.ComboBox;
-import io.lana.library.ui.view.app.Form;
+import io.lana.library.ui.view.app.FormPanel;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookMetaFilterDialog extends JDialog implements Form<BookMeta> {
+public class BookMetaFilterDialog extends JDialog implements FormPanel<BookMeta> {
     private final BookMetaTablePane rootTablePane;
     private final ComboBox<Category> rootComboBox;
     private BookMeta example = new BookMeta();
