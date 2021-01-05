@@ -2,6 +2,7 @@ package io.lana.library.ui.view.app;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class AppPanel extends JPanel implements ApplicationContextAware {
     protected ApplicationContext applicationContext;
 
     @Autowired
-    public void setFrame(JFrame frame) {
+    public void setFrame(@Qualifier("mainFrame") JFrame frame) {
         this.frame = frame;
     }
 
@@ -27,9 +28,6 @@ public class AppPanel extends JPanel implements ApplicationContextAware {
 
     public void gotoPanel(JPanel panel) {
         frame.setContentPane(panel);
-        frame.setSize(panel.getSize());
-        frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     public void gotoPanel(Class<? extends JPanel> panelClass) {
