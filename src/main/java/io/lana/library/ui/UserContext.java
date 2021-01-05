@@ -21,7 +21,7 @@ public class UserContext {
     }
 
     public void setUser(User user) {
-        if (isLoggedIn()) {
+        if (isLoggedIn() && !user.getId().equals(getUser().getId())) {
             throw new RuntimeException("Cannot set user! User already logged in: " + user.getUsername());
         }
         this.user = user;

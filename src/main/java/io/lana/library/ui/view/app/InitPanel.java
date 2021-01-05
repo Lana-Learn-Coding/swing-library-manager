@@ -6,11 +6,14 @@ package io.lana.library.ui.view.app;
 
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.BookMeta;
+import io.lana.library.core.model.user.User;
+import io.lana.library.core.spi.UserRepo;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
+import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.List;
 
 @Component
 public class InitPanel extends JPanel implements MainFrameContainer {
@@ -47,19 +51,31 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         loadingText.setText("Initializing...");
         CrudPanel<BookMeta> bookMetaManagePanel = applicationContext.getBean(BookMetaManagerPanel.class);
         CrudPanel<Reader> readerMetaManagePanel = applicationContext.getBean(ReaderManagerPanel.class);
-        progress.setValue(30);
+        CrudPanel<User> userCrudPanel = applicationContext.getBean(UserManagerPanel.class);
+        progress.setValue(20);
+
+        loadingText.setText("Loading User...");
+        List<User> users = applicationContext.getBean(UserRepo.class).findAllByOrderByUpdatedAtDesc();
+        boolean userSynced = syncUser(users);
+        if (!userSynced) {
+            JOptionPane.showMessageDialog(this, "User sync failed, please login again");
+            userContext.logout();
+            return;
+        }
+        userCrudPanel.renderTable(users);
+        progress.setValue(40);
 
         loadingText.setText("Loading Book...");
         readerMetaManagePanel.renderTable();
-        progress.setValue(60);
+        progress.setValue(70);
 
         loadingText.setText("Loading Reader...");
         bookMetaManagePanel.renderTable();
-        progress.setValue(90);
+        progress.setValue(95);
 
         loadingText.setText("Getting Ready...");
         applicationContext.getBean(MainPanel.class);
-        progress.setValue(95);
+        progress.setValue(100);
 
         delay(1000);
         mainFrame.switchContentPane(MainPanel.class);
@@ -79,6 +95,17 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         } catch (InterruptedException e) {
             // ignore
         }
+    }
+
+    private boolean syncUser(List<User> users) {
+        User loggedInUser = userContext.getUser();
+        for (User user : users) {
+            if (user.getId().equals(loggedInUser.getId())) {
+                userContext.setUser(user);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void initComponents() {
