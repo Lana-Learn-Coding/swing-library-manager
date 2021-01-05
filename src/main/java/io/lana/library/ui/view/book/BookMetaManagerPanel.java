@@ -126,7 +126,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
             bookMetaTablePane.setSelectedRow(0);
             return;
         }
-        BookMeta updated = updateFromForm();
+        updateFromForm();
         JOptionPane.showMessageDialog(this, "Update Success");
         bookMetaTablePane.refreshSelectedRow();
     }
