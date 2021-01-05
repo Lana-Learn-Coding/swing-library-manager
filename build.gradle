@@ -8,6 +8,10 @@ group = 'io.lana'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+ext {
+    flatLafVersion = '0.46'
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -27,7 +31,12 @@ dependencies {
 
     implementation 'org.apache.commons:commons-vfs2:2.7.0'
     implementation 'org.apache.commons:commons-lang3:3.11'
-    implementation 'com.formdev:flatlaf:0.45'
+
+    implementation "com.formdev:flatlaf:$flatLafVersion"
+    implementation "com.formdev:flatlaf-swingx:$flatLafVersion"
+    implementation "com.formdev:flatlaf-extras:$flatLafVersion"
+    implementation "com.formdev:flatlaf-intellij-themes:$flatLafVersion"
+
     implementation 'at.favre.lib:bcrypt:0.9.0'
     implementation 'org.swinglabs:swingx:1.6'
 
