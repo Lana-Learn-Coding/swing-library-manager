@@ -1,5 +1,6 @@
 package io.lana.library.ui.view.app;
 
+import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
@@ -12,8 +13,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 @Component
-public class MainPanel extends JPanel {
-    private UserContext userContext;
+public class MainPanel extends JPanel implements MainFrameContainer {
+    private final UserContext userContext;
 
     private enum Views {
         BOOK_MANAGE,

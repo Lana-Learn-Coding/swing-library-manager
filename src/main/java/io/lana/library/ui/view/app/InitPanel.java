@@ -7,10 +7,10 @@ package io.lana.library.ui.view.app;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.ui.MainFrame;
+import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
-import io.lana.library.utils.WorkerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -20,10 +20,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 @Component
-public class InitPanel extends JPanel {
-    private UserContext userContext;
-
+public class InitPanel extends JPanel implements MainFrameContainer {
     private MainFrame mainFrame;
+
+    private UserContext userContext;
 
     private ApplicationContext applicationContext;
 
@@ -33,16 +33,17 @@ public class InitPanel extends JPanel {
 
     @Autowired
     public void setup(UserContext userContext, MainFrame mainFrame, ApplicationContext applicationContext) {
-        this.userContext = userContext;
         this.mainFrame = mainFrame;
         this.applicationContext = applicationContext;
-        header.setText("Welcome, " + userContext.getUser().getName());
-        subheader.setText(userContext.getUser().getUsername());
-        WorkerUtils.runAsync(this::initApp);
+        this.userContext = userContext;
     }
 
-    private void initApp() {
-        progress.setValue(10);
+    @Override
+    public <T extends Container & MainFrameContainer> void onPaneMounted(T previousPane) {
+        header.setText("Welcome, " + userContext.getUser().getName());
+        subheader.setText(userContext.getUser().getUsername());
+
+        progress.setValue(5);
         loadingText.setText("Initializing...");
         CrudPanel<BookMeta> bookMetaManagePanel = applicationContext.getBean(BookMetaManagerPanel.class);
         CrudPanel<Reader> readerMetaManagePanel = applicationContext.getBean(ReaderManagerPanel.class);
@@ -58,10 +59,18 @@ public class InitPanel extends JPanel {
 
         loadingText.setText("Getting Ready...");
         applicationContext.getBean(MainPanel.class);
-        progress.setValue(100);
+        progress.setValue(95);
 
         delay(1000);
-        mainFrame.setContentPane(MainPanel.class);
+        mainFrame.switchContentPane(MainPanel.class);
+    }
+
+    @Override
+    public <T extends Container & MainFrameContainer> void onPaneUnMounted(T nextPane) {
+        progress.setValue(0);
+        loadingText.setText("");
+        this.header.setText("");
+        this.subheader.setText("");
     }
 
     private void delay(int millis) {

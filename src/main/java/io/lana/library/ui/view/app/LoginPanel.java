@@ -9,7 +9,9 @@ import io.lana.library.core.spi.PasswordEncoder;
 import io.lana.library.core.spi.UserRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.MainFrame;
+import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
+import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,8 +21,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-@Component("startupPanel")
-public class LoginPanel extends JPanel {
+@Component("startupPane")
+public class LoginPanel extends JPanel implements MainFrameContainer {
     private UserRepo userRepo;
 
     private PasswordEncoder passwordEncoder;
@@ -55,19 +57,25 @@ public class LoginPanel extends JPanel {
         }
 
         disableForm();
-        User user = userRepo.findByUsernameEquals(username)
-            .orElseThrow(() -> new InputException(mainFrame, "User not exist"));
+        WorkerUtils.runAsync(() -> {
+            User user = userRepo.findByUsernameEquals(username)
+                .orElseThrow(() -> new InputException(mainFrame, "User not exist"));
 
-        if (passwordEncoder.matches(password, user.getPassword())) {
-            userContext.setUser(user);
-            mainFrame.setContentPane(InitPanel.class);
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                userContext.setUser(user);
+                mainFrame.switchContentPane(InitPanel.class);
+                enableForm();
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Wrong username or password");
             enableForm();
-            txtPassword.setText("");
-            txtUsername.setText("");
-            return;
-        }
-        JOptionPane.showMessageDialog(this, "Wrong username or password");
-        enableForm();
+        });
+    }
+
+    @Override
+    public <T extends Container & MainFrameContainer> void onPaneUnMounted(T nextPane) {
+        txtPassword.setText("");
+        txtUsername.setText("");
     }
 
     private void disableForm() {

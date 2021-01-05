@@ -1,5 +1,6 @@
 package io.lana.library.ui;
 
+import io.lana.library.utils.WorkerUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,16 +22,26 @@ public class MainFrame extends JFrame implements ApplicationContextAware {
     }
 
     @Autowired
-    @Qualifier("startupPanel")
-    public void setContentPane(Container container) {
-        super.setContentPane(container);
-        setSize(container.getSize());
+    @Qualifier("startupPane")
+    @Override
+    public void setContentPane(Container contentPane) {
+        if (!MainFrameContainer.class.isAssignableFrom(contentPane.getClass())) {
+            throw new RuntimeException("Container class: " + contentPane.getClass() + "is not of type MainFrameContainer");
+        }
+        super.setContentPane(contentPane);
+        setSize(contentPane.getSize());
         pack();
         setLocationRelativeTo(null);
     }
 
-    public void setContentPane(Class<? extends Container> containerClass) {
-        setContentPane(applicationContext.getBean(containerClass));
+    public <T extends Container & MainFrameContainer> void switchContentPane(T container) {
+        setContentPane(container);
+        WorkerUtils.runAsync(() -> ((Container & MainFrameContainer) getContentPane()).onPaneUnMounted(container));
+        WorkerUtils.runAsync(() -> container.onPaneMounted((Container & MainFrameContainer) getContentPane()));
+    }
+
+    public <T extends Container & MainFrameContainer> void switchContentPane(Class<T> containerClass) {
+        switchContentPane(applicationContext.getBean(containerClass));
     }
 
     public MainFrame() {

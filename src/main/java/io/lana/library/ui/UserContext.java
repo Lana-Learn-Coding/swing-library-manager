@@ -29,7 +29,7 @@ public class UserContext {
 
     public void logout() {
         user = null;
-        mainFrame.setContentPane(LoginPanel.class);
+        mainFrame.switchContentPane(LoginPanel.class);
     }
 
     public boolean isLoggedIn() {
