@@ -51,7 +51,7 @@ public class MainPanel extends AppPanel {
         mainPanel = new JPanel();
 
         //======== this ========
-        setBorder(new EmptyBorder(0, 0, 12, 0));
+        setBorder(new EmptyBorder(5, 0, 20, 0));
         setLayout(new GridBagLayout());
         ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
         ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0};
