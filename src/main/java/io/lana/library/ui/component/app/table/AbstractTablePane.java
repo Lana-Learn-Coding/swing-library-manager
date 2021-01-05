@@ -210,4 +210,8 @@ public abstract class AbstractTablePane<T> extends JPanel {
         tableRowSorter.setRowFilter(RowFilter.andFilter(rowFilters));
         clearSelection();
     }
+
+    public List<T> getInternalData() {
+        return data;
+    }
 }

@@ -21,6 +21,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,10 +30,10 @@ import java.util.stream.Collectors;
 @Component
 public class BorrowedBookListDialog extends JDialog {
     private BookRepo bookRepo;
-
     private BookBorrowingRepo bookBorrowingRepo;
 
     private Reader readerModel;
+    private BorrowBookDialog borrowBookDialog;
 
     public BorrowedBookListDialog() {
         initComponents();
@@ -55,9 +57,19 @@ public class BorrowedBookListDialog extends JDialog {
     }
 
     @Autowired
-    public void setup(BookRepo bookRepo, BookBorrowingRepo bookBorrowingRepo) {
+    public void setup(BookRepo bookRepo, BookBorrowingRepo bookBorrowingRepo, BorrowBookDialog borrowBookDialog) {
         this.bookRepo = bookRepo;
         this.bookBorrowingRepo = bookBorrowingRepo;
+        this.borrowBookDialog = borrowBookDialog;
+        this.borrowBookDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                if (readerModel == null) {
+                    return;
+                }
+                setModel(readerModel);
+            }
+        });
     }
 
     public void setModel(Reader readerModel) {
@@ -102,11 +114,8 @@ public class BorrowedBookListDialog extends JDialog {
     }
 
     private void btnBorrowBookActionPerformed(ActionEvent e) {
-    }
-
-    @Override
-    public void setVisible(boolean b) {
-        super.setVisible(b);
+        borrowBookDialog.setModel(readerModel);
+        borrowBookDialog.setVisible(true);
     }
 
     private void btnExtendDueActionPerformed(ActionEvent e) {

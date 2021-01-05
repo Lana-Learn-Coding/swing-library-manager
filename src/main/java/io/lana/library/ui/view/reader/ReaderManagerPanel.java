@@ -37,6 +37,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private final ImagePicker imagePicker = new ImagePicker();
     private final ButtonGroup genderButtonGroup = new ButtonGroup();
 
+    private BorrowBookDialog borrowBookDialog;
     private BorrowedBookListDialog borrowedBookListDialog;
     private ReaderRepo readerRepo;
     private FileStorage fileStorage;
@@ -69,14 +70,24 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
     @Autowired
     public void setup(ReaderRepo readerRepo, FileStorage fileStorage,
-                      BorrowedBookListDialog borrowedBookListDialog) {
+                      BorrowedBookListDialog borrowedBookListDialog,
+                      BorrowBookDialog borrowBookDialog) {
         this.readerRepo = readerRepo;
         this.fileStorage = fileStorage;
         this.borrowedBookListDialog = borrowedBookListDialog;
+        this.borrowBookDialog = borrowBookDialog;
         this.borrowedBookListDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowDeactivated(WindowEvent e) {
                 readerTablePane.refreshSelectedRow();
+            }
+        });
+        this.borrowBookDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                if (readerTablePane.isAnyRowSelected()) {
+                    readerTablePane.refreshSelectedRow();
+                }
             }
         });
     }
@@ -267,6 +278,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         borrowedBookListDialog.setVisible(true);
     }
 
+    private void btnBorrowActionPerformed(ActionEvent e) {
+        borrowBookDialog.setModel(readerTablePane.getSelectedRow());
+        borrowBookDialog.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         tab = new JTabbedPane();
@@ -291,10 +307,10 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         radioFemale = new JRadioButton();
         lblBirth = new JLabel();
         txtDate = new JTextField();
+        btnSelectAvatar = new JButton();
         lblAddress = new JLabel();
         scrollPane1 = new JScrollPane();
         txtAddress = new JTextArea();
-        btnSelectAvatar = new JButton();
         actionPanel = new JPanel();
         btnDelete = new JButton();
         btnClear = new JButton();
@@ -365,7 +381,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                             panelImage.setLayout(new GridLayout());
                             panelImage.add(imageViewer);
                         }
-                        formPanel.add(panelImage, new GridBagConstraints(6, 0, 1, 6, 0.0, 0.0,
+                        formPanel.add(panelImage, new GridBagConstraints(6, 0, 1, 5, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 0), 0, 0));
 
@@ -423,6 +439,13 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
 
+                        //---- btnSelectAvatar ----
+                        btnSelectAvatar.setText("Select Avatar");
+                        btnSelectAvatar.addActionListener(e -> btnSelectAvatarActionPerformed(e));
+                        formPanel.add(btnSelectAvatar, new GridBagConstraints(6, 5, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 0), 0, 0));
+
                         //---- lblAddress ----
                         lblAddress.setText("Address");
                         formPanel.add(lblAddress, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
@@ -436,13 +459,6 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                         formPanel.add(scrollPane1, new GridBagConstraints(1, 6, 4, 2, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 0, 15), 0, 0));
-
-                        //---- btnSelectAvatar ----
-                        btnSelectAvatar.setText("Select Avatar");
-                        btnSelectAvatar.addActionListener(e -> btnSelectAvatarActionPerformed(e));
-                        formPanel.add(btnSelectAvatar, new GridBagConstraints(6, 6, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 20, 0), 0, 0));
                     }
                     actionFormPanel.add(formPanel, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -478,6 +494,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                         //---- btnBorrow ----
                         btnBorrow.setText("Borrow Book");
                         btnBorrow.setEnabled(false);
+                        btnBorrow.addActionListener(e -> btnBorrowActionPerformed(e));
 
                         GroupLayout actionPanelLayout = new GroupLayout(actionPanel);
                         actionPanel.setLayout(actionPanelLayout);
@@ -566,10 +583,10 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private JRadioButton radioFemale;
     private JLabel lblBirth;
     private JTextField txtDate;
+    private JButton btnSelectAvatar;
     private JLabel lblAddress;
     private JScrollPane scrollPane1;
     private JTextArea txtAddress;
-    private JButton btnSelectAvatar;
     private JPanel actionPanel;
     private JButton btnDelete;
     private JButton btnClear;

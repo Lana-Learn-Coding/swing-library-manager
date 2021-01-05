@@ -70,7 +70,7 @@ new FormModel {
 								} )
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 6
-								"gridheight": 6
+								"gridheight": 5
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "lblName"
@@ -144,6 +144,14 @@ new FormModel {
 								"gridy": 5
 								"gridwidth": 4
 							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnSelectAvatar"
+								"text": "Select Avatar"
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSelectAvatarActionPerformed", true ) )
+							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+								"gridx": 6
+								"gridy": 5
+							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "lblAddress"
 								"text": "Address"
@@ -160,14 +168,6 @@ new FormModel {
 								"gridy": 6
 								"gridwidth": 4
 								"gridheight": 2
-							} )
-							add( new FormComponent( "javax.swing.JButton" ) {
-								name: "btnSelectAvatar"
-								"text": "Select Avatar"
-								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSelectAvatarActionPerformed", true ) )
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridx": 6
-								"gridy": 6
 							} )
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -208,6 +208,7 @@ new FormModel {
 								name: "btnBorrow"
 								"text": "Borrow Book"
 								"enabled": false
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBorrowActionPerformed", true ) )
 							} )
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridx": 1
