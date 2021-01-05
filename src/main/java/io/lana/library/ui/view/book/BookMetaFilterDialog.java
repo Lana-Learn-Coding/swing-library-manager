@@ -24,10 +24,8 @@ public class BookMetaFilterDialog extends JDialog implements FormPanel<BookMeta>
     private final ComboBox<Category> rootComboBox;
     private BookMeta example = new BookMeta();
 
-    public BookMetaFilterDialog(Window owner,
-                                BookMetaTablePane tablePane,
+    public BookMetaFilterDialog(BookMetaTablePane tablePane,
                                 ComboBox<Category> comboBox) {
-        super(owner);
         initComponents();
         this.rootTablePane = tablePane;
         this.rootComboBox = comboBox;
@@ -153,6 +151,7 @@ public class BookMetaFilterDialog extends JDialog implements FormPanel<BookMeta>
 
         //======== this ========
         setTitle("Filter Book");
+        setModal(true);
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 

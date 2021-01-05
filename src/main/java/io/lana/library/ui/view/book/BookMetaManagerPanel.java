@@ -48,7 +48,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
 
     @Autowired
     public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaRepo bookMetaRepo,
-                      BookManagerDialog bookManagerDialog, FileStorage fileStorage, JFrame mainFrame) {
+                      BookManagerDialog bookManagerDialog, FileStorage fileStorage) {
         this.bookManagerDialog = bookManagerDialog;
         this.bookManagerDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -65,7 +65,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
             this.seriesRepo.findAll().forEach(selectSeries::addItem);
             selectSeries.setSelectedItem(null);
             selectCategory.setSelectedItem(null);
-            filterDialog = new BookMetaFilterDialog(mainFrame.getOwner(), bookMetaTablePane, selectCategory);
+            filterDialog = new BookMetaFilterDialog(bookMetaTablePane, selectCategory);
             btnFilter.setEnabled(true);
         });
     }
@@ -208,7 +208,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
         try {
             bookMeta.setYear(Integer.parseInt(txtYear.getText()));
             if (bookMeta.getYear() <= 0) {
-                throw new RuntimeException("Year must > 0");
+                throw new InputException(this, "Year must > 0");
             }
         } catch (Exception e) {
             throw new InputException(this, "Year must a number");

@@ -20,7 +20,6 @@ import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -43,8 +42,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     private BookRepo bookRepo;
     private BookMeta bookMetaModel;
 
-    public BookManagerDialog(@Qualifier("mainFrame") Window owner) {
-        super(owner);
+    public BookManagerDialog() {
         initComponents();
         ListSelectionModel selectionModel = bookTablePane.getSelectionModel();
         selectionModel.addListSelectionListener(e -> {
@@ -282,6 +280,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
 
         //======== this ========
         setTitle("Book List Detail");
+        setModal(true);
         var contentPane = getContentPane();
 
         //======== mainTabbedPane ========
@@ -399,7 +398,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                 .addGroup(formPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(panelImage, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                     .addComponent(btnSelectImage, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                                .addContainerGap(24, Short.MAX_VALUE))
+                                .addContainerGap(34, Short.MAX_VALUE))
                     );
                     formPanelLayout.setVerticalGroup(
                         formPanelLayout.createParallelGroup()
@@ -439,7 +438,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                                     .addGroup(formPanelLayout.createSequentialGroup()
                                         .addGap(16, 16, 16)
                                         .addComponent(btnSelectImage)))
-                                .addContainerGap(34, Short.MAX_VALUE))
+                                .addContainerGap(35, Short.MAX_VALUE))
                     );
                 }
 
