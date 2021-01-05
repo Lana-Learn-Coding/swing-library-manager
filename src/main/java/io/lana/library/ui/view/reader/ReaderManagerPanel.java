@@ -214,6 +214,14 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
             throw new InputException(this, "Please enter required information: phone number, name");
         }
 
+        if (StringUtils.isNotBlank(reader.getEmail()) && !reader.getEmail().matches(".+@.+")) {
+            throw new InputException(this, "Invalid email format");
+        }
+
+        if (!reader.getPhoneNumber().matches("[0-9]{10,15}")) {
+            throw new InputException(this, "Invalid phone format: contain only number, and 10 - 15 length");
+        }
+
         return reader;
     }
 
