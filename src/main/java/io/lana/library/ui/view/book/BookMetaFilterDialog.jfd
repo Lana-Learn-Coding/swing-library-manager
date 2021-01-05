@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -88,6 +88,16 @@ new FormModel {
 						name: "txtYear"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
+						"gridy": 4
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "selectYearComparsion"
+						"selectedIndex": -1
+						auxiliary() {
+							"JavaCodeGenerator.typeParameters": "RowFilter.ComparisonType"
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 2
 						"gridy": 4
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {

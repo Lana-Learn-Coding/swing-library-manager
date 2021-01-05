@@ -16,6 +16,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookMetaFilterDialog extends JDialog implements Form<BookMeta> {
     private final BookMetaTablePane rootTablePane;
@@ -31,6 +33,11 @@ public class BookMetaFilterDialog extends JDialog implements Form<BookMeta> {
         this.rootComboBox = comboBox;
         example.setAuthor("");
         example.setPublisher("");
+
+        for (RowFilter.ComparisonType comparisonType : RowFilter.ComparisonType.values()) {
+            selectYearComparsion.addItem(comparisonType);
+        }
+        selectYearComparsion.setSelectedItem(RowFilter.ComparisonType.EQUAL);
     }
 
     private void loadCategories() {
@@ -93,6 +100,26 @@ public class BookMetaFilterDialog extends JDialog implements Form<BookMeta> {
 
     private void okButtonActionPerformed(ActionEvent e) {
         example = getModelFromForm();
+        List<RowFilter<Object, Object>> filters = new ArrayList<>();
+        if (StringUtils.isNotBlank(txtAuthor.getText())) {
+            filters.add(RowFilter.regexFilter(txtAuthor.getText(), 3));
+        }
+        if (StringUtils.isNotBlank(txtPublisher.getText())) {
+            filters.add(RowFilter.regexFilter(txtPublisher.getText(), 4));
+        }
+        if (StringUtils.isNotBlank(txtTitle.getText())) {
+            filters.add(RowFilter.regexFilter(txtTitle.getText(), 1));
+        }
+        if (StringUtils.isNotBlank(txtYear.getText())) {
+            try {
+                RowFilter.ComparisonType comparisonType = (RowFilter.ComparisonType) selectYearComparsion.getSelectedItem();
+                filters.add(RowFilter.numberFilter(comparisonType, Integer.parseInt(txtYear.getText()), 6));
+            } catch (Exception error) {
+                throw new UIException(this, "Invalid year format");
+            }
+        }
+        rootTablePane.setFilter(RowFilter.andFilter(filters));
+        setVisible(false);
     }
 
     private void clearButtonActionPerformed(ActionEvent e) {
@@ -118,6 +145,7 @@ public class BookMetaFilterDialog extends JDialog implements Form<BookMeta> {
         btnClearCategory = new JButton();
         label5 = new JLabel();
         txtYear = new JTextField();
+        selectYearComparsion = new JComboBox<>();
         buttonBar = new JPanel();
         clearButton = new JButton();
         okButton = new JButton();
@@ -195,6 +223,12 @@ public class BookMetaFilterDialog extends JDialog implements Form<BookMeta> {
                 contentPanel.add(txtYear, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 15), 0, 0));
+
+                //---- selectYearComparsion ----
+                selectYearComparsion.setSelectedIndex(-1);
+                contentPanel.add(selectYearComparsion, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 0, 0), 0, 0));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
@@ -248,6 +282,7 @@ public class BookMetaFilterDialog extends JDialog implements Form<BookMeta> {
     private JButton btnClearCategory;
     private JLabel label5;
     private JTextField txtYear;
+    private JComboBox<RowFilter.ComparisonType> selectYearComparsion;
     private JPanel buttonBar;
     private JButton clearButton;
     private JButton okButton;

@@ -3,7 +3,7 @@ JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "io.lana.library.ui.component.app.AppPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+		add( new FormContainer( "io.lana.library.ui.view.app.AppPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq l {space :p:17:p, par t {comp lblPassword:::p::p, comp lblUsername:::p::p}, space s:::p, par l {comp lblHeader:::p:220:p, seq {comp btnLogin:::p:82:p, space s:::p, comp btnHack:::p:88:p}, comp txtUsername:::p:247:p, comp txtPassword:::p:247:p}, space ::50:x}}"
 			"$verticalGroup": "par l {seq l {space :p:11:p, comp lblHeader:::p:35:p, space s:::p, par b {comp lblUsername::b:p::p, comp txtUsername::b:p::p}, space s:::p, par b {comp lblPassword::b:p::p, comp txtPassword::b:p::p}, space s:::p, par b {comp btnHack::b:p::p, comp btnLogin::b:p::p}, space ::27:x}}"
 		} ) {
