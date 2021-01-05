@@ -202,6 +202,7 @@ new FormModel {
 								name: "btnViewBorrowed"
 								"text": "View Borrowed"
 								"enabled": false
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnViewBorrowedActionPerformed", true ) )
 							} )
 							add( new FormComponent( "javax.swing.JButton" ) {
 								name: "btnBorrow"

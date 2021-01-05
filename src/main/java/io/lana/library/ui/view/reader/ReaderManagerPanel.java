@@ -25,6 +25,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
@@ -35,6 +37,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private final ImagePicker imagePicker = new ImagePicker();
     private final ButtonGroup genderButtonGroup = new ButtonGroup();
 
+    private BorrowedBookListDialog borrowedBookListDialog;
     private ReaderRepo readerRepo;
     private FileStorage fileStorage;
 
@@ -65,9 +68,17 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     }
 
     @Autowired
-    public void setup(ReaderRepo readerRepo, FileStorage fileStorage) {
+    public void setup(ReaderRepo readerRepo, FileStorage fileStorage,
+                      BorrowedBookListDialog borrowedBookListDialog) {
         this.readerRepo = readerRepo;
         this.fileStorage = fileStorage;
+        this.borrowedBookListDialog = borrowedBookListDialog;
+        this.borrowedBookListDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                readerTablePane.refreshSelectedRow();
+            }
+        });
     }
 
     @Override
@@ -80,7 +91,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         if (reader.getBorrowedBookCount() > 0) {
             JOptionPane.showMessageDialog(this,
                 "Reader still borrow some book. " +
-                    "Please remove them before delete this reader");
+                "Please remove them before delete this reader");
             return;
         }
         readerRepo.deleteById(reader.getId());
@@ -186,14 +197,14 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         try {
             reader.setLimit(Integer.parseInt(txtLimit.getText()));
             if (reader.getLimit() < -1) {
-                throw new RuntimeException("Limit must >= 0 (or -1 if no limit) ");
+                throw new InputException(this, "Limit must >= 0 (or -1 if no limit) ");
             }
         } catch (Exception e) {
             throw new InputException(this, "Limit is required and must a number");
         }
 
         try {
-            reader.setBirth(LocalDate.parse(txtDate.getText(), DateFormatUtils.COMMON_DATE_FORMAT));
+            reader.setBirth(LocalDate.parse(txtDate.getText(), DateFormatUtils.COMMON_DATE_FORMATTER));
         } catch (Exception e) {
             throw new InputException(this, "Birthdate is required and must follow format yyyy-MM-dd");
         }
@@ -241,6 +252,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
     private void btnSaveActionPerformed(ActionEvent e) {
         save();
+    }
+
+    private void btnViewBorrowedActionPerformed(ActionEvent e) {
+        borrowedBookListDialog.setModel(readerTablePane.getSelectedRow());
+        borrowedBookListDialog.setVisible(true);
     }
 
     private void initComponents() {
@@ -449,6 +465,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                         //---- btnViewBorrowed ----
                         btnViewBorrowed.setText("View Borrowed");
                         btnViewBorrowed.setEnabled(false);
+                        btnViewBorrowed.addActionListener(e -> btnViewBorrowedActionPerformed(e));
 
                         //---- btnBorrow ----
                         btnBorrow.setText("Borrow Book");

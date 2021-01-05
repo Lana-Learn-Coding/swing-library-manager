@@ -93,11 +93,21 @@ public abstract class AbstractTablePane<T> extends JPanel {
         tableModel.fireTableDataChanged();
     }
 
+    public void refreshRow(T row) {
+        int index = data.indexOf(row);
+        refreshRow(index);
+    }
+
     public void removeRow(int index) {
         int row = table.convertRowIndexToModel(index);
         data.remove(row);
         tableModel.removeRow(row);
-        tableModel.fireTableDataChanged();
+    }
+
+    public void removeRow(T row) {
+        int index = data.indexOf(row);
+        data.remove(index);
+        tableModel.removeRow(index);
     }
 
     public void removeSelectedRow() {
@@ -127,14 +137,12 @@ public abstract class AbstractTablePane<T> extends JPanel {
     public void addRow(T rowData) {
         data.add(rowData);
         tableModel.addRow(toTableRow(rowData));
-        tableModel.fireTableDataChanged();
     }
 
     public void addRow(int index, T rowData) {
         int row = table.convertRowIndexToModel(index);
         data.add(row, rowData);
         tableModel.insertRow(index, toTableRow(rowData));
-        tableModel.fireTableDataChanged();
     }
 
     public void clearSelection() {
@@ -156,7 +164,7 @@ public abstract class AbstractTablePane<T> extends JPanel {
     public void refreshSelectedRow() {
         if (isAnyRowSelected()) {
             int selectedRow = table.getSelectedRow();
-            fireTableRowsUpdated(table.getSelectedRow());
+            refreshRow(selectedRow);
             setSelectedRow(selectedRow);
         }
     }
@@ -180,7 +188,7 @@ public abstract class AbstractTablePane<T> extends JPanel {
         setFilter(null);
     }
 
-    public void fireTableRowsUpdated(int index) {
+    public void refreshRow(int index) {
         int row = table.convertRowIndexToModel(index);
         tableModel.removeRow(row);
         tableModel.insertRow(row, toTableRow(data.get(row)));

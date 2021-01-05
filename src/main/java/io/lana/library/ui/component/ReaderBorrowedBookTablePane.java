@@ -1,0 +1,40 @@
+package io.lana.library.ui.component;
+
+import io.lana.library.core.model.book.Book;
+import io.lana.library.ui.component.app.table.AbstractTablePane;
+import io.lana.library.ui.component.app.table.TableColumnMapping;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class ReaderBorrowedBookTablePane extends AbstractTablePane<Book> {
+    public ReaderBorrowedBookTablePane() {
+        super();
+        tableRowSorter.toggleSortOrder(6);
+    }
+
+    @Override
+    protected TableColumnMapping<Book> getTableColumnMapping() {
+        TableColumnMapping<Book> mapping = new TableColumnMapping<>();
+        mapping.setDefaultColumnType(String.class);
+        mapping.put("ID", Book::getId, Integer.class);
+        mapping.put("Meta ID", (book) -> book.getMeta().getId(), Integer.class);
+        mapping.put("Title", (book) -> book.getMeta().getTitle());
+        mapping.put("Ticket", (book) -> "Ticket " + book.getBorrowing().getId());
+        mapping.put("Overdue", (book) -> {
+            if (book.getDueDate().isAfter(book.getBorrowedDate())) {
+                return "";
+            }
+            return "Overdue";
+        });
+        mapping.put("Overdue Days", (book) -> {
+            if (book.getDueDate().isAfter(book.getBorrowedDate())) {
+                return 0;
+            }
+            return ChronoUnit.DAYS.between(book.getDueDate(), book.getBorrowedDate());
+        }, Integer.class);
+        mapping.put("Borrowed Since", Book::getBorrowedDate, LocalDate.class);
+        mapping.put("Due Date", Book::getDueDate, LocalDate.class);
+        return mapping;
+    }
+}

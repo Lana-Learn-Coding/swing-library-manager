@@ -1,20 +1,91 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.GridBagLayout ) {
-			"$columnSpecs": "0, 0"
-			"$rowSpecs": "0, 0, 0"
-			"$hGap": 5
-			"$vGap": 5
-			"$alignLeft": true
-			"$alignTop": true
-		} ) {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
+			"title": "User Borrowed Book"
+			"modal": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp actionPanel::::688:x, comp borrowTablePane::l::688:x}"
+				"$verticalGroup": "par l {seq t {comp actionPanel:::p::p, space s:::p, comp borrowTablePane::::304:x}}"
+			} ) {
+				name: "dialogPane"
+				"border": new javax.swing.border.EmptyBorder( 5, 20, 10, 20 )
+				add( new FormComponent( "io.lana.library.ui.component.ReaderBorrowedBookTablePane" ) {
+					name: "borrowTablePane"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0, 0, 0, 10:1.0, 0, 0"
+					"$rowSpecs": "0, 0"
+					"$hGap": 15
+					"$vGap": 15
+					"$alignLeft": true
+					"$alignTop": true
+				} ) {
+					name: "actionPanel"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnReturnBook"
+						"text": "Return Book"
+						"enabled": false
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnReturnBookActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnReturnTicket"
+						"text": "Return All Book of Ticket"
+						"enabled": false
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnReturnTicketActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnBorrowBook"
+						"text": "Borrow Book"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBorrowBookActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 2
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnExtendDue"
+						"text": "Extend Due Date"
+						"enabled": false
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExtendDueActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 4
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnExtendTicketDue"
+						"text": "Extend Ticket Due Date"
+						"enabled": false
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExtendTicketDueActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 5
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnRemoveBook"
+						"text": "Remove Book"
+						"enabled": false
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnRemoveBookActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 4
+						"gridy": 1
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkSafe"
+						"text": "Safe Action"
+						"selected": true
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 5
+						"gridy": 1
+					} )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"location": new java.awt.Point( 10, 0 )
+			"size": new java.awt.Dimension( 730, 430 )
 		} )
 	}
 }

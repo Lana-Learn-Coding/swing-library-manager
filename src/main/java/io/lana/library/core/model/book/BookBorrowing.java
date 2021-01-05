@@ -2,8 +2,7 @@ package io.lana.library.core.model.book;
 
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.base.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,7 +13,10 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "book_borrowing")
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookBorrowing extends BaseEntity {
+    @With
     @Column(name = "due_date")
     private LocalDate dueDate;
 
