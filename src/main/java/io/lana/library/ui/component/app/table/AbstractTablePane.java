@@ -48,15 +48,10 @@ public abstract class AbstractTablePane<T> extends JPanel {
 
         setLayout(new GridBagLayout());
         ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
-        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0};
-        ((GridBagLayout) getLayout()).columnWeights = new double[]{0.0, 1.0, 1.0E-4};
-        ((GridBagLayout) getLayout()).rowWeights = new double[]{0.0, 1.0, 1.0E-4};
-
-        setLayout(new GridBagLayout());
-        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
-        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0, 0};
         ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 0.0, 1.0E-4};
-        ((GridBagLayout) getLayout()).rowWeights = new double[]{0.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).rowWeights = new double[]{0.0, 0.0, 1.0, 1.0E-4};
+
 
         add(search, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -64,7 +59,10 @@ public abstract class AbstractTablePane<T> extends JPanel {
         add(btnSearch, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 8, 0), 0, 0));
-        add(scrollPane, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
+        add(new JProgressBar(), new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
+            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+            new Insets(0, 0, 5, 0), 0, 0));
+        add(scrollPane, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 0, 0), 0, 0));
     }
