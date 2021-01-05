@@ -68,11 +68,6 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     public void setup(ReaderRepo readerRepo, FileStorage fileStorage) {
         this.readerRepo = readerRepo;
         this.fileStorage = fileStorage;
-        WorkerUtils.runAsync(() -> {
-            renderTable();
-            btnSave.setEnabled(true);
-            btnClear.setEnabled(true);
-        });
     }
 
     @Override
@@ -440,12 +435,10 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
                         //---- btnClear ----
                         btnClear.setText("Clear");
-                        btnClear.setEnabled(false);
                         btnClear.addActionListener(e -> btnClearActionPerformed(e));
 
                         //---- btnSave ----
                         btnSave.setText("Save");
-                        btnSave.setEnabled(false);
                         btnSave.addActionListener(e -> btnSaveActionPerformed(e));
 
                         //---- btnClone ----
@@ -479,7 +472,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                                     .addComponent(btnViewBorrowed)
                                     .addGap(16, 16, 16)
                                     .addComponent(btnBorrow)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                                     .addComponent(btnClone)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSave)

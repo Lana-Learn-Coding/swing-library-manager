@@ -68,11 +68,6 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
             filterDialog = new BookMetaFilterDialog(mainFrame.getOwner(), bookMetaTablePane, selectCategory);
             btnFilter.setEnabled(true);
         });
-        WorkerUtils.runAsync(() -> {
-            renderTable();
-            btnSave.setEnabled(true);
-            btnClear.setEnabled(true);
-        });
     }
 
     @Autowired
@@ -478,7 +473,6 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
 
                     //---- btnClear ----
                     btnClear.setText("Clear");
-                    btnClear.setEnabled(false);
                     btnClear.addActionListener(e -> btnClearActionPerformed(e));
 
                     //---- btnViewBooks ----
@@ -488,7 +482,6 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
 
                     //---- btnSave ----
                     btnSave.setText("Save");
-                    btnSave.setEnabled(false);
                     btnSave.addActionListener(e -> btnSaveActionPerformed(e));
 
                     //---- btnDelete ----
@@ -559,7 +552,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(20, 20, 20)
-                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
