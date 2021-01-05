@@ -80,57 +80,79 @@ public class LoginPanel extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        mainPanel = new JPanel();
         lblHeader = new JLabel();
         lblUsername = new JLabel();
-        lblPassword = new JLabel();
         txtUsername = new JTextField();
+        lblPassword = new JLabel();
         txtPassword = new JPasswordField();
         btnLogin = new JButton();
 
         //======== this ========
-        setBorder(new EmptyBorder(15, 30, 20, 30));
-        setLayout(new GridBagLayout());
-        ((GridBagLayout) getLayout()).columnWeights = new double[]{0.0, 1.0, 1.0, 0.0};
+        setBorder(new EmptyBorder(20, 30, 20, 40));
 
-        //---- lblHeader ----
-        lblHeader.setText("Login to Library");
-        lblHeader.setFont(new Font("Roboto Light", Font.PLAIN, lblHeader.getFont().getSize() + 9));
-        add(lblHeader, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 15, 15), 0, 0));
+        //======== mainPanel ========
+        {
+            mainPanel.setLayout(new GridBagLayout());
+            ((GridBagLayout) mainPanel.getLayout()).columnWidths = new int[]{0, 0, 80, 0};
+            ((GridBagLayout) mainPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0};
+            ((GridBagLayout) mainPanel.getLayout()).columnWeights = new double[]{0.0, 1.0, 0.0, 1.0E-4};
+            ((GridBagLayout) mainPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
-        //---- lblUsername ----
-        lblUsername.setText("Username");
-        add(lblUsername, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 15, 15), 0, 0));
+            //---- lblHeader ----
+            lblHeader.setText("Login to Library");
+            lblHeader.setFont(new Font("Tahoma", lblHeader.getFont().getStyle(), 18));
+            lblHeader.setHorizontalAlignment(SwingConstants.CENTER);
+            lblHeader.setForeground(Color.darkGray);
+            mainPanel.add(lblHeader, new GridBagConstraints(0, 0, 3, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 0), 0, 0));
 
-        //---- lblPassword ----
-        lblPassword.setText("Password");
-        add(lblPassword, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 15, 15), 0, 0));
-        add(txtUsername, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 15, 15), 0, 0));
-        add(txtPassword, new GridBagConstraints(1, 2, 2, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 15, 15), 0, 0));
+            //---- lblUsername ----
+            lblUsername.setText("Username");
+            mainPanel.add(lblUsername, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 15), 0, 0));
+            mainPanel.add(txtUsername, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 0), 0, 0));
 
-        //---- btnLogin ----
-        btnLogin.setText("Login");
-        btnLogin.addActionListener(e -> btnLoginActionPerformed(e));
-        add(btnLogin, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 0, 15), 0, 0));
+            //---- lblPassword ----
+            lblPassword.setText("Password");
+            mainPanel.add(lblPassword, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 15), 0, 0));
+            mainPanel.add(txtPassword, new GridBagConstraints(1, 2, 2, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 0), 0, 0));
+
+            //---- btnLogin ----
+            btnLogin.setText("Login");
+            btnLogin.addActionListener(e -> btnLoginActionPerformed(e));
+            mainPanel.add(btnLogin, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 0, 0), 0, 0));
+        }
+
+        GroupLayout layout = new GroupLayout(this);
+        setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup()
+                .addComponent(mainPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup()
+                .addComponent(mainPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    private JPanel mainPanel;
     private JLabel lblHeader;
     private JLabel lblUsername;
-    private JLabel lblPassword;
     private JTextField txtUsername;
+    private JLabel lblPassword;
     private JPasswordField txtPassword;
     private JButton btnLogin;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
