@@ -61,8 +61,8 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
         this.categoryRepo = categoryRepo;
         this.fileStorage = fileStorage;
         WorkerUtils.runAsync(() -> {
-            this.categoryRepo.findAll().forEach(selectCategory::addItem);
-            this.seriesRepo.findAll().forEach(selectSeries::addItem);
+            this.categoryRepo.findAllByOrderByUpdatedAtDesc().forEach(selectCategory::addItem);
+            this.seriesRepo.findAllByOrderByUpdatedAtDesc().forEach(selectSeries::addItem);
             selectSeries.setSelectedItem(null);
             selectCategory.setSelectedItem(null);
             filterDialog = new BookMetaFilterDialog(bookMetaTablePane, selectCategory);

@@ -6,7 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface ReaderRepo extends PagingAndSortingRepository<Reader, Integer> {
-    List<Reader> findAll();
+    List<Reader> findAllByOrderByUpdatedAtDesc();
 
     boolean existsByEmail(String email);
 

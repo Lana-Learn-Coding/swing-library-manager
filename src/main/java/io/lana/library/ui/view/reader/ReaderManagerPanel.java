@@ -243,7 +243,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
     @Override
     public void renderTable() {
-        renderTable(readerRepo.findAll());
+        renderTable(readerRepo.findAllByOrderByUpdatedAtDesc());
     }
 
     private void btnSelectAvatarActionPerformed(ActionEvent e) {

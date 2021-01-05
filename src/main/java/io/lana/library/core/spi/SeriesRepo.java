@@ -6,7 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface SeriesRepo extends PagingAndSortingRepository<Series, Integer> {
-    List<Series> findAll();
+    List<Series> findAllByOrderByUpdatedAtDesc();
 
     boolean existsByName(String name);
 }
