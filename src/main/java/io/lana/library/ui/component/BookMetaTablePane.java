@@ -22,7 +22,7 @@ public class BookMetaTablePane extends AbstractTablePane<BookMeta> {
         mapping.put("Category", BookMeta::getCategoryName);
         mapping.put("Year", BookMeta::getYear, Integer.class);
         mapping.put("Count", bookMeta -> bookMeta.getBooks().size(), Integer.class);
-        mapping.put("Updated", BaseEntity::getUpdatedAt, LocalDateTime.class);
+        mapping.put("Created At", BaseEntity::getCreatedAt, LocalDateTime.class);
         return mapping;
     }
 }
