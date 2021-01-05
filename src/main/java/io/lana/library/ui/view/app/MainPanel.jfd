@@ -1,0 +1,63 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "0, 0:1.0"
+			"$rowSpecs": "0:1.0"
+			"$hGap": 5
+			"$vGap": 5
+			"$alignLeft": true
+			"$alignTop": true
+		} ) {
+			name: "this"
+			"border": new javax.swing.border.EmptyBorder( 0, 0, 12, 0 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "90"
+				"$rowSpecs": "30, 30, 30, 100:1.0, 0"
+				"$hGap": 5
+				"$vGap": 15
+				"$alignTop": true
+				"$alignLeft": true
+			} ) {
+				name: "menuPanel"
+				"border": new javax.swing.border.EmptyBorder( 10, 15, 0, 15 )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnBookManage"
+					"text": "Book Manage"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBookManageActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnReaderManage"
+					"text": "Reader Manage"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnReaderManageActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 1
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnUserManage"
+					"text": "User Manage"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 2
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnExit"
+					"text": "Exit"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExitActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 4
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
+				name: "mainPanel"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 35, 30 )
+			"size": new java.awt.Dimension( 835, 625 )
+		} )
+	}
+}

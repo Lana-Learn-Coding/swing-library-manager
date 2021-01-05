@@ -4,8 +4,6 @@
 
 package io.lana.library.ui.view.app;
 
-import io.lana.library.ui.component.app.AppPanel;
-import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +19,10 @@ public class LoginPanel extends AppPanel {
 
     private void btnLoginActionPerformed(ActionEvent e) {
         if (checkUserIsValid()) {
-            gotoPanel(BookMetaManagerPanel.class);
+            gotoPanel(MainPanel.class);
+            return;
         }
+        JOptionPane.showMessageDialog(this, "Wrong username or password");
     }
 
     private boolean checkUserIsValid() {
@@ -33,15 +33,11 @@ public class LoginPanel extends AppPanel {
             return false;
         }
         final String ADMIN = "admin";
-        if (!password.equals(ADMIN) || !username.equals(ADMIN)) {
-            JOptionPane.showMessageDialog(this, "Wrong username or password");
-            return false;
-        }
-        return true;
+        return password.equals(ADMIN) && username.equals(ADMIN);
     }
 
     private void btnHackActionPerformed(ActionEvent e) {
-        gotoPanel(BookMetaManagerPanel.class);
+        gotoPanel(MainPanel.class);
     }
 
     private void initComponents() {

@@ -1,4 +1,4 @@
-package io.lana.library.ui.component.app;
+package io.lana.library.ui.view.app;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
