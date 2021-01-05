@@ -80,9 +80,15 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         if (confirm != JOptionPane.OK_OPTION) {
             return;
         }
+
         Book book = bookTablePane.getSelectedRow();
+        if (book.isBorrowed() &&
+            JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Book is borrowed, Are you SURE?")) {
+            return;
+        }
         bookRepo.deleteById(book.getId());
         fileStorage.deleteFileFromStorage(book.getImage());
+        bookMetaModel.getBooks().remove(book);
         bookTablePane.removeSelectedRow();
         bookTablePane.clearSelection();
         JOptionPane.showMessageDialog(this, "Delete success!");
@@ -98,6 +104,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                 book.setImage(savedImage);
             }
             bookRepo.save(book);
+            bookMetaModel.getBooks().add(book);
             JOptionPane.showMessageDialog(this, "Create success!");
             bookTablePane.addRow(0, book);
             bookTablePane.clearSearch();

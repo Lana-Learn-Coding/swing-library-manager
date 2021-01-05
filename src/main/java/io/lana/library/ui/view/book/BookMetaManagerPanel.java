@@ -30,6 +30,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -49,6 +51,12 @@ public class BookMetaManagerPanel extends AppPanel implements CrudPanel<BookMeta
     public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaRepo bookMetaRepo,
                       BookManagerDialog bookManagerDialog, FileStorage fileStorage) {
         this.bookManagerDialog = bookManagerDialog;
+        this.bookManagerDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                bookMetaTablePane.refreshSelectedRow();
+            }
+        });
         this.seriesRepo = seriesRepo;
         this.bookMetaRepo = bookMetaRepo;
         this.categoryRepo = categoryRepo;
