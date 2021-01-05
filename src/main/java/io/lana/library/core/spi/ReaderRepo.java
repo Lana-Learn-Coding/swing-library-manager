@@ -7,8 +7,4 @@ import java.util.List;
 
 public interface ReaderRepo extends PagingAndSortingRepository<Reader, Integer> {
     List<Reader> findAllByOrderByUpdatedAtDesc();
-
-    boolean existsByEmail(String email);
-
-    boolean existsByPhoneNumber(String phone);
 }

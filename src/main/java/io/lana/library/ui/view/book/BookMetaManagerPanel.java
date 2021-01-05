@@ -109,10 +109,11 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
                 return;
             }
         }
-        bookMetaRepo.deleteById(bookMeta.getId());
-        fileStorage.deleteFileFromStorage(bookMeta.getImage());
+        WorkerUtils.runAsync(() -> {
+            bookMetaRepo.deleteById(bookMeta.getId());
+            fileStorage.deleteFileFromStorage(bookMeta.getImage());
+        });
         bookMetaTablePane.removeSelectedRow();
-        bookMetaTablePane.clearSelection();
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -133,11 +134,14 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
 
     private BookMeta createFromForm() {
         BookMeta bookMeta = getModelFromForm();
-        if (StringUtils.isNotBlank(bookMeta.getImage())) {
-            String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
-            bookMeta.setImage(savedImage);
-        }
-        bookMetaRepo.save(bookMeta);
+
+        WorkerUtils.runAsync(() -> {
+            if (StringUtils.isNotBlank(bookMeta.getImage())) {
+                String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
+                bookMeta.setImage(savedImage);
+            }
+            bookMetaRepo.save(bookMeta);
+        });
         return bookMeta;
     }
 
@@ -150,12 +154,14 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
         updated.setAuthor(bookMeta.getAuthor());
         updated.setCategory(bookMeta.getCategory());
         updated.setSeries(bookMeta.getSeries());
-        if (StringUtils.isNotBlank(bookMeta.getImage())) {
-            fileStorage.deleteFileFromStorage(updated.getImage());
-            String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
-            updated.setImage(savedImage);
-        }
-        bookMetaRepo.save(updated);
+        WorkerUtils.runAsync(() -> {
+            if (StringUtils.isNotBlank(bookMeta.getImage())) {
+                fileStorage.deleteFileFromStorage(updated.getImage());
+                String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
+                updated.setImage(savedImage);
+            }
+            bookMetaRepo.save(updated);
+        });
         return updated;
     }
 

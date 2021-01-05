@@ -110,6 +110,7 @@ public abstract class AbstractTablePane<T> extends JPanel {
 
     public void removeSelectedRow() {
         removeRow(table.getSelectedRow());
+        clearSelection();
     }
 
     public T getRow(int index) {

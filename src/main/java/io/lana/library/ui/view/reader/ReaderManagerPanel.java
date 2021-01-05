@@ -105,10 +105,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                 "Please remove them before delete this reader");
             return;
         }
-        readerRepo.deleteById(reader.getId());
-        fileStorage.deleteFileFromStorage(reader.getAvatar());
+        WorkerUtils.runAsync(() -> {
+            readerRepo.deleteById(reader.getId());
+            fileStorage.deleteFileFromStorage(reader.getAvatar());
+        });
         readerTablePane.removeSelectedRow();
-        readerTablePane.clearSelection();
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -116,32 +117,34 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     public void save() {
         Reader reader = getModelFromForm();
         if (!readerTablePane.isAnyRowSelected()) {
-            if (StringUtils.isNotBlank(reader.getEmail()) && readerRepo.existsByEmail(reader.getEmail())) {
+            if (StringUtils.isNotBlank(reader.getEmail()) && existsByEmail(reader.getEmail())) {
                 throw new InputException(this, "Email already exited");
             }
-            if (readerRepo.existsByPhoneNumber(reader.getPhoneNumber())) {
+            if (existsByPhoneNumber(reader.getPhoneNumber())) {
                 throw new InputException(this, "Phone number already exited");
             }
-            if (StringUtils.isNotBlank(reader.getAvatar())) {
-                String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
-                reader.setAvatar(savedImage);
-            }
-            readerRepo.save(reader);
-            JOptionPane.showMessageDialog(this, "Create success!");
-            readerTablePane.addRow(0, reader);
+            WorkerUtils.runAsync(() -> {
+                if (StringUtils.isNotBlank(reader.getAvatar())) {
+                    String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
+                    reader.setAvatar(savedImage);
+                }
+                readerRepo.save(reader);
+            });
             readerTablePane.clearSearch();
+            readerTablePane.addRow(0, reader);
             readerTablePane.setSelectedRow(0);
+            JOptionPane.showMessageDialog(this, "Create success!");
             return;
         }
 
         Reader updated = readerTablePane.getSelectedRow();
         if (!reader.getEmail().equals(updated.getEmail())
             && StringUtils.isNotBlank(reader.getEmail())
-            && readerRepo.existsByEmail(reader.getEmail())) {
+            && existsByEmail(reader.getEmail())) {
             throw new InputException(this, "Email already exited");
         }
         if (!reader.getPhoneNumber().equals(updated.getPhoneNumber())
-            && readerRepo.existsByPhoneNumber(reader.getPhoneNumber())) {
+            && existsByPhoneNumber(reader.getPhoneNumber())) {
             throw new InputException(this, "Phone number already exited");
         }
         updated.setBirth(reader.getBirth());
@@ -155,9 +158,17 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
             String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
             updated.setAvatar(savedImage);
         }
-        readerRepo.save(updated);
-        JOptionPane.showMessageDialog(this, "Update success!");
+        WorkerUtils.runAsync(() -> readerRepo.save(updated));
         readerTablePane.refreshSelectedRow();
+        JOptionPane.showMessageDialog(this, "Update success!");
+    }
+
+    private boolean existsByPhoneNumber(String phoneNumber) {
+        return readerTablePane.getInternalData().stream().anyMatch(reader -> phoneNumber.equals(reader.getPhoneNumber()));
+    }
+
+    private boolean existsByEmail(String email) {
+        return readerTablePane.getInternalData().stream().anyMatch(reader -> email.equals(reader.getEmail()));
     }
 
     @Override

@@ -85,11 +85,12 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
             JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Book is borrowed, Are you SURE?")) {
             return;
         }
-        bookRepo.deleteById(book.getId());
-        fileStorage.deleteFileFromStorage(book.getImage());
+        WorkerUtils.runAsync(() -> {
+            bookRepo.deleteById(book.getId());
+            fileStorage.deleteFileFromStorage(book.getImage());
+        });
         bookMetaModel.getBooks().remove(book);
         bookTablePane.removeSelectedRow();
-        bookTablePane.clearSelection();
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -98,16 +99,18 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         Book book = getModelFromForm();
         if (!bookTablePane.isAnyRowSelected()) {
             book.setMeta(bookMetaModel);
-            if (StringUtils.isNotBlank(book.getImage())) {
-                String savedImage = fileStorage.loadFileToStorage(book.getImage());
-                book.setImage(savedImage);
-            }
-            bookRepo.save(book);
+            WorkerUtils.runAsync(() -> {
+                if (StringUtils.isNotBlank(book.getImage())) {
+                    String savedImage = fileStorage.loadFileToStorage(book.getImage());
+                    book.setImage(savedImage);
+                }
+                bookRepo.save(book);
+            });
             bookMetaModel.getBooks().add(book);
-            JOptionPane.showMessageDialog(this, "Create success!");
             bookTablePane.addRow(0, book);
             bookTablePane.clearSearch();
             bookTablePane.setSelectedRow(0);
+            JOptionPane.showMessageDialog(this, "Create success!");
             return;
         }
 
@@ -116,11 +119,13 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         updated.setNote(book.getNote());
         updated.setCondition(book.getCondition());
         updated.setPosition(book.getPosition());
-        if (StringUtils.isNotBlank(book.getImage())) {
-            String savedImage = fileStorage.loadFileToStorage(book.getImage());
-            updated.setImage(savedImage);
-        }
-        bookRepo.save(updated);
+        WorkerUtils.runAsync(() -> {
+            if (StringUtils.isNotBlank(book.getImage())) {
+                String savedImage = fileStorage.loadFileToStorage(book.getImage());
+                updated.setImage(savedImage);
+            }
+            bookRepo.save(updated);
+        });
         JOptionPane.showMessageDialog(this, "Update success!");
         bookTablePane.refreshSelectedRow();
     }
