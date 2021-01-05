@@ -8,8 +8,8 @@ new FormModel {
 			"title": "User Borrowed Book"
 			"modal": true
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {comp actionPanel::::688:x, comp borrowTablePane::l::688:x}"
-				"$verticalGroup": "par l {seq t {comp actionPanel:::p::p, space s:::p, comp borrowTablePane::::304:x}}"
+				"$horizontalGroup": "par l {comp actionPanel:::::x, comp borrowTablePane::l::692:x}"
+				"$verticalGroup": "par l {seq t {comp actionPanel:::p::p, space s:::p, comp borrowTablePane:::p:304:p}}"
 			} ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 5, 20, 10, 20 )
@@ -40,11 +40,12 @@ new FormModel {
 						"gridx": 1
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnBorrowBook"
-						"text": "Borrow Book"
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBorrowBookActionPerformed", true ) )
+						name: "btnRemoveBook"
+						"text": "Remove Book"
+						"enabled": false
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnRemoveBookActionPerformed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridx": 2
+						"gridx": 3
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btnExtendDue"
@@ -61,15 +62,6 @@ new FormModel {
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExtendTicketDueActionPerformed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 5
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "btnRemoveBook"
-						"text": "Remove Book"
-						"enabled": false
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnRemoveBookActionPerformed", true ) )
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-						"gridx": 4
-						"gridy": 1
 					} )
 					add( new FormComponent( "javax.swing.JCheckBox" ) {
 						name: "checkSafe"

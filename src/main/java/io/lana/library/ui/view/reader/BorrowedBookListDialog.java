@@ -21,8 +21,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -33,7 +31,6 @@ public class BorrowedBookListDialog extends JDialog {
     private BookBorrowingRepo bookBorrowingRepo;
 
     private Reader readerModel;
-    private BorrowBookDialog borrowBookDialog;
 
     public BorrowedBookListDialog() {
         initComponents();
@@ -57,19 +54,9 @@ public class BorrowedBookListDialog extends JDialog {
     }
 
     @Autowired
-    public void setup(BookRepo bookRepo, BookBorrowingRepo bookBorrowingRepo, BorrowBookDialog borrowBookDialog) {
+    public void setup(BookRepo bookRepo, BookBorrowingRepo bookBorrowingRepo) {
         this.bookRepo = bookRepo;
         this.bookBorrowingRepo = bookBorrowingRepo;
-        this.borrowBookDialog = borrowBookDialog;
-        this.borrowBookDialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-                if (readerModel == null) {
-                    return;
-                }
-                setModel(readerModel);
-            }
-        });
     }
 
     public void setModel(Reader readerModel) {
@@ -111,11 +98,6 @@ public class BorrowedBookListDialog extends JDialog {
         });
         WorkerUtils.runAsync(() -> bookBorrowingRepo.deleteById(ticket.getId()));
         JOptionPane.showMessageDialog(this, "All book in ticket returned!");
-    }
-
-    private void btnBorrowBookActionPerformed(ActionEvent e) {
-        borrowBookDialog.setModel(readerModel);
-        borrowBookDialog.setVisible(true);
     }
 
     private void btnExtendDueActionPerformed(ActionEvent e) {
@@ -206,10 +188,9 @@ public class BorrowedBookListDialog extends JDialog {
         actionPanel = new JPanel();
         btnReturnBook = new JButton();
         btnReturnTicket = new JButton();
-        btnBorrowBook = new JButton();
+        btnRemoveBook = new JButton();
         btnExtendDue = new JButton();
         btnExtendTicketDue = new JButton();
-        btnRemoveBook = new JButton();
         checkSafe = new JCheckBox();
 
         //======== this ========
@@ -246,10 +227,11 @@ public class BorrowedBookListDialog extends JDialog {
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 15, 15), 0, 0));
 
-                //---- btnBorrowBook ----
-                btnBorrowBook.setText("Borrow Book");
-                btnBorrowBook.addActionListener(e -> btnBorrowBookActionPerformed(e));
-                actionPanel.add(btnBorrowBook, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
+                //---- btnRemoveBook ----
+                btnRemoveBook.setText("Remove Book");
+                btnRemoveBook.setEnabled(false);
+                btnRemoveBook.addActionListener(e -> btnRemoveBookActionPerformed(e));
+                actionPanel.add(btnRemoveBook, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 15, 15), 0, 0));
 
@@ -269,14 +251,6 @@ public class BorrowedBookListDialog extends JDialog {
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 15, 0), 0, 0));
 
-                //---- btnRemoveBook ----
-                btnRemoveBook.setText("Remove Book");
-                btnRemoveBook.setEnabled(false);
-                btnRemoveBook.addActionListener(e -> btnRemoveBookActionPerformed(e));
-                actionPanel.add(btnRemoveBook, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 15), 0, 0));
-
                 //---- checkSafe ----
                 checkSafe.setText("Safe Action");
                 checkSafe.setSelected(true);
@@ -289,15 +263,15 @@ public class BorrowedBookListDialog extends JDialog {
             dialogPane.setLayout(dialogPaneLayout);
             dialogPaneLayout.setHorizontalGroup(
                 dialogPaneLayout.createParallelGroup()
-                    .addComponent(actionPanel, GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                    .addComponent(borrowTablePane, GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(actionPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(borrowTablePane, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
             );
             dialogPaneLayout.setVerticalGroup(
                 dialogPaneLayout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, dialogPaneLayout.createSequentialGroup()
                         .addComponent(actionPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(borrowTablePane, GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
+                        .addComponent(borrowTablePane, GroupLayout.PREFERRED_SIZE, 304, GroupLayout.PREFERRED_SIZE))
             );
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
@@ -312,10 +286,9 @@ public class BorrowedBookListDialog extends JDialog {
     private JPanel actionPanel;
     private JButton btnReturnBook;
     private JButton btnReturnTicket;
-    private JButton btnBorrowBook;
+    private JButton btnRemoveBook;
     private JButton btnExtendDue;
     private JButton btnExtendTicketDue;
-    private JButton btnRemoveBook;
     private JCheckBox checkSafe;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
