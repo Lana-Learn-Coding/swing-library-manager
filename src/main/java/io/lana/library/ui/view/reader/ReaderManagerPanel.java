@@ -5,9 +5,11 @@
 package io.lana.library.ui.view.reader;
 
 import io.lana.library.core.model.Reader;
+import io.lana.library.core.model.user.Permission;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.ReaderRepo;
 import io.lana.library.ui.InputException;
+import io.lana.library.ui.UserContext;
 import io.lana.library.ui.component.ReaderTablePane;
 import io.lana.library.ui.component.app.ImagePicker;
 import io.lana.library.ui.component.app.ImageViewer;
@@ -38,6 +40,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private final ImagePicker imagePicker = new ImagePicker();
     private final ButtonGroup genderButtonGroup = new ButtonGroup();
 
+    private UserContext userContext;
     private BorrowBookDialog borrowBookDialog;
     private BorrowedBookListDialog borrowedBookListDialog;
     private ReaderRepo readerRepo;
@@ -69,10 +72,22 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         });
     }
 
+    @Override
+    public void setVisible(boolean aFlag) {
+        if (aFlag) {
+            boolean canHandleBorrow = userContext.getUser().hasPermission(Permission.BORROWING_MANAGE);
+            btnBorrow.setVisible(canHandleBorrow);
+            btnViewBorrowed.setVisible(canHandleBorrow);
+        }
+        super.setVisible(aFlag);
+    }
+
     @Autowired
     public void setup(ReaderRepo readerRepo, FileStorage fileStorage,
                       BorrowedBookListDialog borrowedBookListDialog,
-                      BorrowBookDialog borrowBookDialog) {
+                      BorrowBookDialog borrowBookDialog,
+                      UserContext userContext) {
+        this.userContext = userContext;
         this.readerRepo = readerRepo;
         this.fileStorage = fileStorage;
         this.borrowedBookListDialog = borrowedBookListDialog;

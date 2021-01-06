@@ -1,5 +1,7 @@
 package io.lana.library.ui.view.app;
 
+import io.lana.library.core.model.user.Permission;
+import io.lana.library.core.model.user.User;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
@@ -31,6 +33,15 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         mainPanel.add(Views.BOOK_MANAGE.name(), bookMetaManagerPanel);
         mainPanel.add(Views.READER_MANAGE.name(), readerManagerPanel);
         mainPanel.add(Views.USER_MANAGE.name(), userManagerPanel);
+    }
+
+    @Override
+    public <T extends Container & MainFrameContainer> void onPaneMounted(T previousPane) {
+        User user = userContext.getUser();
+        btnBookManage.setEnabled(user.hasPermission(Permission.BOOK_MANAGE));
+        btnReaderManage.setEnabled(user.hasPermission(Permission.READER_MANAGE));
+        btnBorrowTicket.setEnabled(user.hasPermission(Permission.BORROWING_MANAGE));
+        btnUserManage.setEnabled(user.hasPermission(Permission.USER_MANAGE));
     }
 
     private void btnBookManageActionPerformed(ActionEvent e) {
@@ -106,6 +117,8 @@ public class MainPanel extends JPanel implements MainFrameContainer {
 
             //---- btnBorrowTicket ----
             btnBorrowTicket.setText("Borrow Ticket");
+            btnBorrowTicket.setFocusable(false);
+            btnBorrowTicket.setFocusPainted(false);
             menuPanel.add(btnBorrowTicket, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
@@ -121,6 +134,8 @@ public class MainPanel extends JPanel implements MainFrameContainer {
 
             //---- btnConfig ----
             btnConfig.setText("Config");
+            btnConfig.setFocusPainted(false);
+            btnConfig.setFocusable(false);
             menuPanel.add(btnConfig, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));

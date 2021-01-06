@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -42,6 +42,8 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnBorrowTicket"
 					"text": "Borrow Ticket"
+					"focusable": false
+					"focusPainted": false
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 2
 				} )
@@ -57,6 +59,8 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnConfig"
 					"text": "Config"
+					"focusPainted": false
+					"focusable": false
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 5
 				} )
