@@ -62,7 +62,9 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         menuPanel = new JPanel();
         btnBookManage = new JButton();
         btnReaderManage = new JButton();
+        btnBorrowTicket = new JButton();
         btnUserManage = new JButton();
+        btnConfig = new JButton();
         btnAccount = new JButton();
         btnExit = new JButton();
         mainPanel = new JPanel();
@@ -80,9 +82,9 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             menuPanel.setBorder(new EmptyBorder(10, 15, 0, 15));
             menuPanel.setLayout(new GridBagLayout());
             ((GridBagLayout) menuPanel.getLayout()).columnWidths = new int[]{90, 0};
-            ((GridBagLayout) menuPanel.getLayout()).rowHeights = new int[]{45, 45, 45, 115, 0, 0, 0};
+            ((GridBagLayout) menuPanel.getLayout()).rowHeights = new int[]{45, 45, 45, 45, 115, 0, 0, 0, 0};
             ((GridBagLayout) menuPanel.getLayout()).columnWeights = new double[]{0.0, 1.0E-4};
-            ((GridBagLayout) menuPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0E-4};
+            ((GridBagLayout) menuPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0E-4};
 
             //---- btnBookManage ----
             btnBookManage.setText("Book Manage");
@@ -102,12 +104,24 @@ public class MainPanel extends JPanel implements MainFrameContainer {
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
 
+            //---- btnBorrowTicket ----
+            btnBorrowTicket.setText("Borrow Ticket");
+            menuPanel.add(btnBorrowTicket, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 0), 0, 0));
+
             //---- btnUserManage ----
             btnUserManage.setText("User Manage");
             btnUserManage.setFocusPainted(false);
             btnUserManage.setFocusable(false);
             btnUserManage.addActionListener(e -> btnUserManageActionPerformed(e));
-            menuPanel.add(btnUserManage, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+            menuPanel.add(btnUserManage, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 0), 0, 0));
+
+            //---- btnConfig ----
+            btnConfig.setText("Config");
+            menuPanel.add(btnConfig, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
 
@@ -115,7 +129,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             btnAccount.setText("Account");
             btnAccount.setFocusPainted(false);
             btnAccount.setFocusable(false);
-            menuPanel.add(btnAccount, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
+            menuPanel.add(btnAccount, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
 
@@ -124,7 +138,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             btnExit.setFocusPainted(false);
             btnExit.setFocusable(false);
             btnExit.addActionListener(e -> btnExitActionPerformed(e));
-            menuPanel.add(btnExit, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+            menuPanel.add(btnExit, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
         }
@@ -147,7 +161,9 @@ public class MainPanel extends JPanel implements MainFrameContainer {
     private JPanel menuPanel;
     private JButton btnBookManage;
     private JButton btnReaderManage;
+    private JButton btnBorrowTicket;
     private JButton btnUserManage;
+    private JButton btnConfig;
     private JButton btnAccount;
     private JButton btnExit;
     private JPanel mainPanel;
