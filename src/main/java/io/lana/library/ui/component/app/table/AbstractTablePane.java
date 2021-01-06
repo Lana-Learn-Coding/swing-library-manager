@@ -89,6 +89,7 @@ public abstract class AbstractTablePane<T> extends JPanel {
         tableModel.setRowCount(0);
         data.forEach(model -> tableModel.addRow(toTableRow(model)));
         tableModel.fireTableDataChanged();
+        clearFilter();
     }
 
     public void refreshRow(T row) {
