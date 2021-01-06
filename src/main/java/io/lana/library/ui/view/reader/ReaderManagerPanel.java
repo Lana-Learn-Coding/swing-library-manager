@@ -195,6 +195,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         txtPhone.setText("");
         txtAddress.setText("");
         imageViewer.clearImage();
+        readerTablePane.clearSelection();
     }
 
     @Override

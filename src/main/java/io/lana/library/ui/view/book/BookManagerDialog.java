@@ -133,6 +133,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtNote.setText("");
         txtCondition.setText("");
         selectStorage.setSelectedItem(null);
+        bookTablePane.clearSearch();
     }
 
     @Override

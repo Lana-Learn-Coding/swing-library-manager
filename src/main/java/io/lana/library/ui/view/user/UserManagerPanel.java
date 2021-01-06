@@ -156,6 +156,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         checkBookManage.setSelected(false);
         checkReaderManage.setSelected(false);
         checkBorrowManage.setSelected(false);
+        userTablePane.clearSelection();
     }
 
     @Override
