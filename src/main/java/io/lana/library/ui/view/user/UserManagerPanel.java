@@ -4,7 +4,9 @@
 
 package io.lana.library.ui.view.user;
 
+import io.lana.library.core.model.user.Permission;
 import io.lana.library.core.model.user.User;
+import io.lana.library.core.spi.PasswordEncoder;
 import io.lana.library.core.spi.UserRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.UIException;
@@ -24,11 +26,14 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     private UserRepo userRepo;
     private User loggedInUser;
+    private PasswordEncoder passwordEncoder;
 
     public UserManagerPanel() {
         initComponents();
@@ -50,9 +55,10 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     }
 
     @Autowired
-    public void setup(UserRepo userRepo, UserContext userContext) {
+    public void setup(UserRepo userRepo, UserContext userContext, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.loggedInUser = userContext.getUser();
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -74,13 +80,22 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     public void save() {
         User user = getModelFromForm();
         if (!userTablePane.isAnyRowSelected()) {
+            if (StringUtils.isBlank(user.getPassword())) {
+                throw new InputException(this, "Please enter password");
+
+            }
             if (StringUtils.isNotBlank(user.getEmail()) && existsByEmail(user.getEmail())) {
                 throw new InputException(this, "Email already exited");
             }
-            if (existsByPhoneNumber(user.getPhoneNumber())) {
+            if (StringUtils.isNotBlank(user.getPhoneNumber()) && existsByPhoneNumber(user.getPhoneNumber())) {
                 throw new InputException(this, "Phone number already exited");
             }
-            WorkerUtils.runAsync(() -> userRepo.save(user));
+            if (existsByUsername(user.getUsername())) {
+                throw new InputException(this, "Username already existed");
+            }
+
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepo.save(user);
             JOptionPane.showMessageDialog(this, "Create success!");
             userTablePane.clearSearch();
             userTablePane.addRow(0, user);
@@ -94,16 +109,30 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
             && existsByEmail(user.getEmail())) {
             throw new InputException(this, "Email already exited");
         }
+        if (!user.getUsername().equals(updated.getUsername())
+            && existsByUsername(user.getUsername())) {
+            throw new InputException(this, "Username already exited");
+        }
         if (!user.getPhoneNumber().equals(updated.getPhoneNumber())
+            && StringUtils.isNotBlank(user.getPhoneNumber())
             && existsByPhoneNumber(user.getPhoneNumber())) {
             throw new InputException(this, "Phone number already exited");
+        }
+        if (StringUtils.isNotBlank(user.getPassword())) {
+            updated.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         updated.setName(user.getName());
         updated.setEmail(user.getEmail());
         updated.setPhoneNumber(user.getPhoneNumber());
+        updated.setUsername(user.getUsername());
+        updated.setPermissions(user.getPermissions());
         userRepo.save(updated);
         JOptionPane.showMessageDialog(this, "Update success!");
         userTablePane.refreshSelectedRow();
+    }
+
+    private boolean existsByUsername(String username) {
+        return userTablePane.getInternalData().stream().anyMatch(user -> username.equals(user.getUsername()));
     }
 
     private boolean existsByPhoneNumber(String phoneNumber) {
@@ -119,15 +148,27 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         txtID.setText("");
         txtEmail.setText("");
         txtName.setText("");
+        txtPassword.setText("");
+        txtUserName.setText("");
         txtPhone.setText("");
+        checkUserManage.setSelected(false);
+        checkBookManage.setSelected(false);
+        checkReaderManage.setSelected(false);
+        checkBorrowManage.setSelected(false);
     }
 
     @Override
     public void loadModelToForm(User model) {
         txtID.setText(model.getIdString());
+        txtUserName.setText(model.getName());
+        txtPassword.setText("");
         txtName.setText(model.getName());
         txtEmail.setText(model.getEmail());
         txtPhone.setText(model.getPhoneNumber());
+        checkUserManage.setSelected(model.hasPermission(Permission.USER_MANAGE));
+        checkBookManage.setSelected(model.hasPermission(Permission.BOOK_MANAGE));
+        checkReaderManage.setSelected(model.hasPermission(Permission.READER_MANAGE));
+        checkBorrowManage.setSelected(model.hasPermission(Permission.BORROWING_MANAGE));
     }
 
     @Override
@@ -136,18 +177,36 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         user.setEmail(txtEmail.getText());
         user.setPhoneNumber(txtPhone.getText().trim());
         user.setName(txtName.getText().trim());
+        user.setUsername(txtUserName.getText());
+        user.setPassword(String.valueOf(txtPassword.getPassword()));
+        Set<Permission> permissions = new HashSet<>();
+        if (checkUserManage.isSelected()) {
+            permissions.add(Permission.USER_MANAGE);
+        }
+        if (checkBookManage.isSelected()) {
+            permissions.add(Permission.BOOK_MANAGE);
+        }
+        if (checkReaderManage.isSelected()) {
+            permissions.add(Permission.READER_MANAGE);
+        }
+        if (checkBorrowManage.isSelected()) {
+            permissions.add(Permission.BORROWING_MANAGE);
+        }
+        if (permissions.isEmpty()) {
+            throw new InputException(this, "Please select a permission");
+        }
+        user.setPermissions(permissions);
 
-
-        if (StringUtils.isBlank(user.getPhoneNumber()) ||
+        if (StringUtils.isBlank(user.getUsername()) ||
             StringUtils.isBlank(user.getName())) {
-            throw new InputException(this, "Please enter required information: phone number, name");
+            throw new InputException(this, "Please enter required information: name, username");
         }
 
         if (StringUtils.isNotBlank(user.getEmail()) && !user.getEmail().matches(".+@.+")) {
             throw new InputException(this, "Invalid email format");
         }
 
-        if (!user.getPhoneNumber().matches("[0-9]{10,15}")) {
+        if (StringUtils.isNotBlank(user.getPhoneNumber()) && !user.getPhoneNumber().matches("[0-9]{10,15}")) {
             throw new InputException(this, "Invalid phone format: contain only number, and 10 - 15 length");
         }
 
@@ -193,14 +252,15 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         lblID = new JLabel();
         txtID = new JTextField();
         label2 = new JLabel();
-        textField1 = new JTextField();
+        txtUserName = new JTextField();
         lblPassword = new JLabel();
-        passwordField1 = new JPasswordField();
-        label1 = new JLabel();
-        txtConfirmPassword = new JTextField();
-        lblAddress = new JLabel();
-        scrollPane1 = new JScrollPane();
-        list1 = new JList();
+        txtPassword = new JPasswordField();
+        label3 = new JLabel();
+        permission = new JPanel();
+        checkBookManage = new JCheckBox();
+        checkReaderManage = new JCheckBox();
+        checkUserManage = new JCheckBox();
+        checkBorrowManage = new JCheckBox();
         separator1 = new JSeparator();
         lblPhone = new JLabel();
         txtPhone = new JTextField();
@@ -243,9 +303,9 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                             new EmptyBorder(15, 15, 20, 15)));
                         formPanel.setLayout(new GridBagLayout());
                         ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 215, 0, 0, 200, 0};
-                        ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 50, 25, 0, 0, 0};
+                        ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 25, 0, 0, 0};
                         ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0E-4};
-                        ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                        ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                         //---- lblID ----
                         lblID.setText("ID");
@@ -264,69 +324,88 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                         formPanel.add(label2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
-                        formPanel.add(textField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+                        formPanel.add(txtUserName, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
 
                         //---- lblPassword ----
                         lblPassword.setText("Password");
-                        formPanel.add(lblPassword, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                        formPanel.add(lblPassword, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
-                        formPanel.add(passwordField1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 20, 15), 0, 0));
-
-                        //---- label1 ----
-                        label1.setText("Confirm");
-                        formPanel.add(label1, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 20, 15), 0, 0));
-                        formPanel.add(txtConfirmPassword, new GridBagConstraints(4, 2, 1, 1, 0.0, 0.0,
+                        formPanel.add(txtPassword, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 0), 0, 0));
 
-                        //---- lblAddress ----
-                        lblAddress.setText("Permissions");
-                        formPanel.add(lblAddress, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+                        //---- label3 ----
+                        label3.setText("Permission");
+                        formPanel.add(label3, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
 
-                        //======== scrollPane1 ========
+                        //======== permission ========
                         {
-                            scrollPane1.setViewportView(list1);
+                            permission.setLayout(new GridBagLayout());
+                            ((GridBagLayout) permission.getLayout()).columnWidths = new int[]{0, 0, 0, 0, 0};
+                            ((GridBagLayout) permission.getLayout()).rowHeights = new int[]{0, 0};
+                            ((GridBagLayout) permission.getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0E-4};
+                            ((GridBagLayout) permission.getLayout()).rowWeights = new double[]{0.0, 1.0E-4};
+
+                            //---- checkBookManage ----
+                            checkBookManage.setText("Book Manage");
+                            permission.add(checkBookManage, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                                new Insets(0, 0, 0, 5), 0, 0));
+
+                            //---- checkReaderManage ----
+                            checkReaderManage.setText("Reader Manage");
+                            permission.add(checkReaderManage, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                                new Insets(0, 0, 0, 5), 0, 0));
+
+                            //---- checkUserManage ----
+                            checkUserManage.setText("User Manage");
+                            permission.add(checkUserManage, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
+                                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                                new Insets(0, 0, 0, 5), 0, 0));
+
+                            //---- checkBorrowManage ----
+                            checkBorrowManage.setText("Borrowing Manage");
+                            permission.add(checkBorrowManage, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
+                                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                                new Insets(0, 0, 0, 0), 0, 0));
                         }
-                        formPanel.add(scrollPane1, new GridBagConstraints(1, 3, 1, 2, 0.0, 0.0,
+                        formPanel.add(permission, new GridBagConstraints(1, 2, 4, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 20, 15), 0, 0));
-                        formPanel.add(separator1, new GridBagConstraints(0, 5, 5, 1, 0.0, 0.0,
+                            new Insets(0, 0, 20, 0), 0, 0));
+                        formPanel.add(separator1, new GridBagConstraints(0, 3, 5, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 0), 0, 0));
 
                         //---- lblPhone ----
                         lblPhone.setText("Phone");
-                        formPanel.add(lblPhone, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+                        formPanel.add(lblPhone, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
-                        formPanel.add(txtPhone, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
+                        formPanel.add(txtPhone, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
 
                         //---- lblEmail ----
                         lblEmail.setText("Email");
-                        formPanel.add(lblEmail, new GridBagConstraints(3, 6, 1, 1, 0.0, 0.0,
+                        formPanel.add(lblEmail, new GridBagConstraints(3, 4, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 15), 0, 0));
-                        formPanel.add(txtEmail, new GridBagConstraints(4, 6, 1, 1, 0.0, 0.0,
+                        formPanel.add(txtEmail, new GridBagConstraints(4, 4, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 20, 0), 0, 0));
 
                         //---- lblName ----
                         lblName.setText("Name");
-                        formPanel.add(lblName, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+                        formPanel.add(lblName, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 0, 15), 0, 0));
-                        formPanel.add(txtName, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,
+                        formPanel.add(txtName, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                             new Insets(0, 0, 0, 15), 0, 0));
                     }
@@ -368,7 +447,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                         actionPanelLayout.setVerticalGroup(
                             actionPanelLayout.createParallelGroup()
                                 .addGroup(GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
-                                    .addContainerGap(220, Short.MAX_VALUE)
+                                    .addContainerGap(119, Short.MAX_VALUE)
                                     .addComponent(btnClone)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSave)
@@ -387,15 +466,16 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                 panelUserManage.setLayout(panelUserManageLayout);
                 panelUserManageLayout.setHorizontalGroup(
                     panelUserManageLayout.createParallelGroup()
-                        .addComponent(actionFormPanel, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                         .addComponent(userTablePane, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                        .addComponent(actionFormPanel, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                 );
                 panelUserManageLayout.setVerticalGroup(
                     panelUserManageLayout.createParallelGroup()
                         .addGroup(panelUserManageLayout.createSequentialGroup()
-                            .addComponent(actionFormPanel, GroupLayout.PREFERRED_SIZE, 398, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actionFormPanel, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(userTablePane, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                            .addComponent(userTablePane, GroupLayout.PREFERRED_SIZE, 367, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
             }
             tab.addTab("User Manage", panelUserManage);
@@ -409,9 +489,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(tab, GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
-                    .addContainerGap())
+                .addComponent(tab, GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -424,14 +502,15 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     private JLabel lblID;
     private JTextField txtID;
     private JLabel label2;
-    private JTextField textField1;
+    private JTextField txtUserName;
     private JLabel lblPassword;
-    private JPasswordField passwordField1;
-    private JLabel label1;
-    private JTextField txtConfirmPassword;
-    private JLabel lblAddress;
-    private JScrollPane scrollPane1;
-    private JList list1;
+    private JPasswordField txtPassword;
+    private JLabel label3;
+    private JPanel permission;
+    private JCheckBox checkBookManage;
+    private JCheckBox checkReaderManage;
+    private JCheckBox checkUserManage;
+    private JCheckBox checkBorrowManage;
     private JSeparator separator1;
     private JLabel lblPhone;
     private JTextField txtPhone;

@@ -14,4 +14,12 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 public class Permission extends NamedEntity {
+    public static final Permission BOOK_MANAGE = new Permission("BOOK_MANAGE");
+    public static final Permission READER_MANAGE = new Permission("READER_MANAGE");
+    public static final Permission BORROWING_MANAGE = new Permission("BORROWING_MANAGE");
+    public static final Permission USER_MANAGE = new Permission("USER_MANAGE");
+
+    public Permission(String name) {
+        setName(name);
+    }
 }

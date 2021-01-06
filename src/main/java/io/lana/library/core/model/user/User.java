@@ -6,9 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Table(name = "backend_user")
 @Entity
@@ -27,7 +25,7 @@ public class User extends BaseEntity {
     @Column(unique = true, name = "phone_number")
     private String phoneNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "backend_user_permission",
         joinColumns = @JoinColumn(name = "backend_user_id"),
@@ -36,7 +34,7 @@ public class User extends BaseEntity {
     private Set<Permission> permissions = new HashSet<>();
 
     @Transient
-    private List<String> getPermissionNames() {
-        return permissions.stream().map(Permission::toString).collect(Collectors.toList());
+    public boolean hasPermission(Permission permission) {
+        return getPermissions().contains(permission);
     }
 }

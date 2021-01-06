@@ -1,19 +1,19 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp tab::l:::x}"
-			"$verticalGroup": "par l {seq l {comp tab::::725:x, space :::p}}"
+			"$verticalGroup": "par l {comp tab::l::735:x}"
 		} ) {
 			name: "this"
 			"border": new javax.swing.border.EmptyBorder( 0, 10, 0, 10 )
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tab"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {comp actionFormPanel::l::775:x, comp userTablePane::l::775:x}"
-					"$verticalGroup": "par l {seq l {comp actionFormPanel:::p:398:p, space s:::p, comp userTablePane::::282:x}}"
+					"$horizontalGroup": "par l {comp userTablePane::l::775:x, comp actionFormPanel::l::775:x}"
+					"$verticalGroup": "par l {seq l {comp actionFormPanel:::p:322:p, space s:::p, comp userTablePane:::p:367:p, space :::x}}"
 				} ) {
 					name: "panelUserManage"
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
@@ -29,7 +29,7 @@ new FormModel {
 						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.EmptyBorder( 15, 15, 20, 15 ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 							"$columnSpecs": "0, 200, 0:1.0, 0, 200"
-							"$rowSpecs": "0, 0, 0, 0, 30, 5, 0, 0"
+							"$rowSpecs": "0, 0, 0, 5, 0, 0"
 							"$alignTop": true
 							"$alignLeft": true
 							"$vGap": 20
@@ -54,7 +54,7 @@ new FormModel {
 								"gridy": 1
 							} )
 							add( new FormComponent( "javax.swing.JTextField" ) {
-								name: "textField1"
+								name: "txtUserName"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
 								"gridy": 1
@@ -63,90 +63,104 @@ new FormModel {
 								name: "lblPassword"
 								"text": "Password"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridy": 2
-							} )
-							add( new FormComponent( "javax.swing.JPasswordField" ) {
-								name: "passwordField1"
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridx": 1
-								"gridy": 2
-							} )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label1"
-								"text": "Confirm"
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridy": 2
+								"gridy": 1
 								"gridx": 3
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
-								name: "txtConfirmPassword"
+							add( new FormComponent( "javax.swing.JPasswordField" ) {
+								name: "txtPassword"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 4
-								"gridy": 2
+								"gridy": 1
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "lblAddress"
-								"text": "Permissions"
+								name: "label3"
+								"text": "Permission"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridy": 3
+								"gridy": 2
 							} )
-							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-								name: "scrollPane1"
-								add( new FormComponent( "javax.swing.JList" ) {
-									name: "list1"
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+								"$columnSpecs": "0:1.0, 0:1.0, 0:1.0, 0:1.0"
+								"$rowSpecs": "0"
+								"$hGap": 5
+								"$vGap": 5
+								"$alignLeft": true
+								"$alignTop": true
+							} ) {
+								name: "permission"
+								add( new FormComponent( "javax.swing.JCheckBox" ) {
+									name: "checkBookManage"
+									"text": "Book Manage"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+								add( new FormComponent( "javax.swing.JCheckBox" ) {
+									name: "checkReaderManage"
+									"text": "Reader Manage"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 1
+								} )
+								add( new FormComponent( "javax.swing.JCheckBox" ) {
+									name: "checkUserManage"
+									"text": "User Manage"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 2
+								} )
+								add( new FormComponent( "javax.swing.JCheckBox" ) {
+									name: "checkBorrowManage"
+									"text": "Borrowing Manage"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 3
 								} )
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+								"gridy": 2
+								"gridwidth": 4
 								"gridx": 1
-								"gridy": 3
-								"gridheight": 2
 							} )
 							add( new FormComponent( "javax.swing.JSeparator" ) {
 								name: "separator1"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridy": 5
+								"gridy": 3
 								"gridwidth": 5
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "lblPhone"
 								"text": "Phone"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridy": 6
+								"gridy": 4
 							} )
 							add( new FormComponent( "javax.swing.JTextField" ) {
 								name: "txtPhone"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
-								"gridy": 6
+								"gridy": 4
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "lblEmail"
 								"text": "Email"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridy": 6
+								"gridy": 4
 								"gridx": 3
 							} )
 							add( new FormComponent( "javax.swing.JTextField" ) {
 								name: "txtEmail"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 4
-								"gridy": 6
+								"gridy": 4
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "lblName"
 								"text": "Name"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridy": 7
+								"gridy": 5
 							} )
 							add( new FormComponent( "javax.swing.JTextField" ) {
 								name: "txtName"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
-								"gridy": 7
+								"gridy": 5
 							} )
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 							"$horizontalGroup": "par l {comp btnDelete::::90:x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnClone::l:::x}"
-							"$verticalGroup": "par l {seq t {space ::220:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+							"$verticalGroup": "par l {seq t {space ::119:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 						} ) {
 							name: "actionPanel"
 							"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
