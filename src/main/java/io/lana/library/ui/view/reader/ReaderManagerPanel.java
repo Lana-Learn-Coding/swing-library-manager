@@ -123,13 +123,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
             if (existsByPhoneNumber(reader.getPhoneNumber())) {
                 throw new InputException(this, "Phone number already exited");
             }
-            WorkerUtils.runAsync(() -> {
-                if (StringUtils.isNotBlank(reader.getAvatar())) {
-                    String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
-                    reader.setAvatar(savedImage);
-                }
-                readerRepo.save(reader);
-            });
+            if (StringUtils.isNotBlank(reader.getAvatar())) {
+                String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
+                reader.setAvatar(savedImage);
+            }
+            readerRepo.save(reader);
             readerTablePane.clearSearch();
             readerTablePane.addRow(0, reader);
             readerTablePane.setSelectedRow(0);

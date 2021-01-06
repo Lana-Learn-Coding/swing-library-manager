@@ -99,13 +99,11 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         Book book = getModelFromForm();
         if (!bookTablePane.isAnyRowSelected()) {
             book.setMeta(bookMetaModel);
-            WorkerUtils.runAsync(() -> {
-                if (StringUtils.isNotBlank(book.getImage())) {
-                    String savedImage = fileStorage.loadFileToStorage(book.getImage());
-                    book.setImage(savedImage);
-                }
-                bookRepo.save(book);
-            });
+            if (StringUtils.isNotBlank(book.getImage())) {
+                String savedImage = fileStorage.loadFileToStorage(book.getImage());
+                book.setImage(savedImage);
+            }
+            bookRepo.save(book);
             bookMetaModel.getBooks().add(book);
             bookTablePane.addRow(0, book);
             bookTablePane.clearSearch();
@@ -119,13 +117,11 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         updated.setNote(book.getNote());
         updated.setCondition(book.getCondition());
         updated.setPosition(book.getPosition());
-        WorkerUtils.runAsync(() -> {
-            if (StringUtils.isNotBlank(book.getImage())) {
-                String savedImage = fileStorage.loadFileToStorage(book.getImage());
-                updated.setImage(savedImage);
-            }
-            bookRepo.save(updated);
-        });
+        if (StringUtils.isNotBlank(book.getImage())) {
+            String savedImage = fileStorage.loadFileToStorage(book.getImage());
+            updated.setImage(savedImage);
+        }
+        WorkerUtils.runAsync(() -> bookRepo.save(updated));
         JOptionPane.showMessageDialog(this, "Update success!");
         bookTablePane.refreshSelectedRow();
     }

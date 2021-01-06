@@ -134,14 +134,11 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
 
     private BookMeta createFromForm() {
         BookMeta bookMeta = getModelFromForm();
-
-        WorkerUtils.runAsync(() -> {
-            if (StringUtils.isNotBlank(bookMeta.getImage())) {
-                String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
-                bookMeta.setImage(savedImage);
-            }
-            bookMetaRepo.save(bookMeta);
-        });
+        if (StringUtils.isNotBlank(bookMeta.getImage())) {
+            String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
+            bookMeta.setImage(savedImage);
+        }
+        bookMetaRepo.save(bookMeta);
         return bookMeta;
     }
 
@@ -154,14 +151,12 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
         updated.setAuthor(bookMeta.getAuthor());
         updated.setCategory(bookMeta.getCategory());
         updated.setSeries(bookMeta.getSeries());
-        WorkerUtils.runAsync(() -> {
-            if (StringUtils.isNotBlank(bookMeta.getImage())) {
-                fileStorage.deleteFileFromStorage(updated.getImage());
-                String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
-                updated.setImage(savedImage);
-            }
-            bookMetaRepo.save(updated);
-        });
+        if (StringUtils.isNotBlank(bookMeta.getImage())) {
+            fileStorage.deleteFileFromStorage(updated.getImage());
+            String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
+            updated.setImage(savedImage);
+        }
+        WorkerUtils.runAsync(() -> bookMetaRepo.save(updated));
         return updated;
     }
 
