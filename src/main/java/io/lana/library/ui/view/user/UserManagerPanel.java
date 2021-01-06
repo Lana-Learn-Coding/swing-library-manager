@@ -105,7 +105,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         }
 
         User updated = userTablePane.getSelectedRow();
-        if (!StringUtils.isNotBlank(user.getEmail())
+        if (StringUtils.isNotBlank(user.getEmail())
             && user.getEmail().equals(updated.getEmail())
             && existsByEmail(user.getEmail())) {
             throw new InputException(this, "Email already exited");
