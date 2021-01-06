@@ -57,7 +57,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 3
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtLimit"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 4
@@ -78,7 +78,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 1
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtName"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
@@ -91,7 +91,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 2
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtEmail"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
@@ -104,7 +104,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 3
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtPhone"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1

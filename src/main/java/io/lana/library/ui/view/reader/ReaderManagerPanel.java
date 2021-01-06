@@ -11,6 +11,7 @@ import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.ReaderTablePane;
 import io.lana.library.ui.component.app.ImagePicker;
 import io.lana.library.ui.component.app.ImageViewer;
+import io.lana.library.ui.component.app.TextField;
 import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.utils.DateFormatUtils;
 import io.lana.library.utils.WorkerUtils;
@@ -136,8 +137,8 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         }
 
         Reader updated = readerTablePane.getSelectedRow();
-        if (!reader.getEmail().equals(updated.getEmail())
-            && StringUtils.isNotBlank(reader.getEmail())
+        if (StringUtils.isNotBlank(reader.getEmail()) &&
+            !reader.getEmail().equals(updated.getEmail())
             && existsByEmail(reader.getEmail())) {
             throw new InputException(this, "Email already exited");
         }
@@ -212,8 +213,8 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         reader.setEmail(txtEmail.getText());
         reader.setAvatar(imageViewer.getImagePath());
         reader.setGender(radioMale.isSelected());
-        reader.setPhoneNumber(txtPhone.getText().trim());
-        reader.setName(txtName.getText().trim());
+        reader.setPhoneNumber(txtPhone.getText());
+        reader.setName(txtName.getText());
         try {
             reader.setLimit(Integer.parseInt(txtLimit.getText()));
             if (reader.getLimit() < -1) {
@@ -302,15 +303,15 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         lblID = new JLabel();
         txtID = new JTextField();
         lblLimit = new JLabel();
-        txtLimit = new JTextField();
+        txtLimit = new TextField();
         panelImage = new JPanel();
         imageViewer = new ImageViewer();
         lblName = new JLabel();
-        txtName = new JTextField();
+        txtName = new TextField();
         lblEmail = new JLabel();
-        txtEmail = new JTextField();
+        txtEmail = new TextField();
         lblPhone = new JLabel();
-        txtPhone = new JTextField();
+        txtPhone = new TextField();
         lblGender = new JLabel();
         radioMale = new JRadioButton();
         radioFemale = new JRadioButton();
@@ -578,15 +579,15 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private JLabel lblID;
     private JTextField txtID;
     private JLabel lblLimit;
-    private JTextField txtLimit;
+    private TextField txtLimit;
     private JPanel panelImage;
     private ImageViewer imageViewer;
     private JLabel lblName;
-    private JTextField txtName;
+    private TextField txtName;
     private JLabel lblEmail;
-    private JTextField txtEmail;
+    private TextField txtEmail;
     private JLabel lblPhone;
-    private JTextField txtPhone;
+    private TextField txtPhone;
     private JLabel lblGender;
     private JRadioButton radioMale;
     private JRadioButton radioFemale;

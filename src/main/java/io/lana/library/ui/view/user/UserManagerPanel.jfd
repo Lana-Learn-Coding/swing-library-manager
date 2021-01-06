@@ -53,7 +53,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 1
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtUserName"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
@@ -126,7 +126,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 4
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtPhone"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
@@ -139,7 +139,7 @@ new FormModel {
 								"gridy": 4
 								"gridx": 3
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtEmail"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 4
@@ -151,7 +151,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 5
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 								name: "txtName"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
@@ -160,7 +160,7 @@ new FormModel {
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 							"$horizontalGroup": "par l {comp btnDelete::::90:x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnClone::l:::x}"
-							"$verticalGroup": "par l {seq t {space ::119:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+							"$verticalGroup": "par l {seq t {space ::136:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 						} ) {
 							name: "actionPanel"
 							"border": sfield com.jformdesigner.model.FormObject NULL_VALUE

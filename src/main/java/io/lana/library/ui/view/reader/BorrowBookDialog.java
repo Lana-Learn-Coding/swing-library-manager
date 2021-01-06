@@ -13,6 +13,7 @@ import io.lana.library.core.spi.FileStorage;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BorrowBookTablePane;
 import io.lana.library.ui.component.app.ImageViewer;
+import io.lana.library.ui.component.app.TextField;
 import io.lana.library.utils.DateFormatUtils;
 import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -217,7 +218,7 @@ public class BorrowBookDialog extends JDialog {
         label8 = new JLabel();
         txtDueDate = new JXDatePicker();
         label6 = new JLabel();
-        txtBookIds = new JTextField();
+        txtBookIds = new TextField();
         panel2 = new JPanel();
         btnAdd = new JButton();
         btnDel = new JButton();
@@ -476,7 +477,7 @@ public class BorrowBookDialog extends JDialog {
     private JLabel label8;
     private JXDatePicker txtDueDate;
     private JLabel label6;
-    private JTextField txtBookIds;
+    private TextField txtBookIds;
     private JPanel panel2;
     private JButton btnAdd;
     private JButton btnDel;

@@ -139,7 +139,7 @@ new FormModel {
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridy": 6
 						} )
-						add( new FormComponent( "javax.swing.JTextField" ) {
+						add( new FormComponent( "io.lana.library.ui.component.app.TextField" ) {
 							name: "txtBookIds"
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridx": 1

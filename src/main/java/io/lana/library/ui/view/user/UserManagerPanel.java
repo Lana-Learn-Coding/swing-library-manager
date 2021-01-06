@@ -12,6 +12,7 @@ import io.lana.library.ui.InputException;
 import io.lana.library.ui.UIException;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.component.UserTablePane;
+import io.lana.library.ui.component.app.TextField;
 import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -104,8 +105,8 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         }
 
         User updated = userTablePane.getSelectedRow();
-        if (!user.getEmail().equals(updated.getEmail())
-            && StringUtils.isNotBlank(user.getEmail())
+        if (!StringUtils.isNotBlank(user.getEmail())
+            && user.getEmail().equals(updated.getEmail())
             && existsByEmail(user.getEmail())) {
             throw new InputException(this, "Email already exited");
         }
@@ -113,8 +114,8 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
             && existsByUsername(user.getUsername())) {
             throw new InputException(this, "Username already exited");
         }
-        if (!user.getPhoneNumber().equals(updated.getPhoneNumber())
-            && StringUtils.isNotBlank(user.getPhoneNumber())
+        if (StringUtils.isNotBlank(user.getPhoneNumber()) &&
+            !user.getPhoneNumber().equals(updated.getPhoneNumber())
             && existsByPhoneNumber(user.getPhoneNumber())) {
             throw new InputException(this, "Phone number already exited");
         }
@@ -160,7 +161,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     @Override
     public void loadModelToForm(User model) {
         txtID.setText(model.getIdString());
-        txtUserName.setText(model.getName());
+        txtUserName.setText(model.getUsername());
         txtPassword.setText("");
         txtName.setText(model.getName());
         txtEmail.setText(model.getEmail());
@@ -175,8 +176,8 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     public User getModelFromForm() {
         User user = new User();
         user.setEmail(txtEmail.getText());
-        user.setPhoneNumber(txtPhone.getText().trim());
-        user.setName(txtName.getText().trim());
+        user.setPhoneNumber(txtPhone.getText());
+        user.setName(txtName.getText());
         user.setUsername(txtUserName.getText());
         user.setPassword(String.valueOf(txtPassword.getPassword()));
         Set<Permission> permissions = new HashSet<>();
@@ -252,7 +253,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         lblID = new JLabel();
         txtID = new JTextField();
         label2 = new JLabel();
-        txtUserName = new JTextField();
+        txtUserName = new TextField();
         lblPassword = new JLabel();
         txtPassword = new JPasswordField();
         label3 = new JLabel();
@@ -263,11 +264,11 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         checkBorrowManage = new JCheckBox();
         separator1 = new JSeparator();
         lblPhone = new JLabel();
-        txtPhone = new JTextField();
+        txtPhone = new TextField();
         lblEmail = new JLabel();
-        txtEmail = new JTextField();
+        txtEmail = new TextField();
         lblName = new JLabel();
-        txtName = new JTextField();
+        txtName = new TextField();
         actionPanel = new JPanel();
         btnDelete = new JButton();
         btnClear = new JButton();
@@ -447,7 +448,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                         actionPanelLayout.setVerticalGroup(
                             actionPanelLayout.createParallelGroup()
                                 .addGroup(GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
-                                    .addContainerGap(119, Short.MAX_VALUE)
+                                    .addContainerGap(136, Short.MAX_VALUE)
                                     .addComponent(btnClone)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSave)
@@ -502,7 +503,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     private JLabel lblID;
     private JTextField txtID;
     private JLabel label2;
-    private JTextField txtUserName;
+    private TextField txtUserName;
     private JLabel lblPassword;
     private JPasswordField txtPassword;
     private JLabel label3;
@@ -513,11 +514,11 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     private JCheckBox checkBorrowManage;
     private JSeparator separator1;
     private JLabel lblPhone;
-    private JTextField txtPhone;
+    private TextField txtPhone;
     private JLabel lblEmail;
-    private JTextField txtEmail;
+    private TextField txtEmail;
     private JLabel lblName;
-    private JTextField txtName;
+    private TextField txtName;
     private JPanel actionPanel;
     private JButton btnDelete;
     private JButton btnClear;
