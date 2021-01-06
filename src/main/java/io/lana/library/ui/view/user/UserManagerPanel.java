@@ -187,17 +187,11 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         tab = new JTabbedPane();
-        panelReaderManage = new JPanel();
+        panelUserManage = new JPanel();
         actionFormPanel = new JPanel();
         formPanel = new JPanel();
         lblID = new JLabel();
         txtID = new JTextField();
-        lblName = new JLabel();
-        txtName = new JTextField();
-        lblEmail = new JLabel();
-        txtEmail = new JTextField();
-        lblPhone = new JLabel();
-        txtPhone = new JTextField();
         label2 = new JLabel();
         textField1 = new JTextField();
         lblPassword = new JLabel();
@@ -207,6 +201,13 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         lblAddress = new JLabel();
         scrollPane1 = new JScrollPane();
         list1 = new JList();
+        separator1 = new JSeparator();
+        lblPhone = new JLabel();
+        txtPhone = new JTextField();
+        lblEmail = new JLabel();
+        txtEmail = new JTextField();
+        lblName = new JLabel();
+        txtName = new JTextField();
         actionPanel = new JPanel();
         btnDelete = new JButton();
         btnClear = new JButton();
@@ -220,9 +221,9 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         //======== tab ========
         {
 
-            //======== panelReaderManage ========
+            //======== panelUserManage ========
             {
-                panelReaderManage.setBorder(null);
+                panelUserManage.setBorder(null);
 
                 //======== actionFormPanel ========
                 {
@@ -238,93 +239,96 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                     //======== formPanel ========
                     {
                         formPanel.setBorder(new CompoundBorder(
-                            new TitledBorder("Reader Info"),
+                            new TitledBorder("User Info"),
                             new EmptyBorder(15, 15, 20, 15)));
                         formPanel.setLayout(new GridBagLayout());
-                        ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 115, 0, 0};
-                        ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-                        ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 0.0, 1.0, 1.0E-4};
-                        ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                        ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 215, 0, 0, 200, 0};
+                        ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 50, 25, 0, 0, 0};
+                        ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0E-4};
+                        ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                         //---- lblID ----
                         lblID.setText("ID");
                         formPanel.add(lblID, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
+                            new Insets(0, 0, 20, 15), 0, 0));
 
                         //---- txtID ----
                         txtID.setEditable(false);
                         formPanel.add(txtID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
-
-                        //---- lblName ----
-                        lblName.setText("Name");
-                        formPanel.add(lblName, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
-                        formPanel.add(txtName, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 0), 0, 0));
-
-                        //---- lblEmail ----
-                        lblEmail.setText("Email");
-                        formPanel.add(lblEmail, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
-                        formPanel.add(txtEmail, new GridBagConstraints(1, 2, 2, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 0), 0, 0));
-
-                        //---- lblPhone ----
-                        lblPhone.setText("Phone");
-                        formPanel.add(lblPhone, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
-                        formPanel.add(txtPhone, new GridBagConstraints(1, 3, 2, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 0), 0, 0));
+                            new Insets(0, 0, 20, 15), 0, 0));
 
                         //---- label2 ----
                         label2.setText("Username");
-                        formPanel.add(label2, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
+                        formPanel.add(label2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
-                        formPanel.add(textField1, new GridBagConstraints(1, 4, 2, 1, 0.0, 0.0,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(textField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 0), 0, 0));
+                            new Insets(0, 0, 20, 15), 0, 0));
 
                         //---- lblPassword ----
                         lblPassword.setText("Password");
-                        formPanel.add(lblPassword, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+                        formPanel.add(lblPassword, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
-                        formPanel.add(passwordField1, new GridBagConstraints(1, 5, 2, 1, 0.0, 0.0,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(passwordField1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 0), 0, 0));
+                            new Insets(0, 0, 20, 15), 0, 0));
 
                         //---- label1 ----
                         label1.setText("Confirm");
-                        formPanel.add(label1, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+                        formPanel.add(label1, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
-                        formPanel.add(txtConfirmPassword, new GridBagConstraints(1, 6, 2, 1, 0.0, 0.0,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtConfirmPassword, new GridBagConstraints(4, 2, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 0), 0, 0));
+                            new Insets(0, 0, 20, 0), 0, 0));
 
                         //---- lblAddress ----
                         lblAddress.setText("Permissions");
-                        formPanel.add(lblAddress, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+                        formPanel.add(lblAddress, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 15, 15), 0, 0));
+                            new Insets(0, 0, 20, 15), 0, 0));
 
                         //======== scrollPane1 ========
                         {
                             scrollPane1.setViewportView(list1);
                         }
-                        formPanel.add(scrollPane1, new GridBagConstraints(1, 7, 2, 2, 0.0, 0.0,
+                        formPanel.add(scrollPane1, new GridBagConstraints(1, 3, 1, 2, 0.0, 0.0,
                             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 0), 0, 0));
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(separator1, new GridBagConstraints(0, 5, 5, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 0), 0, 0));
+
+                        //---- lblPhone ----
+                        lblPhone.setText("Phone");
+                        formPanel.add(lblPhone, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtPhone, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+
+                        //---- lblEmail ----
+                        lblEmail.setText("Email");
+                        formPanel.add(lblEmail, new GridBagConstraints(3, 6, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 15), 0, 0));
+                        formPanel.add(txtEmail, new GridBagConstraints(4, 6, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 20, 0), 0, 0));
+
+                        //---- lblName ----
+                        lblName.setText("Name");
+                        formPanel.add(lblName, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 0, 15), 0, 0));
+                        formPanel.add(txtName, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,
+                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                            new Insets(0, 0, 0, 15), 0, 0));
                     }
                     actionFormPanel.add(formPanel, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -364,7 +368,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                         actionPanelLayout.setVerticalGroup(
                             actionPanelLayout.createParallelGroup()
                                 .addGroup(GroupLayout.Alignment.TRAILING, actionPanelLayout.createSequentialGroup()
-                                    .addContainerGap(206, Short.MAX_VALUE)
+                                    .addContainerGap(220, Short.MAX_VALUE)
                                     .addComponent(btnClone)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSave)
@@ -379,22 +383,22 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
                         new Insets(0, 0, 0, 0), 0, 0));
                 }
 
-                GroupLayout panelReaderManageLayout = new GroupLayout(panelReaderManage);
-                panelReaderManage.setLayout(panelReaderManageLayout);
-                panelReaderManageLayout.setHorizontalGroup(
-                    panelReaderManageLayout.createParallelGroup()
-                        .addComponent(actionFormPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                GroupLayout panelUserManageLayout = new GroupLayout(panelUserManage);
+                panelUserManage.setLayout(panelUserManageLayout);
+                panelUserManageLayout.setHorizontalGroup(
+                    panelUserManageLayout.createParallelGroup()
+                        .addComponent(actionFormPanel, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                         .addComponent(userTablePane, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                 );
-                panelReaderManageLayout.setVerticalGroup(
-                    panelReaderManageLayout.createParallelGroup()
-                        .addGroup(panelReaderManageLayout.createSequentialGroup()
-                            .addComponent(actionFormPanel, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
+                panelUserManageLayout.setVerticalGroup(
+                    panelUserManageLayout.createParallelGroup()
+                        .addGroup(panelUserManageLayout.createSequentialGroup()
+                            .addComponent(actionFormPanel, GroupLayout.PREFERRED_SIZE, 398, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(userTablePane, GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                            .addComponent(userTablePane, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
                 );
             }
-            tab.addTab("Reader Manage", panelReaderManage);
+            tab.addTab("User Manage", panelUserManage);
         }
 
         GroupLayout layout = new GroupLayout(this);
@@ -405,24 +409,20 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
-                .addComponent(tab)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(tab, GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                    .addContainerGap())
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JTabbedPane tab;
-    private JPanel panelReaderManage;
+    private JPanel panelUserManage;
     private JPanel actionFormPanel;
     private JPanel formPanel;
     private JLabel lblID;
     private JTextField txtID;
-    private JLabel lblName;
-    private JTextField txtName;
-    private JLabel lblEmail;
-    private JTextField txtEmail;
-    private JLabel lblPhone;
-    private JTextField txtPhone;
     private JLabel label2;
     private JTextField textField1;
     private JLabel lblPassword;
@@ -432,6 +432,13 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     private JLabel lblAddress;
     private JScrollPane scrollPane1;
     private JList list1;
+    private JSeparator separator1;
+    private JLabel lblPhone;
+    private JTextField txtPhone;
+    private JLabel lblEmail;
+    private JTextField txtEmail;
+    private JLabel lblName;
+    private JTextField txtName;
     private JPanel actionPanel;
     private JButton btnDelete;
     private JButton btnClear;
