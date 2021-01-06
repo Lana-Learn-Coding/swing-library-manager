@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {comp mainTabbedPane:::p:759:p, comp bookMetaTablePane:::p:759:p}, space :::p}}"
-			"$verticalGroup": "par l {seq {comp mainTabbedPane:::p::p, space :p:20:p, comp bookMetaTablePane::::253:x}}"
+			"$horizontalGroup": "par l {comp mainTabbedPane::::770:x, comp bookMetaTablePane::l::770:x}"
+			"$verticalGroup": "par l {seq {comp mainTabbedPane:::p::p, space :p:20:p, comp bookMetaTablePane::::243:x}}"
 		} ) {
 			name: "this"
 			"border": new javax.swing.border.EmptyBorder( 0, 10, 0, 10 )
@@ -162,7 +162,7 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {comp btnClone::l:::x, comp btnViewBooks::l:::x, comp btnSave::l:::x, comp btnClear:::::x, comp btnDelete::l:::x, comp btnFilter::l:::x}"
-						"$verticalGroup": "par l {seq l {space :::p, comp btnFilter:::p::p, space ::74:x, comp btnClone:::p::p, space s:::p, comp btnViewBooks:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp btnFilter:::p::p, space ::69:x, comp btnClone:::p::p, space s:::p, comp btnViewBooks:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 					} ) {
 						name: "actionPanel"
 						add( new FormComponent( "javax.swing.JButton" ) {

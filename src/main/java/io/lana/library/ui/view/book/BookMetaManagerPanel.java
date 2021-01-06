@@ -516,7 +516,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
                             .addGroup(actionPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnFilter)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                                 .addComponent(btnClone)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnViewBooks)
@@ -542,18 +542,15 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup()
-                        .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 759, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(bookMetaTablePane, GroupLayout.PREFERRED_SIZE, 759, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap())
+                .addComponent(mainTabbedPane, GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(20, 20, 20)
-                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                    .addComponent(bookMetaTablePane, GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
