@@ -66,11 +66,11 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         progress.setValue(40);
 
         loadingText.setText("Loading Book...");
-        readerMetaManagePanel.renderTable();
+        bookMetaManagePanel.renderTable();
         progress.setValue(70);
 
         loadingText.setText("Loading Reader...");
-        bookMetaManagePanel.renderTable();
+        readerMetaManagePanel.renderTable();
         progress.setValue(95);
 
         loadingText.setText("Getting Ready...");
