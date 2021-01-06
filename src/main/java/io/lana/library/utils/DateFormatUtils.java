@@ -64,4 +64,13 @@ public class DateFormatUtils {
         }
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
+
+    public static Date toDate(LocalDate date) {
+        if (date == null) {
+            return null;
+        }
+        return Date.from(date.atStartOfDay()
+            .atZone(ZoneId.systemDefault())
+            .toInstant());
+    }
 }

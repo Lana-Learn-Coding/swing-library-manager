@@ -18,6 +18,7 @@ import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.utils.DateFormatUtils;
 import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jdesktop.swingx.JXDatePicker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Date;
 
 @Component
 public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
@@ -79,6 +81,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
             btnBorrow.setVisible(canHandleBorrow);
             btnViewBorrowed.setVisible(canHandleBorrow);
         }
+        txtDate.setFormats(DateFormatUtils.COMMON_DATE_FORMAT);
         super.setVisible(aFlag);
     }
 
@@ -188,7 +191,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     @Override
     public void clearForm() {
         txtID.setText("");
-        txtDate.setText("");
+        txtDate.setDate(null);
         txtEmail.setText("");
         txtLimit.setText("");
         txtName.setText("");
@@ -206,7 +209,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         txtEmail.setText(model.getEmail());
         txtPhone.setText(model.getPhoneNumber());
         txtLimit.setText(model.getLimit().toString());
-        txtDate.setText(DateFormatUtils.toDateStringWithDefaultUnknown(model.getBirth()));
+        txtDate.setDate(DateFormatUtils.toDate(model.getBirth()));
         txtAddress.setText(model.getAddress());
         genderButtonGroup.setSelected(radioMale.getModel(), model.getGender());
         genderButtonGroup.setSelected(radioFemale.getModel(), !model.getGender());
@@ -240,10 +243,13 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
             throw new InputException(this, "Limit is required and must a number");
         }
 
-        try {
-            reader.setBirth(LocalDate.parse(txtDate.getText(), DateFormatUtils.COMMON_DATE_FORMATTER));
-        } catch (Exception e) {
+        Date date = txtDate.getDate();
+        if (date == null) {
             throw new InputException(this, "Birthdate is required and must follow format yyyy-MM-dd");
+        }
+        reader.setBirth(DateFormatUtils.toLocalDate(date));
+        if (reader.getBirth().isAfter(LocalDate.now())) {
+            throw new InputException(this, "Are you from the future ?");
         }
 
         if (StringUtils.isBlank(reader.getPhoneNumber()) ||
@@ -332,7 +338,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         radioMale = new JRadioButton();
         radioFemale = new JRadioButton();
         lblBirth = new JLabel();
-        txtDate = new JTextField();
+        txtDate = new JXDatePicker();
         btnSelectAvatar = new JButton();
         lblAddress = new JLabel();
         scrollPane1 = new JScrollPane();
@@ -608,7 +614,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private JRadioButton radioMale;
     private JRadioButton radioFemale;
     private JLabel lblBirth;
-    private JTextField txtDate;
+    private JXDatePicker txtDate;
     private JButton btnSelectAvatar;
     private JLabel lblAddress;
     private JScrollPane scrollPane1;

@@ -137,7 +137,7 @@ new FormModel {
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 5
 							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
+							add( new FormComponent( "org.jdesktop.swingx.JXDatePicker" ) {
 								name: "txtDate"
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridx": 1
