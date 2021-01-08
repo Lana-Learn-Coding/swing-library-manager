@@ -153,6 +153,7 @@ public class BorrowBookDialog extends JDialog {
         if (checkResotreFilter.isSelected()) {
             txtBookIds.setText(StringUtils.join(bookIds, ", "));
         }
+        JOptionPane.showMessageDialog(this, "Added " + books.size() + " to borrow list");
     }
 
     private void btnDelActionPerformed(ActionEvent e) {
@@ -177,6 +178,7 @@ public class BorrowBookDialog extends JDialog {
         if (checkResotreFilter.isSelected()) {
             txtBookIds.setText(StringUtils.join(ids, ", "));
         }
+        JOptionPane.showMessageDialog(this, "Removed " + indexToRemoves.size() + " from borrow list");
     }
 
     private List<Integer> getIdsFromFilter() {
