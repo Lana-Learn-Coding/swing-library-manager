@@ -182,12 +182,10 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         return book;
     }
 
-    @Override
     public void renderTable(Collection<Book> data) {
         bookTablePane.setTableData(data);
     }
 
-    @Override
     public void renderTable() {
         if (bookMetaModel == null) {
             renderTable(new ArrayList<>());

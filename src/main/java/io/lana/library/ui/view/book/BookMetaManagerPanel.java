@@ -217,12 +217,10 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
         return bookMeta;
     }
 
-    @Override
     public void renderTable(Collection<BookMeta> books) {
         bookMetaTablePane.setTableData(books);
     }
 
-    @Override
     public void renderTable() {
         renderTable(bookMetaRepo.findAllByOrderByUpdatedAtDesc());
     }

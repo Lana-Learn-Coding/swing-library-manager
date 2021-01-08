@@ -215,12 +215,10 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         return user;
     }
 
-    @Override
     public void renderTable(Collection<User> data) {
         userTablePane.setTableData(data);
     }
 
-    @Override
     public void renderTable() {
         renderTable(userRepo.findAllByOrderByUpdatedAtDesc());
     }
