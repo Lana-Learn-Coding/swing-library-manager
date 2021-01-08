@@ -5,8 +5,12 @@
 package io.lana.library.ui.view.app;
 
 import io.lana.library.core.model.Reader;
+import io.lana.library.core.model.book.Book;
+import io.lana.library.core.model.book.BookBorrowing;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.user.User;
+import io.lana.library.core.spi.BookMetaRepo;
+import io.lana.library.core.spi.ReaderRepo;
 import io.lana.library.core.spi.UserRepo;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.MainFrameContainer;
@@ -21,7 +25,12 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class InitPanel extends JPanel implements MainFrameContainer {
@@ -49,13 +58,19 @@ public class InitPanel extends JPanel implements MainFrameContainer {
 
         progress.setValue(5);
         loadingText.setText("Initializing...");
+        UserRepo userRepo = applicationContext.getBean(UserRepo.class);
+        BookMetaRepo bookMetaRepo = applicationContext.getBean(BookMetaRepo.class);
+        ReaderRepo readerRepo = applicationContext.getBean(ReaderRepo.class);
         CrudPanel<BookMeta> bookMetaManagePanel = applicationContext.getBean(BookMetaManagerPanel.class);
         CrudPanel<Reader> readerMetaManagePanel = applicationContext.getBean(ReaderManagerPanel.class);
         CrudPanel<User> userCrudPanel = applicationContext.getBean(UserManagerPanel.class);
         progress.setValue(20);
 
         loadingText.setText("Loading User...");
-        List<User> users = applicationContext.getBean(UserRepo.class).findAllByOrderByUpdatedAtDesc();
+        List<User> users = userRepo.findAllByOrderByUpdatedAtDesc();
+        progress.setValue(30);
+
+        loadingText.setText("Syncing User...");
         boolean userSynced = syncUser(users);
         if (!userSynced) {
             JOptionPane.showMessageDialog(this, "User sync failed, please login again");
@@ -66,12 +81,35 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         progress.setValue(40);
 
         loadingText.setText("Loading Book...");
-        bookMetaManagePanel.renderTable();
+        List<BookMeta> bookMetas = bookMetaRepo.findAllByOrderByUpdatedAtDesc();
+        bookMetaManagePanel.renderTable(bookMetas);
         progress.setValue(70);
 
         loadingText.setText("Loading Reader...");
-        readerMetaManagePanel.renderTable();
-        progress.setValue(95);
+        // we need somehow lazy load the reader borrowing list, and set it by hand
+        Map<Integer, Reader> readers = readerRepo.findAllByOrderByUpdatedAtDesc()
+            .stream().collect(Collectors.toMap(Reader::getId, Function.identity()));
+        readers.values().forEach(reader -> reader.setBorrowedBooks(new HashSet<>()));
+        progress.setValue(85);
+
+        loadingText.setText("Syncing Reader...");
+        Set<BookBorrowing> tickets = bookMetas.stream()
+            .flatMap(bookMeta -> bookMeta.getBooks().stream())
+            .filter(Book::isBorrowed)
+            .map(Book::getBorrowing)
+            .collect(Collectors.toSet());
+        tickets.forEach(ticket -> {
+            Reader reader = ticket.getBorrower();
+            Reader loadedReader = readers.get(reader.getId());
+            if (loadedReader == null) {
+                readers.put(reader.getId(), reader);
+                return;
+            }
+            ticket.setBorrower(loadedReader);
+            loadedReader.getBorrowedBooks().add(ticket);
+        });
+        readerMetaManagePanel.renderTable(readers.values());
+        progress.setValue(92);
 
         loadingText.setText("Getting Ready...");
         applicationContext.getBean(MainPanel.class);
