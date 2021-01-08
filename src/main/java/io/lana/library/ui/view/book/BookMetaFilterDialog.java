@@ -108,6 +108,9 @@ public class BookMetaFilterDialog extends JDialog implements FormPanel<BookMeta>
         if (StringUtils.isNotBlank(txtTitle.getText())) {
             filters.add(RowFilter.regexFilter(txtTitle.getText(), 1));
         }
+        if (selectCategory.getSelectedItem() != null) {
+            filters.add(RowFilter.regexFilter(selectCategory.getSelectedItem().getName(), 5));
+        }
         if (StringUtils.isNotBlank(txtYear.getText())) {
             try {
                 RowFilter.ComparisonType comparisonType = (RowFilter.ComparisonType) selectYearComparsion.getSelectedItem();
