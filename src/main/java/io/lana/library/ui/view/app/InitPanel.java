@@ -105,7 +105,7 @@ public class InitPanel extends JPanel implements MainFrameContainer {
             ticket.setBorrower(loadedReader);
             loadedReader.getBorrowedBooks().add(ticket);
         });
-        progress.setValue(85);
+        progress.setValue(88);
 
         loadingText.setText("Processing data ...");
         applicationContext.getBean(BookBorrowingDataCenter.class).load(tickets);
@@ -113,13 +113,12 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         applicationContext.getBean(BookDataCenter.class).load(books);
         applicationContext.getBean(ReaderDataCenter.class).load(readers.values());
         applicationContext.getBean(ReaderManagerPanel.class);
-        progress.setValue(92);
+        progress.setValue(100);
 
         loadingText.setText("Getting Ready...");
         applicationContext.getBean(MainPanel.class);
         applicationContext.getBean(BookMetaManagerPanel.class).renderTable(bookMetas);
         applicationContext.getBean(UserManagerPanel.class).renderTable(users);
-        progress.setValue(100);
 
         delay(1000);
         mainFrame.switchContentPane(MainPanel.class);
