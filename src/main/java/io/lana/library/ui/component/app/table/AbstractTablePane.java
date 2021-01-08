@@ -94,6 +94,7 @@ public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T>
 
     public void setSelectedRow(int index) {
         table.setRowSelectionInterval(index, index);
+        scrollToSelected();
     }
 
     protected void onSearch() {
@@ -138,6 +139,15 @@ public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T>
         table.setEnabled(!isLoading);
         btnSearch.setEnabled(!isLoading);
         progressBar.setIndeterminate(isLoading);
+    }
+
+    protected void scrollToSelected() {
+        Rectangle cellRectangle = table.getCellRect(table.getSelectedRow(), 0, true);
+        Rectangle visibleRectangle = scrollPane.getVisibleRect();
+        SwingUtilities.invokeLater(() -> {
+            table.scrollRectToVisible(new Rectangle(cellRectangle.x, cellRectangle.y, (int) visibleRectangle.getWidth(),
+                (int) visibleRectangle.getHeight()));
+        });
     }
 
     public abstract void refresh();

@@ -22,7 +22,7 @@ public abstract class AbstractRepoBasedTablePane<T extends Identified<?>> extend
             if (isAnyRowSelected()) {
                 int selectedRow = table.convertRowIndexToModel(table.getSelectedRow());
                 refreshRow(row);
-                setSelectedRow(selectedRow);
+                setSelectedRow(table.convertRowIndexToView(selectedRow));
                 return;
             }
             refreshRow(row);
