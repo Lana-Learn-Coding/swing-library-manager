@@ -8,11 +8,6 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class ReaderBorrowedBookTablePane extends AbstractListBasedTablePane<Book> {
-    public ReaderBorrowedBookTablePane() {
-        super();
-        tableRowSorter.toggleSortOrder(6);
-    }
-
     @Override
     protected TableColumnMapping<Book> getTableColumnMapping() {
         TableColumnMapping<Book> mapping = new TableColumnMapping<>();
