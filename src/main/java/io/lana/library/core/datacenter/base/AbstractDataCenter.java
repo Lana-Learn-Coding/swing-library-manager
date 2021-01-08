@@ -15,12 +15,12 @@ public abstract class AbstractDataCenter<T> implements DataCenter<T> {
 
     @Override
     public Flux<T> onSave() {
-        return savedSink.asFlux();
+        return saveSink.asFlux();
     }
 
     @Override
     public Flux<T> onSaved() {
-        return saveSink.asFlux();
+        return savedSink.asFlux();
     }
 
     @Override
