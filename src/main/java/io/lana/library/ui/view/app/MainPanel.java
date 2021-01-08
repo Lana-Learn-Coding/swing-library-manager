@@ -5,6 +5,7 @@ import io.lana.library.core.model.user.User;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
+import io.lana.library.ui.view.borrowing.BorrowingTicketManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
 import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +24,18 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         BOOK_MANAGE,
         READER_MANAGE,
         USER_MANAGE,
+        BORROWING_MANAGE,
     }
 
     @Autowired
     public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel,
-                     UserManagerPanel userManagerPanel, UserContext userContext) {
+                     UserManagerPanel userManagerPanel, UserContext userContext, BorrowingTicketManagerPanel borrowingTicketManagerPanel) {
         initComponents();
         this.userContext = userContext;
         mainPanel.add(Views.BOOK_MANAGE.name(), bookMetaManagerPanel);
         mainPanel.add(Views.READER_MANAGE.name(), readerManagerPanel);
         mainPanel.add(Views.USER_MANAGE.name(), userManagerPanel);
+        mainPanel.add(Views.BORROWING_MANAGE.name(), borrowingTicketManagerPanel);
     }
 
     @Override
@@ -66,6 +69,10 @@ public class MainPanel extends JPanel implements MainFrameContainer {
 
     private void btnUserManageActionPerformed(ActionEvent e) {
         showView(Views.USER_MANAGE);
+    }
+
+    private void btnBorrowTicketActionPerformed(ActionEvent e) {
+        showView(Views.BORROWING_MANAGE);
     }
 
     private void initComponents() {
@@ -119,6 +126,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             btnBorrowTicket.setText("Borrow Ticket");
             btnBorrowTicket.setFocusable(false);
             btnBorrowTicket.setFocusPainted(false);
+            btnBorrowTicket.addActionListener(e -> btnBorrowTicketActionPerformed(e));
             menuPanel.add(btnBorrowTicket, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
