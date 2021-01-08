@@ -17,6 +17,8 @@ public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T>
 
     protected final JTextField search = new JTextField();
     protected final JScrollPane scrollPane = new JScrollPane();
+    protected final JProgressBar progressBar = new JProgressBar();
+    protected final JButton btnSearch = new JButton();
     protected final JTable table;
 
     protected final TableColumnMapping<T> tableColumnMapping;
@@ -39,7 +41,6 @@ public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T>
     }
 
     public void initComponents() {
-        JButton btnSearch = new JButton();
         btnSearch.setText("Search");
 
         search.addActionListener(e -> onSearch());
@@ -58,7 +59,7 @@ public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T>
         add(btnSearch, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 8, 0), 0, 0));
-        add(new JProgressBar(), new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
+        add(progressBar, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
             new Insets(0, 0, 5, 0), 0, 0));
         add(scrollPane, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0,
@@ -85,10 +86,12 @@ public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T>
     }
 
     public void refresh() {
+        setLoading(true);
         tableModel.setRowCount(0);
         data.forEach(model -> tableModel.addRow(toTableRow(model)));
         tableModel.fireTableDataChanged();
         clearFilter();
+        setLoading(false);
     }
 
     public void removeRow(int index) {
@@ -233,5 +236,12 @@ public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T>
 
     public Stream<T> stream() {
         return data.stream();
+    }
+
+    public void setLoading(boolean isLoading) {
+        search.setEnabled(!isLoading);
+        table.setEnabled(!isLoading);
+        btnSearch.setEnabled(!isLoading);
+        progressBar.setIndeterminate(isLoading);
     }
 }
