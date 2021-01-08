@@ -93,7 +93,7 @@ public class BorrowBookDialog extends JDialog {
     }
 
     private void okButtonActionPerformed(ActionEvent e) {
-        Integer addedBookCount = bookTablePane.getInternalData().size();
+        Integer addedBookCount = bookTablePane.rowCount();
         Integer totalBorrowedBook = addedBookCount + readerModel.getBorrowedBookCount();
         if (readerModel.getLimit() < totalBorrowedBook) {
             throw new InputException(this, "Borrowing book over limit " + totalBorrowedBook.toString()
@@ -111,7 +111,7 @@ public class BorrowBookDialog extends JDialog {
 
         bookBorrowing.setBorrowedDate(LocalDate.now());
         bookBorrowing.setNote(txtNote.getText());
-        bookBorrowing.setBooks(new HashSet<>(bookTablePane.getInternalData()));
+        bookBorrowing.setBooks(new HashSet<>(bookTablePane.asList()));
         bookBorrowing.getBooks().forEach(book -> book.setBorrowing(bookBorrowing));
         bookBorrowing.setBorrower(readerModel);
         bookBorrowingRepo.save(bookBorrowing);
@@ -127,7 +127,7 @@ public class BorrowBookDialog extends JDialog {
 
     private void btnAddActionPerformed(ActionEvent e) {
         List<Integer> ids = getIdsFromFilter();
-        bookTablePane.getInternalData().forEach(book -> {
+        bookTablePane.forEach(book -> {
             if (ids.contains(book.getId())) {
                 if (checkStrictFilter.isSelected()) {
                     throw new InputException(this, "Book already added: " + book.getId());
@@ -152,7 +152,7 @@ public class BorrowBookDialog extends JDialog {
     private void btnDelActionPerformed(ActionEvent e) {
         List<Integer> ids = getIdsFromFilter();
         List<Integer> indexToRemoves = new ArrayList<>();
-        List<Integer> tableBookIds = bookTablePane.getInternalData().stream()
+        List<Integer> tableBookIds = bookTablePane.stream()
             .map(Book::getId)
             .collect(Collectors.toList());
 

@@ -51,6 +51,7 @@ public class BorrowedBookListDialog extends JDialog {
             btnReturnTicket.setEnabled(true);
             btnRemoveBook.setEnabled(checkSafe.isSelected());
         });
+        checkSafe.addActionListener(e -> btnRemoveBook.setEnabled(checkSafe.isSelected() && borrowTablePane.isAnyRowSelected()));
     }
 
     @Autowired

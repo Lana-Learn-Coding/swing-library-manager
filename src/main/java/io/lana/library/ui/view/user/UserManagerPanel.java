@@ -133,15 +133,15 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     }
 
     private boolean existsByUsername(String username) {
-        return userTablePane.getInternalData().stream().anyMatch(user -> username.equals(user.getUsername()));
+        return userTablePane.stream().anyMatch(user -> username.equals(user.getUsername()));
     }
 
     private boolean existsByPhoneNumber(String phoneNumber) {
-        return userTablePane.getInternalData().stream().anyMatch(user -> phoneNumber.equals(user.getPhoneNumber()));
+        return userTablePane.stream().anyMatch(user -> phoneNumber.equals(user.getPhoneNumber()));
     }
 
     private boolean existsByEmail(String email) {
-        return userTablePane.getInternalData().stream().anyMatch(user -> email.equals(user.getEmail()));
+        return userTablePane.stream().anyMatch(user -> email.equals(user.getEmail()));
     }
 
     @Override

@@ -181,11 +181,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     }
 
     private boolean existsByPhoneNumber(String phoneNumber) {
-        return readerTablePane.getInternalData().stream().anyMatch(reader -> phoneNumber.equals(reader.getPhoneNumber()));
+        return readerTablePane.stream().anyMatch(reader -> phoneNumber.equals(reader.getPhoneNumber()));
     }
 
     private boolean existsByEmail(String email) {
-        return readerTablePane.getInternalData().stream().anyMatch(reader -> email.equals(reader.getEmail()));
+        return readerTablePane.stream().anyMatch(reader -> email.equals(reader.getEmail()));
     }
 
     @Override

@@ -7,12 +7,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Vector;
+import java.util.*;
+import java.util.stream.Stream;
 
-public abstract class AbstractTablePane<T> extends JPanel {
+public abstract class AbstractTablePane<T> extends JPanel implements Iterable<T> {
     protected final List<T> data = new ArrayList<>();
     protected RowFilter<Object, Object> filter;
 
@@ -90,11 +89,6 @@ public abstract class AbstractTablePane<T> extends JPanel {
         data.forEach(model -> tableModel.addRow(toTableRow(model)));
         tableModel.fireTableDataChanged();
         clearFilter();
-    }
-
-    public void refreshRow(T row) {
-        int index = data.indexOf(row);
-        refreshRow(index);
     }
 
     public void removeRow(int index) {
@@ -195,6 +189,13 @@ public abstract class AbstractTablePane<T> extends JPanel {
         tableModel.fireTableRowsUpdated(row, row);
     }
 
+    public void refreshRow(T row) {
+        int index = data.indexOf(row);
+        tableModel.removeRow(index);
+        tableModel.insertRow(index, toTableRow(row));
+        tableModel.fireTableRowsUpdated(index, index);
+    }
+
     private void applyFilter() {
         List<RowFilter<Object, Object>> rowFilters = new ArrayList<>();
         if (filter != null) {
@@ -213,7 +214,24 @@ public abstract class AbstractTablePane<T> extends JPanel {
         clearSelection();
     }
 
-    public List<T> getInternalData() {
-        return data;
+    public List<T> asList() {
+        return new ArrayList<>(data);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return data.iterator();
+    }
+
+    public int indexOf(T row) {
+        return table.convertRowIndexToView(data.indexOf(row));
+    }
+
+    public int rowCount() {
+        return data.size();
+    }
+
+    public Stream<T> stream() {
+        return data.stream();
     }
 }
