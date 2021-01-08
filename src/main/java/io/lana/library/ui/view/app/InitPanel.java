@@ -57,6 +57,7 @@ public class InitPanel extends JPanel implements MainFrameContainer {
 
     @Override
     public <T extends Container & MainFrameContainer> void onPaneMounted(T previousPane) {
+        delay(100);
         header.setText("Welcome, " + userContext.getUser().getName());
         subheader.setText(userContext.getUser().getUsername());
 
