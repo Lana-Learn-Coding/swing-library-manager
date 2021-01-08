@@ -105,7 +105,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         if (reader.getBorrowedBookCount() > 0) {
             JOptionPane.showMessageDialog(this,
                 "Reader still borrow some book. " +
-                "Please remove them before delete this reader");
+                    "Please remove them before delete this reader");
             return;
         }
         readerDataCenter.delete(reader);
@@ -133,6 +133,9 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         }
 
         Reader updated = readerTablePane.getSelectedRow();
+        if (updated.getBorrowedBookCount() > reader.getLimit()) {
+            throw new InputException(this, "The limit must not lower than current book borrowed");
+        }
         if (StringUtils.isNotBlank(reader.getEmail()) &&
             !reader.getEmail().equals(updated.getEmail())
             && existsByEmail(reader.getEmail())) {
