@@ -4,6 +4,10 @@
 
 package io.lana.library.ui.view.app;
 
+import io.lana.library.core.datacenter.BookBorrowingDataCenter;
+import io.lana.library.core.datacenter.BookDataCenter;
+import io.lana.library.core.datacenter.BookMetaDataCenter;
+import io.lana.library.core.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookBorrowing;
@@ -57,18 +61,10 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         subheader.setText(userContext.getUser().getUsername());
 
         progress.setValue(5);
-        loadingText.setText("Initializing...");
-        UserRepo userRepo = applicationContext.getBean(UserRepo.class);
-        BookMetaRepo bookMetaRepo = applicationContext.getBean(BookMetaRepo.class);
-        ReaderRepo readerRepo = applicationContext.getBean(ReaderRepo.class);
-        CrudPanel<BookMeta> bookMetaManagePanel = applicationContext.getBean(BookMetaManagerPanel.class);
-        CrudPanel<Reader> readerMetaManagePanel = applicationContext.getBean(ReaderManagerPanel.class);
-        CrudPanel<User> userCrudPanel = applicationContext.getBean(UserManagerPanel.class);
-        progress.setValue(20);
-
         loadingText.setText("Loading User...");
+        UserRepo userRepo = applicationContext.getBean(UserRepo.class);
         List<User> users = userRepo.findAllByOrderByUpdatedAtDesc();
-        progress.setValue(30);
+        progress.setValue(15);
 
         loadingText.setText("Syncing User...");
         boolean userSynced = syncUser(users);
@@ -77,24 +73,25 @@ public class InitPanel extends JPanel implements MainFrameContainer {
             userContext.logout();
             return;
         }
-        userCrudPanel.renderTable(users);
-        progress.setValue(40);
+        progress.setValue(25);
 
         loadingText.setText("Loading Book...");
+        BookMetaRepo bookMetaRepo = applicationContext.getBean(BookMetaRepo.class);
         List<BookMeta> bookMetas = bookMetaRepo.findAllByOrderByUpdatedAtDesc();
-        bookMetaManagePanel.renderTable(bookMetas);
-        progress.setValue(70);
+        progress.setValue(50);
 
         loadingText.setText("Loading Reader...");
+        ReaderRepo readerRepo = applicationContext.getBean(ReaderRepo.class);
         // we need somehow lazy load the reader borrowing list, and set it by hand
         Map<Integer, Reader> readers = readerRepo.findAllByOrderByUpdatedAtDesc()
             .stream().collect(Collectors.toMap(Reader::getId, Function.identity()));
         readers.values().forEach(reader -> reader.setBorrowedBooks(new HashSet<>()));
-        progress.setValue(85);
+        progress.setValue(75);
 
         loadingText.setText("Syncing Reader...");
-        Set<BookBorrowing> tickets = bookMetas.stream()
-            .flatMap(bookMeta -> bookMeta.getBooks().stream())
+        List<Book> books = bookMetas.stream()
+            .flatMap(bookMeta -> bookMeta.getBooks().stream()).collect(Collectors.toList());
+        Set<BookBorrowing> tickets = books.stream()
             .filter(Book::isBorrowed)
             .map(Book::getBorrowing)
             .collect(Collectors.toSet());
@@ -108,11 +105,20 @@ public class InitPanel extends JPanel implements MainFrameContainer {
             ticket.setBorrower(loadedReader);
             loadedReader.getBorrowedBooks().add(ticket);
         });
-        readerMetaManagePanel.renderTable(readers.values());
+        progress.setValue(85);
+
+        loadingText.setText("Processing data ...");
+        applicationContext.getBean(BookBorrowingDataCenter.class).load(tickets);
+        applicationContext.getBean(BookMetaDataCenter.class).load(bookMetas);
+        applicationContext.getBean(BookDataCenter.class).load(books);
+        applicationContext.getBean(ReaderDataCenter.class).load(readers.values());
+        applicationContext.getBean(ReaderManagerPanel.class);
         progress.setValue(92);
 
         loadingText.setText("Getting Ready...");
         applicationContext.getBean(MainPanel.class);
+        applicationContext.getBean(BookMetaManagerPanel.class).renderTable(bookMetas);
+        applicationContext.getBean(UserManagerPanel.class).renderTable(users);
         progress.setValue(100);
 
         delay(1000);
