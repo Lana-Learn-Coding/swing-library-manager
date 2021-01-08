@@ -1,11 +1,11 @@
 package io.lana.library.core.spi;
 
 import io.lana.library.core.model.book.Category;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CategoryRepo extends PagingAndSortingRepository<Category, Integer> {
+public interface CategoryRepo extends JpaRepository<Category, Integer> {
     List<Category> findAllByOrderByUpdatedAtDesc();
 
     boolean existsByName(String name);
