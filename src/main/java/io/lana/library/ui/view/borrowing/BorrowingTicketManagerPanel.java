@@ -4,11 +4,15 @@
 
 package io.lana.library.ui.view.borrowing;
 
+import io.lana.library.core.datacenter.BookBorrowingDataCenter;
+import io.lana.library.core.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.BookBorrowing;
-import io.lana.library.core.spi.BookBorrowingRepo;
+import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BookBorrowingTablePane;
+import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.ui.view.reader.BorrowBookDialog;
+import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.JXDatePicker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,46 +24,102 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Component
-public class BorrowingTicketManagerPanel extends JPanel {
-    private BookBorrowingRepo bookBorrowingRepo;
+public class BorrowingTicketManagerPanel extends JPanel implements CrudPanel<BookBorrowing> {
+    private BookBorrowingDataCenter bookBorrowingDataCenter;
+    private ReaderDataCenter readerDataCenter;
 
     private BorrowBookDialog borrowBookDialog;
 
-    private List<Reader> readers = new ArrayList<>();
-
     public BorrowingTicketManagerPanel() {
         initComponents();
+        ListSelectionModel selectionModel = borrowingTablePane.getSelectionModel();
+        selectionModel.addListSelectionListener(e -> {
+            int pos = borrowingTablePane.getSelectedRowIndex();
+            if (pos < 0) {
+                clearForm();
+                btnDelete.setEnabled(false);
+                return;
+            }
+            BookBorrowing bookBorrowing = borrowingTablePane.getRow(pos);
+            loadModelToForm(bookBorrowing);
+            btnDelete.setEnabled(true);
+        });
     }
 
     @Autowired
-    public void setup(BookBorrowingRepo bookBorrowingRepo, BorrowBookDialog borrowBookDialog) {
-        this.bookBorrowingRepo = bookBorrowingRepo;
+    public void setup(BookBorrowingDataCenter bookBorrowingDataCenter, BorrowBookDialog borrowBookDialog,
+                      ReaderDataCenter readerDataCenter) {
+        this.readerDataCenter = readerDataCenter;
+        this.bookBorrowingDataCenter = bookBorrowingDataCenter;
         this.borrowBookDialog = borrowBookDialog;
+        this.borrowingTablePane.setRepositoryDataCenter(bookBorrowingDataCenter);
     }
 
-    public void setData(List<Reader> readers, List<BookBorrowing> bookBorrowings) {
-        this.readers = readers;
-        borrowingTablePane.setTableData(bookBorrowings);
+    @Override
+    public void delete() {
+        if (JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Are you sure deleting this ticket?")) {
+            return;
+        }
+        if (JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Are you really SURE?")) {
+            return;
+        }
+        BookBorrowing bookBorrowing = borrowingTablePane.getSelectedRow();
+        bookBorrowingDataCenter.delete(bookBorrowing);
+        readerDataCenter.refresh(bookBorrowing.getBorrower());
+        JOptionPane.showMessageDialog(this, "Ticket deleted");
+    }
+
+    @Override
+    public void save() {
+
+    }
+
+    @Override
+    public void clearForm() {
+
+    }
+
+    @Override
+    public void loadModelToForm(BookBorrowing model) {
+
+    }
+
+    @Override
+    public BookBorrowing getModelFromForm() {
+        return null;
     }
 
     private void btnClearActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        clearForm();
     }
 
 
     private void btnSaveActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        save();
     }
 
     private void btnDeleteActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        delete();
     }
 
     private void btnBorrowBookActionPerformed(ActionEvent e) {
+        String query = JOptionPane.showInputDialog(this, "Enter reader id, email, or phone");
+        if (StringUtils.isBlank(query)) {
+            throw new InputException(this, "Query must not blank");
+        }
+        Optional<Reader> readerFound = readerDataCenter.stream().filter(reader ->
+            query.equals(reader.getIdString()) || query.equals(reader.getEmail()) || query.equals(reader.getPhoneNumber())
+        ).findFirst();
+
+        if (readerFound.isEmpty()) {
+            throw new InputException(this, "No reader found");
+        }
+
+        borrowBookDialog.setModel(readerFound.get());
+        borrowBookDialog.setVisible(true);
     }
 
     private void initComponents() {
