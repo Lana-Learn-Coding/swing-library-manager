@@ -4,10 +4,10 @@
 
 package io.lana.library.ui.view.reader;
 
+import io.lana.library.core.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.user.Permission;
 import io.lana.library.core.spi.FileStorage;
-import io.lana.library.core.spi.ReaderRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.component.ReaderTablePane;
@@ -29,12 +29,9 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Date;
 
 @Component
@@ -45,7 +42,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private UserContext userContext;
     private BorrowBookDialog borrowBookDialog;
     private BorrowedBookListDialog borrowedBookListDialog;
-    private ReaderRepo readerRepo;
+    private ReaderDataCenter readerDataCenter;
     private FileStorage fileStorage;
 
     public ReaderManagerPanel() {
@@ -86,29 +83,16 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     }
 
     @Autowired
-    public void setup(ReaderRepo readerRepo, FileStorage fileStorage,
+    public void setup(ReaderDataCenter readerDataCenter, FileStorage fileStorage,
                       BorrowedBookListDialog borrowedBookListDialog,
                       BorrowBookDialog borrowBookDialog,
                       UserContext userContext) {
         this.userContext = userContext;
-        this.readerRepo = readerRepo;
+        this.readerDataCenter = readerDataCenter;
         this.fileStorage = fileStorage;
         this.borrowedBookListDialog = borrowedBookListDialog;
         this.borrowBookDialog = borrowBookDialog;
-        this.borrowedBookListDialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-                readerTablePane.refreshSelectedRow();
-            }
-        });
-        this.borrowBookDialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-                if (readerTablePane.isAnyRowSelected()) {
-                    readerTablePane.refreshSelectedRow();
-                }
-            }
-        });
+        this.readerTablePane.setRepositoryDataCenter(readerDataCenter);
     }
 
     @Override
@@ -124,11 +108,8 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                 "Please remove them before delete this reader");
             return;
         }
-        WorkerUtils.runAsync(() -> {
-            readerRepo.deleteById(reader.getId());
-            fileStorage.deleteFileFromStorage(reader.getAvatar());
-        });
-        readerTablePane.removeSelectedRow();
+        readerDataCenter.delete(reader);
+        WorkerUtils.runAsync(() -> fileStorage.deleteFileFromStorage(reader.getAvatar()));
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -146,10 +127,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                 String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
                 reader.setAvatar(savedImage);
             }
-            readerRepo.save(reader);
-            readerTablePane.clearSearch();
-            readerTablePane.addRow(0, reader);
-            readerTablePane.setSelectedRow(0);
+            readerDataCenter.save(reader);
             JOptionPane.showMessageDialog(this, "Create success!");
             return;
         }
@@ -175,8 +153,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
             String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
             updated.setAvatar(savedImage);
         }
-        WorkerUtils.runAsync(() -> readerRepo.save(updated));
-        readerTablePane.refreshSelectedRow();
+        readerDataCenter.update(updated);
         JOptionPane.showMessageDialog(this, "Update success!");
     }
 
@@ -266,16 +243,6 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         }
 
         return reader;
-    }
-
-    @Override
-    public void renderTable(Collection<Reader> data) {
-        readerTablePane.setTableData(data);
-    }
-
-    @Override
-    public void renderTable() {
-        renderTable(readerRepo.findAllByOrderByUpdatedAtDesc());
     }
 
     private void btnSelectAvatarActionPerformed(ActionEvent e) {

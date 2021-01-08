@@ -4,15 +4,15 @@
 
 package io.lana.library.ui.view.reader;
 
+import io.lana.library.core.datacenter.BookBorrowingDataCenter;
+import io.lana.library.core.datacenter.BookDataCenter;
+import io.lana.library.core.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookBorrowing;
-import io.lana.library.core.spi.BookBorrowingRepo;
-import io.lana.library.core.spi.BookRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.ReaderBorrowedBookTablePane;
 import io.lana.library.utils.DateFormatUtils;
-import io.lana.library.utils.WorkerUtils;
 import org.jdesktop.swingx.JXDatePicker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,8 +27,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class BorrowedBookListDialog extends JDialog {
-    private BookRepo bookRepo;
-    private BookBorrowingRepo bookBorrowingRepo;
+    private BookBorrowingDataCenter bookBorrowingDataCenter;
+    private BookDataCenter bookDataCenter;
+    private ReaderDataCenter readerDataCenter;
 
     private Reader readerModel;
 
@@ -55,9 +56,11 @@ public class BorrowedBookListDialog extends JDialog {
     }
 
     @Autowired
-    public void setup(BookRepo bookRepo, BookBorrowingRepo bookBorrowingRepo) {
-        this.bookRepo = bookRepo;
-        this.bookBorrowingRepo = bookBorrowingRepo;
+    public void setup(BookDataCenter bookDataCenter, BookBorrowingDataCenter bookBorrowingDataCenter,
+                      ReaderDataCenter readerDataCenter) {
+        this.bookDataCenter = bookDataCenter;
+        this.bookBorrowingDataCenter = bookBorrowingDataCenter;
+        this.readerDataCenter = readerDataCenter;
     }
 
     public void setModel(Reader readerModel) {
@@ -75,7 +78,8 @@ public class BorrowedBookListDialog extends JDialog {
         ticket.getBooks().remove(book);
         borrowTablePane.removeSelectedRow();
         book.setBorrowing(null);
-        WorkerUtils.runAsync(() -> bookRepo.save(book));
+        bookDataCenter.update(book);
+        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book returned!");
     }
 
@@ -96,8 +100,10 @@ public class BorrowedBookListDialog extends JDialog {
         ticket.getBooks().forEach(book -> {
             book.setBorrowing(null);
             borrowTablePane.removeRow(book);
+            bookDataCenter.refresh(book);
         });
-        WorkerUtils.runAsync(() -> bookBorrowingRepo.deleteById(ticket.getId()));
+        bookBorrowingDataCenter.delete(ticket);
+        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "All book in ticket returned!");
     }
 
@@ -118,14 +124,13 @@ public class BorrowedBookListDialog extends JDialog {
         BookBorrowing newTicket = ticket.withDueDate(dueDate);
         newTicket.setId(null);
         newTicket.setBooks(Set.of(book));
-        bookBorrowingRepo.save(newTicket);
+        bookBorrowingDataCenter.save(newTicket);
 
         book.setBorrowing(newTicket);
-        WorkerUtils.runAsync(() -> {
-            bookRepo.save(book);
-            bookBorrowingRepo.save(ticket);
-        });
+        bookDataCenter.update(book);
         borrowTablePane.refreshSelectedRow();
+        readerModel.getBorrowedBooks().add(ticket);
+        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book due date extended!");
     }
 
@@ -142,8 +147,8 @@ public class BorrowedBookListDialog extends JDialog {
             return;
         }
         ticket.setDueDate(dueDate);
+        bookBorrowingDataCenter.update(ticket);
         ticket.getBooks().forEach(borrowTablePane::refreshRow);
-        WorkerUtils.runAsync(() -> bookBorrowingRepo.save(ticket));
         JOptionPane.showMessageDialog(this, "Ticket due date extended!");
     }
 
@@ -176,9 +181,16 @@ public class BorrowedBookListDialog extends JDialog {
             return;
         }
         Book book = borrowTablePane.getSelectedRow();
-        book.getBorrowing().getBooks().remove(book);
+        BookBorrowing bookBorrowing = book.getBorrowing();
+        bookBorrowing.getBooks().remove(book);
         borrowTablePane.removeSelectedRow();
-        WorkerUtils.runAsync(() -> bookRepo.deleteById(book.getId()));
+        bookDataCenter.delete(book);
+        if (bookBorrowing.getBooks().isEmpty()) {
+            bookBorrowingDataCenter.delete(bookBorrowing);
+        } else {
+            bookBorrowingDataCenter.refresh(bookBorrowing);
+        }
+        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book removed");
     }
 

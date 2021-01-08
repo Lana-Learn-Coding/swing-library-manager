@@ -4,11 +4,12 @@
 
 package io.lana.library.ui.view.reader;
 
+import io.lana.library.core.datacenter.BookBorrowingDataCenter;
+import io.lana.library.core.datacenter.BookDataCenter;
+import io.lana.library.core.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookBorrowing;
-import io.lana.library.core.spi.BookBorrowingRepo;
-import io.lana.library.core.spi.BookRepo;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BorrowBookTablePane;
@@ -38,8 +39,9 @@ import java.util.stream.Collectors;
 public class BorrowBookDialog extends JDialog {
     private Reader readerModel;
 
-    private BookRepo bookRepo;
-    private BookBorrowingRepo bookBorrowingRepo;
+    private BookDataCenter bookDataCenter;
+    private BookBorrowingDataCenter bookBorrowingDataCenter;
+    private ReaderDataCenter readerDataCenter;
     private FileStorage fileStorage;
 
     public BorrowBookDialog() {
@@ -57,11 +59,13 @@ public class BorrowBookDialog extends JDialog {
     }
 
     @Autowired
-    public void setup(BookRepo bookRepo, FileStorage fileStorage,
-                      BookBorrowingRepo bookBorrowingRepo) {
-        this.bookRepo = bookRepo;
+    public void setup(BookDataCenter bookDataCenter, FileStorage fileStorage,
+                      BookBorrowingDataCenter bookBorrowingDataCenter,
+                      ReaderDataCenter readerDataCenter) {
+        this.bookDataCenter = bookDataCenter;
         this.fileStorage = fileStorage;
-        this.bookBorrowingRepo = bookBorrowingRepo;
+        this.bookBorrowingDataCenter = bookBorrowingDataCenter;
+        this.readerDataCenter = readerDataCenter;
     }
 
     public void setModel(Reader readerModel) {
@@ -114,9 +118,11 @@ public class BorrowBookDialog extends JDialog {
         bookBorrowing.setBooks(new HashSet<>(bookTablePane.asList()));
         bookBorrowing.getBooks().forEach(book -> book.setBorrowing(bookBorrowing));
         bookBorrowing.setBorrower(readerModel);
-        bookBorrowingRepo.save(bookBorrowing);
+
+        bookBorrowingDataCenter.save(bookBorrowing);
+        bookDataCenter.updateAll(bookBorrowing.getBooks());
         readerModel.getBorrowedBooks().add(bookBorrowing);
-        WorkerUtils.runAsync(() -> bookRepo.saveAll(bookBorrowing.getBooks()));
+        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book borrowing ticket created successfully");
         setVisible(false);
     }
@@ -136,7 +142,7 @@ public class BorrowBookDialog extends JDialog {
             }
         });
 
-        List<Book> books = bookRepo.findAllByBorrowingIsNullAndIdIn(ids);
+        List<Book> books = bookDataCenter.findAllNotBorrowedAndIdIn(ids);
         List<Integer> bookIds = books.stream().map(Book::getId).collect(Collectors.toList());
         if (books.size() != ids.size() && checkStrictFilter.isSelected()) {
             ids.removeAll(bookIds);
