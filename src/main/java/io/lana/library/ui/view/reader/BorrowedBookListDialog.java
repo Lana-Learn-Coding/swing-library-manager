@@ -6,6 +6,7 @@ package io.lana.library.ui.view.reader;
 
 import io.lana.library.core.datacenter.BookBorrowingDataCenter;
 import io.lana.library.core.datacenter.BookDataCenter;
+import io.lana.library.core.datacenter.BookMetaDataCenter;
 import io.lana.library.core.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class BorrowedBookListDialog extends JDialog {
+    private BookMetaDataCenter bookMetaDataCenter;
     private BookBorrowingDataCenter bookBorrowingDataCenter;
     private BookDataCenter bookDataCenter;
     private ReaderDataCenter readerDataCenter;
@@ -57,10 +59,11 @@ public class BorrowedBookListDialog extends JDialog {
 
     @Autowired
     public void setup(BookDataCenter bookDataCenter, BookBorrowingDataCenter bookBorrowingDataCenter,
-                      ReaderDataCenter readerDataCenter) {
+                      ReaderDataCenter readerDataCenter, BookMetaDataCenter bookMetaDataCenter) {
         this.bookDataCenter = bookDataCenter;
         this.bookBorrowingDataCenter = bookBorrowingDataCenter;
         this.readerDataCenter = readerDataCenter;
+        this.bookMetaDataCenter = bookMetaDataCenter;
     }
 
     public void setModel(Reader readerModel) {
@@ -190,6 +193,7 @@ public class BorrowedBookListDialog extends JDialog {
         } else {
             bookBorrowingDataCenter.refresh(bookBorrowing);
         }
+        bookMetaDataCenter.refresh(book.getMeta());
         readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book removed");
     }

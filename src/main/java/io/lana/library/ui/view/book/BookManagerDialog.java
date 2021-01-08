@@ -4,11 +4,14 @@
 
 package io.lana.library.ui.view.book;
 
+import io.lana.library.core.datacenter.BookBorrowingDataCenter;
+import io.lana.library.core.datacenter.BookDataCenter;
+import io.lana.library.core.datacenter.BookMetaDataCenter;
+import io.lana.library.core.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Storage;
-import io.lana.library.core.spi.BookRepo;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.StorageRepo;
 import io.lana.library.ui.InputException;
@@ -39,7 +42,10 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
 
     private FileStorage fileStorage;
     private StorageRepo storageRepo;
-    private BookRepo bookRepo;
+    private BookDataCenter bookDataCenter;
+    private BookMetaDataCenter bookMetaDataCenter;
+    private BookBorrowingDataCenter bookBorrowingDataCenter;
+    private ReaderDataCenter readerDataCenter;
     private BookMeta bookMetaModel;
 
     public BookManagerDialog() {
@@ -61,11 +67,16 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     }
 
     @Autowired
-    public void setup(BookRepo bookRepo, StorageRepo storageRepo, FileStorage fileStorage) {
-        this.bookRepo = bookRepo;
+    public void setup(BookDataCenter bookDataCenter, StorageRepo storageRepo, FileStorage fileStorage,
+                      BookMetaDataCenter bookMetaDataCenter, ReaderDataCenter readerDataCenter,
+                      BookBorrowingDataCenter bookBorrowingDataCenter) {
+        this.bookBorrowingDataCenter = bookBorrowingDataCenter;
+        this.bookDataCenter = bookDataCenter;
+        this.bookMetaDataCenter = bookMetaDataCenter;
         this.storageRepo = storageRepo;
         this.storageRepo.findAll().forEach(selectStorage::addItem);
         this.fileStorage = fileStorage;
+        this.readerDataCenter = readerDataCenter;
         selectStorage.setSelectedItem(null);
     }
 
@@ -85,11 +96,15 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
             JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Book is borrowed, Are you SURE?")) {
             return;
         }
-        WorkerUtils.runAsync(() -> {
-            bookRepo.deleteById(book.getId());
-            fileStorage.deleteFileFromStorage(book.getImage());
-        });
+        bookDataCenter.delete(book);
+        WorkerUtils.runAsync(() -> fileStorage.deleteFileFromStorage(book.getImage()));
         bookMetaModel.getBooks().remove(book);
+        bookMetaDataCenter.refresh(bookMetaModel);
+        if (book.isBorrowed()) {
+            book.getBorrowing().getBooks().remove(book);
+            readerDataCenter.refresh(book.getBorrowing().getBorrower());
+            bookBorrowingDataCenter.refresh(book.getBorrowing());
+        }
         bookTablePane.removeSelectedRow();
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
@@ -103,11 +118,12 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
                 String savedImage = fileStorage.loadFileToStorage(book.getImage());
                 book.setImage(savedImage);
             }
-            bookRepo.save(book);
+            bookDataCenter.save(book);
             bookMetaModel.getBooks().add(book);
             bookTablePane.addRow(0, book);
             bookTablePane.clearSearch();
             bookTablePane.setSelectedRow(0);
+            bookMetaDataCenter.refresh(bookMetaModel);
             JOptionPane.showMessageDialog(this, "Create success!");
             return;
         }
@@ -121,7 +137,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
             String savedImage = fileStorage.loadFileToStorage(book.getImage());
             updated.setImage(savedImage);
         }
-        WorkerUtils.runAsync(() -> bookRepo.save(updated));
+        bookDataCenter.update(updated);
         JOptionPane.showMessageDialog(this, "Update success!");
         bookTablePane.refreshSelectedRow();
     }

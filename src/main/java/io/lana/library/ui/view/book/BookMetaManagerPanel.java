@@ -4,10 +4,11 @@
 
 package io.lana.library.ui.view.book;
 
+import io.lana.library.core.datacenter.BookMetaDataCenter;
+import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Category;
 import io.lana.library.core.model.book.Series;
-import io.lana.library.core.spi.BookMetaRepo;
 import io.lana.library.core.spi.CategoryRepo;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.SeriesRepo;
@@ -29,11 +30,10 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> {
@@ -43,23 +43,18 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
     private BookManagerDialog bookManagerDialog;
     private SeriesRepo seriesRepo;
     private CategoryRepo categoryRepo;
-    private BookMetaRepo bookMetaRepo;
+    private BookMetaDataCenter bookMetaDataCenter;
     private FileStorage fileStorage;
 
     @Autowired
-    public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaRepo bookMetaRepo,
+    public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaDataCenter bookMetaDataCenter,
                       BookManagerDialog bookManagerDialog, FileStorage fileStorage) {
         this.bookManagerDialog = bookManagerDialog;
-        this.bookManagerDialog.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-                bookMetaTablePane.refreshSelectedRow();
-            }
-        });
         this.seriesRepo = seriesRepo;
-        this.bookMetaRepo = bookMetaRepo;
+        this.bookMetaDataCenter = bookMetaDataCenter;
         this.categoryRepo = categoryRepo;
         this.fileStorage = fileStorage;
+        this.bookMetaTablePane.setRepositoryDataCenter(bookMetaDataCenter);
         WorkerUtils.runAsync(() -> {
             this.categoryRepo.findAllByOrderByUpdatedAtDesc().forEach(selectCategory::addItem);
             this.seriesRepo.findAllByOrderByUpdatedAtDesc().forEach(selectSeries::addItem);
@@ -108,12 +103,17 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
             if (confirmDeleteBooks != JOptionPane.OK_OPTION) {
                 return;
             }
+            List<Integer> borrowing = bookMeta.getBooks().stream()
+                .filter(Book::isBorrowed)
+                .map(Book::getId)
+                .collect(Collectors.toList());
+            if (borrowing.size() > 0) {
+                JOptionPane.showMessageDialog(this, "There are borrowing book: " + StringUtils.join(borrowing, ", "));
+                return;
+            }
         }
-        WorkerUtils.runAsync(() -> {
-            bookMetaRepo.deleteById(bookMeta.getId());
-            fileStorage.deleteFileFromStorage(bookMeta.getImage());
-        });
-        bookMetaTablePane.removeSelectedRow();
+        bookMetaDataCenter.delete(bookMeta);
+        WorkerUtils.runAsync(() -> fileStorage.deleteFileFromStorage(bookMeta.getImage()));
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -122,14 +122,10 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
         if (!bookMetaTablePane.isAnyRowSelected()) {
             BookMeta created = createFromForm();
             JOptionPane.showMessageDialog(this, "Create Success");
-            bookMetaTablePane.addRow(0, created);
-            bookMetaTablePane.clearSearch();
-            bookMetaTablePane.setSelectedRow(0);
             return;
         }
         updateFromForm();
         JOptionPane.showMessageDialog(this, "Update Success");
-        bookMetaTablePane.refreshSelectedRow();
     }
 
     private BookMeta createFromForm() {
@@ -138,7 +134,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
             String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
             bookMeta.setImage(savedImage);
         }
-        bookMetaRepo.save(bookMeta);
+        bookMetaDataCenter.save(bookMeta);
         return bookMeta;
     }
 
@@ -156,7 +152,7 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
             String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
             updated.setImage(savedImage);
         }
-        WorkerUtils.runAsync(() -> bookMetaRepo.save(updated));
+        bookMetaDataCenter.update(updated);
         return updated;
     }
 
@@ -215,14 +211,6 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
             throw new InputException(this, "Year must a number");
         }
         return bookMeta;
-    }
-
-    public void renderTable(Collection<BookMeta> books) {
-        bookMetaTablePane.setTableData(books);
-    }
-
-    public void renderTable() {
-        renderTable(bookMetaRepo.findAllByOrderByUpdatedAtDesc());
     }
 
     private void btnNewSeriesActionPerformed(ActionEvent e) {

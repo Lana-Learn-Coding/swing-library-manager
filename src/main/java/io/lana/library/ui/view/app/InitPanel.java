@@ -117,7 +117,7 @@ public class InitPanel extends JPanel implements MainFrameContainer {
 
         loadingText.setText("Getting Ready...");
         applicationContext.getBean(MainPanel.class);
-        applicationContext.getBean(BookMetaManagerPanel.class).renderTable(bookMetas);
+        applicationContext.getBean(BookMetaManagerPanel.class);
         applicationContext.getBean(UserManagerPanel.class).renderTable(users);
 
         delay(1000);
