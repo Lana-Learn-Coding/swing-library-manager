@@ -1,12 +1,12 @@
 package io.lana.library.ui.component;
 
 import io.lana.library.core.model.Reader;
-import io.lana.library.ui.component.app.table.AbstractTablePane;
+import io.lana.library.ui.component.app.table.AbstractRepoBasedTablePane;
 import io.lana.library.ui.component.app.table.TableColumnMapping;
 
 import java.time.LocalDateTime;
 
-public class ReaderTablePane extends AbstractTablePane<Reader> {
+public class ReaderTablePane extends AbstractRepoBasedTablePane<Reader> {
     @Override
     protected TableColumnMapping<Reader> getTableColumnMapping() {
         TableColumnMapping<Reader> mapping = new TableColumnMapping<>();

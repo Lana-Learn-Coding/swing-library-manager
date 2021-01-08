@@ -1,10 +1,10 @@
 package io.lana.library.ui.component;
 
 import io.lana.library.core.model.book.Book;
-import io.lana.library.ui.component.app.table.AbstractTablePane;
+import io.lana.library.ui.component.app.table.AbstractListBasedTablePane;
 import io.lana.library.ui.component.app.table.TableColumnMapping;
 
-public class BorrowBookTablePane extends AbstractTablePane<Book> {
+public class BorrowBookTablePane extends AbstractListBasedTablePane<Book> {
     @Override
     protected TableColumnMapping<Book> getTableColumnMapping() {
         TableColumnMapping<Book> mapping = new TableColumnMapping<>();

@@ -2,14 +2,14 @@ package io.lana.library.ui.component;
 
 import io.lana.library.core.model.base.BaseEntity;
 import io.lana.library.core.model.book.BookMeta;
-import io.lana.library.ui.component.app.table.AbstractTablePane;
+import io.lana.library.ui.component.app.table.AbstractListBasedTablePane;
 import io.lana.library.ui.component.app.table.TableColumnMapping;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
-public class BookMetaTablePane extends AbstractTablePane<BookMeta> {
+public class BookMetaTablePane extends AbstractListBasedTablePane<BookMeta> {
     @Override
     protected TableColumnMapping<BookMeta> getTableColumnMapping() {
         TableColumnMapping<BookMeta> mapping = new TableColumnMapping<>();

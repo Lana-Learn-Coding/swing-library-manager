@@ -1,13 +1,13 @@
 package io.lana.library.ui.component;
 
 import io.lana.library.core.model.book.Book;
-import io.lana.library.ui.component.app.table.AbstractTablePane;
+import io.lana.library.ui.component.app.table.AbstractListBasedTablePane;
 import io.lana.library.ui.component.app.table.TableColumnMapping;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class ReaderBorrowedBookTablePane extends AbstractTablePane<Book> {
+public class ReaderBorrowedBookTablePane extends AbstractListBasedTablePane<Book> {
     public ReaderBorrowedBookTablePane() {
         super();
         tableRowSorter.toggleSortOrder(6);
