@@ -22,16 +22,16 @@ public class ReaderBorrowedBookTablePane extends AbstractTablePane<Book> {
         mapping.put("Title", (book) -> book.getMeta().getTitle());
         mapping.put("Ticket", (book) -> "Ticket " + book.getBorrowing().getId());
         mapping.put("Overdue", (book) -> {
-            if (book.getDueDate().isAfter(book.getBorrowedDate())) {
+            if (LocalDate.now().isBefore(book.getDueDate())) {
                 return "";
             }
             return "Overdue";
         });
         mapping.put("Overdue Days", (book) -> {
-            if (book.getDueDate().isAfter(book.getBorrowedDate())) {
+            if (LocalDate.now().isBefore(book.getDueDate())) {
                 return 0;
             }
-            return ChronoUnit.DAYS.between(book.getDueDate(), book.getBorrowedDate());
+            return ChronoUnit.DAYS.between(book.getDueDate(), LocalDate.now());
         }, Integer.class);
         mapping.put("Borrowed Since", Book::getBorrowedDate, LocalDate.class);
         mapping.put("Due Date", Book::getDueDate, LocalDate.class);
