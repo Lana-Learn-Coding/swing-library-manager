@@ -97,11 +97,14 @@ public class BorrowBookDialog extends JDialog {
     }
 
     private void okButtonActionPerformed(ActionEvent e) {
-        Integer addedBookCount = bookTablePane.rowCount();
+        int addedBookCount = bookTablePane.rowCount();
+        if (addedBookCount <= 0) {
+            throw new InputException(this, "Please add some book to ticket");
+        }
         Integer totalBorrowedBook = addedBookCount + readerModel.getBorrowedBookCount();
         if (readerModel.getLimit() < totalBorrowedBook) {
             throw new InputException(this, "Borrowing book over limit " + totalBorrowedBook.toString()
-                                           + "/" + readerModel.getLimit().toString());
+                + "/" + readerModel.getLimit().toString());
         }
 
         BookBorrowing bookBorrowing = new BookBorrowing();
