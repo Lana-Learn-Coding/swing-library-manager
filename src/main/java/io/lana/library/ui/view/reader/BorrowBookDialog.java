@@ -4,12 +4,12 @@
 
 package io.lana.library.ui.view.reader;
 
-import io.lana.library.core.datacenter.BookBorrowingDataCenter;
 import io.lana.library.core.datacenter.BookDataCenter;
 import io.lana.library.core.datacenter.ReaderDataCenter;
+import io.lana.library.core.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
-import io.lana.library.core.model.book.BookBorrowing;
+import io.lana.library.core.model.book.Ticket;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BorrowBookTablePane;
@@ -40,7 +40,7 @@ public class BorrowBookDialog extends JDialog {
     private Reader readerModel;
 
     private BookDataCenter bookDataCenter;
-    private BookBorrowingDataCenter bookBorrowingDataCenter;
+    private TicketDataCenter ticketDataCenter;
     private ReaderDataCenter readerDataCenter;
     private FileStorage fileStorage;
 
@@ -60,11 +60,11 @@ public class BorrowBookDialog extends JDialog {
 
     @Autowired
     public void setup(BookDataCenter bookDataCenter, FileStorage fileStorage,
-                      BookBorrowingDataCenter bookBorrowingDataCenter,
+                      TicketDataCenter ticketDataCenter,
                       ReaderDataCenter readerDataCenter) {
         this.bookDataCenter = bookDataCenter;
         this.fileStorage = fileStorage;
-        this.bookBorrowingDataCenter = bookBorrowingDataCenter;
+        this.ticketDataCenter = ticketDataCenter;
         this.readerDataCenter = readerDataCenter;
     }
 
@@ -107,7 +107,7 @@ public class BorrowBookDialog extends JDialog {
                 + "/" + readerModel.getLimit().toString());
         }
 
-        BookBorrowing bookBorrowing = new BookBorrowing();
+        Ticket bookBorrowing = new Ticket();
         if (txtDueDate.getDate() == null) {
             throw new InputException(this, "Invalid Due Date Date");
         }
@@ -122,7 +122,7 @@ public class BorrowBookDialog extends JDialog {
         bookBorrowing.getBooks().forEach(book -> book.setBorrowing(bookBorrowing));
         bookBorrowing.setBorrower(readerModel);
 
-        bookBorrowingDataCenter.save(bookBorrowing);
+        ticketDataCenter.save(bookBorrowing);
         bookDataCenter.updateAll(bookBorrowing.getBooks());
         readerModel.getBorrowedBooks().add(bookBorrowing);
         readerDataCenter.refresh(readerModel);

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface BookMetaRepo extends JpaRepository<BookMeta, Integer> {
+public interface TicketRepo extends JpaRepository<BookMeta, Integer> {
     List<BookMeta> findAllByOrderByUpdatedAtDesc();
 }

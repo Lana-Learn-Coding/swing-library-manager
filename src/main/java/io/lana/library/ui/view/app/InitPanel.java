@@ -4,17 +4,17 @@
 
 package io.lana.library.ui.view.app;
 
-import io.lana.library.core.datacenter.BookBorrowingDataCenter;
 import io.lana.library.core.datacenter.BookDataCenter;
 import io.lana.library.core.datacenter.BookMetaDataCenter;
 import io.lana.library.core.datacenter.ReaderDataCenter;
+import io.lana.library.core.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
-import io.lana.library.core.model.book.BookBorrowing;
 import io.lana.library.core.model.book.BookMeta;
+import io.lana.library.core.model.book.Ticket;
 import io.lana.library.core.model.user.User;
-import io.lana.library.core.spi.BookMetaRepo;
 import io.lana.library.core.spi.ReaderRepo;
+import io.lana.library.core.spi.TicketRepo;
 import io.lana.library.core.spi.UserRepo;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.MainFrameContainer;
@@ -77,8 +77,8 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         progress.setValue(25);
 
         loadingText.setText("Loading Book...");
-        BookMetaRepo bookMetaRepo = applicationContext.getBean(BookMetaRepo.class);
-        List<BookMeta> bookMetas = bookMetaRepo.findAllByOrderByUpdatedAtDesc();
+        TicketRepo ticketRepo = applicationContext.getBean(TicketRepo.class);
+        List<BookMeta> bookMetas = ticketRepo.findAllByOrderByUpdatedAtDesc();
         progress.setValue(50);
 
         loadingText.setText("Loading Reader...");
@@ -92,7 +92,7 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         loadingText.setText("Syncing Reader...");
         List<Book> books = bookMetas.stream()
             .flatMap(bookMeta -> bookMeta.getBooks().stream()).collect(Collectors.toList());
-        Set<BookBorrowing> tickets = books.stream()
+        Set<Ticket> tickets = books.stream()
             .filter(Book::isBorrowed)
             .map(Book::getBorrowing)
             .collect(Collectors.toSet());
@@ -109,7 +109,7 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         progress.setValue(88);
 
         loadingText.setText("Processing data ...");
-        applicationContext.getBean(BookBorrowingDataCenter.class).load(tickets);
+        applicationContext.getBean(TicketDataCenter.class).load(tickets);
         applicationContext.getBean(BookMetaDataCenter.class).load(bookMetas);
         applicationContext.getBean(BookDataCenter.class).load(books);
         applicationContext.getBean(ReaderDataCenter.class).load(readers.values());

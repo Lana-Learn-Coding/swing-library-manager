@@ -1,17 +1,22 @@
 package io.lana.library.core.model.book;
 
+import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "book")
+@SQLDelete(sql = "UPDATE book SET is_deleted = true WHERE id = ?")
 public class Book extends BaseEntity {
     private Integer condition;
 
@@ -21,6 +26,9 @@ public class Book extends BaseEntity {
 
     private String position;
 
+    @Column(name = "is_deleted")
+    private Boolean deleted = false;
+
     @ManyToOne
     @JoinColumn(name = "meta_id")
     private BookMeta meta;
@@ -29,9 +37,8 @@ public class Book extends BaseEntity {
     @JoinColumn(name = "storage_id")
     private Storage storage;
 
-    @ManyToOne
-    @JoinColumn(name = "book_borrowing_id")
-    private BookBorrowing borrowing;
+    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+    private Set<Ticket> tickets = new HashSet<>();
 
     public String getPosition() {
         return StringUtils.isBlank(position) ? "Not specified" : position;
@@ -39,43 +46,82 @@ public class Book extends BaseEntity {
 
     @Transient
     public boolean isBorrowed() {
-        return borrowing != null;
+        return tickets.stream().anyMatch(Ticket::isBorrowing);
     }
 
     @Transient
-    public String getBorrower() {
-        if (isBorrowed()) {
-            return getBorrowing().getBorrower().getName();
+    public boolean notBorrowed() {
+        return tickets.stream().anyMatch(Ticket::isBorrowing);
+    }
+
+    @Transient
+    public Ticket getBorrowingTicket() {
+        return tickets.stream()
+            .filter(Ticket::isBorrowing)
+            .findFirst()
+            .orElse(null);
+    }
+
+    @Transient
+    public Reader getBorrower() {
+        return tickets.stream()
+            .filter(Ticket::isBorrowing)
+            .findFirst()
+            .map(Ticket::getBorrower)
+            .orElse(null);
+    }
+
+    @Transient
+    public String getBorrowerName() {
+        Reader borrower = getBorrower();
+        if (borrower != null) {
+            return borrower.getName();
         }
-        return "None";
+        return "";
+    }
+
+    @Transient
+    public String getTitle() {
+        return getMeta().getTitle();
     }
 
     @Transient
     public String getBorrowerPhone() {
-        if (isBorrowed()) {
-            return getBorrowing().getBorrower().getPhoneNumber();
+        Reader borrower = getBorrower();
+        if (borrower != null) {
+            return borrower.getPhoneNumber();
         }
-        return "None";
+        return "";
     }
 
     @Transient
-    public LocalDate getBorrowedDate() {
-        if (isBorrowed()) {
-            return getBorrowing().getBorrowedDate();
+    public LocalDate getDueDate() {
+        Ticket borrowing = getBorrowingTicket();
+        if (borrowing != null) {
+            return borrowing.getDueDate();
         }
         return null;
     }
 
     @Transient
-    public LocalDate getDueDate() {
-        if (isBorrowed()) {
-            return getBorrowing().getDueDate();
+    public LocalDate getBorrowedDate() {
+        Ticket borrowing = getBorrowingTicket();
+        if (borrowing != null) {
+            return borrowing.getBorrowedDate();
         }
         return null;
     }
 
     @Transient
     public String getStorageName() {
-        return getStorage().getName();
+        if (isNotDeleted()) {
+            return getStorage().getName();
+        }
+        return "deleted";
+    }
+
+    @Transient
+    public boolean isNotDeleted() {
+        return !getDeleted();
     }
 }

@@ -6,6 +6,7 @@ import io.lana.library.core.spi.BookRepo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class BookDataCenterImpl extends AbstractRepositoryDataCenter<Integer, Book> implements BookDataCenter {
@@ -15,6 +16,7 @@ public class BookDataCenterImpl extends AbstractRepositoryDataCenter<Integer, Bo
 
     @Override
     public List<Book> findAllNotBorrowedAndIdIn(List<Integer> idList) {
-        return ((BookRepo) repo).findAllByBorrowingIsNullAndIdIn(idList);
+        List<Book> books = ((BookRepo) repo).findAllByIdIn(idList);
+        return books.stream().filter(Book::notBorrowed).collect(Collectors.toList());
     }
 }

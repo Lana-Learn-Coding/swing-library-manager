@@ -36,6 +36,7 @@ CREATE TABLE book_meta
     image       VARCHAR(128),
     author      VARCHAR(128),
     publisher   VARCHAR(128),
+    is_deleted  BOOLEAN      NOT NULL DEFAULT FALSE,
     year        INT          NOT NULL,
     category_id INT          REFERENCES category (id) ON DELETE SET NULL,
     series_id   INT          REFERENCES series (id) ON DELETE SET NULL,
@@ -51,11 +52,12 @@ CREATE TABLE storage
     updated_at TIMESTAMP    NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE book_borrowing
+CREATE TABLE borrow_ticket
 (
     id            SERIAL PRIMARY KEY,
     borrowed_date DATE      NOT NULL DEFAULT NOW(),
     due_date      DATE      NOT NULL,
+    is_returned   BOOLEAN   NOT NULL DEFAULT FALSE,
     borrower_id   INT       NOT NULL REFERENCES reader (id) ON DELETE RESTRICT,
     note          TEXT,
     created_at    TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -64,14 +66,20 @@ CREATE TABLE book_borrowing
 
 CREATE TABLE book
 (
-    id                SERIAL PRIMARY KEY,
-    condition         INT       NOT NULL DEFAULT 10,
-    image             VARCHAR(128),
-    note              TEXT,
-    position          VARCHAR(256),
-    meta_id           INT       REFERENCES book_meta (id) ON DELETE SET NULL,
-    storage_id        INT       NOT NULL REFERENCES storage (id) ON DELETE RESTRICT,
-    book_borrowing_id INT       REFERENCES book_borrowing (id) ON DELETE SET NULL,
-    created_at        TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at        TIMESTAMP NOT NULL DEFAULT NOW()
+    id         SERIAL PRIMARY KEY,
+    condition  INT       NOT NULL DEFAULT 10,
+    image      VARCHAR(128),
+    note       TEXT,
+    position   VARCHAR(256),
+    is_deleted BOOLEAN   NOT NULL DEFAULT FALSE,
+    meta_id    INT       NOT NULL REFERENCES book_meta (id) ON DELETE SET NULL,
+    storage_id INT       NOT NULL REFERENCES storage (id) ON DELETE RESTRICT,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+CREATE TABLE book_borrow_ticket
+(
+    id               SERIAL PRIMARY KEY,
+    borrow_ticket_id INT NOT NULL REFERENCES borrow_ticket (id),
+    book_id          INT NOT NULL REFERENCES book (id)
 )

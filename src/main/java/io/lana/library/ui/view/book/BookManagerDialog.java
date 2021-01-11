@@ -4,14 +4,14 @@
 
 package io.lana.library.ui.view.book;
 
-import io.lana.library.core.datacenter.BookBorrowingDataCenter;
 import io.lana.library.core.datacenter.BookDataCenter;
 import io.lana.library.core.datacenter.BookMetaDataCenter;
 import io.lana.library.core.datacenter.ReaderDataCenter;
-import io.lana.library.core.model.Reader;
+import io.lana.library.core.datacenter.TicketDataCenter;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Storage;
+import io.lana.library.core.model.book.Ticket;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.StorageRepo;
 import io.lana.library.ui.InputException;
@@ -44,7 +44,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     private StorageRepo storageRepo;
     private BookDataCenter bookDataCenter;
     private BookMetaDataCenter bookMetaDataCenter;
-    private BookBorrowingDataCenter bookBorrowingDataCenter;
+    private TicketDataCenter ticketDataCenter;
     private ReaderDataCenter readerDataCenter;
     private BookMeta bookMetaModel;
 
@@ -69,8 +69,8 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     @Autowired
     public void setup(BookDataCenter bookDataCenter, StorageRepo storageRepo, FileStorage fileStorage,
                       BookMetaDataCenter bookMetaDataCenter, ReaderDataCenter readerDataCenter,
-                      BookBorrowingDataCenter bookBorrowingDataCenter) {
-        this.bookBorrowingDataCenter = bookBorrowingDataCenter;
+                      TicketDataCenter ticketDataCenter) {
+        this.ticketDataCenter = ticketDataCenter;
         this.bookDataCenter = bookDataCenter;
         this.bookMetaDataCenter = bookMetaDataCenter;
         this.storageRepo = storageRepo;
@@ -101,9 +101,10 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         bookMetaModel.getBooks().remove(book);
         bookMetaDataCenter.refresh(bookMetaModel);
         if (book.isBorrowed()) {
-            book.getBorrowing().getBooks().remove(book);
-            readerDataCenter.refresh(book.getBorrowing().getBorrower());
-            bookBorrowingDataCenter.refresh(book.getBorrowing());
+            Ticket ticket = book.getBorrowingTicket();
+            ticket.getBooks().remove(book);
+            ticketDataCenter.refresh(ticket);
+            readerDataCenter.refresh(ticket.getBorrower());
         }
         bookTablePane.removeSelectedRow();
         JOptionPane.showMessageDialog(this, "Delete success!");
@@ -159,12 +160,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
         txtPosition.setText(model.getPosition());
         txtCondition.setText(model.getCondition().toString());
         selectStorage.setSelectedItem(model.getStorage());
-        if (model.getBorrowing() != null) {
-            Reader borrower = model.getBorrowing().getBorrower();
-            txtBorrow.setText(borrower.getEmail());
-        } else {
-            txtBorrow.setText("");
-        }
+        txtBorrow.setText(model.getBorrowerName());
         txtNote.setText(model.getNote());
         if (StringUtils.isNotBlank(model.getImage())) {
             WorkerUtils.runAsync(() -> {

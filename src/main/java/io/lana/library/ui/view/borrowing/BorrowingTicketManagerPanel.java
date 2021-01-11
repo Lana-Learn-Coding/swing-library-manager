@@ -4,10 +4,10 @@
 
 package io.lana.library.ui.view.borrowing;
 
-import io.lana.library.core.datacenter.BookBorrowingDataCenter;
 import io.lana.library.core.datacenter.ReaderDataCenter;
+import io.lana.library.core.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
-import io.lana.library.core.model.book.BookBorrowing;
+import io.lana.library.core.model.book.Ticket;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BookBorrowingTablePane;
 import io.lana.library.ui.view.app.CrudPanel;
@@ -27,8 +27,8 @@ import java.awt.event.ActionEvent;
 import java.util.Optional;
 
 @Component
-public class BorrowingTicketManagerPanel extends JPanel implements CrudPanel<BookBorrowing> {
-    private BookBorrowingDataCenter bookBorrowingDataCenter;
+public class BorrowingTicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
+    private TicketDataCenter ticketDataCenter;
     private ReaderDataCenter readerDataCenter;
 
     private BorrowBookDialog borrowBookDialog;
@@ -43,19 +43,19 @@ public class BorrowingTicketManagerPanel extends JPanel implements CrudPanel<Boo
                 btnDelete.setEnabled(false);
                 return;
             }
-            BookBorrowing bookBorrowing = borrowingTablePane.getRow(pos);
-            loadModelToForm(bookBorrowing);
+            Ticket ticket = borrowingTablePane.getRow(pos);
+            loadModelToForm(ticket);
             btnDelete.setEnabled(true);
         });
     }
 
     @Autowired
-    public void setup(BookBorrowingDataCenter bookBorrowingDataCenter, BorrowBookDialog borrowBookDialog,
+    public void setup(TicketDataCenter ticketDataCenter, BorrowBookDialog borrowBookDialog,
                       ReaderDataCenter readerDataCenter) {
         this.readerDataCenter = readerDataCenter;
-        this.bookBorrowingDataCenter = bookBorrowingDataCenter;
+        this.ticketDataCenter = ticketDataCenter;
         this.borrowBookDialog = borrowBookDialog;
-        this.borrowingTablePane.setRepositoryDataCenter(bookBorrowingDataCenter);
+        this.borrowingTablePane.setRepositoryDataCenter(ticketDataCenter);
     }
 
     @Override
@@ -66,9 +66,9 @@ public class BorrowingTicketManagerPanel extends JPanel implements CrudPanel<Boo
         if (JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Are you really SURE?")) {
             return;
         }
-        BookBorrowing bookBorrowing = borrowingTablePane.getSelectedRow();
-        bookBorrowingDataCenter.delete(bookBorrowing);
-        readerDataCenter.refresh(bookBorrowing.getBorrower());
+        Ticket ticket = borrowingTablePane.getSelectedRow();
+        ticketDataCenter.delete(ticket);
+        readerDataCenter.refresh(ticket.getBorrower());
         JOptionPane.showMessageDialog(this, "Ticket deleted");
     }
 
@@ -83,12 +83,12 @@ public class BorrowingTicketManagerPanel extends JPanel implements CrudPanel<Boo
     }
 
     @Override
-    public void loadModelToForm(BookBorrowing model) {
+    public void loadModelToForm(Ticket model) {
 
     }
 
     @Override
-    public BookBorrowing getModelFromForm() {
+    public Ticket getModelFromForm() {
         return null;
     }
 

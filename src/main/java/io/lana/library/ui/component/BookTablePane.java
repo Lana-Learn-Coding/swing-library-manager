@@ -14,7 +14,7 @@ public class BookTablePane extends AbstractListBasedTablePane<Book> {
         mapping.put("ID", Book::getId, Integer.class);
         mapping.put("Storage", Book::getStorageName);
         mapping.put("Condition", Book::getCondition);
-        mapping.put("Borrower", Book::getBorrower);
+        mapping.put("Borrower", Book::getBorrowerName);
         mapping.put("Borrower phone", Book::getBorrowerPhone);
         mapping.put("Borrowed Since", Book::getBorrowedDate, LocalDate.class);
         mapping.put("Due Date", Book::getDueDate, LocalDate.class);

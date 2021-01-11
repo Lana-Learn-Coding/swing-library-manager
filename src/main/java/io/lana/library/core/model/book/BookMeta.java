@@ -4,6 +4,8 @@ import io.lana.library.core.model.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "book_meta")
+@SQLDelete(sql = "UPDATE book_meta SET is_deleted = true WHERE id = ?")
 public class BookMeta extends BaseEntity {
     private String title;
 
@@ -24,7 +27,11 @@ public class BookMeta extends BaseEntity {
 
     private Integer year;
 
+    @Column(name = "is_deleted")
+    private Boolean deleted = false;
+
     @OneToMany(mappedBy = "meta", fetch = FetchType.EAGER)
+    @Where(clause = "is_deleted = false")
     private Set<Book> books = new HashSet<>();
 
     @ManyToOne

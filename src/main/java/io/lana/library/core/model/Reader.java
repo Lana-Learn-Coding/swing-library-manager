@@ -1,7 +1,8 @@
 package io.lana.library.core.model;
 
 import io.lana.library.core.model.base.BaseEntity;
-import io.lana.library.core.model.book.BookBorrowing;
+import io.lana.library.core.model.book.Book;
+import io.lana.library.core.model.book.Ticket;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Setter
@@ -35,7 +37,7 @@ public class Reader extends BaseEntity {
     private LocalDate birth;
 
     @OneToMany(mappedBy = "borrower", fetch = FetchType.EAGER)
-    private Set<BookBorrowing> borrowedBooks = new HashSet<>();
+    private Set<Ticket> tickets = new HashSet<>();
 
     @Transient
     public String getGenderString() {
@@ -43,9 +45,20 @@ public class Reader extends BaseEntity {
     }
 
     @Transient
+    public Set<Book> getBorrowedBooks() {
+        return tickets.stream()
+            .filter(Ticket::isBorrowing)
+            .flatMap(ticket -> ticket.getBooks().stream())
+            .filter(Book::isNotDeleted)
+            .collect(Collectors.toSet());
+    }
+
+    @Transient
     public Integer getBorrowedBookCount() {
-        return (int) borrowedBooks.stream()
-            .mapToLong(bookBorrowing -> bookBorrowing.getBooks().size())
-            .sum();
+        return (int) tickets.stream()
+            .filter(Ticket::isBorrowing)
+            .flatMap(ticket -> ticket.getBooks().stream())
+            .filter(Book::isNotDeleted)
+            .count();
     }
 }
