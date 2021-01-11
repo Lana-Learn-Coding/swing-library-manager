@@ -1,6 +1,6 @@
 package io.lana.library.ui.component.app.table;
 
-import io.lana.library.core.datacenter.base.RepositoryDataCenter;
+import io.lana.library.core.spi.datacenter.base.RepositoryDataCenter;
 import io.lana.library.core.model.base.Identified;
 
 import java.util.Iterator;

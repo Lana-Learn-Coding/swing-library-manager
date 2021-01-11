@@ -1,8 +1,8 @@
-package io.lana.library.core.datacenter;
+package io.lana.library.core.spi.datacenter;
 
-import io.lana.library.core.datacenter.base.AbstractRepositoryDataCenter;
+import io.lana.library.core.spi.datacenter.base.AbstractRepositoryDataCenter;
 import io.lana.library.core.model.book.Book;
-import io.lana.library.core.spi.BookRepo;
+import io.lana.library.core.spi.repo.BookRepo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

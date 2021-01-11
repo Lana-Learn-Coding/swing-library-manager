@@ -1,4 +1,4 @@
-package io.lana.library.core.datacenter.base;
+package io.lana.library.core.spi.datacenter.base;
 
 import lombok.Getter;
 

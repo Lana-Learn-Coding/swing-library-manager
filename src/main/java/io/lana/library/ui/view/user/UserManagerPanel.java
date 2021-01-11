@@ -7,7 +7,7 @@ package io.lana.library.ui.view.user;
 import io.lana.library.core.model.user.Permission;
 import io.lana.library.core.model.user.User;
 import io.lana.library.core.spi.PasswordEncoder;
-import io.lana.library.core.spi.UserRepo;
+import io.lana.library.core.spi.repo.UserRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.UIException;
 import io.lana.library.ui.UserContext;

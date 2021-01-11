@@ -1,4 +1,4 @@
-package io.lana.library.core.spi;
+package io.lana.library.core.spi.repo;
 
 import io.lana.library.core.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

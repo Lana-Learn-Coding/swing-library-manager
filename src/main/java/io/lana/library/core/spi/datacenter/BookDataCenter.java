@@ -1,6 +1,6 @@
-package io.lana.library.core.datacenter;
+package io.lana.library.core.spi.datacenter;
 
-import io.lana.library.core.datacenter.base.RepositoryDataCenter;
+import io.lana.library.core.spi.datacenter.base.RepositoryDataCenter;
 import io.lana.library.core.model.book.Book;
 
 import java.util.List;

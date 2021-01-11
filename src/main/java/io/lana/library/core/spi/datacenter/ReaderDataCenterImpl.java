@@ -1,8 +1,8 @@
-package io.lana.library.core.datacenter;
+package io.lana.library.core.spi.datacenter;
 
-import io.lana.library.core.datacenter.base.AbstractRepositoryDataCenter;
+import io.lana.library.core.spi.datacenter.base.AbstractRepositoryDataCenter;
 import io.lana.library.core.model.Reader;
-import io.lana.library.core.spi.ReaderRepo;
+import io.lana.library.core.spi.repo.ReaderRepo;
 import org.springframework.stereotype.Component;
 
 @Component

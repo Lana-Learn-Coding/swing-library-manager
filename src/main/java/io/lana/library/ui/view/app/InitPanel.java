@@ -4,18 +4,18 @@
 
 package io.lana.library.ui.view.app;
 
-import io.lana.library.core.datacenter.BookDataCenter;
-import io.lana.library.core.datacenter.BookMetaDataCenter;
-import io.lana.library.core.datacenter.ReaderDataCenter;
-import io.lana.library.core.datacenter.TicketDataCenter;
+import io.lana.library.core.spi.datacenter.BookDataCenter;
+import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
+import io.lana.library.core.spi.datacenter.ReaderDataCenter;
+import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Ticket;
 import io.lana.library.core.model.user.User;
-import io.lana.library.core.spi.ReaderRepo;
-import io.lana.library.core.spi.TicketRepo;
-import io.lana.library.core.spi.UserRepo;
+import io.lana.library.core.spi.repo.ReaderRepo;
+import io.lana.library.core.spi.repo.BookMetaRepo;
+import io.lana.library.core.spi.repo.UserRepo;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
@@ -77,8 +77,8 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         progress.setValue(25);
 
         loadingText.setText("Loading Book...");
-        TicketRepo ticketRepo = applicationContext.getBean(TicketRepo.class);
-        List<BookMeta> bookMetas = ticketRepo.findAllByOrderByUpdatedAtDesc();
+        BookMetaRepo bookMetaRepo = applicationContext.getBean(BookMetaRepo.class);
+        List<BookMeta> bookMetas = bookMetaRepo.findAllByOrderByUpdatedAtDesc();
         progress.setValue(50);
 
         loadingText.setText("Loading Reader...");

@@ -4,14 +4,14 @@
 
 package io.lana.library.ui.view.book;
 
-import io.lana.library.core.datacenter.BookMetaDataCenter;
+import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Category;
 import io.lana.library.core.model.book.Series;
-import io.lana.library.core.spi.CategoryRepo;
+import io.lana.library.core.spi.repo.CategoryRepo;
 import io.lana.library.core.spi.FileStorage;
-import io.lana.library.core.spi.SeriesRepo;
+import io.lana.library.core.spi.repo.SeriesRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BookMetaTablePane;
 import io.lana.library.ui.component.app.ComboBox;

@@ -4,9 +4,9 @@
 
 package io.lana.library.ui.view.reader;
 
-import io.lana.library.core.datacenter.BookDataCenter;
-import io.lana.library.core.datacenter.ReaderDataCenter;
-import io.lana.library.core.datacenter.TicketDataCenter;
+import io.lana.library.core.spi.datacenter.BookDataCenter;
+import io.lana.library.core.spi.datacenter.ReaderDataCenter;
+import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.Ticket;

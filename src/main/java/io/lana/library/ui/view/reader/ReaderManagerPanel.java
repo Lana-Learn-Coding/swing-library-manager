@@ -4,7 +4,7 @@
 
 package io.lana.library.ui.view.reader;
 
-import io.lana.library.core.datacenter.ReaderDataCenter;
+import io.lana.library.core.spi.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.user.Permission;
 import io.lana.library.core.spi.FileStorage;
