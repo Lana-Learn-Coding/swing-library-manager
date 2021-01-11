@@ -4,17 +4,17 @@
 
 package io.lana.library.ui.view.app;
 
-import io.lana.library.core.spi.datacenter.BookDataCenter;
-import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
-import io.lana.library.core.spi.datacenter.ReaderDataCenter;
-import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Ticket;
 import io.lana.library.core.model.user.User;
-import io.lana.library.core.spi.repo.ReaderRepo;
+import io.lana.library.core.spi.datacenter.BookDataCenter;
+import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
+import io.lana.library.core.spi.datacenter.ReaderDataCenter;
+import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.core.spi.repo.BookMetaRepo;
+import io.lana.library.core.spi.repo.ReaderRepo;
 import io.lana.library.core.spi.repo.UserRepo;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.MainFrameContainer;
@@ -29,10 +29,8 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -86,15 +84,15 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         // we need somehow lazy load the reader borrowing list, and set it by hand
         Map<Integer, Reader> readers = readerRepo.findAllByOrderByUpdatedAtDesc()
             .stream().collect(Collectors.toMap(Reader::getId, Function.identity()));
-        readers.values().forEach(reader -> reader.setBorrowedBooks(new HashSet<>()));
+        readers.values().forEach(reader -> reader.setTickets(new HashSet<>()));
         progress.setValue(75);
 
         loadingText.setText("Syncing Reader...");
         List<Book> books = bookMetas.stream()
             .flatMap(bookMeta -> bookMeta.getBooks().stream()).collect(Collectors.toList());
         Set<Ticket> tickets = books.stream()
-            .filter(Book::isBorrowed)
-            .map(Book::getBorrowing)
+            .map(Book::getTickets)
+            .flatMap(Collection::stream)
             .collect(Collectors.toSet());
         tickets.forEach(ticket -> {
             Reader reader = ticket.getBorrower();
@@ -104,7 +102,7 @@ public class InitPanel extends JPanel implements MainFrameContainer {
                 return;
             }
             ticket.setBorrower(loadedReader);
-            loadedReader.getBorrowedBooks().add(ticket);
+            loadedReader.getTickets().add(ticket);
         });
         progress.setValue(88);
 
