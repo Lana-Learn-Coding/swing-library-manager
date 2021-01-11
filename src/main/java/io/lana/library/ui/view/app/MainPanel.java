@@ -5,7 +5,7 @@ import io.lana.library.core.model.user.User;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
-import io.lana.library.ui.view.borrowing.BorrowingTicketManagerPanel;
+import io.lana.library.ui.view.ticket.BorrowingTicketManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
 import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;

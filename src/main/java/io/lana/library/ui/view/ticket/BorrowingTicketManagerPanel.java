@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Jan 08 21:09:38 ICT 2021
  */
 
-package io.lana.library.ui.view.borrowing;
+package io.lana.library.ui.view.ticket;
 
 import io.lana.library.core.spi.datacenter.ReaderDataCenter;
 import io.lana.library.core.spi.datacenter.TicketDataCenter;
