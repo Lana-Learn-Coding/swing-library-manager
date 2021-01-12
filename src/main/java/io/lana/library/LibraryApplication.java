@@ -1,6 +1,7 @@
 package io.lana.library;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import io.lana.library.core.service.ServiceException;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.UIException;
 import io.lana.library.ui.view.app.InitPanel;
@@ -42,6 +43,12 @@ public class LibraryApplication implements CommandLineRunner, ApplicationContext
                 if (UIException.class.isAssignableFrom(errorClass)) {
                     UIException e = (UIException) error;
                     JOptionPane.showMessageDialog(e.getComponent(), e.getMessage());
+                    return;
+                }
+
+                if (ServiceException.class.isAssignableFrom(errorClass)) {
+                    ServiceException e = (ServiceException) error;
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                     return;
                 }
 

@@ -4,14 +4,10 @@
 
 package io.lana.library.ui.view.book;
 
-import io.lana.library.core.spi.datacenter.BookDataCenter;
-import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
-import io.lana.library.core.spi.datacenter.ReaderDataCenter;
-import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Storage;
-import io.lana.library.core.model.book.Ticket;
+import io.lana.library.core.service.BookService;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.core.spi.repo.StorageRepo;
 import io.lana.library.ui.InputException;
@@ -41,11 +37,8 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     private final ImagePicker imagePicker = new ImagePicker();
 
     private FileStorage fileStorage;
+    private BookService bookService;
     private StorageRepo storageRepo;
-    private BookDataCenter bookDataCenter;
-    private BookMetaDataCenter bookMetaDataCenter;
-    private TicketDataCenter ticketDataCenter;
-    private ReaderDataCenter readerDataCenter;
     private BookMeta bookMetaModel;
 
     public BookManagerDialog() {
@@ -67,16 +60,11 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     }
 
     @Autowired
-    public void setup(BookDataCenter bookDataCenter, StorageRepo storageRepo, FileStorage fileStorage,
-                      BookMetaDataCenter bookMetaDataCenter, ReaderDataCenter readerDataCenter,
-                      TicketDataCenter ticketDataCenter) {
-        this.ticketDataCenter = ticketDataCenter;
-        this.bookDataCenter = bookDataCenter;
-        this.bookMetaDataCenter = bookMetaDataCenter;
+    public void setup(BookService bookService, StorageRepo storageRepo, FileStorage fileStorage) {
+        this.bookService = bookService;
         this.storageRepo = storageRepo;
         this.storageRepo.findAll().forEach(selectStorage::addItem);
         this.fileStorage = fileStorage;
-        this.readerDataCenter = readerDataCenter;
         selectStorage.setSelectedItem(null);
     }
 
@@ -96,16 +84,7 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
             JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Book is borrowed, Are you SURE?")) {
             return;
         }
-        bookDataCenter.delete(book);
-        WorkerUtils.runAsync(() -> fileStorage.deleteFileFromStorage(book.getImage()));
-        bookMetaModel.getBooks().remove(book);
-        bookMetaDataCenter.refresh(bookMetaModel);
-        if (book.isBorrowed()) {
-            Ticket ticket = book.getBorrowingTicket();
-            ticket.getBooks().remove(book);
-            ticketDataCenter.refresh(ticket);
-            readerDataCenter.refresh(ticket.getBorrower());
-        }
+        bookService.deleteBook(book);
         bookTablePane.removeSelectedRow();
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
@@ -114,31 +93,17 @@ public class BookManagerDialog extends JDialog implements CrudPanel<Book> {
     public void save() {
         Book book = getModelFromForm();
         if (!bookTablePane.isAnyRowSelected()) {
-            book.setMeta(bookMetaModel);
-            if (StringUtils.isNotBlank(book.getImage())) {
-                String savedImage = fileStorage.loadFileToStorage(book.getImage());
-                book.setImage(savedImage);
-            }
-            bookDataCenter.save(book);
+            bookService.createBook(book);
             bookMetaModel.getBooks().add(book);
             bookTablePane.addRow(0, book);
             bookTablePane.clearSearch();
             bookTablePane.setSelectedRow(0);
-            bookMetaDataCenter.refresh(bookMetaModel);
             JOptionPane.showMessageDialog(this, "Create success!");
             return;
         }
 
-        Book updated = bookTablePane.getSelectedRow();
-        updated.setStorage(book.getStorage());
-        updated.setNote(book.getNote());
-        updated.setCondition(book.getCondition());
-        updated.setPosition(book.getPosition());
-        if (StringUtils.isNotBlank(book.getImage())) {
-            String savedImage = fileStorage.loadFileToStorage(book.getImage());
-            updated.setImage(savedImage);
-        }
-        bookDataCenter.update(updated);
+        book.setId(bookTablePane.getSelectedRow().getId());
+        bookService.updateBook(book);
         JOptionPane.showMessageDialog(this, "Update success!");
         bookTablePane.refreshSelectedRow();
     }

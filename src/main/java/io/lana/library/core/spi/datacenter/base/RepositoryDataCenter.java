@@ -34,6 +34,10 @@ public interface RepositoryDataCenter<ID, T extends Identified<ID>> extends Data
         refresh(entity.getId());
     }
 
+    default void refreshAll(Collection<T> entities) {
+        entities.forEach(this::refresh);
+    }
+
     void updateAll(Iterable<T> entities);
 
     void update(T entity);

@@ -4,13 +4,14 @@
 
 package io.lana.library.ui.view.book;
 
-import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Category;
 import io.lana.library.core.model.book.Series;
-import io.lana.library.core.spi.repo.CategoryRepo;
+import io.lana.library.core.service.BookService;
 import io.lana.library.core.spi.FileStorage;
+import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
+import io.lana.library.core.spi.repo.CategoryRepo;
 import io.lana.library.core.spi.repo.SeriesRepo;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BookMetaTablePane;
@@ -43,15 +44,15 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
     private BookManagerDialog bookManagerDialog;
     private SeriesRepo seriesRepo;
     private CategoryRepo categoryRepo;
-    private BookMetaDataCenter bookMetaDataCenter;
     private FileStorage fileStorage;
+    private BookService bookService;
 
     @Autowired
     public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaDataCenter bookMetaDataCenter,
-                      BookManagerDialog bookManagerDialog, FileStorage fileStorage) {
+                      BookManagerDialog bookManagerDialog, FileStorage fileStorage, BookService bookService) {
+        this.bookService = bookService;
         this.bookManagerDialog = bookManagerDialog;
         this.seriesRepo = seriesRepo;
-        this.bookMetaDataCenter = bookMetaDataCenter;
         this.categoryRepo = categoryRepo;
         this.fileStorage = fileStorage;
         this.bookMetaTablePane.setRepositoryDataCenter(bookMetaDataCenter);
@@ -112,48 +113,21 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
                 return;
             }
         }
-        bookMetaDataCenter.delete(bookMeta);
-        WorkerUtils.runAsync(() -> fileStorage.deleteFileFromStorage(bookMeta.getImage()));
+        bookService.deleteBookMeta(bookMeta);
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
     @Override
     public void save() {
+        BookMeta bookMeta = getModelFromForm();
         if (!bookMetaTablePane.isAnyRowSelected()) {
-            BookMeta created = createFromForm();
+            bookService.createBookMeta(bookMeta);
             JOptionPane.showMessageDialog(this, "Create Success");
             return;
         }
-        updateFromForm();
+        bookMeta.setId(bookMetaTablePane.getSelectedRow().getId());
+        bookService.updateBookMeta(bookMeta);
         JOptionPane.showMessageDialog(this, "Update Success");
-    }
-
-    private BookMeta createFromForm() {
-        BookMeta bookMeta = getModelFromForm();
-        if (StringUtils.isNotBlank(bookMeta.getImage())) {
-            String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
-            bookMeta.setImage(savedImage);
-        }
-        bookMetaDataCenter.save(bookMeta);
-        return bookMeta;
-    }
-
-    private BookMeta updateFromForm() {
-        BookMeta bookMeta = getModelFromForm();
-        BookMeta updated = bookMetaTablePane.getSelectedRow();
-        updated.setTitle(bookMeta.getTitle());
-        updated.setYear(bookMeta.getYear());
-        updated.setPublisher(bookMeta.getPublisher());
-        updated.setAuthor(bookMeta.getAuthor());
-        updated.setCategory(bookMeta.getCategory());
-        updated.setSeries(bookMeta.getSeries());
-        if (StringUtils.isNotBlank(bookMeta.getImage())) {
-            fileStorage.deleteFileFromStorage(updated.getImage());
-            String savedImage = fileStorage.loadFileToStorage(bookMeta.getImage());
-            updated.setImage(savedImage);
-        }
-        bookMetaDataCenter.update(updated);
-        return updated;
     }
 
     @Override
