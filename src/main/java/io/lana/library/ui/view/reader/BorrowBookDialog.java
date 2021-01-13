@@ -4,12 +4,11 @@
 
 package io.lana.library.ui.view.reader;
 
-import io.lana.library.core.spi.datacenter.BookDataCenter;
-import io.lana.library.core.spi.datacenter.ReaderDataCenter;
-import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.Ticket;
+import io.lana.library.core.service.BookService;
+import io.lana.library.core.service.TicketService;
 import io.lana.library.core.spi.FileStorage;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.BorrowBookTablePane;
@@ -39,9 +38,8 @@ import java.util.stream.Collectors;
 public class BorrowBookDialog extends JDialog {
     private Reader readerModel;
 
-    private BookDataCenter bookDataCenter;
-    private TicketDataCenter ticketDataCenter;
-    private ReaderDataCenter readerDataCenter;
+    private TicketService ticketService;
+    private BookService bookService;
     private FileStorage fileStorage;
 
     public BorrowBookDialog() {
@@ -59,13 +57,12 @@ public class BorrowBookDialog extends JDialog {
     }
 
     @Autowired
-    public void setup(BookDataCenter bookDataCenter, FileStorage fileStorage,
-                      TicketDataCenter ticketDataCenter,
-                      ReaderDataCenter readerDataCenter) {
-        this.bookDataCenter = bookDataCenter;
+    public void setup(FileStorage fileStorage,
+                      TicketService ticketService,
+                      BookService bookService) {
         this.fileStorage = fileStorage;
-        this.ticketDataCenter = ticketDataCenter;
-        this.readerDataCenter = readerDataCenter;
+        this.ticketService = ticketService;
+        this.bookService = bookService;
     }
 
     public void setModel(Reader readerModel) {
@@ -104,28 +101,24 @@ public class BorrowBookDialog extends JDialog {
         Integer totalBorrowedBook = addedBookCount + readerModel.getBorrowedBookCount();
         if (readerModel.getLimit() < totalBorrowedBook) {
             throw new InputException(this, "Borrowing book over limit " + totalBorrowedBook.toString()
-                + "/" + readerModel.getLimit().toString());
+                                           + "/" + readerModel.getLimit().toString());
         }
 
-        Ticket bookBorrowing = new Ticket();
+        Ticket ticket = new Ticket();
         if (txtDueDate.getDate() == null) {
             throw new InputException(this, "Invalid Due Date Date");
         }
-        bookBorrowing.setDueDate(DateFormatUtils.toLocalDate(txtDueDate.getDate()));
-        if (!bookBorrowing.getDueDate().isAfter(LocalDate.now())) {
+        ticket.setDueDate(DateFormatUtils.toLocalDate(txtDueDate.getDate()));
+        if (!ticket.getDueDate().isAfter(LocalDate.now())) {
             throw new InputException(this, "Invalid Due Date must after today");
         }
 
-        bookBorrowing.setBorrowedDate(LocalDate.now());
-        bookBorrowing.setNote(txtNote.getText());
-        bookBorrowing.setBooks(new HashSet<>(bookTablePane.asList()));
-        bookBorrowing.getBooks().forEach(book -> book.setBorrowing(bookBorrowing));
-        bookBorrowing.setBorrower(readerModel);
+        ticket.setBorrowedDate(LocalDate.now());
+        ticket.setNote(txtNote.getText());
+        ticket.setBooks(new HashSet<>(bookTablePane.asList()));
+        ticket.setBorrower(readerModel);
 
-        ticketDataCenter.save(bookBorrowing);
-        bookDataCenter.updateAll(bookBorrowing.getBooks());
-        readerModel.getBorrowedBooks().add(bookBorrowing);
-        readerDataCenter.refresh(readerModel);
+        ticketService.createTicket(ticket);
         JOptionPane.showMessageDialog(this, "Book borrowing ticket created successfully");
         setVisible(false);
     }
@@ -145,7 +138,7 @@ public class BorrowBookDialog extends JDialog {
             }
         });
 
-        List<Book> books = bookDataCenter.findAllNotBorrowedAndIdIn(ids);
+        List<Book> books = bookService.findAllNotBorrowedBookByIdIn(ids);
         List<Integer> bookIds = books.stream().map(Book::getId).collect(Collectors.toList());
         if (books.size() != ids.size() && checkStrictFilter.isSelected()) {
             ids.removeAll(bookIds);

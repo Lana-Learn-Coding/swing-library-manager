@@ -1,11 +1,11 @@
 package io.lana.library.ui.component;
 
 import io.lana.library.core.model.book.Book;
+import io.lana.library.core.model.book.Ticket;
 import io.lana.library.ui.component.app.table.AbstractListBasedTablePane;
 import io.lana.library.ui.component.app.table.TableColumnMapping;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class ReaderBorrowedBookTablePane extends AbstractListBasedTablePane<Book> {
     @Override
@@ -15,18 +15,17 @@ public class ReaderBorrowedBookTablePane extends AbstractListBasedTablePane<Book
         mapping.put("ID", Book::getId, Integer.class);
         mapping.put("Meta ID", (book) -> book.getMeta().getId(), Integer.class);
         mapping.put("Title", (book) -> book.getMeta().getTitle());
-        mapping.put("Ticket", (book) -> "Ticket " + book.getBorrowing().getId());
+        mapping.put("Ticket", (book) -> "Ticket " + book.getBorrowingTicket().getId());
         mapping.put("Overdue", (book) -> {
-            if (LocalDate.now().isBefore(book.getDueDate())) {
-                return "";
+            Ticket ticket = book.getBorrowingTicket();
+            if (ticket != null && ticket.isOverDue()) {
+                return "Overdue";
             }
-            return "Overdue";
+            return "";
         });
         mapping.put("Overdue Days", (book) -> {
-            if (LocalDate.now().isBefore(book.getDueDate())) {
-                return 0;
-            }
-            return ChronoUnit.DAYS.between(book.getDueDate(), LocalDate.now());
+            Ticket ticket = book.getBorrowingTicket();
+            return ticket.getOverDueDays();
         }, Integer.class);
         mapping.put("Borrowed Since", Book::getBorrowedDate, LocalDate.class);
         mapping.put("Due Date", Book::getDueDate, LocalDate.class);

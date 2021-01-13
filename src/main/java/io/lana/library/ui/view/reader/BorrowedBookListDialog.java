@@ -4,13 +4,11 @@
 
 package io.lana.library.ui.view.reader;
 
-import io.lana.library.core.spi.datacenter.BookDataCenter;
-import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
-import io.lana.library.core.spi.datacenter.ReaderDataCenter;
-import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.Ticket;
+import io.lana.library.core.service.BookService;
+import io.lana.library.core.service.TicketService;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.ReaderBorrowedBookTablePane;
 import io.lana.library.utils.DateFormatUtils;
@@ -23,17 +21,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Component
 public class BorrowedBookListDialog extends JDialog {
-    private BookMetaDataCenter bookMetaDataCenter;
-    private TicketDataCenter ticketDataCenter;
-    private BookDataCenter bookDataCenter;
-    private ReaderDataCenter readerDataCenter;
 
-    private Reader readerModel;
+    private TicketService ticketService;
+    private BookService bookService;
 
     public BorrowedBookListDialog() {
         initComponents();
@@ -58,18 +51,13 @@ public class BorrowedBookListDialog extends JDialog {
     }
 
     @Autowired
-    public void setup(BookDataCenter bookDataCenter, TicketDataCenter ticketDataCenter,
-                      ReaderDataCenter readerDataCenter, BookMetaDataCenter bookMetaDataCenter) {
-        this.bookDataCenter = bookDataCenter;
-        this.ticketDataCenter = ticketDataCenter;
-        this.readerDataCenter = readerDataCenter;
-        this.bookMetaDataCenter = bookMetaDataCenter;
+    public void setup(TicketService ticketService, BookService bookService) {
+        this.bookService = bookService;
+        this.ticketService = ticketService;
     }
 
     public void setModel(Reader readerModel) {
-        this.readerModel = readerModel;
-        borrowTablePane.setTableData(readerModel.getBorrowedBooks()
-            .stream().flatMap(bookBorrowing -> bookBorrowing.getBooks().stream()).collect(Collectors.toList()));
+        borrowTablePane.setTableData(readerModel.getBorrowedBooks());
     }
 
     private void btnReturnBookActionPerformed(ActionEvent e) {
@@ -77,12 +65,8 @@ public class BorrowedBookListDialog extends JDialog {
             return;
         }
         Book book = borrowTablePane.getSelectedRow();
-        Ticket ticket = book.getBorrowing();
-        ticket.getBooks().remove(book);
+        ticketService.returnBook(book);
         borrowTablePane.removeSelectedRow();
-        book.setBorrowing(null);
-        bookDataCenter.update(book);
-        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book returned!");
     }
 
@@ -98,15 +82,9 @@ public class BorrowedBookListDialog extends JDialog {
         if (userNotConfirmed()) {
             return;
         }
-        Ticket ticket = borrowTablePane.getSelectedRow().getBorrowing();
-        readerModel.getBorrowedBooks().remove(ticket);
-        ticket.getBooks().forEach(book -> {
-            book.setBorrowing(null);
-            borrowTablePane.removeRow(book);
-            bookDataCenter.refresh(book);
-        });
-        ticketDataCenter.delete(ticket);
-        readerDataCenter.refresh(readerModel);
+        Ticket ticket = borrowTablePane.getSelectedRow().getBorrowingTicket();
+        ticket.getBooks().forEach(book -> borrowTablePane.removeRow(book));
+        ticketService.returnTicket(ticket);
         JOptionPane.showMessageDialog(this, "All book in ticket returned!");
     }
 
@@ -116,24 +94,15 @@ public class BorrowedBookListDialog extends JDialog {
         }
 
         Book book = borrowTablePane.getSelectedRow();
-        Ticket ticket = book.getBorrowing();
+        Ticket ticket = book.getBorrowingTicket();
 
         LocalDate dueDate = inputDateAfter(ticket.getDueDate());
         if (dueDate == null) {
             return;
         }
 
-        ticket.getBooks().remove(book);
-        Ticket newTicket = ticket.withDueDate(dueDate);
-        newTicket.setId(null);
-        newTicket.setBooks(Set.of(book));
-        ticketDataCenter.save(newTicket);
-
-        book.setBorrowing(newTicket);
-        bookDataCenter.update(book);
+        ticketService.extendBookDueDate(book, dueDate);
         borrowTablePane.refreshSelectedRow();
-        readerModel.getBorrowedBooks().add(ticket);
-        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book due date extended!");
     }
 
@@ -143,14 +112,13 @@ public class BorrowedBookListDialog extends JDialog {
         }
 
         Book book = borrowTablePane.getSelectedRow();
-        Ticket ticket = book.getBorrowing();
+        Ticket ticket = book.getBorrowingTicket();
 
         LocalDate dueDate = inputDateAfter(ticket.getDueDate());
         if (dueDate == null) {
             return;
         }
-        ticket.setDueDate(dueDate);
-        ticketDataCenter.update(ticket);
+        ticketService.extendTicketDueDate(ticket, dueDate);
         ticket.getBooks().forEach(borrowTablePane::refreshRow);
         JOptionPane.showMessageDialog(this, "Ticket due date extended!");
     }
@@ -184,17 +152,8 @@ public class BorrowedBookListDialog extends JDialog {
             return;
         }
         Book book = borrowTablePane.getSelectedRow();
-        Ticket ticket = book.getBorrowing();
-        ticket.getBooks().remove(book);
+        bookService.deleteBook(book);
         borrowTablePane.removeSelectedRow();
-        bookDataCenter.delete(book);
-        if (ticket.getBooks().isEmpty()) {
-            ticketDataCenter.delete(ticket);
-        } else {
-            ticketDataCenter.refresh(ticket);
-        }
-        bookMetaDataCenter.refresh(book.getMeta());
-        readerDataCenter.refresh(readerModel);
         JOptionPane.showMessageDialog(this, "Book removed");
     }
 
