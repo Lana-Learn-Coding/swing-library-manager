@@ -88,9 +88,9 @@ public class BookServiceImpl implements BookService {
         }
 
         tickets.stream()
-            .filter(ticket -> ticket.getBooks().size() <= 1)
+            .filter(ticket -> ticket.getBooksCount() == 0)
             .forEach(ticket -> {
-                ticket.setReturned(false);
+                ticket.setReturned(true);
                 ticketDataCenter.update(ticket);
             });
 
@@ -141,7 +141,7 @@ public class BookServiceImpl implements BookService {
             return;
         }
         Ticket borrowingTicket = book.getBorrowingTicket();
-        if (borrowingTicket.getBooks().size() <= 1) {
+        if (borrowingTicket.getBooksCount() == 0) {
             borrowingTicket.setReturned(true);
             ticketDataCenter.update(borrowingTicket);
         }
