@@ -35,7 +35,7 @@ public abstract class AbstractRepositoryDataCenter<ID, T extends Identified<ID>>
     @Override
     public void load(Collection<T> data) {
         internalList = new ArrayList<>(data.size() * 2);
-        internalData = new HashMap<>(data.size() * 2);
+        internalData = new LinkedHashMap<>(data.size() * 2);
         data.forEach(item -> {
             internalData.put(item.getId(), item);
             internalList.add(item.getId());
