@@ -196,17 +196,14 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         tab = new JPanel();
         formPanel = new JPanel();
         label2 = new JLabel();
-        panel1 = new JPanel();
         txtReaderId = new JTextField();
         label4 = new JLabel();
         txtReaderPhone = new JTextField();
         label1 = new JLabel();
-        panel2 = new JPanel();
         txtBorrowedDate = new JTextField();
         label5 = new JLabel();
         txtDueDate = new JXDatePicker();
         label6 = new JLabel();
-        panel3 = new JPanel();
         txtReturnedDate = new JTextField();
         checkReturn = new JCheckBox();
         lblSeries = new JLabel();
@@ -247,9 +244,9 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                         new TitledBorder("Ticket Info"),
                         new EmptyBorder(15, 15, 20, 15)));
                     formPanel.setLayout(new GridBagLayout());
-                    ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 0, 0};
+                    ((GridBagLayout) formPanel.getLayout()).columnWidths = new int[]{0, 0, 0, 0, 0};
                     ((GridBagLayout) formPanel.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 35, 0, 40, 0};
-                    ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 1.0, 1.0E-4};
+                    ((GridBagLayout) formPanel.getLayout()).columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 1.0E-4};
                     ((GridBagLayout) formPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
                     //---- label2 ----
@@ -258,33 +255,21 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 10), 0, 0));
 
-                    //======== panel1 ========
-                    {
-                        panel1.setLayout(new GridBagLayout());
-                        ((GridBagLayout) panel1.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
-                        ((GridBagLayout) panel1.getLayout()).rowHeights = new int[]{0, 0};
-                        ((GridBagLayout) panel1.getLayout()).columnWeights = new double[]{1.0, 0.0, 1.0, 1.0E-4};
-                        ((GridBagLayout) panel1.getLayout()).rowWeights = new double[]{0.0, 1.0E-4};
+                    //---- txtReaderId ----
+                    txtReaderId.setEditable(false);
+                    formPanel.add(txtReaderId, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 10), 0, 0));
 
-                        //---- txtReaderId ----
-                        txtReaderId.setEditable(false);
-                        panel1.add(txtReaderId, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 15), 0, 0));
+                    //---- label4 ----
+                    label4.setText("Phone");
+                    formPanel.add(label4, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 10), 0, 0));
 
-                        //---- label4 ----
-                        label4.setText("Phone");
-                        panel1.add(label4, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 15), 0, 0));
-
-                        //---- txtReaderPhone ----
-                        txtReaderPhone.setEditable(false);
-                        panel1.add(txtReaderPhone, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 0), 0, 0));
-                    }
-                    formPanel.add(panel1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                    //---- txtReaderPhone ----
+                    txtReaderPhone.setEditable(false);
+                    formPanel.add(txtReaderPhone, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 0), 0, 0));
 
@@ -294,30 +279,18 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 10), 0, 0));
 
-                    //======== panel2 ========
-                    {
-                        panel2.setLayout(new GridBagLayout());
-                        ((GridBagLayout) panel2.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
-                        ((GridBagLayout) panel2.getLayout()).rowHeights = new int[]{0, 0};
-                        ((GridBagLayout) panel2.getLayout()).columnWeights = new double[]{1.0, 0.0, 1.0, 1.0E-4};
-                        ((GridBagLayout) panel2.getLayout()).rowWeights = new double[]{0.0, 1.0E-4};
+                    //---- txtBorrowedDate ----
+                    txtBorrowedDate.setEditable(false);
+                    formPanel.add(txtBorrowedDate, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 10), 0, 0));
 
-                        //---- txtBorrowedDate ----
-                        txtBorrowedDate.setEditable(false);
-                        panel2.add(txtBorrowedDate, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 15), 0, 0));
-
-                        //---- label5 ----
-                        label5.setText("Due Date");
-                        panel2.add(label5, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 15), 0, 0));
-                        panel2.add(txtDueDate, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 0), 0, 0));
-                    }
-                    formPanel.add(panel2, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+                    //---- label5 ----
+                    label5.setText("Due Date");
+                    formPanel.add(label5, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 10), 0, 0));
+                    formPanel.add(txtDueDate, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 0), 0, 0));
 
@@ -327,27 +300,15 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 10), 0, 0));
 
-                    //======== panel3 ========
-                    {
-                        panel3.setLayout(new GridBagLayout());
-                        ((GridBagLayout) panel3.getLayout()).columnWidths = new int[]{0, 0, 0};
-                        ((GridBagLayout) panel3.getLayout()).rowHeights = new int[]{0, 0};
-                        ((GridBagLayout) panel3.getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0E-4};
-                        ((GridBagLayout) panel3.getLayout()).rowWeights = new double[]{0.0, 1.0E-4};
+                    //---- txtReturnedDate ----
+                    txtReturnedDate.setEditable(false);
+                    formPanel.add(txtReturnedDate, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 20, 10), 0, 0));
 
-                        //---- txtReturnedDate ----
-                        txtReturnedDate.setEditable(false);
-                        panel3.add(txtReturnedDate, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 20), 0, 0));
-
-                        //---- checkReturn ----
-                        checkReturn.setText("Returned");
-                        panel3.add(checkReturn, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 0, 0), 0, 0));
-                    }
-                    formPanel.add(panel3, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
+                    //---- checkReturn ----
+                    checkReturn.setText("Returned");
+                    formPanel.add(checkReturn, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 0), 0, 0));
 
@@ -361,7 +322,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                     {
                         scrollPane1.setViewportView(txtNote);
                     }
-                    formPanel.add(scrollPane1, new GridBagConstraints(1, 3, 1, 2, 0.0, 0.0,
+                    formPanel.add(scrollPane1, new GridBagConstraints(1, 3, 3, 2, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 0), 0, 0));
 
@@ -375,7 +336,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                     {
                         scrollPane2.setViewportView(bookList);
                     }
-                    formPanel.add(scrollPane2, new GridBagConstraints(1, 5, 1, 2, 0.0, 0.0,
+                    formPanel.add(scrollPane2, new GridBagConstraints(1, 5, 3, 2, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 0, 0), 0, 0));
                 }
@@ -462,17 +423,14 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     private JPanel tab;
     private JPanel formPanel;
     private JLabel label2;
-    private JPanel panel1;
     private JTextField txtReaderId;
     private JLabel label4;
     private JTextField txtReaderPhone;
     private JLabel label1;
-    private JPanel panel2;
     private JTextField txtBorrowedDate;
     private JLabel label5;
     private JXDatePicker txtDueDate;
     private JLabel label6;
-    private JPanel panel3;
     private JTextField txtReturnedDate;
     private JCheckBox checkReturn;
     private JLabel lblSeries;

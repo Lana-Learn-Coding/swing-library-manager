@@ -25,7 +25,7 @@ new FormModel {
 					name: "tab"
 					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.EmptyBorder( 15, 15, 20, 20 ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-						"$columnSpecs": "0, 0:1.0"
+						"$columnSpecs": "0, 0:1.0, 0, 0:1.0"
 						"$rowSpecs": "0, 0, 0, 0, 15, 0, 40"
 						"$hGap": 10
 						"$vGap": 20
@@ -38,33 +38,23 @@ new FormModel {
 							name: "label2"
 							"text": "Reader"
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
-						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-							"$columnSpecs": "0:1.0, 0, 0:1.0"
-							"$rowSpecs": "0"
-							"$hGap": 15
-							"$vGap": 20
-							"$alignLeft": true
-							"$alignTop": true
-						} ) {
-							name: "panel1"
-							add( new FormComponent( "javax.swing.JTextField" ) {
-								name: "txtReaderId"
-								"editable": false
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label4"
-								"text": "Phone"
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridx": 1
-							} )
-							add( new FormComponent( "javax.swing.JTextField" ) {
-								name: "txtReaderPhone"
-								"editable": false
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridx": 2
-							} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtReaderId"
+							"editable": false
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridx": 1
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label4"
+							"text": "Phone"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 2
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtReaderPhone"
+							"editable": false
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 3
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label1"
@@ -72,33 +62,25 @@ new FormModel {
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridy": 1
 						} )
-						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-							"$columnSpecs": "0:1.0, 0, 0:1.0"
-							"$rowSpecs": "0"
-							"$hGap": 15
-							"$vGap": 20
-							"$alignLeft": true
-							"$alignTop": true
-						} ) {
-							name: "panel2"
-							add( new FormComponent( "javax.swing.JTextField" ) {
-								name: "txtBorrowedDate"
-								"editable": false
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label5"
-								"text": "Due Date"
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridx": 1
-							} )
-							add( new FormComponent( "org.jdesktop.swingx.JXDatePicker" ) {
-								name: "txtDueDate"
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridx": 2
-							} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtBorrowedDate"
+							"editable": false
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-							"gridy": 1
 							"gridx": 1
+							"gridy": 1
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label5"
+							"text": "Due Date"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 2
+							"gridy": 1
+						} )
+						add( new FormComponent( "org.jdesktop.swingx.JXDatePicker" ) {
+							name: "txtDueDate"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 3
+							"gridy": 1
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label6"
@@ -106,27 +88,18 @@ new FormModel {
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridy": 2
 						} )
-						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-							"$columnSpecs": "0:1.0, 0:1.0"
-							"$rowSpecs": "0"
-							"$hGap": 20
-							"$vGap": 5
-							"$alignTop": true
-							"$alignLeft": true
-						} ) {
-							name: "panel3"
-							add( new FormComponent( "javax.swing.JTextField" ) {
-								name: "txtReturnedDate"
-								"editable": false
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
-							add( new FormComponent( "javax.swing.JCheckBox" ) {
-								name: "checkReturn"
-								"text": "Returned"
-							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-								"gridx": 1
-							} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtReturnedDate"
+							"editable": false
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridx": 1
+							"gridy": 2
+						} )
+						add( new FormComponent( "javax.swing.JCheckBox" ) {
+							name: "checkReturn"
+							"text": "Returned"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 3
 							"gridy": 2
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
@@ -144,6 +117,7 @@ new FormModel {
 							"gridx": 1
 							"gridy": 3
 							"gridheight": 2
+							"gridwidth": 3
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label3"
@@ -160,6 +134,7 @@ new FormModel {
 							"gridx": 1
 							"gridy": 5
 							"gridheight": 2
+							"gridwidth": 3
 						} )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
