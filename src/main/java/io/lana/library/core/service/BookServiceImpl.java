@@ -75,9 +75,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBookMeta(BookMeta bookMeta) {
+        bookMeta.setDeleted(true);
         bookMetaDataCenter.delete(bookMeta);
         Set<Book> books = bookMeta.getBooks();
-        books.forEach(book -> bookDataCenter.delete(book));
+        books.forEach(book -> {
+            book.setDeleted(true);
+            bookDataCenter.delete(book);
+        });
 
         Set<Ticket> tickets = books.stream()
             .map(Book::getTickets)
@@ -130,8 +134,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(Book book) {
-        BookMeta meta = book.getMeta();
+        book.setDeleted(true);
         bookDataCenter.delete(book);
+
+        BookMeta meta = book.getMeta();
         if (meta != null) {
             meta.getBooks().remove(book);
             bookMetaDataCenter.refresh(meta);
