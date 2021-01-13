@@ -6,6 +6,7 @@ package io.lana.library.ui.view.ticket;
 
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Ticket;
+import io.lana.library.core.service.ReaderService;
 import io.lana.library.core.service.TicketService;
 import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.ui.InputException;
@@ -13,6 +14,7 @@ import io.lana.library.ui.component.TicketTablePane;
 import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.ui.view.reader.BorrowBookDialog;
 import io.lana.library.utils.DateFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.JXDatePicker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,10 +27,12 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Component
 public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     private TicketService ticketService;
+    private ReaderService readerService;
 
     private BorrowBookDialog borrowBookDialog;
 
@@ -73,9 +77,11 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     @Autowired
     public void setup(TicketService ticketService,
                       BorrowBookDialog borrowBookDialog,
-                      TicketDataCenter ticketDataCenter) {
+                      TicketDataCenter ticketDataCenter,
+                      ReaderService readerService) {
         this.ticketService = ticketService;
         this.borrowBookDialog = borrowBookDialog;
+        this.readerService = readerService;
         this.ticketTablePane.setRepositoryDataCenter(ticketDataCenter);
     }
 
@@ -162,20 +168,17 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     }
 
     private void btnBorrowBookActionPerformed(ActionEvent e) {
-//        String query = JOptionPane.showInputDialog(this, "Enter reader id, email, or phone");
-//        if (StringUtils.isBlank(query)) {
-//            throw new InputException(this, "Query must not blank");
-//        }
-//        Optional<Reader> readerFound = readerDataCenter.stream().filter(reader ->
-//            query.equals(reader.getIdString()) || query.equals(reader.getEmail()) || query.equals(reader.getPhoneNumber())
-//        ).findFirst();
-//
-//        if (readerFound.isEmpty()) {
-//            throw new InputException(this, "No reader found");
-//        }
-//
-//        borrowBookDialog.setModel(readerFound.get());
-//        borrowBookDialog.setVisible(true);
+        String query = JOptionPane.showInputDialog(this, "Enter reader id, email, or phone");
+        if (StringUtils.isBlank(query)) {
+            throw new InputException(this, "Query must not blank");
+        }
+        Optional<Reader> reader = readerService.findOne(query);
+        if (reader.isEmpty()) {
+            throw new InputException(this, "No reader found");
+        }
+
+        borrowBookDialog.setModel(reader.get());
+        borrowBookDialog.setVisible(true);
     }
 
     private void btnReturnTicketActionPerformed(ActionEvent e) {
