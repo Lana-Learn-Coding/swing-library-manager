@@ -5,8 +5,8 @@ import io.lana.library.core.model.user.User;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
-import io.lana.library.ui.view.ticket.BorrowingTicketManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
+import io.lana.library.ui.view.ticket.TicketManagerPanel;
 import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,13 +29,13 @@ public class MainPanel extends JPanel implements MainFrameContainer {
 
     @Autowired
     public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel,
-                     UserManagerPanel userManagerPanel, UserContext userContext, BorrowingTicketManagerPanel borrowingTicketManagerPanel) {
+                     UserManagerPanel userManagerPanel, UserContext userContext, TicketManagerPanel ticketManagerPanel) {
         initComponents();
         this.userContext = userContext;
         mainPanel.add(Views.BOOK_MANAGE.name(), bookMetaManagerPanel);
         mainPanel.add(Views.READER_MANAGE.name(), readerManagerPanel);
         mainPanel.add(Views.USER_MANAGE.name(), userManagerPanel);
-        mainPanel.add(Views.BORROWING_MANAGE.name(), borrowingTicketManagerPanel);
+        mainPanel.add(Views.BORROWING_MANAGE.name(), ticketManagerPanel);
     }
 
     @Override
