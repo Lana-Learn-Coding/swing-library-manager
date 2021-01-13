@@ -58,7 +58,7 @@ CREATE TABLE borrow_ticket
     borrowed_date DATE      NOT NULL DEFAULT NOW(),
     due_date      DATE      NOT NULL,
     is_returned   BOOLEAN   NOT NULL DEFAULT FALSE,
-    borrower_id   INT       NOT NULL REFERENCES reader (id) ON DELETE RESTRICT,
+    borrower_id   INT       NOT NULL REFERENCES reader (id) ON DELETE CASCADE,
     note          TEXT,
     created_at    TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at    TIMESTAMP NOT NULL DEFAULT NOW()
@@ -77,9 +77,10 @@ CREATE TABLE book
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
 CREATE TABLE book_borrow_ticket
 (
     id               SERIAL PRIMARY KEY,
-    borrow_ticket_id INT NOT NULL REFERENCES borrow_ticket (id),
+    borrow_ticket_id INT NOT NULL REFERENCES borrow_ticket (id) ON DELETE CASCADE,
     book_id          INT NOT NULL REFERENCES book (id)
 )
