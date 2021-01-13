@@ -1,613 +1,1116 @@
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', true, 17, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', false, 109, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-22', true, 384, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', true, 17, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-28', true, 490, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-28', false, 142, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', false, 294, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.', '2021-04-07', true, 496, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.', '2021-04-08', false, 484, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', true, 424, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', '2021-05-04', true, 300, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', true, 488, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-05', false, 263, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', false, 132, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', false, 20, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-07', false, 71, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', '2021-03-16', false, 474, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 390, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-04', true, 491, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', true, 128, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-18', true, 260, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', false, 317, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Pellentesque ultrices mattis odio. Donec vitae nisi.', '2021-03-24', false, 475, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Morbi non quam nec dui luctus rutrum.', '2021-04-04', false, 308, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', false, 167, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', true, 106, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-12', true, 206, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-01', false, 433, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', false, 219, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', false, 61, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', true, 131, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', true, 402, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.', '2021-04-17', true, 175, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.', '2021-04-09', false, 468, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 497, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', false, 257, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 365, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.', '2021-03-03', true, 358, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-10', false, 216, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-28', false, 135, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', '2021-04-28', true, 219, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.', '2021-03-28', false, 109, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', true, 242, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.', '2021-04-06', false, 212, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', true, 165, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', false, 271, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', false, 86, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh.', '2021-04-18', true, 303, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', true, 41, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', true, 194, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', true, 158, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', false, 487, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Aenean fermentum. Donec ut mauris eget massa tempor convallis.', '2021-03-30', false, 487, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', false, 383, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-28', true, 385, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.', '2021-04-21', false, 401, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', true, 385, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', true, 247, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas pulvinar lobortis est.', '2021-03-08', true, 390, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('In sagittis dui vel nisl. Duis ac nibh.', '2021-04-02', false, 188, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', false, 394, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', true, 261, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-25', true, 255, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-07', true, 182, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', false, 384, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-17', true, 367, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', false, 241, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', false, 221, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', true, 414, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', false, 390, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', '2021-03-15', true, 485, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-21', false, 318, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 155, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', false, 422, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', false, 261, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-04', true, 83, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', false, 52, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-16', false, 263, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Integer ac leo.', '2021-04-10', false, 471, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.', '2021-03-20', true, 265, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-21', false, 162, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', false, 368, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', true, 279, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-24', true, 466, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Ut tellus.', '2021-04-15', false, 374, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-18', false, 398, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-08', false, 476, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', true, 129, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-10', false, 297, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-10', false, 309, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', false, 157, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', '2021-04-21', false, 304, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-03', false, 441, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.', '2021-05-01', true, 248, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.', '2021-03-06', true, 96, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', true, 77, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', true, 258, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-22', true, 196, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', '2021-04-29', false, 13, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.', '2021-04-08', true, 93, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', false, 35, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-21', true, 193, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', false, 396, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', '2021-03-31', false, 355, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-07', true, 108, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', true, 70, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus vestibulum sagittis sapien.', '2021-04-11', true, 478, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', true, 399, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', false, 18, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-11', true, 4, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', true, 32, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', false, 233, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', false, 354, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-16', false, 421, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-03', false, 169, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-18', true, 102, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Duis at velit eu est congue elementum. In hac habitasse platea dictumst.', '2021-05-02', true, 346, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', false, 256, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus tortor. Duis mattis egestas metus.', '2021-03-15', true, 420, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', false, 394, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', false, 78, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-13', false, 48, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', false, 318, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', true, 60, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-16', true, 119, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-07', false, 315, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', true, 1, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', true, 329, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', true, 54, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', true, 358, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-21', true, 26, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', '2021-03-27', true, 411, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', false, 127, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', false, 270, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', false, 104, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-21', false, 214, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', true, 121, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', '2021-03-11', false, 309, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-03', false, 20, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-12', false, 454, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', false, 410, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', true, 142, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-27', false, 202, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-22', true, 332, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-31', false, 197, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.', '2021-04-20', false, 29, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', true, 290, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.', '2021-04-10', false, 451, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-16', true, 413, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', false, 6, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.', '2021-03-03', false, 104, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', '2021-03-27', true, 151, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', false, 463, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', true, 45, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 324, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-18', false, 270, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', false, 469, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 39, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-03', true, 233, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla.', '2021-04-04', true, 135, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.', '2021-03-12', true, 102, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 66, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.', '2021-03-26', true, 134, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.', '2021-03-11', false, 432, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 39, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', true, 400, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', false, 495, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', false, 272, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-10', true, 187, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit.', '2021-03-10', true, 52, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-21', true, 256, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', true, 79, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-08', false, 103, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-11', true, 144, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.', '2021-03-11', true, 327, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-10', false, 116, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', true, 135, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-16', false, 320, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 468, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', true, 261, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', true, 45, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.', '2021-03-31', true, 316, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', true, 414, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', false, 65, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', false, 145, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', '2021-03-04', false, 234, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-31', true, 427, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', true, 357, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-13', false, 283, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', true, 173, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-13', true, 359, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', '2021-04-02', false, 29, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-28', true, 141, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', true, 277, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', false, 302, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', '2021-03-15', false, 83, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', false, 192, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', true, 253, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.', '2021-03-08', true, 421, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-03', false, 418, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', '2021-04-04', true, 8, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', true, 443, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-21', true, 221, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-13', false, 149, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', false, 317, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', false, 164, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-17', false, 316, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', true, 376, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', false, 107, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', true, 238, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-08', false, 482, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', '2021-04-13', true, 183, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', true, 418, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-16', false, 26, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', false, 444, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', false, 485, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', false, 324, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-25', true, 345, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', true, 24, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', true, 401, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-27', true, 320, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.', '2021-04-22', false, 352, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.', '2021-04-17', true, 488, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', true, 32, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-22', true, 388, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-22', false, 248, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', false, 98, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl.', '2021-04-24', true, 391, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', false, 416, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', false, 264, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', true, 293, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', false, 56, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-16', true, 429, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-07', true, 84, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-18', false, 435, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-29', true, 275, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-21', false, 241, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-11', false, 445, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Morbi non quam nec dui luctus rutrum.', '2021-03-07', false, 4, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-21', false, 343, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', true, 326, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', true, 367, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-21', false, 37, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', false, 460, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', '2021-04-14', false, 270, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', false, 297, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', true, 372, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-13', false, 144, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', true, 94, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-01', false, 262, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', true, 160, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', false, 393, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', false, 378, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', false, 358, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', false, 410, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', false, 302, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', true, 265, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', true, 269, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', false, 395, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', '2021-04-20', false, 392, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', '2021-03-29', false, 17, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', true, 47, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', true, 120, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2021-04-15', false, 439, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-05', true, 285, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-18', true, 51, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-25', false, 141, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 455, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-16', true, 383, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', false, 70, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', true, 469, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', true, 498, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-22', true, 354, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-03', true, 354, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.', '2021-03-21', true, 5, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2021-03-11', false, 135, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', true, 53, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-29', false, 377, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', false, 128, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', true, 237, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', false, 475, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 428, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', '2021-05-04', true, 251, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', '2021-05-04', true, 51, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-08', true, 384, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', true, 176, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', false, 1, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-12', false, 42, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', '2021-03-24', false, 451, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', false, 94, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', true, 364, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-27', true, 282, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.', '2021-04-14', false, 368, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.', '2021-03-23', false, 216, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-08', false, 281, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', false, 415, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', false, 463, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', false, 415, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', true, 314, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', '2021-04-21', false, 275, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', true, 25, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-03', true, 181, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', false, 433, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', true, 240, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', false, 320, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', true, 291, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', true, 280, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', false, 183, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-31', false, 454, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', '2021-04-12', false, 240, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', true, 150, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', '2021-04-05', false, 225, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', false, 208, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-24', false, 495, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-04', true, 121, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', false, 156, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 308, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', true, 163, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc.', '2021-04-11', true, 417, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', false, 2, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.', '2021-03-21', false, 75, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-01', false, 66, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', true, 275, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', true, 147, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', true, 136, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 299, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', true, 321, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-24', true, 436, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', true, 225, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', false, 405, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-18', false, 431, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', false, 3, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-08', false, 144, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', true, 369, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', '2021-03-12', true, 336, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-18', false, 280, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', false, 413, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-10', true, 395, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', false, 33, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', true, 196, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-04', true, 109, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', true, 257, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-24', true, 116, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', false, 253, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 401, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', true, 51, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-24', false, 186, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', false, 374, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-03', false, 315, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', '2021-03-27', true, 62, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', true, 461, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.', '2021-03-17', false, 447, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', '2021-03-04', false, 270, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', '2021-03-10', false, 67, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', false, 279, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', true, 234, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', false, 344, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-01', false, 255, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', true, 267, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', true, 197, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', true, 253, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-08', true, 499, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', '2021-03-11', false, 159, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', true, 350, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', true, 396, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', false, 35, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', true, 400, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', false, 433, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.', '2021-03-11', true, 445, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', true, 302, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', true, 401, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', false, 425, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', true, 411, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-07', true, 407, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-03', false, 283, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-12', true, 111, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', '2021-04-01', false, 487, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', true, 264, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-25', true, 257, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-06', true, 84, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', true, 422, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', false, 62, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.', '2021-03-23', true, 56, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-16', false, 64, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', '2021-04-20', false, 132, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2021-04-27', false, 409, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', false, 347, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.', '2021-03-23', true, 371, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', false, 300, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', '2021-03-26', false, 187, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', true, 327, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', false, 486, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-08', true, 373, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-11', false, 292, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', true, 208, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', true, 107, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Proin eu mi.', '2021-04-27', true, 408, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', false, 13, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', false, 397, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', false, 134, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', true, 82, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', true, 265, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-13', true, 429, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-06', true, 480, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', true, 63, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-11', true, 65, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', false, 16, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', false, 485, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-17', true, 339, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', true, 249, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-03', true, 179, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-29', true, 360, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero.', '2021-04-08', true, 373, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', true, 49, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', false, 50, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.', '2021-03-08', true, 71, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', true, 301, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', false, 292, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', false, 6, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', false, 248, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.', '2021-05-02', true, 469, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', false, 164, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', false, 464, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', '2021-04-18', false, 390, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', true, 195, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', false, 459, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', false, 306, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 453, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', true, 412, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', false, 41, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', true, 353, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', true, 195, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', false, 60, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', false, 183, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-14', true, 416, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', false, 174, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', true, 358, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-16', false, 365, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', true, 209, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', true, 381, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', false, 145, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', true, 470, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', false, 50, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-28', false, 66, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.', '2021-04-01', false, 277, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-06', true, 484, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', false, 121, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.', '2021-04-24', true, 7, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', '2021-04-13', true, 463, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-08', true, 198, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-12', true, 87, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-04', true, 383, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.', '2021-03-26', false, 217, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-29', false, 178, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', true, 395, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', false, 263, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-16', true, 257, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-02', false, 219, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-17', false, 390, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-17', false, 186, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.', '2021-04-18', false, 170, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', true, 44, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-12', false, 273, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-04', true, 376, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', true, 418, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', false, 102, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-13', true, 358, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-07', true, 269, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-27', true, 487, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-29', false, 54, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-09', false, 385, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-31', false, 323, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-23', true, 80, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-03', true, 383, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', true, 228, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', true, 448, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.', '2021-04-22', true, 346, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', false, 230, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-30', false, 136, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-27', false, 434, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-08', true, 14, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus tortor. Duis mattis egestas metus.', '2021-04-24', true, 105, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-19', false, 348, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.', '2021-04-01', false, 343, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-02', false, 88, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', true, 287, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', false, 149, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', true, 431, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.', '2021-04-24', false, 393, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', true, 123, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', false, 68, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2021-03-10', true, 139, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-31', true, 131, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', false, 175, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', true, 444, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', '2021-03-28', true, 53, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Fusce consequat. Nulla nisl.', '2021-03-24', false, 441, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-05', false, 158, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', false, 5, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', false, 329, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', true, 312, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', true, 182, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', true, 467, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', false, 86, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-05', false, 111, '2020-01-18');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', true, 21, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', '2021-03-29', true, 99, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', false, 206, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.', '2021-03-27', true, 205, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-23', false, 67, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', true, 256, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', false, 136, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-13', false, 111, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-08', false, 141, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', '2021-04-05', false, 158, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', false, 220, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', false, 338, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Integer ac leo. Pellentesque ultrices mattis odio.', '2021-04-09', true, 434, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', false, 103, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', false, 125, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', '2021-03-14', false, 432, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-11', true, 282, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', false, 2, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', true, 267, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', true, 103, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-04', true, 74, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', '2021-04-10', true, 271, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-15', false, 407, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', true, 179, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', false, 17, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', false, 4, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', true, 412, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-06', true, 37, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Etiam faucibus cursus urna. Ut tellus.', '2021-03-21', true, 11, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-21', true, 177, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-19', false, 219, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-31', false, 394, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', '2021-04-06', false, 279, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.', '2021-03-13', true, 115, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', true, 337, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.', '2021-04-30', false, 318, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-04', false, 238, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', true, 81, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-16', true, 357, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', true, 400, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-14', true, 243, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-01', false, 110, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-11', true, 301, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-20', true, 292, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', true, 362, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-26', true, 260, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.', '2021-04-03', false, 359, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-25', false, 408, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.', '2021-03-31', false, 85, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', '2021-03-28', true, 453, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', false, 491, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-17', true, 364, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', false, 85, '2020-01-30');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-24', false, 347, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', '2021-03-08', true, 466, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-01', false, 269, '2020-01-19');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.', '2021-03-20', false, 421, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-12', true, 59, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.', '2021-04-04', false, 393, '2020-01-24');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Curabitur in libero ut massa volutpat convallis.', '2021-04-22', true, 321, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-05', true, 72, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', true, 349, '2020-01-20');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-27', false, 296, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-29', false, 406, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', '2021-04-02', false, 169, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-18', true, 343, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-10', false, 354, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', '2021-04-29', false, 185, '2020-01-25');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-22', false, 102, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-30', false, 467, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-18', true, 437, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-06', true, 55, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-03', false, 177, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-20', true, 352, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-28', false, 226, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-29', true, 162, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-29', false, 263, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-09', true, 463, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-31', true, 294, '2020-01-29');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-06', true, 451, '2020-01-23');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-17', false, 373, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', '2021-03-26', true, 437, '2020-01-14');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-03', true, 413, '2020-01-17');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', '2021-03-23', false, 5, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-06', true, 462, '2020-01-12');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-08', true, 59, '2020-01-16');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-04', false, 148, '2020-01-21');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', true, 291, '2020-01-26');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-15', true, 14, '2020-01-28');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-05-01', false, 470, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-06', false, 264, '2020-01-15');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.', '2021-03-12', true, 421, '2020-01-22');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values ('Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.', '2021-03-08', false, 400, '2020-01-13');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-04-26', false, 391, '2020-01-27');
-insert into borrow_ticket (note, due_date, is_returned, borrower_id, borrowed_date) values (null, '2021-03-27', true, 2, '2020-01-30');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (595, '2020-12-15', '2021-07-23', TRUE, '2021-02-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (499, '2020-12-14', '2021-05-16', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (273, '2020-12-16', '2021-07-06', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (206, '2020-12-24', '2021-06-15', TRUE, '2021-03-15',
+        'Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (827, '2020-12-21', '2021-06-29', TRUE, '2021-03-23', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (315, '2020-12-29', '2021-05-07', TRUE, '2021-02-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (698, '2020-12-19', '2021-06-04', TRUE, '2021-03-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (449, '2020-12-24', '2021-05-18', TRUE, '2021-02-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (935, '2020-12-12', '2021-07-02', TRUE, '2021-02-22', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (27, '2020-12-04', '2021-05-16', TRUE, '2021-03-18',
+        'Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (451, '2020-12-15', '2021-06-18', TRUE, '2021-02-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (122, '2020-12-21', '2021-06-11', TRUE, '2021-02-10', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (829, '2020-12-02', '2021-07-16', TRUE, '2021-02-10', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (783, '2020-12-18', '2021-07-29', TRUE, '2021-02-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (10, '2020-12-18', '2021-06-03', TRUE, '2021-04-01',
+        'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (214, '2020-12-29', '2021-06-01', FALSE, NULL,
+        'In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (899, '2020-12-02', '2021-05-13', TRUE, '2021-03-30', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (534, '2020-12-27', '2021-05-28', TRUE, '2021-02-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (23, '2020-12-01', '2021-07-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (581, '2020-12-24', '2021-06-12', TRUE, '2021-02-24',
+        'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (581, '2020-12-14', '2021-06-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (683, '2020-12-02', '2021-05-24', TRUE, '2021-03-17', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (997, '2020-12-25', '2021-06-08', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (227, '2020-12-04', '2021-05-18', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (123, '2020-12-03', '2021-06-28', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (259, '2020-12-19', '2021-05-29', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (974, '2020-12-11', '2021-06-06', TRUE, '2021-03-12',
+        'Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (681, '2020-12-11', '2021-06-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (159, '2020-12-22', '2021-05-11', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (706, '2020-12-25', '2021-06-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (132, '2020-12-24', '2021-05-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (937, '2020-12-28', '2021-06-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (656, '2020-12-30', '2021-07-18', TRUE, '2021-03-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (427, '2020-12-19', '2021-07-08', TRUE, '2021-03-14', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (490, '2020-12-11', '2021-05-29', TRUE, '2021-02-10', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (650, '2020-12-27', '2021-06-09', FALSE, NULL,
+        'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (354, '2020-12-17', '2021-06-17', TRUE, '2021-03-20', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (989, '2020-12-26', '2021-06-06', TRUE, '2021-02-02',
+        'Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (862, '2020-12-06', '2021-06-02', TRUE, '2021-03-17', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (623, '2020-12-29', '2021-08-06', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (615, '2020-12-28', '2021-07-13', TRUE, '2021-03-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (132, '2020-12-15', '2021-05-12', FALSE, NULL,
+        'Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (140, '2020-12-11', '2021-08-02', TRUE, '2021-02-07', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (701, '2020-12-09', '2021-05-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (198, '2020-12-19', '2021-06-15', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (466, '2020-12-20', '2021-05-30', TRUE, '2021-03-20', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (94, '2020-12-04', '2021-05-09', TRUE, '2021-02-12', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (793, '2020-12-20', '2021-05-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (545, '2020-12-12', '2021-06-23', FALSE, NULL,
+        'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (71, '2020-12-22', '2021-06-17', TRUE, '2021-02-22', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (157, '2020-12-04', '2021-07-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (165, '2020-12-23', '2021-05-18', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (362, '2020-12-26', '2021-05-11', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (798, '2020-12-10', '2021-08-02', FALSE, NULL,
+        'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (274, '2020-12-21', '2021-06-12', TRUE, '2021-03-08',
+        'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (42, '2020-12-23', '2021-06-03', TRUE, '2021-03-18', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (243, '2020-12-09', '2021-06-05', FALSE, NULL,
+        'Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (228, '2020-12-16', '2021-05-16', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (571, '2020-12-21', '2021-05-06', FALSE, NULL,
+        'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (642, '2020-12-08', '2021-05-05', TRUE, '2021-03-18', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (663, '2020-12-14', '2021-06-11', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (560, '2020-12-21', '2021-07-22', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (541, '2020-12-26', '2021-08-02', TRUE, '2021-02-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (76, '2020-12-04', '2021-05-17', FALSE, NULL,
+        'Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (215, '2020-12-08', '2021-07-09', TRUE, '2021-03-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (22, '2020-12-07', '2021-05-10', TRUE, '2021-03-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (126, '2020-12-03', '2021-06-28', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (666, '2020-12-14', '2021-06-13', TRUE, '2021-03-23', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (134, '2020-12-21', '2021-07-04', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (394, '2020-12-17', '2021-05-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (491, '2020-12-10', '2021-06-09', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (271, '2020-12-23', '2021-07-29', TRUE, '2021-02-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (431, '2020-12-24', '2021-05-11', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (301, '2020-12-19', '2021-07-23', TRUE, '2021-02-06', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (802, '2020-12-26', '2021-05-22', TRUE, '2021-03-17', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (550, '2020-12-06', '2021-06-19', TRUE, '2021-02-20', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (294, '2020-12-23', '2021-05-28', TRUE, '2021-03-26', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (468, '2020-12-15', '2021-07-27', TRUE, '2021-03-31',
+        'Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (135, '2020-12-28', '2021-06-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (273, '2020-12-18', '2021-05-19', TRUE, '2021-03-07', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (707, '2020-12-05', '2021-07-19', TRUE, '2021-03-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (111, '2020-12-13', '2021-06-20', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (336, '2020-12-16', '2021-07-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (387, '2020-12-09', '2021-07-23', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (729, '2020-12-20', '2021-08-02', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (617, '2020-12-23', '2021-07-18', TRUE, '2021-03-06', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (524, '2020-12-07', '2021-07-28', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (656, '2020-12-30', '2021-05-28', TRUE, '2021-02-27', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (51, '2020-12-11', '2021-07-17', FALSE, NULL,
+        'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (644, '2020-12-12', '2021-07-03', FALSE, NULL,
+        'Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (481, '2020-12-15', '2021-06-08', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (540, '2020-12-24', '2021-05-22', TRUE, '2021-03-05',
+        'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (972, '2020-12-24', '2021-08-02', FALSE, NULL,
+        'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (836, '2020-12-09', '2021-06-01', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (594, '2020-12-22', '2021-07-09', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (798, '2020-12-12', '2021-05-18', FALSE, NULL,
+        'Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (776, '2020-12-26', '2021-06-19', TRUE, '2021-03-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (385, '2020-12-12', '2021-06-14', TRUE, '2021-02-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (460, '2020-12-05', '2021-07-25', TRUE, '2021-02-28', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (27, '2020-12-03', '2021-07-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (805, '2020-12-20', '2021-05-12', TRUE, '2021-03-26', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (916, '2020-12-19', '2021-05-27', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (304, '2020-12-02', '2021-05-17', TRUE, '2021-03-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (1, '2020-12-28', '2021-05-21', TRUE, '2021-03-31', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (922, '2020-12-25', '2021-06-10', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (555, '2020-12-15', '2021-06-23', TRUE, '2021-03-17', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (857, '2020-12-06', '2021-07-31', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (726, '2020-12-23', '2021-05-27', TRUE, '2021-03-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (973, '2020-12-06', '2021-07-21', TRUE, '2021-03-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (947, '2020-12-29', '2021-07-07', TRUE, '2021-03-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (578, '2020-12-02', '2021-05-21', TRUE, '2021-03-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (996, '2020-12-06', '2021-08-01', TRUE, '2021-03-03',
+        'Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (788, '2020-12-17', '2021-06-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (803, '2020-12-21', '2021-07-11', TRUE, '2021-02-15', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (725, '2020-12-30', '2021-05-11', TRUE, '2021-03-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (257, '2020-12-04', '2021-05-22', FALSE, NULL,
+        'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (231, '2020-12-25', '2021-07-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (707, '2020-12-19', '2021-06-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (671, '2020-12-10', '2021-05-31', TRUE, '2021-03-29',
+        'Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (703, '2020-12-25', '2021-07-30', FALSE, NULL,
+        'Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (90, '2020-12-05', '2021-07-08', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (87, '2020-12-28', '2021-07-08', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (566, '2020-12-26', '2021-06-29', TRUE, '2021-03-15',
+        'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (265, '2020-12-20', '2021-05-13', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (360, '2020-12-29', '2021-07-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (191, '2020-12-28', '2021-06-03', TRUE, '2021-03-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (654, '2020-12-03', '2021-07-22', TRUE, '2021-03-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (84, '2020-12-21', '2021-07-22', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (309, '2020-12-01', '2021-07-31', FALSE, NULL,
+        'Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (83, '2020-12-14', '2021-06-12', TRUE, '2021-03-18', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (886, '2020-12-03', '2021-06-22', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (532, '2020-12-16', '2021-05-31', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (170, '2020-12-13', '2021-06-29', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (11, '2020-12-06', '2021-06-13', TRUE, '2021-02-12', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (279, '2020-12-21', '2021-05-09', TRUE, '2021-02-15',
+        'Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (242, '2020-12-03', '2021-07-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (83, '2020-12-07', '2021-06-18', TRUE, '2021-03-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (343, '2020-12-19', '2021-06-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (204, '2020-12-17', '2021-05-07', FALSE, NULL,
+        'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (725, '2020-12-12', '2021-07-03', TRUE, '2021-02-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (192, '2020-12-05', '2021-05-15', FALSE, NULL, 'Phasellus in felis. Donec semper sapien a libero. Nam dui.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (944, '2020-12-22', '2021-06-19', FALSE, NULL,
+        'Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (682, '2020-12-07', '2021-07-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (588, '2020-12-13', '2021-06-28', TRUE, '2021-03-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (256, '2020-12-18', '2021-06-20', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (396, '2020-12-19', '2021-06-19', TRUE, '2021-02-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (273, '2020-12-05', '2021-07-06', TRUE, '2021-03-26', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (979, '2020-12-19', '2021-06-22', TRUE, '2021-03-27', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (463, '2020-12-07', '2021-06-22', TRUE, '2021-03-27',
+        'Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (768, '2020-12-23', '2021-07-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (82, '2020-12-01', '2021-05-22', TRUE, '2021-03-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (894, '2020-12-30', '2021-06-29', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (35, '2020-12-03', '2021-06-30', TRUE, '2021-03-10', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (624, '2020-12-02', '2021-08-01', FALSE, NULL,
+        'Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (332, '2020-12-18', '2021-07-17', TRUE, '2021-02-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (570, '2020-12-12', '2021-07-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (52, '2020-12-19', '2021-08-07', TRUE, '2021-02-11',
+        'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (883, '2020-12-30', '2021-08-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (544, '2020-12-10', '2021-07-22', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (511, '2020-12-03', '2021-05-14', TRUE, '2021-03-27', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (866, '2020-12-17', '2021-07-15', TRUE, '2021-03-18', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (555, '2020-12-20', '2021-06-09', TRUE, '2021-04-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (328, '2020-12-29', '2021-07-05', TRUE, '2021-03-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (691, '2020-12-11', '2021-07-10', TRUE, '2021-03-06', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (936, '2020-12-05', '2021-05-19', FALSE, NULL,
+        'Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (448, '2020-12-20', '2021-06-05', TRUE, '2021-03-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (139, '2020-12-29', '2021-05-27', TRUE, '2021-03-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (110, '2020-12-24', '2021-05-31', TRUE, '2021-03-31',
+        'Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (254, '2020-12-15', '2021-07-11', TRUE, '2021-03-06',
+        'Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (235, '2020-12-25', '2021-06-29', TRUE, '2021-02-02',
+        'Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (720, '2020-12-22', '2021-05-16', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (652, '2020-12-09', '2021-08-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (741, '2020-12-05', '2021-06-04', TRUE, '2021-02-10', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (523, '2020-12-15', '2021-05-31', TRUE, '2021-04-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (744, '2020-12-24', '2021-07-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (875, '2020-12-26', '2021-07-08', TRUE, '2021-02-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (602, '2020-12-04', '2021-08-03', TRUE, '2021-03-09', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (295, '2020-12-21', '2021-08-02', TRUE, '2021-03-31', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (68, '2020-12-23', '2021-05-27', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (831, '2020-12-18', '2021-06-26', FALSE, NULL,
+        'Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (418, '2020-12-19', '2021-07-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (970, '2020-12-05', '2021-06-28', TRUE, '2021-03-23',
+        'Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (921, '2020-12-19', '2021-05-14', TRUE, '2021-03-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (579, '2020-12-06', '2021-05-11', TRUE, '2021-02-15', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (946, '2020-12-17', '2021-07-02', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (963, '2020-12-04', '2021-06-12', TRUE, '2021-03-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (526, '2020-12-16', '2021-07-01', TRUE, '2021-02-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (974, '2020-12-02', '2021-05-19', FALSE, NULL,
+        'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (154, '2020-12-28', '2021-05-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (693, '2020-12-06', '2021-05-15', TRUE, '2021-03-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (424, '2020-12-11', '2021-06-19', TRUE, '2021-03-18', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (855, '2020-12-06', '2021-05-16', TRUE, '2021-02-16',
+        'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (826, '2020-12-29', '2021-07-10', TRUE, '2021-02-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (205, '2020-12-29', '2021-06-02', TRUE, '2021-02-17', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (134, '2020-12-22', '2021-07-30', TRUE, '2021-04-03',
+        'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (511, '2020-12-30', '2021-06-29', TRUE, '2021-02-23', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (97, '2020-12-30', '2021-07-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (493, '2020-12-10', '2021-05-07', TRUE, '2021-03-16',
+        'In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (295, '2020-12-27', '2021-05-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (408, '2020-12-16', '2021-07-24', TRUE, '2021-03-22', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (447, '2020-12-21', '2021-05-08', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (779, '2020-12-14', '2021-05-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (76, '2020-12-18', '2021-05-31', TRUE, '2021-03-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (227, '2020-12-08', '2021-06-30', TRUE, '2021-02-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (201, '2020-12-29', '2021-06-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (278, '2020-12-16', '2021-08-07', TRUE, '2021-03-30', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (399, '2020-12-26', '2021-06-03', TRUE, '2021-03-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (860, '2020-12-28', '2021-06-06', TRUE, '2021-02-13',
+        'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (751, '2020-12-21', '2021-07-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (461, '2020-12-11', '2021-07-04', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (878, '2020-12-12', '2021-05-22', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (968, '2020-12-18', '2021-06-24', TRUE, '2021-03-26',
+        'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (949, '2020-12-12', '2021-06-09', TRUE, '2021-04-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (802, '2020-12-22', '2021-07-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (435, '2020-12-24', '2021-07-04', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (971, '2020-12-23', '2021-06-13', TRUE, '2021-03-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (214, '2020-12-17', '2021-07-28', TRUE, '2021-02-11',
+        'Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (972, '2020-12-09', '2021-05-29', TRUE, '2021-03-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (887, '2020-12-29', '2021-08-01', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (439, '2020-12-28', '2021-05-10', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (196, '2020-12-23', '2021-05-25', FALSE, NULL,
+        'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (760, '2020-12-09', '2021-08-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (785, '2020-12-27', '2021-07-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (362, '2020-12-15', '2021-07-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (124, '2020-12-03', '2021-07-04', TRUE, '2021-04-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (888, '2020-12-18', '2021-05-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (179, '2020-12-27', '2021-06-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (42, '2020-12-02', '2021-07-19', TRUE, '2021-03-21',
+        'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (189, '2020-12-19', '2021-07-21', FALSE, NULL,
+        'Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (58, '2020-12-29', '2021-06-08', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (768, '2020-12-08', '2021-06-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (212, '2020-12-12', '2021-05-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (26, '2020-12-10', '2021-07-03', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (733, '2020-12-17', '2021-07-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (3, '2020-12-12', '2021-06-10', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (830, '2020-12-25', '2021-06-24', TRUE, '2021-03-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (588, '2020-12-13', '2021-07-07', TRUE, '2021-02-07', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (10, '2020-12-12', '2021-06-11', FALSE, NULL,
+        'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (835, '2020-12-24', '2021-05-30', TRUE, '2021-03-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (887, '2020-12-19', '2021-07-16', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (58, '2020-12-24', '2021-07-23', TRUE, '2021-03-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (584, '2020-12-24', '2021-07-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (280, '2020-12-16', '2021-05-09', TRUE, '2021-02-15', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (533, '2020-12-06', '2021-07-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (278, '2020-12-21', '2021-07-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (104, '2020-12-17', '2021-06-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (72, '2020-12-20', '2021-08-04', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (407, '2020-12-10', '2021-08-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (568, '2020-12-11', '2021-07-02', TRUE, '2021-03-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (899, '2020-12-22', '2021-07-25', TRUE, '2021-04-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (487, '2020-12-07', '2021-07-06', TRUE, '2021-03-06',
+        'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (516, '2020-12-03', '2021-06-15', TRUE, '2021-02-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (352, '2020-12-11', '2021-07-25', TRUE, '2021-02-20', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (452, '2020-12-01', '2021-07-28', FALSE, NULL,
+        'Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (125, '2020-12-10', '2021-07-05', TRUE, '2021-03-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (47, '2020-12-10', '2021-07-19', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (552, '2020-12-26', '2021-05-08', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (88, '2020-12-02', '2021-06-01', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (462, '2020-12-10', '2021-07-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (838, '2020-12-10', '2021-05-15', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (339, '2020-12-14', '2021-05-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (491, '2020-12-19', '2021-06-11', TRUE, '2021-02-07', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (710, '2020-12-16', '2021-05-30', TRUE, '2021-02-05',
+        'Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (921, '2020-12-07', '2021-07-18', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (512, '2020-12-30', '2021-08-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (979, '2020-12-29', '2021-06-03', TRUE, '2021-03-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (210, '2020-12-20', '2021-07-20', TRUE, '2021-03-28', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (854, '2020-12-10', '2021-07-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (810, '2020-12-23', '2021-06-14', TRUE, '2021-03-23', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (864, '2020-12-20', '2021-06-20', TRUE, '2021-03-09', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (38, '2020-12-09', '2021-07-06', FALSE, NULL,
+        'Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (270, '2020-12-06', '2021-06-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (713, '2020-12-14', '2021-05-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (450, '2020-12-25', '2021-07-18', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (988, '2020-12-25', '2021-06-30', TRUE, '2021-02-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (242, '2020-12-11', '2021-07-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (118, '2020-12-11', '2021-05-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (575, '2020-12-11', '2021-05-19', TRUE, '2021-03-18',
+        'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (718, '2020-12-16', '2021-06-06', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (567, '2020-12-06', '2021-05-15', TRUE, '2021-02-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (101, '2020-12-13', '2021-07-03', TRUE, '2021-03-27', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (668, '2020-12-10', '2021-07-25', FALSE, NULL,
+        'Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (21, '2020-12-08', '2021-07-18', TRUE, '2021-03-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (900, '2020-12-21', '2021-06-14', TRUE, '2021-02-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (756, '2020-12-29', '2021-06-24', TRUE, '2021-02-28', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (71, '2020-12-20', '2021-05-18', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (472, '2020-12-01', '2021-05-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (210, '2020-12-20', '2021-05-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (706, '2020-12-11', '2021-07-28', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (579, '2020-12-29', '2021-05-10', TRUE, '2021-03-29', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (433, '2020-12-08', '2021-05-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (196, '2020-12-12', '2021-07-26', TRUE, '2021-02-18',
+        'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (906, '2020-12-01', '2021-07-17', TRUE, '2021-02-24',
+        'Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (634, '2020-12-21', '2021-06-25', TRUE, '2021-02-14',
+        'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (792, '2020-12-12', '2021-07-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (158, '2020-12-22', '2021-06-24', TRUE, '2021-02-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (336, '2020-12-13', '2021-05-12', TRUE, '2021-03-25',
+        'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (793, '2020-12-27', '2021-08-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (422, '2020-12-07', '2021-07-22', TRUE, '2021-04-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (105, '2020-12-03', '2021-07-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (458, '2020-12-22', '2021-07-04', TRUE, '2021-02-26',
+        'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (341, '2020-12-06', '2021-07-11', TRUE, '2021-02-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (624, '2020-12-16', '2021-06-11', FALSE, NULL,
+        'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (820, '2020-12-09', '2021-07-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (898, '2020-12-30', '2021-05-28', TRUE, '2021-02-07', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (737, '2020-12-03', '2021-06-19', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (348, '2020-12-17', '2021-07-09', TRUE, '2021-03-21',
+        'Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (352, '2020-12-23', '2021-06-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (780, '2020-12-10', '2021-07-03', TRUE, '2021-03-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (44, '2020-12-28', '2021-06-09', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (145, '2020-12-20', '2021-07-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (747, '2020-12-18', '2021-07-14', FALSE, NULL,
+        'Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (446, '2020-12-23', '2021-05-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (666, '2020-12-21', '2021-06-05', TRUE, '2021-02-09', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (644, '2020-12-02', '2021-08-01', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (211, '2020-12-09', '2021-07-13', TRUE, '2021-03-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (506, '2020-12-15', '2021-07-23', TRUE, '2021-02-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (47, '2020-12-28', '2021-06-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (649, '2020-12-21', '2021-07-05', TRUE, '2021-02-12', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (687, '2020-12-01', '2021-06-06', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (157, '2020-12-09', '2021-06-15', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (277, '2020-12-06', '2021-07-11', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (300, '2020-12-09', '2021-06-28', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (576, '2020-12-18', '2021-07-01', TRUE, '2021-03-17', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (226, '2020-12-01', '2021-05-31', TRUE, '2021-02-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (710, '2020-12-05', '2021-07-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (539, '2020-12-09', '2021-05-06', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (914, '2020-12-21', '2021-05-30', FALSE, NULL,
+        'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (264, '2020-12-13', '2021-06-16', TRUE, '2021-03-09', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (721, '2020-12-08', '2021-05-15', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (902, '2020-12-19', '2021-05-08', TRUE, '2021-02-24', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (268, '2020-12-16', '2021-05-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (208, '2020-12-09', '2021-05-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (728, '2020-12-04', '2021-07-08', TRUE, '2021-03-22', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (219, '2020-12-01', '2021-05-23', FALSE, NULL,
+        'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (822, '2020-12-02', '2021-07-09', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (491, '2020-12-07', '2021-05-17', TRUE, '2021-02-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (516, '2020-12-22', '2021-07-29', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (991, '2020-12-29', '2021-07-31', TRUE, '2021-03-14', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (927, '2020-12-24', '2021-06-19', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (482, '2020-12-13', '2021-05-09', TRUE, '2021-02-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (488, '2020-12-28', '2021-05-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (438, '2020-12-12', '2021-06-19', TRUE, '2021-02-14', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (338, '2020-12-10', '2021-07-20', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (636, '2020-12-08', '2021-08-06', TRUE, '2021-02-25', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (355, '2020-12-12', '2021-06-23', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (737, '2020-12-24', '2021-05-19', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (399, '2020-12-09', '2021-07-07', TRUE, '2021-04-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (713, '2020-12-27', '2021-06-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (213, '2020-12-27', '2021-06-27', TRUE, '2021-03-05', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (543, '2020-12-28', '2021-08-05', TRUE, '2021-03-29', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (288, '2020-12-06', '2021-06-22', TRUE, '2021-03-27', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (101, '2020-12-06', '2021-05-09', FALSE, NULL,
+        'Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (464, '2020-12-30', '2021-08-04', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (999, '2020-12-30', '2021-07-11', TRUE, '2021-03-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (950, '2020-12-07', '2021-07-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (250, '2020-12-21', '2021-07-08', TRUE, '2021-02-26', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (389, '2020-12-25', '2021-07-13', TRUE, '2021-03-23', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (93, '2020-12-01', '2021-06-19', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (684, '2020-12-22', '2021-06-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (469, '2020-12-23', '2021-07-08', TRUE, '2021-03-19', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (809, '2020-12-30', '2021-06-08', TRUE, '2021-02-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (462, '2020-12-30', '2021-07-14', FALSE, NULL,
+        'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (766, '2020-12-23', '2021-07-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (708, '2020-12-25', '2021-05-27', FALSE, NULL,
+        'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (361, '2020-12-16', '2021-06-18', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (28, '2020-12-24', '2021-06-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (286, '2020-12-15', '2021-07-09', TRUE, '2021-03-05', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (576, '2020-12-01', '2021-07-15', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (630, '2020-12-21', '2021-06-06', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (719, '2020-12-10', '2021-06-24', TRUE, '2021-02-27',
+        'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (504, '2020-12-08', '2021-07-06', TRUE, '2021-03-31', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (324, '2020-12-15', '2021-07-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (413, '2020-12-10', '2021-07-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (233, '2020-12-20', '2021-06-24', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (299, '2020-12-27', '2021-05-06', TRUE, '2021-04-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (111, '2020-12-23', '2021-08-05', TRUE, '2021-02-26', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (851, '2020-12-15', '2021-05-17', TRUE, '2021-03-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (277, '2020-12-27', '2021-05-19', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (742, '2020-12-24', '2021-06-07', TRUE, '2021-02-25', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (620, '2020-12-27', '2021-06-26', TRUE, '2021-02-20',
+        'Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (37, '2020-12-19', '2021-06-22', FALSE, NULL,
+        'Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (574, '2020-12-20', '2021-05-16', TRUE, '2021-02-07', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (199, '2020-12-15', '2021-07-21', TRUE, '2021-03-05',
+        'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (641, '2020-12-25', '2021-07-11', FALSE, NULL,
+        'Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (653, '2020-12-15', '2021-07-19', TRUE, '2021-04-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (161, '2020-12-28', '2021-06-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (806, '2020-12-27', '2021-07-14', TRUE, '2021-02-21',
+        'Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (228, '2020-12-04', '2021-07-31', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (674, '2020-12-14', '2021-06-14', TRUE, '2021-03-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (455, '2020-12-07', '2021-06-19', TRUE, '2021-03-20',
+        'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (198, '2020-12-12', '2021-07-26', FALSE, NULL,
+        'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (150, '2020-12-09', '2021-06-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (20, '2020-12-17', '2021-08-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (594, '2020-12-06', '2021-05-29', TRUE, '2021-03-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (465, '2020-12-17', '2021-05-20', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (338, '2020-12-06', '2021-07-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (121, '2020-12-11', '2021-05-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (903, '2020-12-13', '2021-08-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (107, '2020-12-04', '2021-08-05', TRUE, '2021-03-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (255, '2020-12-02', '2021-06-20', TRUE, '2021-03-20',
+        'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (121, '2020-12-18', '2021-07-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (30, '2020-12-04', '2021-07-04', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (873, '2020-12-04', '2021-06-05', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (466, '2020-12-10', '2021-08-02', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (601, '2020-12-12', '2021-06-28', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (982, '2020-12-19', '2021-07-20', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (317, '2020-12-12', '2021-08-03', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (852, '2020-12-26', '2021-08-04', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (885, '2020-12-14', '2021-07-16', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (716, '2020-12-12', '2021-06-15', TRUE, '2021-02-22', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (991, '2020-12-16', '2021-06-24', TRUE, '2021-03-23', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (550, '2020-12-14', '2021-08-05', TRUE, '2021-02-11',
+        'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (857, '2020-12-25', '2021-06-22', TRUE, '2021-02-23',
+        'In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (687, '2020-12-15', '2021-06-08', TRUE, '2021-03-17', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (743, '2020-12-23', '2021-08-04', TRUE, '2021-02-06', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (399, '2020-12-12', '2021-08-02', TRUE, '2021-03-03',
+        'Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (78, '2020-12-12', '2021-07-10', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (352, '2020-12-11', '2021-06-27', TRUE, '2021-03-22', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (71, '2020-12-15', '2021-06-17', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (183, '2020-12-23', '2021-06-11', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (243, '2020-12-18', '2021-06-11', TRUE, '2021-02-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (147, '2020-12-21', '2021-06-11', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (839, '2020-12-09', '2021-06-27', TRUE, '2021-03-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (591, '2020-12-04', '2021-05-27', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (224, '2020-12-14', '2021-06-08', FALSE, NULL,
+        'Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (909, '2020-12-07', '2021-05-13', TRUE, '2021-03-29', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (844, '2020-12-11', '2021-07-10', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (969, '2020-12-07', '2021-06-30', TRUE, '2021-02-18', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (25, '2020-12-20', '2021-07-28', TRUE, '2021-02-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (733, '2020-12-01', '2021-05-10', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (950, '2020-12-14', '2021-07-04', TRUE, '2021-03-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (373, '2020-12-03', '2021-07-02', FALSE, NULL,
+        'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (651, '2020-12-09', '2021-06-06', TRUE, '2021-02-26', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (703, '2020-12-02', '2021-06-15', TRUE, '2021-02-04', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (104, '2020-12-09', '2021-05-06', FALSE, NULL,
+        'Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (416, '2020-12-07', '2021-07-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (687, '2020-12-29', '2021-05-27', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (231, '2020-12-10', '2021-07-11', TRUE, '2021-03-31', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (593, '2020-12-24', '2021-06-29', TRUE, '2021-02-28', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (392, '2020-12-12', '2021-05-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (584, '2020-12-23', '2021-06-08', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (768, '2020-12-14', '2021-06-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (894, '2020-12-26', '2021-06-04', TRUE, '2021-02-10', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (217, '2020-12-29', '2021-06-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (375, '2020-12-19', '2021-06-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (130, '2020-12-19', '2021-07-26', TRUE, '2021-04-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (998, '2020-12-07', '2021-06-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (470, '2020-12-17', '2021-07-20', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (49, '2020-12-12', '2021-05-21', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (474, '2020-12-12', '2021-07-28', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (82, '2020-12-18', '2021-07-28', TRUE, '2021-03-29', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (264, '2020-12-02', '2021-07-01', FALSE, NULL,
+        'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (294, '2020-12-28', '2021-07-27', TRUE, '2021-02-08',
+        'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (769, '2020-12-13', '2021-07-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (315, '2020-12-12', '2021-05-06', FALSE, NULL,
+        'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (469, '2020-12-06', '2021-07-26', TRUE, '2021-03-15', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (658, '2020-12-07', '2021-05-29', TRUE, '2021-02-11', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (779, '2020-12-24', '2021-05-11', TRUE, '2021-03-06', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (251, '2020-12-22', '2021-08-07', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (772, '2020-12-01', '2021-06-05', TRUE, '2021-03-31', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (618, '2020-12-21', '2021-06-23', TRUE, '2021-02-10',
+        'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (668, '2020-12-30', '2021-05-25', TRUE, '2021-03-20',
+        'In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (81, '2020-12-25', '2021-06-20', TRUE, '2021-02-13', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (520, '2020-12-26', '2021-07-14', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (263, '2020-12-17', '2021-06-06', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (370, '2020-12-28', '2021-07-02', TRUE, '2021-02-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (561, '2020-12-20', '2021-05-17', TRUE, '2021-04-01',
+        'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (333, '2020-12-05', '2021-06-18', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (172, '2020-12-16', '2021-05-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (653, '2020-12-18', '2021-07-26', TRUE, '2021-03-09', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (448, '2020-12-20', '2021-07-16', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (953, '2020-12-10', '2021-06-14', FALSE, NULL,
+        'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (53, '2020-12-27', '2021-05-30', TRUE, '2021-02-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (653, '2020-12-26', '2021-05-29', TRUE, '2021-02-15', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (537, '2020-12-20', '2021-07-03', TRUE, '2021-03-03', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (766, '2020-12-07', '2021-07-22', TRUE, '2021-03-30',
+        'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (389, '2020-12-28', '2021-07-30', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (662, '2020-12-30', '2021-05-16', TRUE, '2021-02-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (193, '2020-12-22', '2021-08-05', TRUE, '2021-02-06',
+        'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (890, '2020-12-26', '2021-06-16', TRUE, '2021-03-16', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (320, '2020-12-11', '2021-06-25', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (779, '2020-12-30', '2021-05-23', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (955, '2020-12-02', '2021-07-16', TRUE, '2021-04-01', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (172, '2020-12-11', '2021-06-25', TRUE, '2021-03-29', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (78, '2020-12-17', '2021-05-24', TRUE, '2021-03-22', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (819, '2020-12-07', '2021-05-18', TRUE, '2021-02-08', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (823, '2020-12-26', '2021-08-01', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (617, '2020-12-01', '2021-05-26', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (802, '2020-12-04', '2021-08-05', TRUE, '2021-03-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (159, '2020-12-12', '2021-06-13', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (892, '2020-12-29', '2021-07-30', TRUE, '2021-02-21', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (910, '2020-12-06', '2021-07-28', TRUE, '2021-03-02', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (853, '2020-12-02', '2021-06-12', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (931, '2020-12-08', '2021-05-06', TRUE, '2021-03-07', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (914, '2020-12-02', '2021-05-20', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (914, '2020-12-11', '2021-08-05', TRUE, '2021-03-30', NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (695, '2020-12-01', '2021-06-23', FALSE, NULL, NULL);
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (314, '2020-12-18', '2021-06-19', TRUE, '2021-03-30',
+        'Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.');
+INSERT INTO borrow_ticket (borrower_id, borrowed_date, due_date, is_returned, returned_date, note)
+VALUES (288, '2020-12-01', '2021-07-10', FALSE, NULL, NULL);
 
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (439, 1422);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (243, 745);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (491, 1046);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (136, 749);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (412, 353);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (256, 8);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (445, 1240);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (483, 372);
-insert into book_borrow_ticket (borrow_ticket_id, book_id) values (287, 483);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (439, 1422);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (243, 745);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (491, 1046);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (136, 749);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (412, 353);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (256, 8);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (445, 1240);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (483, 372);
+INSERT INTO book_borrow_ticket (borrow_ticket_id, book_id)
+VALUES (287, 483);
 insert into book_borrow_ticket (borrow_ticket_id, book_id) values (261, 906);
 insert into book_borrow_ticket (borrow_ticket_id, book_id) values (176, 1202);
 insert into book_borrow_ticket (borrow_ticket_id, book_id) values (299, 772);

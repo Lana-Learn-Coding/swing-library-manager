@@ -24,6 +24,9 @@ public class Ticket extends BaseEntity {
     @Column(name = "borrowed_date")
     private LocalDate borrowedDate = LocalDate.now();
 
+    @Column(name = "returned_date")
+    private LocalDate returnedDate;
+
     @Column(name = "is_returned")
     private boolean returned = false;
 
@@ -48,6 +51,19 @@ public class Ticket extends BaseEntity {
         return withBooks(books);
     }
 
+    public void setReturned(boolean returned) {
+        if (returned == this.returned) {
+            return;
+        }
+
+        this.returned = returned;
+        if (returned) {
+            setReturnedDate(LocalDate.now());
+            return;
+        }
+        setReturnedDate(null);
+    }
+
     @Transient
     public boolean isBorrowing() {
         return !isReturned();
@@ -59,6 +75,11 @@ public class Ticket extends BaseEntity {
             return 0;
         }
         return (int) ChronoUnit.DAYS.between(getDueDate(), LocalDate.now());
+    }
+
+    @Transient
+    public int getBooksCount() {
+        return (int) getBooks().stream().filter(Book::isNotDeleted).count();
     }
 
     @Transient

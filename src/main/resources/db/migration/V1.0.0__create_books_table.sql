@@ -57,6 +57,7 @@ CREATE TABLE borrow_ticket
     id            SERIAL PRIMARY KEY,
     borrowed_date DATE      NOT NULL DEFAULT NOW(),
     due_date      DATE      NOT NULL,
+    returned_date DATE,
     is_returned   BOOLEAN   NOT NULL DEFAULT FALSE,
     borrower_id   INT       NOT NULL REFERENCES reader (id) ON DELETE CASCADE,
     note          TEXT,
