@@ -5,12 +5,14 @@
 package io.lana.library.ui.view.ticket;
 
 import io.lana.library.core.model.Reader;
+import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.Ticket;
 import io.lana.library.core.service.ReaderService;
 import io.lana.library.core.service.TicketService;
 import io.lana.library.core.spi.datacenter.TicketDataCenter;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.TicketTablePane;
+import io.lana.library.ui.component.app.ListPane;
 import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.ui.view.reader.BorrowBookDialog;
 import io.lana.library.utils.DateFormatUtils;
@@ -123,6 +125,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         checkReturn.setSelected(false);
         txtReturnedDate.setText("");
         ticketTablePane.clearSelection();
+        bookList.clearListData();
         checkReturn.setText("Returned");
     }
 
@@ -135,6 +138,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         txtDueDate.setDate(DateFormatUtils.toDate(model.getDueDate()));
         checkReturn.setSelected(model.isReturned());
         txtReturnedDate.setText(model.isReturned() ? DateFormatUtils.toDateString(model.getReturnedDate()) : "");
+        bookList.setListData(model.getBorrowingBooks());
         txtNote.setText(model.getNote());
         checkReturn.setText("Returned - Ticket " + model.getId());
     }
@@ -210,8 +214,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         scrollPane1 = new JScrollPane();
         txtNote = new JTextArea();
         label3 = new JLabel();
-        scrollPane2 = new JScrollPane();
-        bookList = new JList();
+        bookList = new ListPane<>();
         actionPanel = new JPanel();
         btnClear = new JButton();
         btnSave = new JButton();
@@ -331,12 +334,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                     formPanel.add(label3, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 20, 10), 0, 0));
-
-                    //======== scrollPane2 ========
-                    {
-                        scrollPane2.setViewportView(bookList);
-                    }
-                    formPanel.add(scrollPane2, new GridBagConstraints(1, 5, 3, 2, 0.0, 0.0,
+                    formPanel.add(bookList, new GridBagConstraints(1, 5, 3, 2, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 0, 0), 0, 0));
                 }
@@ -385,7 +383,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                                 .addComponent(btnBorrowBook)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnReturnTicket)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                                 .addComponent(btnSave)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnClear)
@@ -437,8 +435,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     private JScrollPane scrollPane1;
     private JTextArea txtNote;
     private JLabel label3;
-    private JScrollPane scrollPane2;
-    private JList bookList;
+    private ListPane<Book> bookList;
     private JPanel actionPanel;
     private JButton btnClear;
     private JButton btnSave;

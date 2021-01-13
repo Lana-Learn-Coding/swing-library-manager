@@ -124,4 +124,9 @@ public class Book extends BaseEntity {
     public boolean isNotDeleted() {
         return !getDeleted();
     }
+
+    @Override
+    public String toString() {
+        return getIdString() + " - " + getTitle();
+    }
 }

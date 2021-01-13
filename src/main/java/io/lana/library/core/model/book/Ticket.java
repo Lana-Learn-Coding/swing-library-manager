@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -75,6 +76,11 @@ public class Ticket extends BaseEntity {
             return 0;
         }
         return (int) ChronoUnit.DAYS.between(getDueDate(), LocalDate.now());
+    }
+
+    @Transient
+    public Set<Book> getBorrowingBooks() {
+        return getBooks().stream().filter(Book::isNotDeleted).collect(Collectors.toSet());
     }
 
     @Transient

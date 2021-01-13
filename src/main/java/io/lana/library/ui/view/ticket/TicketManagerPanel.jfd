@@ -125,11 +125,11 @@ new FormModel {
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridy": 5
 						} )
-						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-							name: "scrollPane2"
-							add( new FormComponent( "javax.swing.JList" ) {
-								name: "bookList"
-							} )
+						add( new FormComponent( "io.lana.library.ui.component.app.ListPane" ) {
+							name: "bookList"
+							auxiliary() {
+								"JavaCodeGenerator.typeParameters": "Book"
+							}
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridx": 1
 							"gridy": 5
@@ -139,7 +139,7 @@ new FormModel {
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {comp btnSave::l:::x, comp btnClear:::::x, comp btnDelete::l::100:x, comp btnBorrowBook::t::100:x, comp btnReturnTicket::l::100:x}"
-						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space s:::p, comp btnReturnTicket:::p::p, space ::145:x, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space s:::p, comp btnReturnTicket:::p::p, space ::173:x, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 					} ) {
 						name: "actionPanel"
 						add( new FormComponent( "javax.swing.JButton" ) {
