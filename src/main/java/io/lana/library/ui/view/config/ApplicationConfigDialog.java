@@ -11,11 +11,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Properties;
 
@@ -23,11 +22,9 @@ import java.util.Properties;
 public class ApplicationConfigDialog extends JDialog {
     private static final String RESOURCES_FILE = "application.properties";
     private final Properties properties = new Properties();
-    private final Path resourcesPath;
 
     public ApplicationConfigDialog() {
         initComponents();
-        resourcesPath = Paths.get(getClass().getResource(RESOURCES_FILE).getPath());
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(RESOURCES_FILE);
         if (inputStream == null) {
             throw new FileException("Config file not found: " + RESOURCES_FILE);
@@ -41,14 +38,14 @@ public class ApplicationConfigDialog extends JDialog {
 
     private void okButtonActionPerformed(ActionEvent e) {
         loadFormToProperties();
-        try (OutputStream out = new FileOutputStream(resourcesPath.toFile())) {
+        try (OutputStream out = new FileOutputStream(new File(getClass().getClassLoader().getResource(RESOURCES_FILE).toURI()))) {
             DefaultPropertiesPersister propertiesPersister = new DefaultPropertiesPersister();
             propertiesPersister.store(properties, out, "Updated at: " + DateFormatUtils.toDateString(LocalDate.now()));
         } catch (Exception error) {
             throw new FileException("Cannot save config file");
         }
         JOptionPane.showMessageDialog(this, "Config saved. Restart application to take effect");
-        setVisible(false);
+        System.exit(0);
     }
 
     private void loadFormToProperties() {
