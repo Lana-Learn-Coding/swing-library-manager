@@ -22,6 +22,10 @@ public class Permission implements Named {
     public static final Permission BORROWING_MANAGE = new Permission(3, "BORROWING_MANAGE");
     public static final Permission USER_MANAGE = new Permission(4, "USER_MANAGE");
 
+    public Permission(String name) {
+        setName(name);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

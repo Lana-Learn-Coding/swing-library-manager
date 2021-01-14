@@ -37,4 +37,9 @@ public class User extends BaseEntity {
     public boolean hasPermission(Permission permission) {
         return getPermissions().contains(permission);
     }
+
+    @Transient
+    public boolean hasPermission(String permissionName) {
+        return getPermissions().contains(new Permission(permissionName));
+    }
 }
