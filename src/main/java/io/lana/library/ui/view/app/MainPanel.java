@@ -7,6 +7,7 @@ import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
 import io.lana.library.ui.view.ticket.TicketManagerPanel;
+import io.lana.library.ui.view.user.UserAccountDialog;
 import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.awt.event.ActionEvent;
 @Component
 public class MainPanel extends JPanel implements MainFrameContainer {
     private final UserContext userContext;
+    private final UserAccountDialog userAccountDialog;
 
     private enum Views {
         BOOK_MANAGE,
@@ -29,9 +31,17 @@ public class MainPanel extends JPanel implements MainFrameContainer {
 
     @Autowired
     public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel,
-                     UserManagerPanel userManagerPanel, UserContext userContext, TicketManagerPanel ticketManagerPanel) {
+                     UserManagerPanel userManagerPanel, UserContext userContext, TicketManagerPanel ticketManagerPanel,
+                     UserAccountDialog userAccountDialog) {
         initComponents();
         this.userContext = userContext;
+        this.userAccountDialog = userAccountDialog;
+
+        bookMetaManagerPanel.setName(Views.BOOK_MANAGE.name());
+        readerManagerPanel.setName(Views.READER_MANAGE.name());
+        userManagerPanel.setName(Views.USER_MANAGE.name());
+        ticketManagerPanel.setName(Views.BORROWING_MANAGE.name());
+
         mainPanel.add(Views.BOOK_MANAGE.name(), bookMetaManagerPanel);
         mainPanel.add(Views.READER_MANAGE.name(), readerManagerPanel);
         mainPanel.add(Views.USER_MANAGE.name(), userManagerPanel);
@@ -45,6 +55,33 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         btnReaderManage.setEnabled(user.hasPermission(Permission.READER_MANAGE));
         btnBorrowTicket.setEnabled(user.hasPermission(Permission.BORROWING_MANAGE));
         btnUserManage.setEnabled(user.hasPermission(Permission.USER_MANAGE));
+        if (user.hasPermission(getCurrentViewName())) {
+            return;
+        }
+        switchToNearestAllowedView();
+    }
+
+    private String getCurrentViewName() {
+        for (java.awt.Component card : mainPanel.getComponents()) {
+            if (card.isVisible() && card instanceof JPanel) {
+                return card.getName();
+            }
+        }
+        return null;
+    }
+
+    private void switchToNearestAllowedView() {
+        User user = userContext.getUser();
+        for (java.awt.Component card : mainPanel.getComponents()) {
+            if (!card.isVisible() && card instanceof JPanel) {
+                if (user.hasPermission(card.getName())) {
+                    showView(card.getName());
+                    return;
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Your account was deactivated");
+        userContext.logout();
     }
 
     private void btnBookManageActionPerformed(ActionEvent e) {
@@ -56,8 +93,12 @@ public class MainPanel extends JPanel implements MainFrameContainer {
     }
 
     private void showView(Views view) {
+        showView(view.name());
+    }
+
+    private void showView(String viewName) {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
-        layout.show(mainPanel, view.name());
+        layout.show(mainPanel, viewName);
     }
 
     private void btnExitActionPerformed(ActionEvent e) {
