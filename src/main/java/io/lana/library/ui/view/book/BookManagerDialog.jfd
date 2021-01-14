@@ -1,63 +1,92 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, par l {comp mainTabbedPane::::713:x, comp bookTablePane:::::x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp mainTabbedPane:::p:376:p, space s:::p, comp bookTablePane::::162:x, space :::p}}"
+			"$horizontalGroup": "par l {comp mainTabbedPane::t::778:x, comp bookTablePane::t::778:x}"
+			"$verticalGroup": "par l {seq l {comp mainTabbedPane:::p:372:p, space s:::p, comp bookTablePane:::p:283:p}}"
 		} ) {
 			name: "this"
 			"title": "Book List Detail"
 			"modal": true
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "mainTabbedPane"
-				"border": new javax.swing.border.EmptyBorder( 5, 5, 5, 5 )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:10:p, comp formPanel:::::x, space s:::p, comp actionPanel:::p::p, space :p:21:p}}"
-					"$verticalGroup": "par l {seq l {space :::p, par t {comp actionPanel:::p::p, comp formPanel:::p::p}, space :p:105:p}}"
+				"border": new javax.swing.border.EmptyBorder( 5, 15, 0, 15 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0:1.0, 100"
+					"$rowSpecs": "0:1.0"
+					"$hGap": 20
+					"$vGap": 5
+					"$alignTop": true
+					"$alignLeft": true
 				} ) {
 					name: "formTab"
-					"border": new javax.swing.border.EtchedBorder( 1, null, null )
-					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {par l {seq l {space :::p, par l:::p {seq {comp labelStorage:::p::p, space s:::p, comp selectStorage:::p:230:p, space :::x, comp btnNewStorage:::p:57:p}, seq l {par l {comp lblPosition:::p::p, comp lblNote:::p::p}, space s:::p, par t {comp txtPosition:::p:294:p, comp noteScroll:::p:294:p}}}}, seq l {par l {seq {space :p:11:p, par l {seq {comp labelId:::p::p, space :p:12:p}, comp labelMeta::t:p::p}}, seq l {space :::p, comp lblBorrow:::p::p}}, space :p:25:p, par l:::p {seq l {comp txtID:::p:87:p, space :p:39:p, comp lblCondition:::p::p, space s:::p, comp txtCondition::::101:x}, comp txtMeta::l:::x, comp txtBorrow::t:::x}}}, space :p:27:p, par l:::p {comp panelImage::::120:x, comp btnSelectImage::::120:x}, space ::34:x}}"
-						"$verticalGroup": "par l {seq {space :::p, par l {seq {par b {comp labelId::b:p::p, comp txtID::b:p::p, comp lblCondition::b:p::p, comp txtCondition:::p::p}, space s:::p, par l {comp labelMeta:::p::p, comp txtMeta:::p::p}, space s:::p, par l {comp lblBorrow:::p::p, comp txtBorrow:::p::p}, space s:::p, par b {comp selectStorage::b:p::p, comp btnNewStorage::b:p::p, comp labelStorage::b:p::p}, space s:::p, par b {comp lblPosition::b:p::p, comp txtPosition::b:p::p}}, comp panelImage:::p:189:p}, par l {seq {space :::p, par l {comp lblNote:::p::p, comp noteScroll:::p:56:p}}, seq l {space :p:16:p, comp btnSelectImage:::p::p}}, space ::35:x}}"
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.EtchedBorder( 1, null, null ), new javax.swing.border.EmptyBorder( 15, 15, 20, 20 ) )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+						"$columnSpecs": "0, 0:1.0, 10, 0, 0:1.0, 0, 10, 130"
+						"$rowSpecs": "0, 0, 0, 0, 0, 0"
+						"$hGap": 15
+						"$vGap": 20
+						"$alignTop": true
+						"$alignLeft": true
 					} ) {
 						name: "formPanel"
-						"border": new javax.swing.border.TitledBorder( "Book Form" )
+						"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "Book Form" ), new javax.swing.border.EmptyBorder( 15, 15, 20, 15 ) )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "labelId"
 							"text": "ID"
-						} )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "labelMeta"
 							"text": "Meta"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 1
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "labelStorage"
 							"text": "Storage"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 3
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "txtID"
 							"editable": false
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "lblCondition"
 							"text": "Condition"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 3
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "txtCondition"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 4
+							"gridwidth": 2
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "txtMeta"
 							"editable": false
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 1
+							"gridwidth": 5
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "lblPosition"
 							"text": "Position"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 4
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "txtPosition"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 4
+							"gridwidth": 5
 						} )
 						add( new FormComponent( "io.lana.library.ui.component.app.ComboBox" ) {
 							name: "selectStorage"
@@ -65,15 +94,16 @@ new FormModel {
 							auxiliary() {
 								"JavaCodeGenerator.typeParameters": "Storage"
 							}
-						} )
-						add( new FormComponent( "javax.swing.JButton" ) {
-							name: "btnNewStorage"
-							"text": "New"
-							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnNewStorageActionPerformed", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 3
+							"gridwidth": 4
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "lblNote"
 							"text": "Note"
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 5
 						} )
 						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 							name: "noteScroll"
@@ -81,6 +111,10 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JTextArea" ) {
 								name: "txtNote"
 							} )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 5
+							"gridwidth": 5
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "lblBorrow"
@@ -88,10 +122,16 @@ new FormModel {
 							auxiliary() {
 								"JavaCodeGenerator.variableName": "lblBorrow"
 							}
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridy": 2
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "txtBorrow"
 							"editable": false
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 1
+							"gridy": 2
+							"gridwidth": 5
 						} )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
 							name: "panelImage"
@@ -99,16 +139,30 @@ new FormModel {
 							add( new FormComponent( "io.lana.library.ui.component.app.ImageViewer" ) {
 								name: "imageViewer"
 							} )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 7
+							"gridheight": 5
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btnNewStorage"
+							"text": "New"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnNewStorageActionPerformed", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 5
+							"gridy": 3
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnSelectImage"
 							"text": "Select Image"
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSelectImageActionPerformed", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+							"gridx": 7
+							"gridy": 5
 						} )
-					} )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp btnDelete::::94:x, comp btnClear::l::94:x, comp btnSave::l::94:x, comp btnClone::l::94:x}"
-						"$verticalGroup": "par l {seq t {space :0:76:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+						"$horizontalGroup": "par l {comp btnDelete::::100:x, comp btnClear::l::100:x, comp btnSave::l::100:x, comp btnClone::l::100:x}"
+						"$verticalGroup": "par l {seq t {space :0:153:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 					} ) {
 						name: "actionPanel"
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -133,6 +187,8 @@ new FormModel {
 							"enabled": false
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCloneActionPerformed", true ) )
 						} )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Book List"
@@ -140,11 +196,11 @@ new FormModel {
 			} )
 			add( new FormComponent( "io.lana.library.ui.component.BookTablePane" ) {
 				name: "bookTablePane"
-				"border": new javax.swing.border.EmptyBorder( 0, 5, 5, 5 )
+				"border": new javax.swing.border.EmptyBorder( 0, 15, 15, 15 )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 735, 610 )
+			"size": new java.awt.Dimension( 780, 705 )
 		} )
 	}
 }
