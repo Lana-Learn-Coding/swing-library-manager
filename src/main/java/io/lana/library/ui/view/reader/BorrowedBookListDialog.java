@@ -94,9 +94,7 @@ public class BorrowedBookListDialog extends JDialog {
         }
 
         Book book = borrowTablePane.getSelectedRow();
-        Ticket ticket = book.getBorrowingTicket();
-
-        LocalDate dueDate = inputDateAfter(ticket.getDueDate());
+        LocalDate dueDate = inputDateAfter(LocalDate.now());
         if (dueDate == null) {
             return;
         }
@@ -114,7 +112,7 @@ public class BorrowedBookListDialog extends JDialog {
         Book book = borrowTablePane.getSelectedRow();
         Ticket ticket = book.getBorrowingTicket();
 
-        LocalDate dueDate = inputDateAfter(ticket.getDueDate());
+        LocalDate dueDate = inputDateAfter(LocalDate.now());
         if (dueDate == null) {
             return;
         }
@@ -136,7 +134,7 @@ public class BorrowedBookListDialog extends JDialog {
         }
         LocalDate newDate = DateFormatUtils.toLocalDate(datePicker.getDate());
         if (!newDate.isAfter(date)) {
-            throw new InputException(this, "Selected Date is not after current Due date");
+            throw new InputException(this, "Selected Date must after " + DateFormatUtils.toDateString(date));
         }
         return newDate;
     }
