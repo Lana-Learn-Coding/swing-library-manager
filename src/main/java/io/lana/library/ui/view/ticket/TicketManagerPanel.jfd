@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp ticketTablePane::::785:x, comp mainTabbedPane::l::785:x}"
-			"$verticalGroup": "par l {seq l {comp mainTabbedPane::::430:x, space s:::p, comp ticketTablePane:::p:287:p}}"
+			"$horizontalGroup": "par l {comp mainTabbedPane::l::785:x, comp ticketTablePane::l::785:x}"
+			"$verticalGroup": "par l {seq l {comp mainTabbedPane:::p:404:p, space s:::p, comp ticketTablePane::::333:x}}"
 		} ) {
 			name: "this"
 			"border": new javax.swing.border.EmptyBorder( 0, 10, 0, 10 )
@@ -138,8 +138,8 @@ new FormModel {
 						} )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp btnDelete::l::100:x, comp btnBorrowBook::t::100:x, comp btnReturnBook::l::100:x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnReturnTicket::l::100:x, comp btnExtendDue::l::100:x, comp btnViewBorrow::t::100:x}"
-						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space u:::p, comp btnViewBorrow:::p::p, space ::39:x, comp btnExtendDue:::p::p, space u:::p, comp btnReturnBook:::p::p, space :p:36:p, comp btnReturnTicket:::p::p, space u:::p, comp btnSave:::p::p, space u:::p, comp btnClear:::p::p, space u:::p, comp btnDelete:::p::p}}"
+						"$horizontalGroup": "par l {comp btnDelete::l:::x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnReturnTicket::l:::x, comp btnBorrowBook::t:::x, comp btnViewBorrow::l:::x, comp btnBorrowHistory::t:::x, comp btnReturnBook::l:::x, comp btnExtendDue::l:::x}"
+						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space :p:9:p, comp btnViewBorrow:::p::p, space u:::p, comp btnBorrowHistory:::p::p, space :p:23:p, comp btnExtendDue:::p::p, space :::p, comp btnReturnBook:::p::p, space ::25:x, comp btnReturnTicket:::p::p, space u:::p, comp btnSave:::p::p, space u:::p, comp btnClear:::p::p, space u:::p, comp btnDelete:::p::p}}"
 					} ) {
 						name: "actionPanel"
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -187,6 +187,11 @@ new FormModel {
 							"enabled": false
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExtendDueActionPerformed", true ) )
 						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btnBorrowHistory"
+							"text": "Borrow History"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBorrowHistoryActionPerformed", true ) )
+						} )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 					} )
@@ -196,7 +201,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 805, 735 )
+			"size": new java.awt.Dimension( 805, 755 )
 		} )
 	}
 }

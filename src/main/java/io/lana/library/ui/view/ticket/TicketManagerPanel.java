@@ -15,6 +15,7 @@ import io.lana.library.ui.component.TicketTablePane;
 import io.lana.library.ui.component.app.ListPane;
 import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.ui.view.reader.BorrowBookDialog;
+import io.lana.library.ui.view.reader.BorrowHistoryDialog;
 import io.lana.library.ui.view.reader.BorrowedBookListDialog;
 import io.lana.library.utils.DateFormatUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,6 +40,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
 
     private BorrowBookDialog borrowBookDialog;
     private BorrowedBookListDialog borrowedBookListDialog;
+    private BorrowHistoryDialog borrowHistoryDialog;
 
     public TicketManagerPanel() {
         initComponents();
@@ -97,7 +99,9 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                       BorrowBookDialog borrowBookDialog,
                       TicketDataCenter ticketDataCenter,
                       ReaderService readerService,
-                      BorrowedBookListDialog borrowedBookListDialog) {
+                      BorrowedBookListDialog borrowedBookListDialog,
+                      BorrowHistoryDialog borrowHistoryDialog) {
+        this.borrowHistoryDialog = borrowHistoryDialog;
         this.ticketService = ticketService;
         this.borrowBookDialog = borrowBookDialog;
         this.readerService = readerService;
@@ -248,6 +252,11 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         JOptionPane.showMessageDialog(this, "Book due date extended! - Tracking ticket: " + ticket.getId());
     }
 
+    private void btnBorrowHistoryActionPerformed(ActionEvent e) {
+        borrowHistoryDialog.setModel(findReader());
+        borrowHistoryDialog.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         ticketTablePane = new TicketTablePane();
@@ -279,6 +288,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         btnViewBorrow = new JButton();
         btnReturnBook = new JButton();
         btnExtendDue = new JButton();
+        btnBorrowHistory = new JButton();
 
         //======== this ========
         setBorder(new EmptyBorder(0, 10, 0, 10));
@@ -440,31 +450,38 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                     btnExtendDue.setEnabled(false);
                     btnExtendDue.addActionListener(e -> btnExtendDueActionPerformed(e));
 
+                    //---- btnBorrowHistory ----
+                    btnBorrowHistory.setText("Borrow History");
+                    btnBorrowHistory.addActionListener(e -> btnBorrowHistoryActionPerformed(e));
+
                     GroupLayout actionPanelLayout = new GroupLayout(actionPanel);
                     actionPanel.setLayout(actionPanelLayout);
                     actionPanelLayout.setHorizontalGroup(
                         actionPanelLayout.createParallelGroup()
-                            .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(btnBorrowBook, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(btnReturnBook, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnClear, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReturnTicket, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(btnExtendDue, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(btnViewBorrow, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnReturnTicket, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBorrowBook, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewBorrow, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBorrowHistory, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnReturnBook, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExtendDue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     );
                     actionPanelLayout.setVerticalGroup(
                         actionPanelLayout.createParallelGroup()
                             .addGroup(actionPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnBorrowBook)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(9, 9, 9)
                                 .addComponent(btnViewBorrow)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addComponent(btnExtendDue)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBorrowHistory)
+                                .addGap(23, 23, 23)
+                                .addComponent(btnExtendDue)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnReturnBook)
-                                .addGap(36, 36, 36)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                                 .addComponent(btnReturnTicket)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSave)
@@ -485,15 +502,15 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
-                .addComponent(ticketTablePane, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
                 .addComponent(mainTabbedPane, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+                .addComponent(ticketTablePane, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(mainTabbedPane, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                    .addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 404, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(ticketTablePane, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ticketTablePane, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -528,5 +545,6 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     private JButton btnViewBorrow;
     private JButton btnReturnBook;
     private JButton btnExtendDue;
+    private JButton btnBorrowHistory;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
