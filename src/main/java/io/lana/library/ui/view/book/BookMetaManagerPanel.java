@@ -50,6 +50,8 @@ public class BookMetaManagerPanel extends JPanel implements CrudPanel<BookMeta> 
     @Autowired
     public void setup(SeriesRepo seriesRepo, CategoryRepo categoryRepo, BookMetaDataCenter bookMetaDataCenter,
                       BookManagerDialog bookManagerDialog, FileStorage fileStorage, BookService bookService) {
+        bookManagerDialog.setLocationRelativeTo(this);
+
         this.bookService = bookService;
         this.bookManagerDialog = bookManagerDialog;
         this.seriesRepo = seriesRepo;

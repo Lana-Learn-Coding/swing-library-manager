@@ -98,6 +98,9 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                       ReaderService readerService,
                       BorrowedBookListDialog borrowedBookListDialog,
                       BorrowHistoryDialog borrowHistoryDialog) {
+        borrowBookDialog.setLocationRelativeTo(this);
+        borrowHistoryDialog.setLocationRelativeTo(this);
+        borrowedBookListDialog.setLocationRelativeTo(this);
         this.borrowHistoryDialog = borrowHistoryDialog;
         this.ticketService = ticketService;
         this.borrowBookDialog = borrowBookDialog;

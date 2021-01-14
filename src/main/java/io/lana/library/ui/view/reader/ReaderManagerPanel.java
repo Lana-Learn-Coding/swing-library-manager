@@ -93,6 +93,9 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                       BorrowBookDialog borrowBookDialog,
                       BorrowHistoryDialog borrowHistoryDialog,
                       UserContext userContext) {
+        borrowBookDialog.setLocationRelativeTo(this);
+        borrowHistoryDialog.setLocationRelativeTo(this);
+        borrowedBookListDialog.setLocationRelativeTo(this);
         this.borrowHistoryDialog = borrowHistoryDialog;
         this.userContext = userContext;
         this.readerService = readerService;
