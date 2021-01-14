@@ -4,10 +4,11 @@
 
 package io.lana.library.ui.view.reader;
 
-import io.lana.library.core.spi.datacenter.ReaderDataCenter;
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.user.Permission;
+import io.lana.library.core.service.ReaderService;
 import io.lana.library.core.spi.FileStorage;
+import io.lana.library.core.spi.datacenter.ReaderDataCenter;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.component.ReaderTablePane;
@@ -42,7 +43,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private UserContext userContext;
     private BorrowBookDialog borrowBookDialog;
     private BorrowedBookListDialog borrowedBookListDialog;
-    private ReaderDataCenter readerDataCenter;
+    private ReaderService readerService;
     private FileStorage fileStorage;
 
     public ReaderManagerPanel() {
@@ -84,11 +85,12 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
 
     @Autowired
     public void setup(ReaderDataCenter readerDataCenter, FileStorage fileStorage,
+                      ReaderService readerService,
                       BorrowedBookListDialog borrowedBookListDialog,
                       BorrowBookDialog borrowBookDialog,
                       UserContext userContext) {
         this.userContext = userContext;
-        this.readerDataCenter = readerDataCenter;
+        this.readerService = readerService;
         this.fileStorage = fileStorage;
         this.borrowedBookListDialog = borrowedBookListDialog;
         this.borrowBookDialog = borrowBookDialog;
@@ -104,12 +106,10 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         }
         if (reader.getBorrowedBookCount() > 0) {
             JOptionPane.showMessageDialog(this,
-                "Reader still borrow some book. " +
-                    "Please remove them before delete this reader");
+                "Reader still borrow some book. Please remove them before delete this reader");
             return;
         }
-        readerDataCenter.delete(reader);
-        WorkerUtils.runAsync(() -> fileStorage.deleteFileFromStorage(reader.getAvatar()));
+        readerService.deleteReader(reader);
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -117,17 +117,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     public void save() {
         Reader reader = getModelFromForm();
         if (!readerTablePane.isAnyRowSelected()) {
-            if (StringUtils.isNotBlank(reader.getEmail()) && existsByEmail(reader.getEmail())) {
-                throw new InputException(this, "Email already exited");
-            }
-            if (existsByPhoneNumber(reader.getPhoneNumber())) {
-                throw new InputException(this, "Phone number already exited");
-            }
-            if (StringUtils.isNotBlank(reader.getAvatar())) {
-                String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
-                reader.setAvatar(savedImage);
-            }
-            readerDataCenter.save(reader);
+            readerService.createReader(reader);
             JOptionPane.showMessageDialog(this, "Create success!");
             return;
         }
@@ -136,36 +126,9 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         if (updated.getBorrowedBookCount() > reader.getLimit()) {
             throw new InputException(this, "The limit must not lower than current book borrowed");
         }
-        if (StringUtils.isNotBlank(reader.getEmail()) &&
-            !reader.getEmail().equals(updated.getEmail())
-            && existsByEmail(reader.getEmail())) {
-            throw new InputException(this, "Email already exited");
-        }
-        if (!reader.getPhoneNumber().equals(updated.getPhoneNumber())
-            && existsByPhoneNumber(reader.getPhoneNumber())) {
-            throw new InputException(this, "Phone number already exited");
-        }
-        updated.setBirth(reader.getBirth());
-        updated.setName(reader.getName());
-        updated.setEmail(reader.getEmail());
-        updated.setPhoneNumber(reader.getPhoneNumber());
-        updated.setGender(reader.getGender());
-        updated.setLimit(reader.getLimit());
-        updated.setAddress(reader.getAddress());
-        if (StringUtils.isNotBlank(reader.getAvatar())) {
-            String savedImage = fileStorage.loadFileToStorage(reader.getAvatar());
-            updated.setAvatar(savedImage);
-        }
-        readerDataCenter.update(updated);
+        reader.setId(updated.getId());
+        readerService.updateReader(reader);
         JOptionPane.showMessageDialog(this, "Update success!");
-    }
-
-    private boolean existsByPhoneNumber(String phoneNumber) {
-        return readerTablePane.stream().anyMatch(reader -> phoneNumber.equals(reader.getPhoneNumber()));
-    }
-
-    private boolean existsByEmail(String email) {
-        return readerTablePane.stream().anyMatch(reader -> email.equals(reader.getEmail()));
     }
 
     @Override
