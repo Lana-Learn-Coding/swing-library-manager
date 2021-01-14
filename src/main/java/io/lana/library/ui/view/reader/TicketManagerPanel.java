@@ -160,7 +160,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         txtDueDate.setDate(DateFormatUtils.toDate(model.getDueDate()));
         checkReturn.setSelected(model.isReturned());
         txtReturnedDate.setText(model.isReturned() ? DateFormatUtils.toDateString(model.getReturnedDate()) : "");
-        bookList.setListData(model.getBorrowingBooks());
+        bookList.setListData(model.getBooks());
         txtNote.setText(model.getNote());
         checkReturn.setText("Returned - Ticket " + model.getId());
     }

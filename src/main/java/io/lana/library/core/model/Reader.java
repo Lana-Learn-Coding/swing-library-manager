@@ -58,7 +58,6 @@ public class Reader extends BaseEntity {
     public Set<BookMeta> getHistoryBorrowedBookMetas() {
         return tickets.stream()
             .flatMap(ticket -> ticket.getBooks().stream())
-            .filter(Book::isNotDeleted)
             .map(Book::getMeta)
             .collect(Collectors.toSet());
     }
