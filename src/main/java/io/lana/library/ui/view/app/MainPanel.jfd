@@ -62,6 +62,7 @@ new FormModel {
 					"text": "Config"
 					"focusPainted": false
 					"focusable": false
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnConfigActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 					"gridy": 5
 				} )

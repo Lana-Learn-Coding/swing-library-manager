@@ -5,6 +5,7 @@ import io.lana.library.core.model.user.User;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
+import io.lana.library.ui.view.config.ApplicationConfigDialog;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
 import io.lana.library.ui.view.reader.TicketManagerPanel;
 import io.lana.library.ui.view.user.UserAccountDialog;
@@ -21,6 +22,7 @@ import java.awt.event.ActionEvent;
 public class MainPanel extends JPanel implements MainFrameContainer {
     private final UserContext userContext;
     private final UserAccountDialog userAccountDialog;
+    private final ApplicationConfigDialog applicationConfigDialog;
 
     private enum Views {
         BOOK_MANAGE,
@@ -32,10 +34,13 @@ public class MainPanel extends JPanel implements MainFrameContainer {
     @Autowired
     public MainPanel(BookMetaManagerPanel bookMetaManagerPanel, ReaderManagerPanel readerManagerPanel,
                      UserManagerPanel userManagerPanel, UserContext userContext, TicketManagerPanel ticketManagerPanel,
-                     UserAccountDialog userAccountDialog) {
+                     UserAccountDialog userAccountDialog, ApplicationConfigDialog applicationConfigDialog) {
         initComponents();
+        userAccountDialog.setLocationRelativeTo(this);
+        applicationConfigDialog.setLocationRelativeTo(this);
         this.userContext = userContext;
         this.userAccountDialog = userAccountDialog;
+        this.applicationConfigDialog = applicationConfigDialog;
 
         bookMetaManagerPanel.setName(Views.BOOK_MANAGE.name());
         readerManagerPanel.setName(Views.READER_MANAGE.name());
@@ -128,6 +133,10 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         userAccountDialog.setVisible(true);
     }
 
+    private void btnConfigActionPerformed(ActionEvent e) {
+        applicationConfigDialog.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         menuPanel = new JPanel();
@@ -198,6 +207,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             btnConfig.setText("Config");
             btnConfig.setFocusPainted(false);
             btnConfig.setFocusable(false);
+            btnConfig.addActionListener(e -> btnConfigActionPerformed(e));
             menuPanel.add(btnConfig, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
