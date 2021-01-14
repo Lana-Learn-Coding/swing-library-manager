@@ -125,9 +125,8 @@ public class LoginPanel extends JPanel implements MainFrameContainer {
 
             //---- lblHeader ----
             lblHeader.setText("Login to Library");
-            lblHeader.setFont(new Font("Tahoma", lblHeader.getFont().getStyle(), 18));
+            lblHeader.setFont(lblHeader.getFont().deriveFont(lblHeader.getFont().getSize() + 8f));
             lblHeader.setHorizontalAlignment(SwingConstants.CENTER);
-            lblHeader.setForeground(Color.darkGray);
             mainPanel.add(lblHeader, new GridBagConstraints(0, 0, 3, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
