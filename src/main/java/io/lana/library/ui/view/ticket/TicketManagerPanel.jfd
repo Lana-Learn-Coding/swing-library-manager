@@ -138,8 +138,8 @@ new FormModel {
 						} )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp btnSave::l:::x, comp btnClear:::::x, comp btnDelete::l::100:x, comp btnBorrowBook::t::100:x, comp btnReturnTicket::l::100:x}"
-						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space s:::p, comp btnReturnTicket:::p::p, space ::173:x, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+						"$horizontalGroup": "par l {comp btnSave::l:::x, comp btnClear:::::x, comp btnDelete::l::100:x, comp btnBorrowBook::t::100:x, comp btnReturnTicket::l::100:x, comp btnViewBorrow::l::100:x}"
+						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space s:::p, comp btnViewBorrow:::p::p, space ::109:x, comp btnReturnTicket:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 					} ) {
 						name: "actionPanel"
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -167,6 +167,11 @@ new FormModel {
 							name: "btnReturnTicket"
 							"text": "Return Ticket"
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnReturnTicketActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btnViewBorrow"
+							"text": "View Borrow"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnViewBorrowActionPerformed", true ) )
 						} )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1

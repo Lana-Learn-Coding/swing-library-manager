@@ -15,6 +15,7 @@ import io.lana.library.ui.component.TicketTablePane;
 import io.lana.library.ui.component.app.ListPane;
 import io.lana.library.ui.view.app.CrudPanel;
 import io.lana.library.ui.view.reader.BorrowBookDialog;
+import io.lana.library.ui.view.reader.BorrowedBookListDialog;
 import io.lana.library.utils.DateFormatUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.JXDatePicker;
@@ -37,6 +38,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     private ReaderService readerService;
 
     private BorrowBookDialog borrowBookDialog;
+    private BorrowedBookListDialog borrowedBookListDialog;
 
     public TicketManagerPanel() {
         initComponents();
@@ -80,10 +82,12 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     public void setup(TicketService ticketService,
                       BorrowBookDialog borrowBookDialog,
                       TicketDataCenter ticketDataCenter,
-                      ReaderService readerService) {
+                      ReaderService readerService,
+                      BorrowedBookListDialog borrowedBookListDialog) {
         this.ticketService = ticketService;
         this.borrowBookDialog = borrowBookDialog;
         this.readerService = readerService;
+        this.borrowedBookListDialog = borrowedBookListDialog;
         this.ticketTablePane.setRepositoryDataCenter(ticketDataCenter);
     }
 
@@ -171,7 +175,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         delete();
     }
 
-    private void btnBorrowBookActionPerformed(ActionEvent e) {
+    private Reader findReader() {
         String query = JOptionPane.showInputDialog(this, "Enter reader id, email, or phone");
         if (StringUtils.isBlank(query)) {
             throw new InputException(this, "Query must not blank");
@@ -180,8 +184,11 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         if (reader.isEmpty()) {
             throw new InputException(this, "No reader found");
         }
+        return reader.get();
+    }
 
-        borrowBookDialog.setModel(reader.get());
+    private void btnBorrowBookActionPerformed(ActionEvent e) {
+        borrowBookDialog.setModel(findReader());
         borrowBookDialog.setVisible(true);
     }
 
@@ -191,6 +198,11 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         }
         Ticket ticket = ticketTablePane.getSelectedRow();
         ticketService.returnTicket(ticket);
+    }
+
+    private void btnViewBorrowActionPerformed(ActionEvent e) {
+        borrowedBookListDialog.setModel(findReader());
+        borrowedBookListDialog.setVisible(true);
     }
 
     private void initComponents() {
@@ -221,6 +233,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         btnDelete = new JButton();
         btnBorrowBook = new JButton();
         btnReturnTicket = new JButton();
+        btnViewBorrow = new JButton();
 
         //======== this ========
         setBorder(new EmptyBorder(0, 10, 0, 10));
@@ -366,6 +379,10 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                     btnReturnTicket.setText("Return Ticket");
                     btnReturnTicket.addActionListener(e -> btnReturnTicketActionPerformed(e));
 
+                    //---- btnViewBorrow ----
+                    btnViewBorrow.setText("View Borrow");
+                    btnViewBorrow.addActionListener(e -> btnViewBorrowActionPerformed(e));
+
                     GroupLayout actionPanelLayout = new GroupLayout(actionPanel);
                     actionPanel.setLayout(actionPanelLayout);
                     actionPanelLayout.setHorizontalGroup(
@@ -375,6 +392,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                             .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(btnBorrowBook, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(btnReturnTicket, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnViewBorrow, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     );
                     actionPanelLayout.setVerticalGroup(
                         actionPanelLayout.createParallelGroup()
@@ -382,8 +400,10 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                                 .addContainerGap()
                                 .addComponent(btnBorrowBook)
                                 .addGap(18, 18, 18)
+                                .addComponent(btnViewBorrow)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                                 .addComponent(btnReturnTicket)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnSave)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnClear)
@@ -442,5 +462,6 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     private JButton btnDelete;
     private JButton btnBorrowBook;
     private JButton btnReturnTicket;
+    private JButton btnViewBorrow;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
