@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     @Column(unique = true, name = "phone_number")
     private String phoneNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "backend_user_permission",
         joinColumns = @JoinColumn(name = "backend_user_id"),
