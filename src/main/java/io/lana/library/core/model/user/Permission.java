@@ -2,8 +2,8 @@ package io.lana.library.core.model.user;
 
 import io.lana.library.core.model.base.Named;
 import io.lana.library.core.model.base.NamedEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
@@ -14,20 +14,16 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 public class Permission implements Named {
-    public static final Permission BOOK_MANAGE = new Permission("BOOK_MANAGE");
-    public static final Permission READER_MANAGE = new Permission("READER_MANAGE");
-    public static final Permission BORROWING_MANAGE = new Permission("BORROWING_MANAGE");
-    public static final Permission USER_MANAGE = new Permission("USER_MANAGE");
+    public static final Permission BOOK_MANAGE = new Permission(1, "BOOK_MANAGE");
+    public static final Permission READER_MANAGE = new Permission(2, "READER_MANAGE");
+    public static final Permission BORROWING_MANAGE = new Permission(3, "BORROWING_MANAGE");
+    public static final Permission USER_MANAGE = new Permission(4, "USER_MANAGE");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    public Permission(String name) {
-        setName(name);
-    }
 
     @NaturalId
     @Column(nullable = false, unique = true)
