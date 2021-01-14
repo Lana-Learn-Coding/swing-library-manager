@@ -113,13 +113,12 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         progress.setValue(100);
 
         loadingText.setText("Getting Ready...");
-        applicationContext.getBean(MainPanel.class);
         applicationContext.getBean(BookMetaManagerPanel.class);
         applicationContext.getBean(TicketManagerPanel.class);
         applicationContext.getBean(ReaderManagerPanel.class);
         applicationContext.getBean(UserManagerPanel.class);
+        applicationContext.getBean(MainPanel.class);
 
-        delay(800);
         mainFrame.switchContentPane(MainPanel.class);
     }
 
@@ -133,7 +132,7 @@ public class InitPanel extends JPanel implements MainFrameContainer {
 
     private void delay(int millis) {
         try {
-            Thread.sleep(500);
+            Thread.sleep(millis);
         } catch (InterruptedException e) {
             // ignore
         }
