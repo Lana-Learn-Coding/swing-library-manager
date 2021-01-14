@@ -43,6 +43,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private UserContext userContext;
     private BorrowBookDialog borrowBookDialog;
     private BorrowedBookListDialog borrowedBookListDialog;
+    private BorrowHistoryDialog borrowHistoryDialog;
     private ReaderService readerService;
     private FileStorage fileStorage;
 
@@ -59,6 +60,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                 btnDelete.setEnabled(false);
                 btnClone.setEnabled(false);
                 btnBorrow.setEnabled(false);
+                btnHistory.setEnabled(false);
                 btnViewBorrowed.setEnabled(false);
                 readerTablePane.setEnabled(false);
                 return;
@@ -68,6 +70,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
             btnDelete.setEnabled(true);
             btnClone.setEnabled(true);
             btnBorrow.setEnabled(true);
+            btnHistory.setEnabled(reader.getBorrowedBookCount() > 0);
             btnViewBorrowed.setEnabled(true);
         });
     }
@@ -88,7 +91,9 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                       ReaderService readerService,
                       BorrowedBookListDialog borrowedBookListDialog,
                       BorrowBookDialog borrowBookDialog,
+                      BorrowHistoryDialog borrowHistoryDialog,
                       UserContext userContext) {
+        this.borrowHistoryDialog = borrowHistoryDialog;
         this.userContext = userContext;
         this.readerService = readerService;
         this.fileStorage = fileStorage;
@@ -248,6 +253,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         borrowBookDialog.setVisible(true);
     }
 
+    private void btnHistoryActionPerformed(ActionEvent e) {
+        borrowHistoryDialog.setModel(readerTablePane.getSelectedRow());
+        borrowHistoryDialog.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         tab = new JTabbedPane();
@@ -283,6 +293,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
         btnClone = new JButton();
         btnViewBorrowed = new JButton();
         btnBorrow = new JButton();
+        btnHistory = new JButton();
 
         //======== this ========
         setBorder(new EmptyBorder(0, 10, 0, 10));
@@ -461,6 +472,11 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                         btnBorrow.setEnabled(false);
                         btnBorrow.addActionListener(e -> btnBorrowActionPerformed(e));
 
+                        //---- btnHistory ----
+                        btnHistory.setText("Borrow History");
+                        btnHistory.setEnabled(false);
+                        btnHistory.addActionListener(e -> btnHistoryActionPerformed(e));
+
                         GroupLayout actionPanelLayout = new GroupLayout(actionPanel);
                         actionPanel.setLayout(actionPanelLayout);
                         actionPanelLayout.setHorizontalGroup(
@@ -471,6 +487,7 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                                 .addComponent(btnClone, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBorrow, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnViewBorrowed, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnHistory, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         );
                         actionPanelLayout.setVerticalGroup(
                             actionPanelLayout.createParallelGroup()
@@ -479,7 +496,9 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
                                     .addComponent(btnViewBorrowed)
                                     .addGap(16, 16, 16)
                                     .addComponent(btnBorrow)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnHistory)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                                     .addComponent(btnClone)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnSave)
@@ -559,5 +578,6 @@ public class ReaderManagerPanel extends JPanel implements CrudPanel<Reader> {
     private JButton btnClone;
     private JButton btnViewBorrowed;
     private JButton btnBorrow;
+    private JButton btnHistory;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

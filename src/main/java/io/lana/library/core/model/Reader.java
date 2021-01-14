@@ -2,6 +2,7 @@ package io.lana.library.core.model;
 
 import io.lana.library.core.model.base.BaseEntity;
 import io.lana.library.core.model.book.Book;
+import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Ticket;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +51,15 @@ public class Reader extends BaseEntity {
             .filter(Ticket::isBorrowing)
             .flatMap(ticket -> ticket.getBooks().stream())
             .filter(Book::isNotDeleted)
+            .collect(Collectors.toSet());
+    }
+
+    @Transient
+    public Set<BookMeta> getHistoryBorrowedBookMetas() {
+        return tickets.stream()
+            .flatMap(ticket -> ticket.getBooks().stream())
+            .filter(Book::isNotDeleted)
+            .map(Book::getMeta)
             .collect(Collectors.toSet());
     }
 

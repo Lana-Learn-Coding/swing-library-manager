@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.8" encoding: "UTF-8"
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9.1" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -171,8 +171,8 @@ new FormModel {
 							} )
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {comp btnDelete:::::x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnClone::l:::x, comp btnBorrow::l:::x, comp btnViewBorrowed::l:::x}"
-							"$verticalGroup": "par l {seq t {space :::p, comp btnViewBorrowed:::p::p, space :p:16:p, comp btnBorrow:::p::p, space ::116:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+							"$horizontalGroup": "par l {comp btnDelete:::::x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnClone::l:::x, comp btnBorrow::l:::x, comp btnViewBorrowed::l:::x, comp btnHistory::t:::x}"
+							"$verticalGroup": "par l {seq t {space :::p, comp btnViewBorrowed:::p::p, space :p:16:p, comp btnBorrow:::p::p, space s:::p, comp btnHistory:::p::p, space ::75:x, comp btnClone:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
 						} ) {
 							name: "actionPanel"
 							"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
@@ -209,6 +209,12 @@ new FormModel {
 								"text": "Borrow Book"
 								"enabled": false
 								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBorrowActionPerformed", true ) )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "btnHistory"
+								"text": "Borrow History"
+								"enabled": false
+								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnHistoryActionPerformed", true ) )
 							} )
 						}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 							"gridx": 1

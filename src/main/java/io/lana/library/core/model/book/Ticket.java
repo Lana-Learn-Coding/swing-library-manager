@@ -2,6 +2,7 @@ package io.lana.library.core.model.book;
 
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.base.BaseEntity;
+import io.lana.library.utils.DateFormatUtils;
 import lombok.*;
 
 import javax.persistence.*;
@@ -91,5 +92,16 @@ public class Ticket extends BaseEntity {
     @Transient
     public boolean isOverDue() {
         return isBorrowing() && getDueDate().isBefore(LocalDate.now());
+    }
+
+    @Override
+    public String toString() {
+        String name = "Ticket " + getId() + " - from "
+                      + DateFormatUtils.toDateString(borrowedDate)
+                      + " to " + DateFormatUtils.toDateString(dueDate);
+        if (isReturned()) {
+            name += " returned at " + DateFormatUtils.toDateString(returnedDate);
+        }
+        return name;
     }
 }
