@@ -116,6 +116,11 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         showView(Views.BORROWING_MANAGE);
     }
 
+    private void btnAccountActionPerformed(ActionEvent e) {
+        userAccountDialog.setModel(userContext.getUser());
+        userAccountDialog.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         menuPanel = new JPanel();
@@ -193,6 +198,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             btnAccount.setText("Account");
             btnAccount.setFocusPainted(false);
             btnAccount.setFocusable(false);
+            btnAccount.addActionListener(e -> btnAccountActionPerformed(e));
             menuPanel.add(btnAccount, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
