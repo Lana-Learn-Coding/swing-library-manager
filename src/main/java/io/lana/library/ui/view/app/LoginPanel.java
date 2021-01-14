@@ -59,15 +59,19 @@ public class LoginPanel extends JPanel implements MainFrameContainer {
         disableForm();
         WorkerUtils.runAsync(() -> {
             User user = userRepo.findByUsernameEquals(username)
-                .orElseThrow(() -> new InputException(mainFrame, "User not exist"));
+                .orElseThrow(() -> new InputException(mainFrame, "Username not found"));
 
             if (passwordEncoder.matches(password, user.getPassword())) {
                 userContext.setUser(user);
-                mainFrame.switchContentPane(InitPanel.class);
+                if (user.getPermissions().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Your account was deactivated");
+                } else {
+                    mainFrame.switchContentPane(InitPanel.class);
+                }
                 enableForm();
                 return;
             }
-            JOptionPane.showMessageDialog(this, "Wrong username or password");
+            JOptionPane.showMessageDialog(this, "Wrong password");
             enableForm();
         });
     }
