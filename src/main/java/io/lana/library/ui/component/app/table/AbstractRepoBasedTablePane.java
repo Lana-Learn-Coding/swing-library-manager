@@ -1,7 +1,7 @@
 package io.lana.library.ui.component.app.table;
 
-import io.lana.library.core.spi.datacenter.base.RepositoryDataCenter;
 import io.lana.library.core.model.base.Identified;
+import io.lana.library.core.spi.datacenter.base.RepositoryDataCenter;
 
 import java.util.Iterator;
 import java.util.List;
@@ -29,13 +29,8 @@ public abstract class AbstractRepoBasedTablePane<T extends Identified<?>> extend
         });
         dataCenter.onDelete().subscribe(entity -> {
             int row = dataCenter.indexOf(entity);
-            if (isAnyRowSelected()) {
-                int selectedRow = table.getSelectedRow();
-                tableModel.removeRow(row);
-                setSelectedRow(selectedRow);
-                return;
-            }
             tableModel.removeRow(row);
+            clearSelection();
         });
         refresh();
     }
