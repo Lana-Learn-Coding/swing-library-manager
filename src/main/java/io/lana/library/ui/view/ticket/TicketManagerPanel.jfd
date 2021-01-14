@@ -138,8 +138,8 @@ new FormModel {
 						} )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp btnSave::l:::x, comp btnClear:::::x, comp btnDelete::l::100:x, comp btnBorrowBook::t::100:x, comp btnReturnTicket::l::100:x, comp btnViewBorrow::l::100:x}"
-						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space s:::p, comp btnViewBorrow:::p::p, space ::109:x, comp btnReturnTicket:::p::p, space s:::p, comp btnSave:::p::p, space s:::p, comp btnClear:::p::p, space s:::p, comp btnDelete:::p::p}}"
+						"$horizontalGroup": "par l {comp btnDelete::l::100:x, comp btnBorrowBook::t::100:x, comp btnReturnBook::l::100:x, comp btnClear::l:::x, comp btnSave::l:::x, comp btnReturnTicket::l::100:x, comp btnExtendDue::l::100:x, comp btnViewBorrow::t::100:x}"
+						"$verticalGroup": "par l {seq l {space :::p, comp btnBorrowBook:::p::p, space u:::p, comp btnViewBorrow:::p::p, space ::39:x, comp btnExtendDue:::p::p, space u:::p, comp btnReturnBook:::p::p, space :p:36:p, comp btnReturnTicket:::p::p, space u:::p, comp btnSave:::p::p, space u:::p, comp btnClear:::p::p, space u:::p, comp btnDelete:::p::p}}"
 					} ) {
 						name: "actionPanel"
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -150,6 +150,7 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnSave"
 							"text": "Update"
+							"enabled": false
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSaveActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -166,12 +167,25 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnReturnTicket"
 							"text": "Return Ticket"
+							"enabled": false
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnReturnTicketActionPerformed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "btnViewBorrow"
 							"text": "View Borrow"
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnViewBorrowActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btnReturnBook"
+							"text": "Return Book"
+							"enabled": false
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnReturnBookActionPerformed", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btnExtendDue"
+							"text": "Extend Due"
+							"enabled": false
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExtendDueActionPerformed", true ) )
 						} )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1

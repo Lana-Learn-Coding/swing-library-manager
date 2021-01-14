@@ -55,6 +55,8 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
                 bookList.setEnabled(false);
                 txtDueDate.setEnabled(false);
                 checkReturn.setEnabled(false);
+                btnReturnBook.setEnabled(false);
+                btnExtendDue.setEnabled(false);
                 return;
             }
             Ticket ticket = ticketTablePane.getRow(pos);
@@ -68,6 +70,18 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
             txtNote.setEnabled(!checkReturn.isSelected());
             bookList.setEnabled(!checkReturn.isSelected());
             txtDueDate.setEnabled(!checkReturn.isSelected());
+        });
+
+        bookList.addListSelectionListener(e -> {
+            if (ticketTablePane.isAnyRowSelected() &&
+                bookList.isAnySelected() &&
+                !ticketTablePane.getSelectedRow().isReturned()) {
+                btnReturnBook.setEnabled(true);
+                btnExtendDue.setEnabled(true);
+                return;
+            }
+            btnReturnBook.setEnabled(false);
+            btnExtendDue.setEnabled(false);
         });
 
         checkReturn.addActionListener(e -> {
@@ -198,11 +212,40 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         }
         Ticket ticket = ticketTablePane.getSelectedRow();
         ticketService.returnTicket(ticket);
+        JOptionPane.showMessageDialog(this, "Ticket returned");
     }
 
     private void btnViewBorrowActionPerformed(ActionEvent e) {
         borrowedBookListDialog.setModel(findReader());
         borrowedBookListDialog.setVisible(true);
+    }
+
+    private void btnReturnBookActionPerformed(ActionEvent e) {
+        if (JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, "Are you sure return this book?")) {
+            return;
+        }
+        Ticket ticket = ticketService.returnBook(bookList.getSelectedValue());
+        JOptionPane.showMessageDialog(this, "Book returned. Tracking ticket - " + ticket.getId());
+    }
+
+    private void btnExtendDueActionPerformed(ActionEvent e) {
+        Book book = bookList.getSelectedValue();
+
+        JXDatePicker datePicker = new JXDatePicker();
+        datePicker.setFormats(DateFormatUtils.COMMON_DATE_FORMAT);
+        if (JOptionPane.OK_OPTION != JOptionPane.showConfirmDialog(this, datePicker, "Select Due Date", JOptionPane.YES_NO_OPTION)) {
+            return;
+        }
+        if (datePicker.getDate() == null) {
+            throw new InputException(this, "Invalid date");
+        }
+        LocalDate newDate = DateFormatUtils.toLocalDate(datePicker.getDate());
+        if (!newDate.isAfter(LocalDate.now())) {
+            throw new InputException(this, "Selected Date is not after now");
+        }
+
+        Ticket ticket = ticketService.extendBookDueDate(book, newDate);
+        JOptionPane.showMessageDialog(this, "Book due date extended! - Tracking ticket: " + ticket.getId());
     }
 
     private void initComponents() {
@@ -234,6 +277,8 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
         btnBorrowBook = new JButton();
         btnReturnTicket = new JButton();
         btnViewBorrow = new JButton();
+        btnReturnBook = new JButton();
+        btnExtendDue = new JButton();
 
         //======== this ========
         setBorder(new EmptyBorder(0, 10, 0, 10));
@@ -364,6 +409,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
 
                     //---- btnSave ----
                     btnSave.setText("Update");
+                    btnSave.setEnabled(false);
                     btnSave.addActionListener(e -> btnSaveActionPerformed(e));
 
                     //---- btnDelete ----
@@ -377,37 +423,54 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
 
                     //---- btnReturnTicket ----
                     btnReturnTicket.setText("Return Ticket");
+                    btnReturnTicket.setEnabled(false);
                     btnReturnTicket.addActionListener(e -> btnReturnTicketActionPerformed(e));
 
                     //---- btnViewBorrow ----
                     btnViewBorrow.setText("View Borrow");
                     btnViewBorrow.addActionListener(e -> btnViewBorrowActionPerformed(e));
 
+                    //---- btnReturnBook ----
+                    btnReturnBook.setText("Return Book");
+                    btnReturnBook.setEnabled(false);
+                    btnReturnBook.addActionListener(e -> btnReturnBookActionPerformed(e));
+
+                    //---- btnExtendDue ----
+                    btnExtendDue.setText("Extend Due");
+                    btnExtendDue.setEnabled(false);
+                    btnExtendDue.addActionListener(e -> btnExtendDueActionPerformed(e));
+
                     GroupLayout actionPanelLayout = new GroupLayout(actionPanel);
                     actionPanel.setLayout(actionPanelLayout);
                     actionPanelLayout.setHorizontalGroup(
                         actionPanelLayout.createParallelGroup()
-                            .addComponent(btnSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnClear, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnDelete, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(btnBorrowBook, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnReturnBook, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnClear, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnReturnTicket, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(btnViewBorrow, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnExtendDue, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(btnViewBorrow, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     );
                     actionPanelLayout.setVerticalGroup(
                         actionPanelLayout.createParallelGroup()
                             .addGroup(actionPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnBorrowBook)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnViewBorrow)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(btnExtendDue)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnReturnBook)
+                                .addGap(36, 36, 36)
                                 .addComponent(btnReturnTicket)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSave)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnClear)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnDelete))
                     );
                 }
@@ -463,5 +526,7 @@ public class TicketManagerPanel extends JPanel implements CrudPanel<Ticket> {
     private JButton btnBorrowBook;
     private JButton btnReturnTicket;
     private JButton btnViewBorrow;
+    private JButton btnReturnBook;
+    private JButton btnExtendDue;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
