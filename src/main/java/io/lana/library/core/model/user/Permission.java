@@ -1,7 +1,6 @@
 package io.lana.library.core.model.user;
 
 import io.lana.library.core.model.base.Named;
-import io.lana.library.core.model.base.NamedEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,8 +38,8 @@ public class Permission implements Named {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof NamedEntity)) return false;
-        NamedEntity named = (NamedEntity) o;
+        if (!(o instanceof Permission)) return false;
+        Permission named = (Permission) o;
         return Objects.equals(getName(), named.getName());
     }
 
