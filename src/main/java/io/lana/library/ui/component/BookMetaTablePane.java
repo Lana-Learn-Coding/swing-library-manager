@@ -1,6 +1,7 @@
 package io.lana.library.ui.component;
 
 import io.lana.library.core.model.base.BaseEntity;
+import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.ui.component.app.table.AbstractRepoBasedTablePane;
 import io.lana.library.ui.component.app.table.TableColumnMapping;
@@ -21,7 +22,10 @@ public class BookMetaTablePane extends AbstractRepoBasedTablePane<BookMeta> {
         mapping.put("Publisher", BookMeta::getPublisherName);
         mapping.put("Category", BookMeta::getCategoryName);
         mapping.put("Year", BookMeta::getYear, Integer.class);
-        mapping.put("Count", bookMeta -> bookMeta.getBooks().size(), Integer.class);
+        mapping.put("Books Count", bookMeta -> bookMeta.getBooks().size(), Integer.class);
+        mapping.put("Borrowed Times",
+            bookMeta -> bookMeta.getBooks().stream().mapToInt(Book::getBorrowedTimes).sum(),
+            Integer.class);
         mapping.put("Created At", BaseEntity::getCreatedAt, LocalDateTime.class);
         return mapping;
     }

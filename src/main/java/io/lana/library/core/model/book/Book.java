@@ -45,6 +45,11 @@ public class Book extends BaseEntity {
     }
 
     @Transient
+    public int getBorrowedTimes() {
+        return getTickets().size();
+    }
+
+    @Transient
     public boolean isBorrowed() {
         return tickets.stream().anyMatch(Ticket::isBorrowing);
     }
