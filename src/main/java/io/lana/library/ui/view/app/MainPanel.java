@@ -102,6 +102,13 @@ public class MainPanel extends JPanel implements MainFrameContainer {
     }
 
     private void btnExitActionPerformed(ActionEvent e) {
+        int confirm = JOptionPane.showConfirmDialog(this, "Exit application ?");
+        if (confirm == JOptionPane.OK_OPTION) {
+            System.exit(0);
+        }
+    }
+
+    private void btnLogoutActionPerformed(ActionEvent e) {
         int confirm = JOptionPane.showConfirmDialog(this, "Log out ?");
         if (confirm == JOptionPane.OK_OPTION) {
             userContext.logout();
@@ -130,6 +137,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
         btnUserManage = new JButton();
         btnConfig = new JButton();
         btnAccount = new JButton();
+        btnLogout = new JButton();
         btnExit = new JButton();
         mainPanel = new JPanel();
 
@@ -146,9 +154,9 @@ public class MainPanel extends JPanel implements MainFrameContainer {
             menuPanel.setBorder(new EmptyBorder(10, 15, 0, 15));
             menuPanel.setLayout(new GridBagLayout());
             ((GridBagLayout) menuPanel.getLayout()).columnWidths = new int[]{90, 0};
-            ((GridBagLayout) menuPanel.getLayout()).rowHeights = new int[]{45, 45, 45, 45, 115, 0, 0, 0, 0};
+            ((GridBagLayout) menuPanel.getLayout()).rowHeights = new int[]{45, 45, 45, 45, 115, 0, 0, 0, 0, 0};
             ((GridBagLayout) menuPanel.getLayout()).columnWeights = new double[]{0.0, 1.0E-4};
-            ((GridBagLayout) menuPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0E-4};
+            ((GridBagLayout) menuPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
             //---- btnBookManage ----
             btnBookManage.setText("Book Manage");
@@ -203,12 +211,19 @@ public class MainPanel extends JPanel implements MainFrameContainer {
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 15, 0), 0, 0));
 
+            //---- btnLogout ----
+            btnLogout.setText("Logout");
+            btnLogout.addActionListener(e -> btnLogoutActionPerformed(e));
+            menuPanel.add(btnLogout, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 15, 0), 0, 0));
+
             //---- btnExit ----
             btnExit.setText("Exit");
             btnExit.setFocusPainted(false);
             btnExit.setFocusable(false);
             btnExit.addActionListener(e -> btnExitActionPerformed(e));
-            menuPanel.add(btnExit, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
+            menuPanel.add(btnExit, new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
         }
@@ -235,6 +250,7 @@ public class MainPanel extends JPanel implements MainFrameContainer {
     private JButton btnUserManage;
     private JButton btnConfig;
     private JButton btnAccount;
+    private JButton btnLogout;
     private JButton btnExit;
     private JPanel mainPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

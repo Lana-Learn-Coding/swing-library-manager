@@ -15,7 +15,7 @@ new FormModel {
 			"border": new javax.swing.border.EmptyBorder( 5, 0, 20, 0 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 				"$columnSpecs": "90"
-				"$rowSpecs": "30, 30, 30, 30, 100:1.0, 0, 0, 0"
+				"$rowSpecs": "30, 30, 30, 30, 100:1.0, 0, 0, 0, 0"
 				"$hGap": 5
 				"$vGap": 15
 				"$alignTop": true
@@ -75,13 +75,20 @@ new FormModel {
 					"gridy": 6
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnLogout"
+					"text": "Logout"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLogoutActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 7
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnExit"
 					"text": "Exit"
 					"focusPainted": false
 					"focusable": false
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnExitActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-					"gridy": 7
+					"gridy": 8
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
