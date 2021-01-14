@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public interface TicketService {
     void createTicket(Ticket ticket);
 
-    void returnBook(Book book);
+    Ticket returnBook(Book book);
 
     void returnTicket(Ticket ticket);
 

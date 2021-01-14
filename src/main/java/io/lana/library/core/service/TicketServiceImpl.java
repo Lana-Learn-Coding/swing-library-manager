@@ -41,11 +41,11 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public void returnBook(Book book) {
+    public Ticket returnBook(Book book) {
         Ticket ticket = book.getBorrowingTicket();
         if (ticket.getBooksCount() <= 1) {
             returnTicket(ticket);
-            return;
+            return ticket;
         }
         ticket.getBooks().remove(book);
         book.getTickets().remove(ticket);
@@ -60,7 +60,7 @@ public class TicketServiceImpl implements TicketService {
         bookDataCenter.refresh(book);
         ticket.getBorrower().getTickets().add(newTicket);
         readerDataCenter.refresh(ticket.getBorrower());
-
+        return newTicket;
     }
 
     @Override
