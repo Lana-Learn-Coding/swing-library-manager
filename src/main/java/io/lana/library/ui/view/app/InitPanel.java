@@ -18,7 +18,7 @@ import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
-import io.lana.library.ui.view.ticket.TicketManagerPanel;
+import io.lana.library.ui.view.reader.TicketManagerPanel;
 import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

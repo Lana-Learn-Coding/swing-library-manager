@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Jan 08 21:09:38 ICT 2021
  */
 
-package io.lana.library.ui.view.ticket;
+package io.lana.library.ui.view.reader;
 
 import io.lana.library.core.model.Reader;
 import io.lana.library.core.model.book.Book;
@@ -14,9 +14,6 @@ import io.lana.library.ui.InputException;
 import io.lana.library.ui.component.TicketTablePane;
 import io.lana.library.ui.component.app.ListPane;
 import io.lana.library.ui.view.app.CrudPanel;
-import io.lana.library.ui.view.reader.BorrowBookDialog;
-import io.lana.library.ui.view.reader.BorrowHistoryDialog;
-import io.lana.library.ui.view.reader.BorrowedBookListDialog;
 import io.lana.library.utils.DateFormatUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.JXDatePicker;
