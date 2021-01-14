@@ -6,7 +6,7 @@ package io.lana.library.ui.view.user;
 
 import io.lana.library.core.model.user.Permission;
 import io.lana.library.core.model.user.User;
-import io.lana.library.core.spi.PasswordEncoder;
+import io.lana.library.core.service.UserService;
 import io.lana.library.core.spi.datacenter.UserDataCenter;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.UIException;
@@ -31,8 +31,7 @@ import java.util.Set;
 @Component
 public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     private User loggedInUser;
-    private PasswordEncoder passwordEncoder;
-    private UserDataCenter userDataCenter;
+    private UserService userService;
 
     public UserManagerPanel() {
         initComponents();
@@ -54,10 +53,9 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     }
 
     @Autowired
-    public void setup(UserDataCenter userDataCenter, UserContext userContext, PasswordEncoder passwordEncoder) {
+    public void setup(UserDataCenter userDataCenter, UserContext userContext, UserService userService) {
         this.loggedInUser = userContext.getUser();
-        this.passwordEncoder = passwordEncoder;
-        this.userDataCenter = userDataCenter;
+        this.userService = userService;
         userTablePane.setRepositoryDataCenter(userDataCenter);
     }
 
@@ -71,7 +69,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         if (confirm != JOptionPane.OK_OPTION) {
             return;
         }
-        userDataCenter.delete(user);
+        userService.deleteUser(user);
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -79,63 +77,14 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     public void save() {
         User user = getModelFromForm();
         if (!userTablePane.isAnyRowSelected()) {
-            if (StringUtils.isBlank(user.getPassword())) {
-                throw new InputException(this, "Please enter password");
-
-            }
-            if (StringUtils.isNotBlank(user.getEmail()) && existsByEmail(user.getEmail())) {
-                throw new InputException(this, "Email already exited");
-            }
-            if (StringUtils.isNotBlank(user.getPhoneNumber()) && existsByPhoneNumber(user.getPhoneNumber())) {
-                throw new InputException(this, "Phone number already exited");
-            }
-            if (existsByUsername(user.getUsername())) {
-                throw new InputException(this, "Username already existed");
-            }
-
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userDataCenter.save(user);
+            userService.createUser(user);
             JOptionPane.showMessageDialog(this, "Create success!");
             return;
         }
 
-        User updated = userTablePane.getSelectedRow();
-        if (StringUtils.isNotBlank(user.getEmail())
-            && user.getEmail().equals(updated.getEmail())
-            && existsByEmail(user.getEmail())) {
-            throw new InputException(this, "Email already exited");
-        }
-        if (!user.getUsername().equals(updated.getUsername())
-            && existsByUsername(user.getUsername())) {
-            throw new InputException(this, "Username already exited");
-        }
-        if (StringUtils.isNotBlank(user.getPhoneNumber()) &&
-            !user.getPhoneNumber().equals(updated.getPhoneNumber())
-            && existsByPhoneNumber(user.getPhoneNumber())) {
-            throw new InputException(this, "Phone number already exited");
-        }
-        if (StringUtils.isNotBlank(user.getPassword())) {
-            updated.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
-        updated.setName(user.getName());
-        updated.setEmail(user.getEmail());
-        updated.setPhoneNumber(user.getPhoneNumber());
-        updated.setUsername(user.getUsername());
-        updated.setPermissions(user.getPermissions());
-        userDataCenter.update(updated);
+        user.setId(userTablePane.getSelectedRow().getId());
+        userService.updateUser(user);
         JOptionPane.showMessageDialog(this, "Update success!");
-    }
-
-    private boolean existsByUsername(String username) {
-        return userTablePane.stream().anyMatch(user -> username.equals(user.getUsername()));
-    }
-
-    private boolean existsByPhoneNumber(String phoneNumber) {
-        return userTablePane.stream().anyMatch(user -> phoneNumber.equals(user.getPhoneNumber()));
-    }
-
-    private boolean existsByEmail(String email) {
-        return userTablePane.stream().anyMatch(user -> email.equals(user.getEmail()));
     }
 
     @Override
