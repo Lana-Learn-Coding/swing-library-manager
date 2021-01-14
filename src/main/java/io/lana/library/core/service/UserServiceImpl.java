@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException("Username must not blank, and at least 3 character");
         }
         if (StringUtils.isNotBlank(user.getEmail())
-            && user.getEmail().equals(updated.getEmail())
+            && !user.getEmail().equals(updated.getEmail())
             && existsByEmail(user.getEmail())) {
             throw new ServiceException("Email already exited");
         }
