@@ -12,10 +12,8 @@ CREATE TABLE backend_user
 
 CREATE TABLE permission
 (
-    id         SERIAL PRIMARY KEY,
-    name       VARCHAR(128) NOT NULL,
-    created_at TIMESTAMP    NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMP    NOT NULL DEFAULT NOW()
+    id   SERIAL PRIMARY KEY,
+    name VARCHAR(128) NOT NULL UNIQUE
 );
 
 CREATE TABLE backend_user_permission
