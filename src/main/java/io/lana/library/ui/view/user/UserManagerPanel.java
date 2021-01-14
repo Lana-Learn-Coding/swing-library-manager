@@ -7,14 +7,13 @@ package io.lana.library.ui.view.user;
 import io.lana.library.core.model.user.Permission;
 import io.lana.library.core.model.user.User;
 import io.lana.library.core.spi.PasswordEncoder;
-import io.lana.library.core.spi.repo.UserRepo;
+import io.lana.library.core.spi.datacenter.UserDataCenter;
 import io.lana.library.ui.InputException;
 import io.lana.library.ui.UIException;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.component.UserTablePane;
 import io.lana.library.ui.component.app.TextField;
 import io.lana.library.ui.view.app.CrudPanel;
-import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,15 +25,14 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
 public class UserManagerPanel extends JPanel implements CrudPanel<User> {
-    private UserRepo userRepo;
     private User loggedInUser;
     private PasswordEncoder passwordEncoder;
+    private UserDataCenter userDataCenter;
 
     public UserManagerPanel() {
         initComponents();
@@ -56,10 +54,11 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
     }
 
     @Autowired
-    public void setup(UserRepo userRepo, UserContext userContext, PasswordEncoder passwordEncoder) {
-        this.userRepo = userRepo;
+    public void setup(UserDataCenter userDataCenter, UserContext userContext, PasswordEncoder passwordEncoder) {
         this.loggedInUser = userContext.getUser();
         this.passwordEncoder = passwordEncoder;
+        this.userDataCenter = userDataCenter;
+        userTablePane.setRepositoryDataCenter(userDataCenter);
     }
 
     @Override
@@ -72,8 +71,7 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         if (confirm != JOptionPane.OK_OPTION) {
             return;
         }
-        userTablePane.removeSelectedRow();
-        WorkerUtils.runAsync(() -> userRepo.deleteById(user.getId()));
+        userDataCenter.delete(user);
         JOptionPane.showMessageDialog(this, "Delete success!");
     }
 
@@ -96,11 +94,8 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
             }
 
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userRepo.save(user);
+            userDataCenter.save(user);
             JOptionPane.showMessageDialog(this, "Create success!");
-            userTablePane.clearSearch();
-            userTablePane.addRow(0, user);
-            userTablePane.setSelectedRow(0);
             return;
         }
 
@@ -127,9 +122,8 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         updated.setPhoneNumber(user.getPhoneNumber());
         updated.setUsername(user.getUsername());
         updated.setPermissions(user.getPermissions());
-        userRepo.save(updated);
+        userDataCenter.update(updated);
         JOptionPane.showMessageDialog(this, "Update success!");
-        userTablePane.refreshSelectedRow();
     }
 
     private boolean existsByUsername(String username) {
@@ -213,14 +207,6 @@ public class UserManagerPanel extends JPanel implements CrudPanel<User> {
         }
 
         return user;
-    }
-
-    public void renderTable(Collection<User> data) {
-        userTablePane.setTableData(data);
-    }
-
-    public void renderTable() {
-        renderTable(userRepo.findAllByOrderByUpdatedAtDesc());
     }
 
     private void btnCloneActionPerformed(ActionEvent e) {

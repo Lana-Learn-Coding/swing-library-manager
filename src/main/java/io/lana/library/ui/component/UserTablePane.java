@@ -1,13 +1,13 @@
 package io.lana.library.ui.component;
 
 import io.lana.library.core.model.user.User;
-import io.lana.library.ui.component.app.table.AbstractListBasedTablePane;
+import io.lana.library.ui.component.app.table.AbstractRepoBasedTablePane;
 import io.lana.library.ui.component.app.table.TableColumnMapping;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 
-public class UserTablePane extends AbstractListBasedTablePane<User> {
+public class UserTablePane extends AbstractRepoBasedTablePane<User> {
     @Override
     protected TableColumnMapping<User> getTableColumnMapping() {
         TableColumnMapping<User> mapping = new TableColumnMapping<>();

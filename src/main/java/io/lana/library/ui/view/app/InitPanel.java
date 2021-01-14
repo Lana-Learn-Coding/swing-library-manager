@@ -9,10 +9,7 @@ import io.lana.library.core.model.book.Book;
 import io.lana.library.core.model.book.BookMeta;
 import io.lana.library.core.model.book.Ticket;
 import io.lana.library.core.model.user.User;
-import io.lana.library.core.spi.datacenter.BookDataCenter;
-import io.lana.library.core.spi.datacenter.BookMetaDataCenter;
-import io.lana.library.core.spi.datacenter.ReaderDataCenter;
-import io.lana.library.core.spi.datacenter.TicketDataCenter;
+import io.lana.library.core.spi.datacenter.*;
 import io.lana.library.core.spi.repo.BookMetaRepo;
 import io.lana.library.core.spi.repo.ReaderRepo;
 import io.lana.library.core.spi.repo.UserRepo;
@@ -21,6 +18,7 @@ import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
 import io.lana.library.ui.view.book.BookMetaManagerPanel;
 import io.lana.library.ui.view.reader.ReaderManagerPanel;
+import io.lana.library.ui.view.ticket.TicketManagerPanel;
 import io.lana.library.ui.view.user.UserManagerPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -111,15 +109,17 @@ public class InitPanel extends JPanel implements MainFrameContainer {
         applicationContext.getBean(BookMetaDataCenter.class).load(bookMetas);
         applicationContext.getBean(BookDataCenter.class).load(books);
         applicationContext.getBean(ReaderDataCenter.class).load(readers.values());
-        applicationContext.getBean(ReaderManagerPanel.class);
+        applicationContext.getBean(UserDataCenter.class).load(users);
         progress.setValue(100);
 
         loadingText.setText("Getting Ready...");
         applicationContext.getBean(MainPanel.class);
         applicationContext.getBean(BookMetaManagerPanel.class);
-        applicationContext.getBean(UserManagerPanel.class).renderTable(users);
+        applicationContext.getBean(TicketManagerPanel.class);
+        applicationContext.getBean(ReaderManagerPanel.class);
+        applicationContext.getBean(UserManagerPanel.class);
 
-        delay(1000);
+        delay(800);
         mainFrame.switchContentPane(MainPanel.class);
     }
 
