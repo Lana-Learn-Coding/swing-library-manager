@@ -1,6 +1,9 @@
 package io.lana.library.ui.view.config;
 
+import io.lana.library.ui.FileException;
+import io.lana.library.utils.DateFormatUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DefaultPropertiesPersister;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -8,15 +11,54 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Properties;
 
 @Component
 public class ApplicationConfigDialog extends JDialog {
+    private static final String RESOURCES_FILE = "application.properties";
+    private final Properties properties = new Properties();
+    private final Path resourcesPath;
+
     public ApplicationConfigDialog() {
         initComponents();
+        resourcesPath = Paths.get(getClass().getResource(RESOURCES_FILE).getPath());
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(RESOURCES_FILE);
+        if (inputStream == null) {
+            throw new FileException("Config file not found: " + RESOURCES_FILE);
+        }
+        try {
+            properties.load(inputStream);
+        } catch (Exception e) {
+            throw new FileException("Cannot load config: " + RESOURCES_FILE);
+        }
     }
 
     private void okButtonActionPerformed(ActionEvent e) {
+        loadFormToProperties();
+        try (OutputStream out = new FileOutputStream(resourcesPath.toFile())) {
+            DefaultPropertiesPersister propertiesPersister = new DefaultPropertiesPersister();
+            propertiesPersister.store(properties, out, "Updated at: " + DateFormatUtils.toDateString(LocalDate.now()));
+        } catch (Exception error) {
+            throw new FileException("Cannot save config file");
+        }
+        JOptionPane.showMessageDialog(this, "Config saved. Restart application to take effect");
         setVisible(false);
+    }
+
+    private void loadFormToProperties() {
+        UIManager.LookAndFeelInfo lookAndFeelInfo = selectTheme.getSelectedItem();
+        if (lookAndFeelInfo != null) {
+            properties.setProperty("application.theme.classname", lookAndFeelInfo.getClassName());
+        } else {
+            properties.setProperty("application.theme.classname", UIManager.getLookAndFeel().getClass().getName());
+            selectTheme.selectCurrentTheme();
+        }
     }
 
     private void cancelButtonActionPerformed(ActionEvent e) {

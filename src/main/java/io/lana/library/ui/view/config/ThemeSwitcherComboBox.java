@@ -1,10 +1,7 @@
 package io.lana.library.ui.view.config;
 
-import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.intellijthemes.FlatAllIJThemes;
 import io.lana.library.ui.component.app.ComboBox;
-import io.lana.library.utils.WorkerUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
@@ -25,20 +22,6 @@ public class ThemeSwitcherComboBox extends ComboBox<UIManager.LookAndFeelInfo> {
 
         Arrays.asList(FlatAllIJThemes.INFOS).forEach(this::addItem);
         Arrays.asList(FlatAllDefaultThemes.INFOS).forEach(this::addItem);
-
-        addActionListener(l -> WorkerUtils.runAsync(() -> {
-            try {
-                UIManager.LookAndFeelInfo lookAndFeelInfo = getSelectedItem();
-                if (lookAndFeelInfo != null) {
-                    FlatAnimatedLafChange.showSnapshot();
-                    UIManager.setLookAndFeel(lookAndFeelInfo.getClassName());
-                    FlatLaf.updateUI();
-                    FlatAnimatedLafChange.hideSnapshotWithAnimation();
-                }
-            } catch (Exception e) {
-                selectCurrentTheme();
-            }
-        }));
         UIManager.addPropertyChangeListener(e -> {
             if ("lookAndFeel".equals(e.getPropertyName()))
                 selectCurrentTheme();
