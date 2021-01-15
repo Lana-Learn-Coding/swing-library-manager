@@ -11,9 +11,13 @@ import io.lana.library.ui.InputException;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.MainFrameContainer;
 import io.lana.library.ui.UserContext;
+import io.lana.library.ui.view.config.ApplicationConfigDialog;
 import io.lana.library.utils.WorkerUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.flywaydb.core.Flyway;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -36,12 +40,21 @@ public class LoginPanel extends JPanel implements MainFrameContainer {
     }
 
     @Autowired
-    public void setup(UserRepo userRepo, PasswordEncoder passwordEncoder,
-                      MainFrame mainFrame, UserContext userContext) {
-        this.userRepo = userRepo;
+    public void setup(PasswordEncoder passwordEncoder,
+                      MainFrame mainFrame, UserContext userContext,
+                      ApplicationContext applicationContext,
+                      ApplicationConfigDialog applicationConfigDialog) {
         this.passwordEncoder = passwordEncoder;
         this.mainFrame = mainFrame;
         this.userContext = userContext;
+        try {
+            this.userRepo = applicationContext.getBean(UserRepo.class);
+        } catch (BeansException e) {
+            JOptionPane.showMessageDialog(this, "Cannot connect to database. please check config");
+            mainFrame.dispose();
+            applicationConfigDialog.setVisible(true);
+        }
+        applicationContext.getBean(Flyway.class).migrate();
     }
 
     private void btnLoginActionPerformed(ActionEvent e) {
