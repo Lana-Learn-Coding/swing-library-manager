@@ -18,10 +18,12 @@ import java.util.Set;
 @Table(name = "book")
 @SQLDelete(sql = "UPDATE book SET is_deleted = true WHERE id = ?")
 public class Book extends BaseEntity {
-    private Integer condition;
+    @Column(nullable = false)
+    private Integer condition = 10;
 
     private String image;
 
+    @Column(length = 1024)
     private String note;
 
     private String position;
@@ -30,7 +32,7 @@ public class Book extends BaseEntity {
     private Boolean deleted = false;
 
     @ManyToOne
-    @JoinColumn(name = "meta_id")
+    @JoinColumn(name = "meta_id", nullable = false)
     private BookMeta meta;
 
     @ManyToOne

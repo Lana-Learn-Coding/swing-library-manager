@@ -17,6 +17,7 @@ import java.util.Set;
 @Table(name = "book_meta")
 @SQLDelete(sql = "UPDATE book_meta SET is_deleted = true WHERE id = ?")
 public class BookMeta extends BaseEntity {
+    @Column(nullable = false)
     private String title;
 
     private String author = "Unknown";
@@ -25,6 +26,7 @@ public class BookMeta extends BaseEntity {
 
     private String image;
 
+    @Column(nullable = false)
     private Integer year;
 
     @Column(name = "is_deleted")

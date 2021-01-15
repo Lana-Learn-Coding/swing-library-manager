@@ -24,13 +24,15 @@ public class Reader extends BaseEntity {
     @Column(unique = true, name = "phone_number")
     private String phoneNumber;
 
+    @Column(nullable = false)
     private String name;
 
     private String address;
 
     private String avatar;
 
-    private Boolean gender;
+    @Column(nullable = false)
+    private Boolean gender = true;
 
     @Column(name = "borrow_limit")
     private Integer limit;

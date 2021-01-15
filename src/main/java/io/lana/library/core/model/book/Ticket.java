@@ -20,26 +20,27 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class Ticket extends BaseEntity {
     @With
-    @Column(name = "due_date")
+    @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
-    @Column(name = "borrowed_date")
+    @Column(name = "borrowed_date", nullable = false)
     private LocalDate borrowedDate = LocalDate.now();
 
     @Column(name = "returned_date")
     private LocalDate returnedDate;
 
-    @Column(name = "is_returned")
+    @Column(name = "is_returned", nullable = false)
     private boolean returned = false;
 
+    @Column(length = 1024)
     private String note;
 
     @With
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "book_borrow_ticket",
-        joinColumns = @JoinColumn(name = "borrow_ticket_id"),
-        inverseJoinColumns = @JoinColumn(name = "book_id")
+        joinColumns = @JoinColumn(name = "borrow_ticket_id", nullable = false),
+        inverseJoinColumns = @JoinColumn(name = "book_id", nullable = false)
     )
     private Set<Book> books = new HashSet<>();
 

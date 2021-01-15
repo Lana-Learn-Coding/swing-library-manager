@@ -13,10 +13,13 @@ import java.util.Set;
 @Getter
 @Setter
 public class User extends BaseEntity {
+    @Column(nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
     @Column(unique = true)
@@ -28,8 +31,8 @@ public class User extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "backend_user_permission",
-        joinColumns = @JoinColumn(name = "backend_user_id"),
-        inverseJoinColumns = @JoinColumn(name = "permission_id")
+        joinColumns = @JoinColumn(name = "backend_user_id", nullable = false),
+        inverseJoinColumns = @JoinColumn(name = "permission_id", nullable = false)
     )
     private Set<Permission> permissions = new HashSet<>();
 
