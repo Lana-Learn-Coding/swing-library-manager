@@ -1,11 +1,10 @@
 package io.lana.library;
 
-import com.formdev.flatlaf.FlatLightLaf;
 import io.lana.library.core.service.ServiceException;
 import io.lana.library.ui.MainFrame;
 import io.lana.library.ui.UIException;
 import io.lana.library.ui.view.app.InitPanel;
-import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -21,8 +20,11 @@ import static java.awt.Window.getWindows;
 public class LibraryApplication implements CommandLineRunner, ApplicationContextAware {
     private ApplicationContext context;
 
+    @Value("${application.theme.classname}")
+    private String theme;
+
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(ApplicationContext applicationContext) {
         this.context = applicationContext;
     }
 
@@ -35,7 +37,7 @@ public class LibraryApplication implements CommandLineRunner, ApplicationContext
     @Override
     public void run(String... args) {
         EventQueue.invokeLater(() -> {
-            FlatLightLaf.install();
+            installTheme(theme);
             MainFrame mainFrame = context.getBean(MainFrame.class);
             mainFrame.setVisible(true);
             Thread.setDefaultUncaughtExceptionHandler((thread, error) -> {
@@ -68,5 +70,13 @@ public class LibraryApplication implements CommandLineRunner, ApplicationContext
                 System.exit(0);
             });
         });
+    }
+
+    public void installTheme(String classname) {
+        try {
+            UIManager.setLookAndFeel(theme);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
